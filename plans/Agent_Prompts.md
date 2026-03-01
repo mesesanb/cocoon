@@ -91,6 +91,7 @@ Implement Phase 4 (Stay Details) from plans/TODOS.md. Build the stay details pag
 
 - Route /stays/:id
 - Hero image, title, type badge, rating, description, amenities
+- Google Maps: stay location (minimalist map or marker; API key from env)
 - Date picker (react-day-picker) + guests selector
 - Live price display (ETH/BTC)
 - "Reserve" or "Book now" CTA linking to checkout

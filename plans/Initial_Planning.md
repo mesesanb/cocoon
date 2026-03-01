@@ -286,6 +286,8 @@ GENERATED_IMAGES/
 └── sea/       # Floating, lighthouse, underwater, boats (9 images)
 ```
 
+**Asset source**: Images and videos in these folders were generated with **Gemini**; they are used as static assets by the frontend.
+
 **Stays data**: `data/stays.json` — single source of truth. Each stay has: id, name, type, location, tagline, description, images[{path, alt}], pricePerNight, rating, reviewCount, maxGuests, rooms, amenities. Copy or import into `apps/api/src/data/` when building the backend.
 
 ---
@@ -323,7 +325,7 @@ const imageSrc = `${STAY_IMAGES_BASE}/${stay.images[0].path}`;  // → /images/f
 
 ### 7.2 Stay Details
 
-- **Sections**: Hero image(s), title, type (CITY/FOREST/MOUNTAINS/SEA), rating, price, description, amenities, map placeholder, reviews.
+- **Sections**: Hero image(s), title, type (CITY/FOREST/MOUNTAINS/SEA), rating, price, description, amenities, **Google Map** for stay location (minimalist map/marker), reviews.
 - **Availability**: Date picker (e.g. react-day-picker + Shadcn) + guests selector; live price.
 - **CTA**: "Claim this stay" (or "Reserve") → Checkout. Avoid generic "Book now."
 
@@ -472,7 +474,7 @@ Or use `concurrently` in root `package.json`:
 1. **Data**: Persist bookings/reviews (SQLite, Supabase, or similar).
 2. **Auth**: Simple auth (e.g. Supabase Auth or NextAuth) for “My Bookings”.
 3. **Favorites**: Server-side favorites with auth.
-4. **Map**: Integrate Mapbox or Google Maps for location display.
+4. **Map**: **Google Maps** for stay location display (integrated in Phase 4 — Stay Details).
 5. **Image uploads**: For stay images and reviews (S3, Cloudinary).
 6. **Deployment**: Frontend → Vercel, API → Render/Railway; env vars.
 7. **Performance**: Image optimization, bundle analysis, lazy loading.
@@ -508,6 +510,7 @@ Or use `concurrently` in root `package.json`:
 - [class-validator](https://github.com/typestack/class-validator)
 - [Valibot](https://valibot.dev/)
 - [Framer Motion](https://www.framer.com/motion/)
+- [Google Maps Platform — Maps JavaScript API](https://developers.google.com/maps/documentation/javascript) — stay location map (Phase 4)
 
 ---
 
