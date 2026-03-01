@@ -12,7 +12,14 @@ Load these files first:
 - `plans/Initial_Planning.md` — product, stack, architecture, constraints
 - `plans/TODOS.md` — current progress
 - `plans/Agent_Prompts.md` — this file
+- `plans/todo-phase0.md` — Phase 0 delivered (Next.js app, API routes, data)
 - `docs/phase-X-*.md` — for all completed phases (if any)
+
+---
+
+## Phase 0: v0.app UI (complete)
+
+Phase 0 is done. See [plans/todo-phase0.md](plans/todo-phase0.md). Baseline: `apps/web` only; API via Next.js Route Handlers; data in `apps/web/data/stays.json`.
 
 ---
 
