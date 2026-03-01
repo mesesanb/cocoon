@@ -1,0 +1,38 @@
+[
+  {
+    "confirmationId": "CCN-2026-001",
+    "stayId": "forest-001",
+    "coupleName": "Kai & Luna",
+    "checkIn": "2025-12-01",
+    "checkOut": "2025-12-08",
+    "guests": 2,
+    "totalPrice": 0.504,
+    "currency": "ETH",
+    "status": "completed",
+    "createdAt": "2025-11-15T10:00:00Z"
+  },
+  {
+    "confirmationId": "CCN-2026-002",
+    "stayId": "mountains-001",
+    "coupleName": "Kai & Luna",
+    "checkIn": "2026-04-10",
+    "checkOut": "2026-04-17",
+    "guests": 2,
+    "totalPrice": 0.0315,
+    "currency": "BTC",
+    "status": "confirmed",
+    "createdAt": "2026-02-20T14:30:00Z"
+  },
+  {
+    "confirmationId": "CCN-2026-003",
+    "stayId": "sea-001",
+    "coupleName": "Kai & Luna",
+    "checkIn": "2026-01-15",
+    "checkOut": "2026-01-22",
+    "guests": 2,
+    "totalPrice": 0.84,
+    "currency": "ETH",
+    "status": "completed",
+    "createdAt": "2025-12-30T09:15:00Z"
+  }
+]

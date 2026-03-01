@@ -6,7 +6,7 @@
 
 **Assessment alignment**: Todos below map to the **Original Assignment Brief** in `plans/Initial_Planning.md` — must-haves (search, stay details, reviews, availability+price, checkout, frontend→API), non-functional (single-command run, responsive, loading/empty/error, a11y, tests, observability), release (CI, build, release), and submission (README, LLM note, recording).
 
-**Sync with Initial_Planning**: Stack (Vite, React 19, TS, Shadcn, Tailwind, NestJS, shared types), monorepo layout (§5), API surface (§6), image targeting, single-command run (§13), and NFRs are reflected in these phases. Phase 1 breakdown with explanations → `plans/todo-phase1.md`.
+**Sync with Initial_Planning**: Stack (Vite, React 19, TS, Shadcn, Tailwind, NestJS, shared types), monorepo layout (§5), API surface (§6), image targeting, single-command run (§13), and NFRs are reflected in these phases. Phase 0 breakdown → `plans/todo-phase0.md`. Phase 1 breakdown → `plans/todo-phase1.md`.
 
 ---
 
@@ -34,12 +34,14 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 ---
 
-## Phase 0: v0.app UI (current)
+## Phase 0: v0.app UI ✅
+
+*Detailed breakdown: [plans/todo-phase0.md](plans/todo-phase0.md). Current state: single Next.js app in `apps/web`, API via Next.js Route Handlers; no monorepo yet.*
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 0.1 | Paste `plans/v0_prompt` into v0.dev; generate Cocoon UI (glassmorphism, narrative phases, StayCard) | ⬜ | |
-| 0.2 | Export/copy generated code for integration into `apps/web` in Phase 1 | ⬜ | |
+| 0.1 | Paste `plans/v0_prompt` into v0.dev; generate Cocoon UI (glassmorphism, narrative phases, StayCard) | ✅ | v0 output integrated into apps/web |
+| 0.2 | Export/copy generated code for integration into `apps/web` | ✅ | Next.js 16, React 19; run: `cd apps/web && pnpm dev` → http://localhost:3000 |
 
 ---
 

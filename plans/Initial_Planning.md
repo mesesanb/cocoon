@@ -3,8 +3,10 @@
 **Document**: Initial Planning  
 **Focus**: Fullstack (Frontend-heavy)  
 **Date**: February 2026  
-**Package manager**: Yarn  
+**Package manager**: Yarn (planned); **Phase 0 uses pnpm in `apps/web`**  
 **TO CONSIDER**: https://looking-ahead.hotmetalapp.com/how-i-10x-d-my-ai-coding-productivity-and-you-can-too — clear directions to follow while developing this project.
+
+**Current state (Phase 0 complete)**: The repo has a single Next.js 16 app in `apps/web` (React 19, TypeScript, Tailwind, Shadcn, Framer Motion). Stays, availability, reviews, and bookings are served by Next.js Route Handlers; data from `apps/web/data/stays.json`. No monorepo yet; no `apps/api` or `packages/shared`. Run with `cd apps/web && pnpm dev`. See [TODOS.md](TODOS.md) Phase 0 and [todo-phase0.md](todo-phase0.md).
 
 ---
 

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "rev-001",
+    "stayId": "forest-001",
+    "coupleName": "Kai & Luna",
+    "rating": 5,
+    "text": "We arrived as two people carrying the weight of separate lives. We left as one breath. The forest held us in ways words cannot.",
+    "date": "2026-01-15",
+    "resonanceScore": 99
+  },
+  {
+    "id": "rev-002",
+    "stayId": "sea-001",
+    "coupleName": "Ava & Sol",
+    "rating": 5,
+    "text": "Time dissolved. We watched fish through the glass floor at 3am, held hands, and said nothing. It was everything.",
+    "date": "2026-02-01",
+    "resonanceScore": 98
+  },
+  {
+    "id": "rev-003",
+    "stayId": "mountains-001",
+    "coupleName": "River & Sage",
+    "rating": 5,
+    "text": "At that altitude, pretense falls away. We cried, we laughed, we sat in the hot spring until stars appeared. Transformative.",
+    "date": "2026-01-20",
+    "resonanceScore": 97
+  },
+  {
+    "id": "rev-004",
+    "stayId": "city-001",
+    "coupleName": "Miro & Yuki",
+    "rating": 4,
+    "text": "The paradox of finding silence in Tokyo. The penthouse became our world. We cooked together, danced to vinyl, forgot the city existed.",
+    "date": "2026-02-10",
+    "resonanceScore": 95
+  },
+  {
+    "id": "rev-005",
+    "stayId": "forest-002",
+    "coupleName": "Ember & Ash",
+    "rating": 5,
+    "text": "Walking barefoot on rope bridges, we remembered why we chose each other. The jungle stripped away everything unnecessary.",
+    "date": "2025-12-20",
+    "resonanceScore": 96
+  },
+  {
+    "id": "rev-006",
+    "stayId": "sea-002",
+    "coupleName": "Nyx & Atlas",
+    "rating": 5,
+    "text": "Every sunset felt like it was painted just for us. The volcanic stone holds warmth long after the sun sets, just like this place holds you.",
+    "date": "2026-01-05",
+    "resonanceScore": 97
+  },
+  {
+    "id": "rev-007",
+    "stayId": "mountains-002",
+    "coupleName": "Iris & Cedar",
+    "rating": 4,
+    "text": "Floating above clouds in a glass pod. We whispered things we'd never said at sea level. The altitude gave us courage.",
+    "date": "2026-02-15",
+    "resonanceScore": 94
+  },
+  {
+    "id": "rev-008",
+    "stayId": "city-002",
+    "coupleName": "Lux & Ora",
+    "rating": 5,
+    "text": "Barcelona hummed below us while we existed in our own frequency. The rooftop garden at midnight was our cathedral.",
+    "date": "2026-01-28",
+    "resonanceScore": 96
+  }
+]

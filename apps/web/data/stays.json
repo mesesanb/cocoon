@@ -1,0 +1,1063 @@
+[
+	{
+		"id": "stay-1",
+		"name": "The Redwood Sphere",
+		"tagline": "Globe-shaped treehouse suspended in a redwood forest with spiral staircase.",
+		"description": "A futuristic spherical treehouse hangs between towering redwoods, its wooden and glass structure glowing warmly at dusk. A sleek spiral staircase winds up to the entrance, offering a secluded escape deep in the forest.",
+		"scenario": "FOREST",
+		"location": "Northern California, USA",
+		"coordinates": {
+			"lat": 47.46392185985371,
+			"lng": 14.304023345046847
+		},
+		"video": "/videos/forest/01_vid.mp4",
+		"images": ["/images/forest/01.jpg"],
+		"pricePerNight": 0.42,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Fireplace", "Deck"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-2",
+		"name": "The Waterfall A-Frame",
+		"tagline": "Glass A-frame cabin perched beside a cascading waterfall in a misty rainforest.",
+		"description": "A luminous A-frame cabin with floor-to-ceiling glass walls sits on the rocks beside a magnificent waterfall, surrounded by ancient ferns and dripping moss. The interior glows warmly against the blue twilight, offering front-row views of tumbling white water.",
+		"scenario": "FOREST",
+		"location": "Tasmania, Australia",
+		"coordinates": {
+			"lat": 54.6554036720927,
+			"lng": 18.452979630788036
+		},
+		"video": "/videos/forest/02_vid.mp4",
+		"images": ["/images/forest/02.jpg"],
+		"pricePerNight": 0.38,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Deck", "Heating"],
+		"resonanceScore": 96,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-3",
+		"name": "The Bali Rice Nest",
+		"tagline": "Bamboo thatched pod perched over emerald rice terraces with a rope bridge.",
+		"description": "A beautifully woven bamboo pod with a thatched palm roof hovers over sweeping green rice terraces, accessible by a narrow rope bridge. At dawn, golden light wraps the misty jungle below as the room's canopy bed glows in the warm interior.",
+		"scenario": "FOREST",
+		"location": "Ubud, Bali, Indonesia",
+		"coordinates": {
+			"lat": 50.633184609421356,
+			"lng": 18.15023255049999
+		},
+		"video": "/videos/forest/03_vid.mp4",
+		"images": ["/images/forest/03.jpg"],
+		"pricePerNight": 0.31,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Breakfast Included", "Deck", "AC"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-4",
+		"name": "The Hobbit Burrow",
+		"tagline": "Storybook earth-sheltered hobbit hole blooming with wildflowers at sunset.",
+		"description": "Tucked into a rolling green hill, this enchanting round-doored earth home is framed by climbing roses, wildflowers, and stone-paved paths. At dusk, a warm amber light spills from the porthole windows, creating a scene straight out of a fairytale.",
+		"scenario": "FOREST",
+		"location": "Waikato, New Zealand",
+		"coordinates": {
+			"lat": 45.67332305793447,
+			"lng": 10.356795530456592
+		},
+		"video": "/videos/forest/06_vid.mp4",
+		"images": ["/images/forest/06.jpg"],
+		"pricePerNight": 0.29,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden"],
+		"resonanceScore": 99,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-5",
+		"name": "The Wisteria Tower",
+		"tagline": "Tall wooden treehouse tower draped in wisteria and wildflowers deep in the forest.",
+		"description": "A multi-storey rustic wooden structure rises through the canopy, its facade completely enveloped in cascading purple wisteria, white jasmine, and creeping ivy. A tall ladder leads to glowing amber-lit windows above the forest floor.",
+		"scenario": "FOREST",
+		"location": "Appalachian Mountains, USA",
+		"coordinates": {
+			"lat": 54.40145124076813,
+			"lng": 13.53016095148959
+		},
+		"video": "/videos/forest/09_vid.mp4",
+		"images": ["/images/forest/09.jpg"],
+		"pricePerNight": 0.26,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Fireplace", "Deck"],
+		"resonanceScore": 94,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-6",
+		"name": "The Forest Lodge Carriage",
+		"tagline": "Vintage 1919 railway carriage converted into a luxury forest lodge.",
+		"description": "A beautifully restored dark green 1919 railway carriage sits on overgrown tracks deep in a moss-laden forest. Its side panel slides open to reveal a warm, hotel-quality bedroom and living area, with a small wooden deck and a forest armchair outside.",
+		"scenario": "FOREST",
+		"location": "Fiordland, New Zealand",
+		"coordinates": {
+			"lat": 52.7339713976668,
+			"lng": 13.685166546880366
+		},
+		"video": "/videos/forest/22_vid.mp4",
+		"images": ["/images/forest/22.jpg"],
+		"pricePerNight": 0.44,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Heating", "Deck", "Breakfast Included"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-7",
+		"name": "The Arctic UFO Pod",
+		"tagline": "Futuristic stainless steel UFO pod in a snowy Lapland pine forest.",
+		"description": "A gleaming silver elliptical pod hovers above the snow-covered ground on angular metal legs, accessible by a steep built-in staircase. Inside, panoramic windows look out onto a silent starlit pine forest, making it the ideal base for northern lights hunting.",
+		"scenario": "FOREST",
+		"location": "Lapland, Finland",
+		"coordinates": {
+			"lat": 54.314699721851156,
+			"lng": 15.95737953033414
+		},
+		"video": "/videos/forest/42_vid.mp4",
+		"images": ["/images/forest/42.jpg"],
+		"pricePerNight": 0.55,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Heating", "Northern Lights View", "Kitchen"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-8",
+		"name": "The Mirror Cube",
+		"tagline": "Perfectly mirrored cube that vanishes into the snowy forest around it.",
+		"description": "This extraordinary mirrored cubic cabin reflects the snow-laden pine trees so perfectly that it almost disappears into the landscape. A timber boardwalk leads to the hidden entrance, where inside, a warm minimalist retreat awaits surrounded by the silent winter forest.",
+		"scenario": "FOREST",
+		"location": "Swedish Lapland, Sweden",
+		"coordinates": {
+			"lat": 47.57897640089535,
+			"lng": 10.974496316444295
+		},
+		"video": "/videos/forest/43_vid.mp4",
+		"images": ["/images/forest/43.jpg"],
+		"pricePerNight": 0.61,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Heating", "Sauna", "Deck"],
+		"resonanceScore": 99,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-9",
+		"name": "The Alpine Dome",
+		"tagline": "Glowing geodesic dome floating on a mountain lake beneath the Dolomites at night.",
+		"description": "A luminous white geodesic dome floats on a wooden platform on the mirror-calm surface of a mountain lake, its triangulated glass panels glowing against a deep blue night sky. The jagged Dolomite peaks and dense pine forests are perfectly reflected in the still water below.",
+		"scenario": "SEA",
+		"location": "Carezza Lake, Dolomites, Italy",
+		"coordinates": {
+			"lat": 53.77133694703118,
+			"lng": 17.935031891590437
+		},
+		"images": ["/images/sea/05.jpg"],
+		"pricePerNight": 0.48,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Heating", "Panoramic Views", "Breakfast Included"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-10",
+		"name": "The Cliff Tinnie",
+		"tagline": "Weathered cedar tiny home on wheels parked on a dramatic sea cliff at dusk.",
+		"description": "A compact and beautifully crafted cedar-clad tiny house sits on its trailer on the edge of a sheer Atlantic cliff, with views stretching endlessly over crashing waves and misty headlands. At dusk, the warm interior light radiates coziness against the moody sky.",
+		"scenario": "SEA",
+		"location": "County Donegal, Ireland",
+		"coordinates": {
+			"lat": 45.63809899608021,
+			"lng": 12.649979109998284
+		},
+		"images": ["/images/sea/08.jpg"],
+		"pricePerNight": 0.22,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Ocean View", "Deck"],
+		"resonanceScore": 95,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-11",
+		"name": "The Beacon Suite",
+		"tagline": "Converted lighthouse on a rocky headland with a dramatic spiral staircase interior.",
+		"description": "This decommissioned lighthouse on a wave-lashed Scottish headland has been transformed into an extraordinary stay. The front wall has been replaced with a vast glass panel, revealing a sculptural modern spiral staircase winding up through multiple levels, with the open sea as a constant backdrop.",
+		"scenario": "SEA",
+		"location": "Scottish Highlands, Scotland",
+		"coordinates": {
+			"lat": 51.165488727077886,
+			"lng": 18.18487889847813
+		},
+		"images": ["/images/sea/10.jpg"],
+		"pricePerNight": 0.52,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Ocean View", "Fireplace"],
+		"resonanceScore": 97,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-12",
+		"name": "The Lakehouse Sauna",
+		"tagline": "Modern black houseboat with a rooftop hot tub and wood-fired sauna.",
+		"description": "This sleek dark-panelled houseboat floats quietly on a glassy Finnish lake fringed by pine forest. The rooftop terrace features a steaming wood-fired hot tub and lounge chairs, while the fully glazed ground floor offers uninterrupted lake views year-round.",
+		"scenario": "SEA",
+		"location": "Saimaa, Finland",
+		"coordinates": {
+			"lat": 45.752748693836985,
+			"lng": 14.859689169776312
+		},
+		"images": ["/images/sea/11.jpg"],
+		"pricePerNight": 0.43,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Sauna", "Hot Tub", "Deck"],
+		"resonanceScore": 97,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-13",
+		"name": "The Coral Bedroom",
+		"tagline": "Underwater bedroom suite surrounded by a living coral reef and tropical fish.",
+		"description": "Wake up to the most extraordinary bedroom on earth — fully submerged beneath the water's surface, its curved glass walls and ceiling revealing a breathtaking coral reef teeming with clownfish, parrotfish, and sea turtles. Rippling light plays on the ceiling all night long.",
+		"scenario": "SEA",
+		"location": "Maldives",
+		"coordinates": {
+			"lat": 50.40679919192453,
+			"lng": 19.19497384409394
+		},
+		"images": ["/images/sea/12.jpg"],
+		"pricePerNight": 1.85,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "Room Service", "Private Reef Access"],
+		"resonanceScore": 100,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-14",
+		"name": "The Sea Crate",
+		"tagline": "Converted shipping container on coastal rocks with floor-to-ceiling sea views.",
+		"description": "A matte-black shipping container has been placed on a rocky tidal outcrop and fitted with an entire wall of glass that frames the open Atlantic. Inside, a plush double bed faces the moody sea, while a small wooden deck offers a front-row seat to the dramatic Scottish coastline.",
+		"scenario": "SEA",
+		"location": "Orkney Islands, Scotland",
+		"coordinates": {
+			"lat": 52.438299504106205,
+			"lng": 18.746684244358832
+		},
+		"video": "/videos/sea/13_vid.mp4",
+		"images": ["/images/sea/13.jpg"],
+		"pricePerNight": 0.28,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Ocean View", "Deck"],
+		"resonanceScore": 94,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-15",
+		"name": "The Maltese Gulet",
+		"tagline": "Antique wooden sailing gulet moored in a turquoise Mediterranean cove at sunset.",
+		"description": "A classic wooden gulet with amber porthole lights bobs peacefully in a secret cove of crystal-clear turquoise water, its sails furled for the night and a medieval watchtower visible on the cliffs above. Perfect for couples seeking a romantic offshore escape.",
+		"scenario": "SEA",
+		"location": "Comino, Malta",
+		"coordinates": {
+			"lat": 54.74989485041529,
+			"lng": 18.38916294599647
+		},
+		"images": ["/images/sea/14.jpg"],
+		"pricePerNight": 0.36,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Sea View", "Deck", "Snorkeling Gear"],
+		"resonanceScore": 96,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-16",
+		"name": "The Conch Shell Villa",
+		"tagline": "Sculptural giant conch shell villa on a white sand beach at sunset.",
+		"description": "An architectural masterpiece shaped as a giant tropical conch shell sits on a powder-white sand beach framed by granite boulders and swaying palms. Its curved interior rooms glow in warm amber light, opening through a soaring circular glass doorway to the turquoise Indian Ocean at dusk.",
+		"scenario": "SEA",
+		"location": "Seychelles",
+		"coordinates": {
+			"lat": 45.10441443867443,
+			"lng": 19.14969830927262
+		},
+		"images": ["/images/sea/15.jpg"],
+		"pricePerNight": 0.95,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["AC", "WiFi", "Private Beach", "Pool", "Kitchen"],
+		"resonanceScore": 99,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-17",
+		"name": "The Pier Warehouse",
+		"tagline": "Converted Victorian red-brick pier warehouse with a clock tower over the bay.",
+		"description": "A grand 19th-century industrial warehouse with arched windows, terracotta brick, and a working clock tower stands alone on a long wooden pier over a wide bay. At golden hour, the warehouse is silhouetted against a fiery sunset, reflected in the glassy water below.",
+		"scenario": "SEA",
+		"location": "Puget Sound, Washington, USA",
+		"coordinates": {
+			"lat": 45.94636075513973,
+			"lng": 19.248582267948436
+		},
+		"images": ["/images/sea/16.jpg"],
+		"pricePerNight": 0.67,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Bay View", "Fireplace", "Deck"],
+		"resonanceScore": 96,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-18",
+		"name": "The Floating Dome",
+		"tagline": "Luminous geodesic dome floating on a lake at sunset with forest mountain views.",
+		"description": "A warm, linen-draped geodesic dome on a flat-bottomed pontoon floats peacefully on a still lake dyed pink by the last light of a spectacular sunset. The dome's glowing amber insides are visible through the wooden-framed panels, and the surrounding mountains are perfectly mirrored in the water.",
+		"scenario": "SEA",
+		"location": "British Columbia, Canada",
+		"coordinates": {
+			"lat": 54.42264201937772,
+			"lng": 16.865274544033294
+		},
+		"images": ["/images/sea/17.jpg"],
+		"pricePerNight": 0.39,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Kayak", "Breakfast Included", "Lake View"],
+		"resonanceScore": 97,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-19",
+		"name": "The Calanque Lifeboat",
+		"tagline": "Vintage orange lifeboat converted into a cozy bedroom in a limestone sea cove.",
+		"description": "A vivid orange vintage lifeboat has been transformed into a snug floating bedroom, moored in a dramatic limestone calanque where steep white cliffs plunge into perfectly still turquoise water. The warm interior, visible through a large picture window, glows against the dusk sky.",
+		"scenario": "SEA",
+		"location": "Calanques, Provence, France",
+		"coordinates": {
+			"lat": 49.41386601900152,
+			"lng": 14.902681870092776
+		},
+		"images": ["/images/sea/18.jpg"],
+		"pricePerNight": 0.24,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Sea View", "Kayak", "Breakfast Included"],
+		"resonanceScore": 94,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-20",
+		"name": "The Safari Tent",
+		"tagline": "Luxury open-sided safari tent with a deck overlooking elephants and giraffes at sunset.",
+		"description": "A grand canvas safari tent on an elevated wooden deck opens completely to face an endless savanna at dusk, where elephants gather at a watering hole and giraffes roam under a blazing orange sky. The tent interior is fitted with a plush bed and lounge chairs, blurring the line between nature and luxury.",
+		"scenario": "SEA",
+		"location": "Serengeti, Tanzania",
+		"coordinates": {
+			"lat": 48.85988406685367,
+			"lng": 10.9749007581381
+		},
+		"images": ["/images/sea/19.jpg"],
+		"pricePerNight": 0.75,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["Full Board", "WiFi", "Game Drives", "Deck", "Guided Tours"],
+		"resonanceScore": 99,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-21",
+		"name": "The Cliff Glass Box",
+		"tagline": "Minimalist glass bedroom cantilevered off a sheer sea cliff via a rope bridge.",
+		"description": "Accessible only via an illuminated rope suspension bridge clinging to the cliff face, this black-framed glass box bedroom juts out over the crashing Atlantic Ocean. Inside, a plush bed faces directly into the void, offering a vertigo-inducing but deeply serene sleep above the sea.",
+		"scenario": "MOUNTAINS",
+		"location": "Atlantic Coast, Portugal",
+		"coordinates": {
+			"lat": 49.22190795742963,
+			"lng": 15.315804467321904
+		},
+		"images": ["/images/mountains/19.jpg"],
+		"pricePerNight": 0.58,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Ocean View", "Heating", "Breakfast Included"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-22",
+		"name": "The Silo Suite",
+		"tagline": "Industrial grain silo interior converted into a loft suite with skylights and curved concrete.",
+		"description": "The interior of a repurposed grain silo has been dramatically reinvented as a moody and sculptural bedroom suite. A curved concrete mezzanine holds a plush circular bed, while an elegant steel spiral stair descends to the main level below. Skylights in the domed roof above pour light onto the raw industrial surfaces.",
+		"scenario": "MOUNTAINS",
+		"location": "Cape Winelands, South Africa",
+		"coordinates": {
+			"lat": 51.692302596416894,
+			"lng": 11.998870449257792
+		},
+		"images": ["/images/mountains/20.jpg"],
+		"pricePerNight": 0.47,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "Rooftop Access", "Wine Tasting"],
+		"resonanceScore": 96,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-23",
+		"name": "The Atlantic Bunker",
+		"tagline": "Repurposed WWII coastal bunker with a full-height glass wall gallery overlooking the sea.",
+		"description": "A hulking concrete World War II bunker on a boulder-strewn Atlantic headland has been converted into a stark and powerful living space. One massive concrete face has been replaced with a full-height glass wall that reveals an interior filled with sculptural art and premium furnishings, with the moody sea as a backdrop.",
+		"scenario": "MOUNTAINS",
+		"location": "Brittany, France",
+		"coordinates": {
+			"lat": 45.41487404566906,
+			"lng": 14.467811937601828
+		},
+		"images": ["/images/mountains/21.jpg"],
+		"pricePerNight": 0.41,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Ocean View", "Fireplace", "Art Collection"],
+		"resonanceScore": 96,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-24",
+		"name": "The Santorini Cave Suite",
+		"tagline": "Cave-carved suite with a plunge pool and arched caldera views over Santorini.",
+		"description": "Hand-carved into the volcanic cliff of Santorini's caldera, this immaculate white-washed cave suite features vaulted ceilings, a canopied four-poster bed, and a sunken indoor plunge pool. The arched opening frames the iconic blue-domed church skyline and the deep Aegean Sea stretching to the horizon.",
+		"scenario": "MOUNTAINS",
+		"location": "Oia, Santorini, Greece",
+		"coordinates": {
+			"lat": 53.719877785843025,
+			"lng": 17.78171112027348
+		},
+		"images": ["/images/mountains/23.jpg"],
+		"pricePerNight": 0.88,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": [
+			"AC",
+			"WiFi",
+			"Plunge Pool",
+			"Breakfast Included",
+			"Caldera View"
+		],
+		"resonanceScore": 99,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-25",
+		"name": "The Gothic Loch Tower",
+		"tagline": "Medieval gothic stone tower on a misty loch shore with ornate arches and a glass penthouse.",
+		"description": "This astonishing gothic stone folly rises from a rocky loch shore, its ornate medieval arches and gargoyles wreathed in early morning mist. The tower has been converted with a modern glass penthouse at the top, while the ground level features a grand arched entrance and a velvet armchair on the wooden dock.",
+		"scenario": "MOUNTAINS",
+		"location": "Scottish Highlands, Scotland",
+		"coordinates": {
+			"lat": 48.697427840303725,
+			"lng": 12.388935856163512
+		},
+		"images": ["/images/mountains/26.jpg"],
+		"pricePerNight": 0.63,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Fireplace", "Loch View", "Heating", "Rowing Boat"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-26",
+		"name": "The Desert Drifter",
+		"tagline": "A vintage 1956 Airstream trailer with a modern glass extension in the Mojave desert.",
+		"description": "The iconic 'Desert Drifter' – a lovingly restored 1956 silver Airstream trailer – has been extended with a contemporary glass and steel pavilion, complete with a shaded wooden deck and lounge chairs. Set against the dramatic backdrop of the Mojave's sandy desert and mountains, it blends nostalgia with modern comfort.",
+		"scenario": "MOUNTAINS",
+		"location": "Joshua Tree, California, USA",
+		"coordinates": {
+			"lat": 51.16410731458827,
+			"lng": 17.1146286594564
+		},
+		"video": "/videos/mountains/27_vid.mp4",
+		"images": ["/images/mountains/27.jpg"],
+		"pricePerNight": 0.27,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "AC", "Deck", "Stargazing"],
+		"resonanceScore": 95,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-27",
+		"name": "The Wadi Gorge Cabin",
+		"tagline": "Angular faceted metal cabin wedged into a desert rock gorge at sunset.",
+		"description": "A dramatic diamond-faceted steel cabin is wedged between the walls of a narrow desert gorge, its sharp geometric form jutting out over a rocky streambed. At sunset, the craggy mountains around it glow amber and violet while the cabin's interior lights illuminate the rough stone canyon walls.",
+		"scenario": "MOUNTAINS",
+		"location": "Wadi Dana, Jordan",
+		"coordinates": {
+			"lat": 47.06304207093511,
+			"lng": 10.675140115107258
+		},
+		"images": ["/images/mountains/36.jpg"],
+		"pricePerNight": 0.34,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Heating", "Deck", "Desert View"],
+		"resonanceScore": 97,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-28",
+		"name": "The Winter Cliff Cabin",
+		"tagline": "Dark timber cliff-edge cabin with a full glass wall overlooking a frozen misty lake.",
+		"description": "Perched on the edge of a granite cliff above a mist-shrouded Finnish lake, this sleek black timber cabin has an entire glass facade overlooking the frozen water. Snow-covered pine trees frame the view, and a small deck with a chair invites you to breathe in the crystalline winter air.",
+		"scenario": "MOUNTAINS",
+		"location": "Lake Saimaa, Finland",
+		"coordinates": {
+			"lat": 47.6454048143976,
+			"lng": 10.606794792564374
+		},
+		"video": "/videos/mountains/38_vid.mp4",
+		"images": ["/images/mountains/38.jpg"],
+		"pricePerNight": 0.41,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "Sauna", "Heating", "Lake View", "Fireplace"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-29",
+		"name": "The Wadi Rum Mirror House",
+		"tagline": "Mirrored desert house reflecting the ancient red rock mountains at golden hour.",
+		"description": "In the heart of the otherworldly Wadi Rum desert, this polished mirror-clad cabin reflects the surrounding ancient red sandstone mountains and vast sandy plains. Inside, a glass roof and open living space merge the exterior desert landscape with the premium interior, creating the illusion of sleeping inside the landscape itself.",
+		"scenario": "MOUNTAINS",
+		"location": "Wadi Rum, Jordan",
+		"coordinates": {
+			"lat": 48.07703377194886,
+			"lng": 12.92155271176896
+		},
+		"images": ["/images/mountains/44.jpg"],
+		"pricePerNight": 0.49,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["AC", "WiFi", "Desert View", "Stargazing", "Jeep Tour"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-30",
+		"name": "The Savanna Watch",
+		"tagline": "Luxury safari glamping tent overlooking a waterhole with elephants and giraffes at dusk.",
+		"description": "Elevated on stilts over the Serengeti plains, this expansive canvas tent opens its full front face to a watering hole and game-rich savanna. At dusk, herds of elephants and giraffes gather below the vivid orange and purple sky, visible from the plush velvet lounge on the deck.",
+		"scenario": "MOUNTAINS",
+		"location": "Serengeti, Tanzania",
+		"coordinates": {
+			"lat": 52.80511470396146,
+			"lng": 12.007655791825325
+		},
+		"images": ["/images/city/07.jpg"],
+		"pricePerNight": 0.82,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": [
+			"Full Board",
+			"WiFi",
+			"Game Drives",
+			"Deck",
+			"Guided Night Walk"
+		],
+		"resonanceScore": 99,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-31",
+		"name": "The Windmill Suite",
+		"tagline": "Converted windmill bedroom with original mill gears and panoramic countryside views.",
+		"description": "Sleep under the original wooden cog wheels and gears of a historic Dutch windmill. The loft bedroom is dramatically framed by the original mill machinery suspended overhead, while a sweeping curved glass window reveals rolling green polder fields, a still canal, and red-roofed farmsteads in the evening light.",
+		"scenario": "CITY",
+		"location": "Zeeland, Netherlands",
+		"coordinates": {
+			"lat": 53.96019109428824,
+			"lng": 11.389704894229988
+		},
+		"images": ["/images/city/24.jpg"],
+		"pricePerNight": 0.35,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Panoramic View", "Cycling"],
+		"resonanceScore": 97,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-32",
+		"name": "The Clock Tower",
+		"tagline": "Bedroom inside a historic clock tower with curved panoramic windows over Prague's rooftops.",
+		"description": "Sleep inside one of Prague's historic clock towers, where the full-wall bronze clockface hands move slowly outside as city lights twinkle through curved panoramic glass. The bedroom offers an extraordinary 180-degree view over the city's terracotta rooflines, baroque domes, and illuminated squares.",
+		"scenario": "CITY",
+		"location": "Prague, Czech Republic",
+		"coordinates": {
+			"lat": 46.85397495290583,
+			"lng": 11.504911381693152
+		},
+		"images": ["/images/city/25.jpg"],
+		"pricePerNight": 0.53,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "City View", "Breakfast Included"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-33",
+		"name": "The Swiss Barn",
+		"tagline": "Converted 18th-century timber barn with cathedral ceilings and a floor-to-ceiling valley view.",
+		"description": "The soaring interior of an ancient Swiss timber barn has been opened up to reveal its magnificent hand-hewn oak beams and cathedral ceiling. A vast glass wall at one end frames a sweeping view of the rolling green Swiss countryside, a pond, and distant farmhouses catching the last light of day.",
+		"scenario": "CITY",
+		"location": "Appenzell, Switzerland",
+		"coordinates": {
+			"lat": 50.29607163419614,
+			"lng": 17.158153589430604
+		},
+		"images": ["/images/city/28.jpg"],
+		"pricePerNight": 0.33,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden", "Hiking Trails"],
+		"resonanceScore": 95,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-34",
+		"name": "The Neon Cathedral",
+		"tagline": "Converted Victorian church with neon-lit gothic arches and a stained glass city view.",
+		"description": "A decommissioned Victorian brick church in East London has been transformed into a striking loft event space and accommodation. Original gothic stone arches now glow with vivid neon blue and purple lighting, while the east wall has been replaced with floor-to-ceiling stained glass panels framing a cloud-streaked city skyline.",
+		"scenario": "CITY",
+		"location": "East London, UK",
+		"coordinates": {
+			"lat": 54.782665720054865,
+			"lng": 10.055371877875066
+		},
+		"images": ["/images/city/29.jpg"],
+		"pricePerNight": 0.46,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "City View", "Sound System", "Rooftop Access"],
+		"resonanceScore": 96,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-35",
+		"name": "The Gasometer Loft",
+		"tagline": "Dramatic glass loft inside a converted cylindrical Victorian gasometer with river views.",
+		"description": "Inside the soaring shell of a repurposed 19th-century gasometer, a stunning glass-encased loft unit has been inserted within the original arched brick framework. The two-storey glass box hovers where the top of the industrial building once functioned, with 360-degree views over the city and the Danube below.",
+		"scenario": "CITY",
+		"location": "Vienna, Austria",
+		"coordinates": {
+			"lat": 51.6771344184683,
+			"lng": 18.661516263272176
+		},
+		"images": ["/images/city/30.jpg"],
+		"pricePerNight": 0.58,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "City View", "Gym", "Concierge"],
+		"resonanceScore": 97,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-36",
+		"name": "The Sculptor's Loft",
+		"tagline": "Artist's loft in a converted industrial warehouse surrounded by sculptures and city views.",
+		"description": "A breathtaking circular loft bedroom inside a converted red-brick industrial warehouse is surrounded entirely by original bronze sculptures on concrete plinths. The curved warehouse walls are interrupted by massive steel-framed windows looking out over a vibrant New York City skyline under a brilliant Blue Sky.",
+		"scenario": "CITY",
+		"location": "Brooklyn, New York, USA",
+		"coordinates": {
+			"lat": 54.675033693150596,
+			"lng": 12.85827325296382
+		},
+		"images": ["/images/city/31.jpg"],
+		"pricePerNight": 0.69,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "City View", "Art Collection", "Rooftop"],
+		"resonanceScore": 97,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-37",
+		"name": "The Cyberpunk Penthouse",
+		"tagline": "Neon-lit futuristic penthouse suite with a glass skybox bedroom and glowing city panorama.",
+		"description": "An ultra-modern penthouse suite inside a dystopian industrial tower glows with multicolored neon ropes in blue, green, and purple. At the center, a glass-walled sleeping pod faces directly into the electrifying nighttime city skyline below, where thousands of lights pulse in the urban sprawl.",
+		"scenario": "CITY",
+		"location": "Seoul, South Korea",
+		"coordinates": {
+			"lat": 53.45029998028696,
+			"lng": 18.90582614820974
+		},
+		"images": ["/images/city/32.jpg"],
+		"pricePerNight": 0.72,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "City View", "Smart Home", "Rooftop Pool"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-38",
+		"name": "The Botanical Church",
+		"tagline": "Lush indoor jungle bedroom inside a converted church with a towering stained glass facade.",
+		"description": "A converted industrial brick church has become a botanical sanctuary, filled floor to ceiling with tropical plants — monstera, ferns, massive philodendrons — that climb the walls and cascade from shelves. The focal point is a soaring stained-glass window the height of the building, flooding the space with kaleidoscopic light.",
+		"scenario": "CITY",
+		"location": "Antwerp, Belgium",
+		"coordinates": {
+			"lat": 51.80041502102461,
+			"lng": 16.805393564827597
+		},
+		"images": ["/images/city/34.jpg"],
+		"pricePerNight": 0.44,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "Garden", "Breakfast Included", "Bike Rental"],
+		"resonanceScore": 98,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-39",
+		"name": "The Container Tower Hotel",
+		"tagline": "Stacked shipping container apartments inside a converted industrial tower with river views.",
+		"description": "Inside a cavernous red-brick industrial silo, individual shipping container pods have been stacked and fitted out as private bedrooms, each with a small balcony facing the central atrium. Dramatic neon lighting in green, blue, and violet illuminates the industrial brick above, while a panoramic glass wall reveals the Berlin river and city below at sunset.",
+		"scenario": "CITY",
+		"location": "Berlin, Germany",
+		"coordinates": {
+			"lat": 51.75733885196717,
+			"lng": 10.27494671643267
+		},
+		"images": ["/images/city/35.jpg"],
+		"pricePerNight": 0.29,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "City View", "Bar", "Gym"],
+		"resonanceScore": 94,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-40",
+		"name": "The Urban Jungle Loft",
+		"tagline": "Industrial circular loft with tropical plants and sweeping city skyline views.",
+		"description": "A massive curved former industrial space in the heart of São Paulo has been transformed into a lush bedroom haven. Banks of tropical plants line the perimeter and climb towards enormous steel-framed arched windows, each panel framing a fragment of the dramatic São Paulo skyline beyond.",
+		"scenario": "CITY",
+		"location": "São Paulo, Brazil",
+		"coordinates": {
+			"lat": 52.48051891316212,
+			"lng": 14.854721747361435
+		},
+		"images": ["/images/city/37.jpg"],
+		"pricePerNight": 0.37,
+		"currency": "ETH",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "City View", "Rooftop Pool", "Gym"],
+		"resonanceScore": 96,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-41",
+		"name": "The Tokyo Sky Dome",
+		"tagline": "Glass dome bedroom on a rooftop terrace above Tokyo with a private hot tub.",
+		"description": "A spectacular fully-glazed geodesic dome bedroom sits on a high-rise rooftop in Tokyo, surrounded by a glowing city that stretches to the horizon. Aurora-like projections play on the glass dome from inside, while a steaming outdoor hot tub on the deck offers a sensory overload of city lights and starlit sky.",
+		"scenario": "CITY",
+		"location": "Tokyo, Japan",
+		"coordinates": {
+			"lat": 50.172797775223955,
+			"lng": 15.18684445362693
+		},
+		"images": ["/images/city/39.jpg"],
+		"pricePerNight": 0.79,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "Hot Tub", "City View", "Concierge"],
+		"resonanceScore": 99,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-42",
+		"name": "The Glass Pod NYC",
+		"tagline": "Curved glass tunnel bedroom above the Manhattan skyline with a starry night view.",
+		"description": "A futuristic arched glass pod bedroom has been embedded into a high-rise rooftop structure above midtown Manhattan. The entire surrounding wall and ceiling consist of glass panels, creating a 270-degree view of the glittering New York City skyline at night, with water light reflections dancing overhead.",
+		"scenario": "CITY",
+		"location": "Manhattan, New York, USA",
+		"coordinates": {
+			"lat": 47.2702279441518,
+			"lng": 10.986897533681388
+		},
+		"images": ["/images/city/40.jpg"],
+		"pricePerNight": 0.88,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": ["WiFi", "AC", "City View", "Room Service", "Smart Home"],
+		"resonanceScore": 99,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	},
+	{
+		"id": "stay-43",
+		"name": "The Aurora Igloo",
+		"tagline": "Glass igloo bedroom with reindeer fur beds under the northern lights.",
+		"description": "A thermal glass igloo sits amid an ice-and-snow landscape above the Arctic Circle, with a geodesic glass ceiling that frames the shimmering green and teal northern lights directly above your bed. Inside, reindeer fur pelts and fur blankets keep you cozy in this ultimate bucket-list arctic experience.",
+		"scenario": "CITY",
+		"location": "Saariselkä, Finland",
+		"coordinates": {
+			"lat": 54.232829581047,
+			"lng": 19.563502081670833
+		},
+		"images": ["/images/city/41.jpg"],
+		"pricePerNight": 0.76,
+		"currency": "BTC",
+		"maxGuests": 2,
+		"amenities": [
+			"WiFi",
+			"Heating",
+			"Northern Lights View",
+			"Breakfast Included",
+			"Snowmobile Safari"
+		],
+		"resonanceScore": 99,
+		"availability": [
+			{
+				"checkIn": "2026-01-01",
+				"checkOut": "2026-12-31"
+			}
+		]
+	}
+]
