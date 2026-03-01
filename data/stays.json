@@ -1,0 +1,1099 @@
+[
+  {
+    "id": "stay-1",
+    "name": "The Redwood Sphere",
+    "type": "FOREST",
+    "location": "Northern California, USA",
+    "tagline": "Globe-shaped treehouse suspended in a redwood forest with spiral staircase.",
+    "description": "A futuristic spherical treehouse hangs between towering redwoods, its wooden and glass structure glowing warmly at dusk. A sleek spiral staircase winds up to the entrance, offering a secluded escape deep in the forest.",
+    "images": [
+      {
+        "path": "forest/01.jpg",
+        "alt": "Globe-shaped treehouse suspended in a redwood forest with spiral staircase"
+      }
+    ],
+    "pricePerNight": 0.42,
+    "rating": 4.9,
+    "reviewCount": 127,
+    "maxGuests": 4,
+    "rooms": 1,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Fireplace",
+      "Deck"
+    ]
+  },
+  {
+    "id": "stay-2",
+    "name": "The Waterfall A-Frame",
+    "type": "FOREST",
+    "location": "Tasmania, Australia",
+    "tagline": "Glass A-frame cabin perched beside a cascading waterfall in a misty rainforest.",
+    "description": "A luminous A-frame cabin with floor-to-ceiling glass walls sits on the rocks beside a magnificent waterfall, surrounded by ancient ferns and dripping moss. The interior glows warmly against the blue twilight, offering front-row views of tumbling white water.",
+    "images": [
+      {
+        "path": "forest/02.jpg",
+        "alt": "Glass A-frame cabin beside a waterfall in a lush rainforest"
+      }
+    ],
+    "pricePerNight": 0.38,
+    "rating": 4.8,
+    "reviewCount": 93,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Deck",
+      "Heating"
+    ]
+  },
+  {
+    "id": "stay-3",
+    "name": "The Bali Rice Nest",
+    "type": "FOREST",
+    "location": "Ubud, Bali, Indonesia",
+    "tagline": "Bamboo thatched pod perched over emerald rice terraces with a rope bridge.",
+    "description": "A beautifully woven bamboo pod with a thatched palm roof hovers over sweeping green rice terraces, accessible by a narrow rope bridge. At dawn, golden light wraps the misty jungle below as the room's canopy bed glows in the warm interior.",
+    "images": [
+      {
+        "path": "forest/03.jpg",
+        "alt": "Bamboo and thatched treehouse pod over terraced rice fields in Bali"
+      }
+    ],
+    "pricePerNight": 0.31,
+    "rating": 4.9,
+    "reviewCount": 214,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Breakfast Included",
+      "Deck",
+      "AC"
+    ]
+  },
+  {
+    "id": "stay-4",
+    "name": "The Hobbit Burrow",
+    "type": "FOREST",
+    "location": "Waikato, New Zealand",
+    "tagline": "Storybook earth-sheltered hobbit hole blooming with wildflowers at sunset.",
+    "description": "Tucked into a rolling green hill, this enchanting round-doored earth home is framed by climbing roses, wildflowers, and stone-paved paths. At dusk, a warm amber light spills from the porthole windows, creating a scene straight out of a fairytale.",
+    "images": [
+      {
+        "path": "forest/06.jpg",
+        "alt": "Hobbit hole with a round green door and flower garden at sunset"
+      }
+    ],
+    "pricePerNight": 0.29,
+    "rating": 4.95,
+    "reviewCount": 318,
+    "maxGuests": 2,
+    "rooms": 2,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Fireplace",
+      "Garden"
+    ]
+  },
+  {
+    "id": "stay-5",
+    "name": "The Wisteria Tower",
+    "type": "FOREST",
+    "location": "Appalachian Mountains, USA",
+    "tagline": "Tall wooden treehouse tower draped in wisteria and wildflowers deep in the forest.",
+    "description": "A multi-storey rustic wooden structure rises through the canopy, its facade completely enveloped in cascading purple wisteria, white jasmine, and creeping ivy. A tall ladder leads to glowing amber-lit windows above the forest floor.",
+    "images": [
+      {
+        "path": "forest/09.jpg",
+        "alt": "Tall treehouse tower covered in wisteria and ivy in a lush green forest"
+      }
+    ],
+    "pricePerNight": 0.26,
+    "rating": 4.7,
+    "reviewCount": 88,
+    "maxGuests": 4,
+    "rooms": 3,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Fireplace",
+      "Deck"
+    ]
+  },
+  {
+    "id": "stay-6",
+    "name": "The Forest Lodge Carriage",
+    "type": "FOREST",
+    "location": "Fiordland, New Zealand",
+    "tagline": "Vintage 1919 railway carriage converted into a luxury forest lodge.",
+    "description": "A beautifully restored dark green 1919 railway carriage sits on overgrown tracks deep in a moss-laden forest. Its side panel slides open to reveal a warm, hotel-quality bedroom and living area, with a small wooden deck and a forest armchair outside.",
+    "images": [
+      {
+        "path": "forest/22.jpg",
+        "alt": "Vintage green railway carriage converted into a luxury lodge in a New Zealand forest"
+      }
+    ],
+    "pricePerNight": 0.44,
+    "rating": 4.88,
+    "reviewCount": 76,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Heating",
+      "Deck",
+      "Breakfast Included"
+    ]
+  },
+  {
+    "id": "stay-7",
+    "name": "The Arctic UFO Pod",
+    "type": "FOREST",
+    "location": "Lapland, Finland",
+    "tagline": "Futuristic stainless steel UFO pod in a snowy Lapland pine forest.",
+    "description": "A gleaming silver elliptical pod hovers above the snow-covered ground on angular metal legs, accessible by a steep built-in staircase. Inside, panoramic windows look out onto a silent starlit pine forest, making it the ideal base for northern lights hunting.",
+    "images": [
+      {
+        "path": "forest/42.jpg",
+        "alt": "Silver UFO-shaped pod in a snowy Lapland pine forest at night"
+      }
+    ],
+    "pricePerNight": 0.55,
+    "rating": 4.91,
+    "reviewCount": 142,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Heating",
+      "Northern Lights View",
+      "Kitchen"
+    ]
+  },
+  {
+    "id": "stay-8",
+    "name": "The Mirror Cube",
+    "type": "FOREST",
+    "location": "Swedish Lapland, Sweden",
+    "tagline": "Perfectly mirrored cube that vanishes into the snowy forest around it.",
+    "description": "This extraordinary mirrored cubic cabin reflects the snow-laden pine trees so perfectly that it almost disappears into the landscape. A timber boardwalk leads to the hidden entrance, where inside, a warm minimalist retreat awaits surrounded by the silent winter forest.",
+    "images": [
+      {
+        "path": "forest/43.jpg",
+        "alt": "Mirror-paneled cube cabin blending into a snowy Swedish pine forest"
+      }
+    ],
+    "pricePerNight": 0.61,
+    "rating": 4.93,
+    "reviewCount": 165,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Heating",
+      "Sauna",
+      "Deck"
+    ]
+  },
+  {
+    "id": "stay-9",
+    "name": "The Alpine Dome",
+    "type": "WATER",
+    "location": "Carezza Lake, Dolomites, Italy",
+    "tagline": "Glowing geodesic dome floating on a mountain lake beneath the Dolomites at night.",
+    "description": "A luminous white geodesic dome floats on a wooden platform on the mirror-calm surface of a mountain lake, its triangulated glass panels glowing against a deep blue night sky. The jagged Dolomite peaks and dense pine forests are perfectly reflected in the still water below.",
+    "images": [
+      {
+        "path": "water/05.jpg",
+        "alt": "Glowing geodesic dome floating on a lake with Dolomite mountains at night"
+      }
+    ],
+    "pricePerNight": 0.48,
+    "rating": 4.92,
+    "reviewCount": 203,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Heating",
+      "Panoramic Views",
+      "Breakfast Included"
+    ]
+  },
+  {
+    "id": "stay-10",
+    "name": "The Cliff Tinnie",
+    "type": "WATER",
+    "location": "County Donegal, Ireland",
+    "tagline": "Weathered cedar tiny home on wheels parked on a dramatic sea cliff at dusk.",
+    "description": "A compact and beautifully crafted cedar-clad tiny house sits on its trailer on the edge of a sheer Atlantic cliff, with views stretching endlessly over crashing waves and misty headlands. At dusk, the warm interior light radiates coziness against the moody sky.",
+    "images": [
+      {
+        "path": "water/08.jpg",
+        "alt": "Cedar tiny house on wheels perched on a dramatic sea cliff at dusk"
+      }
+    ],
+    "pricePerNight": 0.22,
+    "rating": 4.75,
+    "reviewCount": 57,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Ocean View",
+      "Deck"
+    ]
+  },
+  {
+    "id": "stay-11",
+    "name": "The Beacon Suite",
+    "type": "WATER",
+    "location": "Scottish Highlands, Scotland",
+    "tagline": "Converted lighthouse on a rocky headland with a dramatic spiral staircase interior.",
+    "description": "This decommissioned lighthouse on a wave-lashed Scottish headland has been transformed into an extraordinary stay. The front wall has been replaced with a vast glass panel, revealing a sculptural modern spiral staircase winding up through multiple levels, with the open sea as a constant backdrop.",
+    "images": [
+      {
+        "path": "water/10.jpg",
+        "alt": "Converted lighthouse on rocky coast with glass wall revealing spiral staircase interior"
+      }
+    ],
+    "pricePerNight": 0.52,
+    "rating": 4.85,
+    "reviewCount": 99,
+    "maxGuests": 4,
+    "rooms": 3,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Ocean View",
+      "Fireplace"
+    ]
+  },
+  {
+    "id": "stay-12",
+    "name": "The Lakehouse Sauna",
+    "type": "WATER",
+    "location": "Saimaa, Finland",
+    "tagline": "Modern black houseboat with a rooftop hot tub and wood-fired sauna.",
+    "description": "This sleek dark-panelled houseboat floats quietly on a glassy Finnish lake fringed by pine forest. The rooftop terrace features a steaming wood-fired hot tub and lounge chairs, while the fully glazed ground floor offers uninterrupted lake views year-round.",
+    "images": [
+      {
+        "path": "water/11.jpg",
+        "alt": "Black modern houseboat with rooftop hot tub on a calm Finnish lake at dusk"
+      }
+    ],
+    "pricePerNight": 0.43,
+    "rating": 4.87,
+    "reviewCount": 131,
+    "maxGuests": 4,
+    "rooms": 2,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Sauna",
+      "Hot Tub",
+      "Deck"
+    ]
+  },
+  {
+    "id": "stay-13",
+    "name": "The Coral Bedroom",
+    "type": "WATER",
+    "location": "Maldives",
+    "tagline": "Underwater bedroom suite surrounded by a living coral reef and tropical fish.",
+    "description": "Wake up to the most extraordinary bedroom on earth — fully submerged beneath the water's surface, its curved glass walls and ceiling revealing a breathtaking coral reef teeming with clownfish, parrotfish, and sea turtles. Rippling light plays on the ceiling all night long.",
+    "images": [
+      {
+        "path": "water/12.jpg",
+        "alt": "Underwater bedroom suite with panoramic views of coral reef and tropical fish"
+      }
+    ],
+    "pricePerNight": 1.85,
+    "rating": 4.98,
+    "reviewCount": 412,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "Room Service",
+      "Private Reef Access"
+    ]
+  },
+  {
+    "id": "stay-14",
+    "name": "The Sea Crate",
+    "type": "WATER",
+    "location": "Orkney Islands, Scotland",
+    "tagline": "Converted shipping container on coastal rocks with floor-to-ceiling sea views.",
+    "description": "A matte-black shipping container has been placed on a rocky tidal outcrop and fitted with an entire wall of glass that frames the open Atlantic. Inside, a plush double bed faces the moody sea, while a small wooden deck offers a front-row seat to the dramatic Scottish coastline.",
+    "images": [
+      {
+        "path": "water/13.jpg",
+        "alt": "Black shipping container on coastal rocks with glass wall and ocean view at dusk"
+      }
+    ],
+    "pricePerNight": 0.28,
+    "rating": 4.72,
+    "reviewCount": 64,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Ocean View",
+      "Deck"
+    ]
+  },
+  {
+    "id": "stay-15",
+    "name": "The Maltese Gulet",
+    "type": "WATER",
+    "location": "Comino, Malta",
+    "tagline": "Antique wooden sailing gulet moored in a turquoise Mediterranean cove at sunset.",
+    "description": "A classic wooden gulet with amber porthole lights bobs peacefully in a secret cove of crystal-clear turquoise water, its sails furled for the night and a medieval watchtower visible on the cliffs above. Perfect for couples seeking a romantic offshore escape.",
+    "images": [
+      {
+        "path": "water/14.jpg",
+        "alt": "Wooden sailing gulet moored in a turquoise Maltese cove at golden sunset"
+      }
+    ],
+    "pricePerNight": 0.36,
+    "rating": 4.82,
+    "reviewCount": 88,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Sea View",
+      "Deck",
+      "Snorkeling Gear"
+    ]
+  },
+  {
+    "id": "stay-16",
+    "name": "The Conch Shell Villa",
+    "type": "WATER",
+    "location": "Seychelles",
+    "tagline": "Sculptural giant conch shell villa on a white sand beach at sunset.",
+    "description": "An architectural masterpiece shaped as a giant tropical conch shell sits on a powder-white sand beach framed by granite boulders and swaying palms. Its curved interior rooms glow in warm amber light, opening through a soaring circular glass doorway to the turquoise Indian Ocean at dusk.",
+    "images": [
+      {
+        "path": "water/15.jpg",
+        "alt": "Giant conch shell-shaped villa on a white sand beach in the Seychelles at sunset"
+      }
+    ],
+    "pricePerNight": 0.95,
+    "rating": 4.96,
+    "reviewCount": 267,
+    "maxGuests": 4,
+    "rooms": 2,
+    "amenities": [
+      "AC",
+      "WiFi",
+      "Private Beach",
+      "Pool",
+      "Kitchen"
+    ]
+  },
+  {
+    "id": "stay-17",
+    "name": "The Pier Warehouse",
+    "type": "WATER",
+    "location": "Puget Sound, Washington, USA",
+    "tagline": "Converted Victorian red-brick pier warehouse with a clock tower over the bay.",
+    "description": "A grand 19th-century industrial warehouse with arched windows, terracotta brick, and a working clock tower stands alone on a long wooden pier over a wide bay. At golden hour, the warehouse is silhouetted against a fiery sunset, reflected in the glassy water below.",
+    "images": [
+      {
+        "path": "water/16.jpg",
+        "alt": "Converted Victorian brick pier warehouse with clock tower over the bay at sunset"
+      }
+    ],
+    "pricePerNight": 0.67,
+    "rating": 4.8,
+    "reviewCount": 113,
+    "maxGuests": 6,
+    "rooms": 3,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Bay View",
+      "Fireplace",
+      "Deck"
+    ]
+  },
+  {
+    "id": "stay-18",
+    "name": "The Floating Dome",
+    "type": "WATER",
+    "location": "British Columbia, Canada",
+    "tagline": "Luminous geodesic dome floating on a lake at sunset with forest mountain views.",
+    "description": "A warm, linen-draped geodesic dome on a flat-bottomed pontoon floats peacefully on a still lake dyed pink by the last light of a spectacular sunset. The dome's glowing amber insides are visible through the wooden-framed panels, and the surrounding mountains are perfectly mirrored in the water.",
+    "images": [
+      {
+        "path": "water/17.jpg",
+        "alt": "Floating geodesic dome on a mountain lake at sunset"
+      }
+    ],
+    "pricePerNight": 0.39,
+    "rating": 4.86,
+    "reviewCount": 148,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Kayak",
+      "Breakfast Included",
+      "Lake View"
+    ]
+  },
+  {
+    "id": "stay-19",
+    "name": "The Calanque Lifeboat",
+    "type": "WATER",
+    "location": "Calanques, Provence, France",
+    "tagline": "Vintage orange lifeboat converted into a cozy bedroom in a limestone sea cove.",
+    "description": "A vivid orange vintage lifeboat has been transformed into a snug floating bedroom, moored in a dramatic limestone calanque where steep white cliffs plunge into perfectly still turquoise water. The warm interior, visible through a large picture window, glows against the dusk sky.",
+    "images": [
+      {
+        "path": "water/18.jpg",
+        "alt": "Orange vintage lifeboat converted into a bedroom moored in a calanque cove"
+      }
+    ],
+    "pricePerNight": 0.24,
+    "rating": 4.68,
+    "reviewCount": 43,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Sea View",
+      "Kayak",
+      "Breakfast Included"
+    ]
+  },
+  {
+    "id": "stay-20",
+    "name": "The Safari Tent",
+    "type": "WATER",
+    "location": "Serengeti, Tanzania",
+    "tagline": "Luxury open-sided safari tent with a deck overlooking elephants and giraffes at sunset.",
+    "description": "A grand canvas safari tent on an elevated wooden deck opens completely to face an endless savanna at dusk, where elephants gather at a watering hole and giraffes roam under a blazing orange sky. The tent interior is fitted with a plush bed and lounge chairs, blurring the line between nature and luxury.",
+    "images": [
+      {
+        "path": "water/19.jpg",
+        "alt": "Luxury safari glamping tent on a deck overlooking the Serengeti with elephants and giraffes at sunset"
+      }
+    ],
+    "pricePerNight": 0.75,
+    "rating": 4.94,
+    "reviewCount": 289,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "Full Board",
+      "WiFi",
+      "Game Drives",
+      "Deck",
+      "Guided Tours"
+    ]
+  },
+  {
+    "id": "stay-21",
+    "name": "The Cliff Glass Box",
+    "type": "ROCK",
+    "location": "Atlantic Coast, Portugal",
+    "tagline": "Minimalist glass bedroom cantilevered off a sheer sea cliff via a rope bridge.",
+    "description": "Accessible only via an illuminated rope suspension bridge clinging to the cliff face, this black-framed glass box bedroom juts out over the crashing Atlantic Ocean. Inside, a plush bed faces directly into the void, offering a vertigo-inducing but deeply serene sleep above the sea.",
+    "images": [
+      {
+        "path": "rock/19.jpg",
+        "alt": "Glass box bedroom cantilevered on a cliff face accessed by rope bridge"
+      }
+    ],
+    "pricePerNight": 0.58,
+    "rating": 4.9,
+    "reviewCount": 177,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Ocean View",
+      "Heating",
+      "Breakfast Included"
+    ]
+  },
+  {
+    "id": "stay-22",
+    "name": "The Silo Suite",
+    "type": "ROCK",
+    "location": "Cape Winelands, South Africa",
+    "tagline": "Industrial grain silo interior converted into a loft suite with skylights and curved concrete.",
+    "description": "The interior of a repurposed grain silo has been dramatically reinvented as a moody and sculptural bedroom suite. A curved concrete mezzanine holds a plush circular bed, while an elegant steel spiral stair descends to the main level below. Skylights in the domed roof above pour light onto the raw industrial surfaces.",
+    "images": [
+      {
+        "path": "rock/20.jpg",
+        "alt": "Interior of a converted grain silo with mezzanine bed and steel spiral staircase"
+      }
+    ],
+    "pricePerNight": 0.47,
+    "rating": 4.78,
+    "reviewCount": 122,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "Rooftop Access",
+      "Wine Tasting"
+    ]
+  },
+  {
+    "id": "stay-23",
+    "name": "The Atlantic Bunker",
+    "type": "ROCK",
+    "location": "Brittany, France",
+    "tagline": "Repurposed WWII coastal bunker with a full-height glass wall gallery overlooking the sea.",
+    "description": "A hulking concrete World War II bunker on a boulder-strewn Atlantic headland has been converted into a stark and powerful living space. One massive concrete face has been replaced with a full-height glass wall that reveals an interior filled with sculptural art and premium furnishings, with the moody sea as a backdrop.",
+    "images": [
+      {
+        "path": "rock/21.jpg",
+        "alt": "WWII concrete bunker converted into art gallery accommodation overlooking the Atlantic"
+      }
+    ],
+    "pricePerNight": 0.41,
+    "rating": 4.8,
+    "reviewCount": 96,
+    "maxGuests": 4,
+    "rooms": 2,
+    "amenities": [
+      "WiFi",
+      "Ocean View",
+      "Fireplace",
+      "Art Collection"
+    ]
+  },
+  {
+    "id": "stay-24",
+    "name": "The Santorini Cave Suite",
+    "type": "ROCK",
+    "location": "Oia, Santorini, Greece",
+    "tagline": "Cave-carved suite with a plunge pool and arched caldera views over Santorini.",
+    "description": "Hand-carved into the volcanic cliff of Santorini's caldera, this immaculate white-washed cave suite features vaulted ceilings, a canopied four-poster bed, and a sunken indoor plunge pool. The arched opening frames the iconic blue-domed church skyline and the deep Aegean Sea stretching to the horizon.",
+    "images": [
+      {
+        "path": "rock/23.jpg",
+        "alt": "Santorini cave suite with plunge pool and caldera view through arched window"
+      }
+    ],
+    "pricePerNight": 0.88,
+    "rating": 4.97,
+    "reviewCount": 534,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "AC",
+      "WiFi",
+      "Plunge Pool",
+      "Breakfast Included",
+      "Caldera View"
+    ]
+  },
+  {
+    "id": "stay-25",
+    "name": "The Gothic Loch Tower",
+    "type": "ROCK",
+    "location": "Scottish Highlands, Scotland",
+    "tagline": "Medieval gothic stone tower on a misty loch shore with ornate arches and a glass penthouse.",
+    "description": "This astonishing gothic stone folly rises from a rocky loch shore, its ornate medieval arches and gargoyles wreathed in early morning mist. The tower has been converted with a modern glass penthouse at the top, while the ground level features a grand arched entrance and a velvet armchair on the wooden dock.",
+    "images": [
+      {
+        "path": "rock/26.jpg",
+        "alt": "Gothic stone tower on a misty Scottish loch with glass penthouse level"
+      }
+    ],
+    "pricePerNight": 0.63,
+    "rating": 4.92,
+    "reviewCount": 201,
+    "maxGuests": 2,
+    "rooms": 2,
+    "amenities": [
+      "WiFi",
+      "Fireplace",
+      "Loch View",
+      "Heating",
+      "Rowing Boat"
+    ]
+  },
+  {
+    "id": "stay-26",
+    "name": "The Desert Drifter",
+    "type": "ROCK",
+    "location": "Joshua Tree, California, USA",
+    "tagline": "A vintage 1956 Airstream trailer with a modern glass extension in the Mojave desert.",
+    "description": "The iconic 'Desert Drifter' – a lovingly restored 1956 silver Airstream trailer – has been extended with a contemporary glass and steel pavilion, complete with a shaded wooden deck and lounge chairs. Set against the dramatic backdrop of the Mojave's sandy desert and mountains, it blends nostalgia with modern comfort.",
+    "images": [
+      {
+        "path": "rock/27.jpg",
+        "alt": "Vintage 1956 Airstream trailer with glass extension in the Mojave desert"
+      }
+    ],
+    "pricePerNight": 0.27,
+    "rating": 4.74,
+    "reviewCount": 183,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "AC",
+      "Deck",
+      "Stargazing"
+    ]
+  },
+  {
+    "id": "stay-27",
+    "name": "The Wadi Gorge Cabin",
+    "type": "ROCK",
+    "location": "Wadi Dana, Jordan",
+    "tagline": "Angular faceted metal cabin wedged into a desert rock gorge at sunset.",
+    "description": "A dramatic diamond-faceted steel cabin is wedged between the walls of a narrow desert gorge, its sharp geometric form jutting out over a rocky streambed. At sunset, the craggy mountains around it glow amber and violet while the cabin's interior lights illuminate the rough stone canyon walls.",
+    "images": [
+      {
+        "path": "rock/36.jpg",
+        "alt": "Faceted angular metal cabin nestled in a Jordanian desert rock gorge at sunset"
+      }
+    ],
+    "pricePerNight": 0.34,
+    "rating": 4.83,
+    "reviewCount": 74,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Heating",
+      "Deck",
+      "Desert View"
+    ]
+  },
+  {
+    "id": "stay-28",
+    "name": "The Winter Cliff Cabin",
+    "type": "ROCK",
+    "location": "Lake Saimaa, Finland",
+    "tagline": "Dark timber cliff-edge cabin with a full glass wall overlooking a frozen misty lake.",
+    "description": "Perched on the edge of a granite cliff above a mist-shrouded Finnish lake, this sleek black timber cabin has an entire glass facade overlooking the frozen water. Snow-covered pine trees frame the view, and a small deck with a chair invites you to breathe in the crystalline winter air.",
+    "images": [
+      {
+        "path": "rock/38.jpg",
+        "alt": "Black timber cabin on a snowy granite cliff with glass wall over a misty Finnish lake"
+      }
+    ],
+    "pricePerNight": 0.41,
+    "rating": 4.88,
+    "reviewCount": 109,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Sauna",
+      "Heating",
+      "Lake View",
+      "Fireplace"
+    ]
+  },
+  {
+    "id": "stay-29",
+    "name": "The Wadi Rum Mirror House",
+    "type": "ROCK",
+    "location": "Wadi Rum, Jordan",
+    "tagline": "Mirrored desert house reflecting the ancient red rock mountains at golden hour.",
+    "description": "In the heart of the otherworldly Wadi Rum desert, this polished mirror-clad cabin reflects the surrounding ancient red sandstone mountains and vast sandy plains. Inside, a glass roof and open living space merge the exterior desert landscape with the premium interior, creating the illusion of sleeping inside the landscape itself.",
+    "images": [
+      {
+        "path": "rock/44.jpg",
+        "alt": "Mirrored desert cabin reflecting red rock mountains in Wadi Rum, Jordan at golden hour"
+      }
+    ],
+    "pricePerNight": 0.49,
+    "rating": 4.91,
+    "reviewCount": 156,
+    "maxGuests": 4,
+    "rooms": 1,
+    "amenities": [
+      "AC",
+      "WiFi",
+      "Desert View",
+      "Stargazing",
+      "Jeep Tour"
+    ]
+  },
+  {
+    "id": "stay-30",
+    "name": "The Savanna Watch",
+    "type": "ROCK",
+    "location": "Serengeti, Tanzania",
+    "tagline": "Luxury safari glamping tent overlooking a waterhole with elephants and giraffes at dusk.",
+    "description": "Elevated on stilts over the Serengeti plains, this expansive canvas tent opens its full front face to a watering hole and game-rich savanna. At dusk, herds of elephants and giraffes gather below the vivid orange and purple sky, visible from the plush velvet lounge on the deck.",
+    "images": [
+      {
+        "path": "city/07.jpg",
+        "alt": "Safari glamping tent on deck overlooking savanna with elephants and giraffes at sunset"
+      }
+    ],
+    "pricePerNight": 0.82,
+    "rating": 4.95,
+    "reviewCount": 342,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "Full Board",
+      "WiFi",
+      "Game Drives",
+      "Deck",
+      "Guided Night Walk"
+    ]
+  },
+  {
+    "id": "stay-31",
+    "name": "The Windmill Suite",
+    "type": "CITY",
+    "location": "Zeeland, Netherlands",
+    "tagline": "Converted windmill bedroom with original mill gears and panoramic countryside views.",
+    "description": "Sleep under the original wooden cog wheels and gears of a historic Dutch windmill. The loft bedroom is dramatically framed by the original mill machinery suspended overhead, while a sweeping curved glass window reveals rolling green polder fields, a still canal, and red-roofed farmsteads in the evening light.",
+    "images": [
+      {
+        "path": "city/24.jpg",
+        "alt": "Windmill bedroom with original gear mechanisms and panoramic Dutch countryside view"
+      }
+    ],
+    "pricePerNight": 0.35,
+    "rating": 4.84,
+    "reviewCount": 192,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Panoramic View",
+      "Cycling"
+    ]
+  },
+  {
+    "id": "stay-32",
+    "name": "The Clock Tower",
+    "type": "CITY",
+    "location": "Prague, Czech Republic",
+    "tagline": "Bedroom inside a historic clock tower with curved panoramic windows over Prague's rooftops.",
+    "description": "Sleep inside one of Prague's historic clock towers, where the full-wall bronze clockface hands move slowly outside as city lights twinkle through curved panoramic glass. The bedroom offers an extraordinary 180-degree view over the city's terracotta rooflines, baroque domes, and illuminated squares.",
+    "images": [
+      {
+        "path": "city/25.jpg",
+        "alt": "Bedroom inside a clock tower with large clock face window overlooking Prague at night"
+      }
+    ],
+    "pricePerNight": 0.53,
+    "rating": 4.89,
+    "reviewCount": 247,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "City View",
+      "Breakfast Included"
+    ]
+  },
+  {
+    "id": "stay-33",
+    "name": "The Swiss Barn",
+    "type": "CITY",
+    "location": "Appenzell, Switzerland",
+    "tagline": "Converted 18th-century timber barn with cathedral ceilings and a floor-to-ceiling valley view.",
+    "description": "The soaring interior of an ancient Swiss timber barn has been opened up to reveal its magnificent hand-hewn oak beams and cathedral ceiling. A vast glass wall at one end frames a sweeping view of the rolling green Swiss countryside, a pond, and distant farmhouses catching the last light of day.",
+    "images": [
+      {
+        "path": "city/28.jpg",
+        "alt": "Converted timber Swiss barn with cathedral ceiling and panoramic valley view at dusk"
+      }
+    ],
+    "pricePerNight": 0.33,
+    "rating": 4.77,
+    "reviewCount": 118,
+    "maxGuests": 8,
+    "rooms": 4,
+    "amenities": [
+      "Kitchen",
+      "WiFi",
+      "Fireplace",
+      "Garden",
+      "Hiking Trails"
+    ]
+  },
+  {
+    "id": "stay-34",
+    "name": "The Neon Cathedral",
+    "type": "CITY",
+    "location": "East London, UK",
+    "tagline": "Converted Victorian church with neon-lit gothic arches and a stained glass city view.",
+    "description": "A decommissioned Victorian brick church in East London has been transformed into a striking loft event space and accommodation. Original gothic stone arches now glow with vivid neon blue and purple lighting, while the east wall has been replaced with floor-to-ceiling stained glass panels framing a cloud-streaked city skyline.",
+    "images": [
+      {
+        "path": "city/29.jpg",
+        "alt": "Converted church with neon-lit gothic arches and stained glass city panorama"
+      }
+    ],
+    "pricePerNight": 0.46,
+    "rating": 4.81,
+    "reviewCount": 164,
+    "maxGuests": 6,
+    "rooms": 2,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "City View",
+      "Sound System",
+      "Rooftop Access"
+    ]
+  },
+  {
+    "id": "stay-35",
+    "name": "The Gasometer Loft",
+    "type": "CITY",
+    "location": "Vienna, Austria",
+    "tagline": "Dramatic glass loft inside a converted cylindrical Victorian gasometer with river views.",
+    "description": "Inside the soaring shell of a repurposed 19th-century gasometer, a stunning glass-encased loft unit has been inserted within the original arched brick framework. The two-storey glass box hovers where the top of the industrial building once functioned, with 360-degree views over the city and the Danube below.",
+    "images": [
+      {
+        "path": "city/30.jpg",
+        "alt": "Glass loft inserted into converted Victorian gasometer with city panoramic views at sunset"
+      }
+    ],
+    "pricePerNight": 0.58,
+    "rating": 4.86,
+    "reviewCount": 213,
+    "maxGuests": 4,
+    "rooms": 2,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "City View",
+      "Gym",
+      "Concierge"
+    ]
+  },
+  {
+    "id": "stay-36",
+    "name": "The Sculptor's Loft",
+    "type": "CITY",
+    "location": "Brooklyn, New York, USA",
+    "tagline": "Artist's loft in a converted industrial warehouse surrounded by sculptures and city views.",
+    "description": "A breathtaking circular loft bedroom inside a converted red-brick industrial warehouse is surrounded entirely by original bronze sculptures on concrete plinths. The curved warehouse walls are interrupted by massive steel-framed windows looking out over a vibrant New York City skyline under a brilliant Blue Sky.",
+    "images": [
+      {
+        "path": "city/31.jpg",
+        "alt": "Circular loft bedroom surrounded by bronze sculptures and NYC skyline inside converted warehouse"
+      }
+    ],
+    "pricePerNight": 0.69,
+    "rating": 4.83,
+    "reviewCount": 178,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "City View",
+      "Art Collection",
+      "Rooftop"
+    ]
+  },
+  {
+    "id": "stay-37",
+    "name": "The Cyberpunk Penthouse",
+    "type": "CITY",
+    "location": "Seoul, South Korea",
+    "tagline": "Neon-lit futuristic penthouse suite with a glass skybox bedroom and glowing city panorama.",
+    "description": "An ultra-modern penthouse suite inside a dystopian industrial tower glows with multicolored neon ropes in blue, green, and purple. At the center, a glass-walled sleeping pod faces directly into the electrifying nighttime city skyline below, where thousands of lights pulse in the urban sprawl.",
+    "images": [
+      {
+        "path": "city/32.jpg",
+        "alt": "Futuristic neon-lit penthouse with glass bedroom pod overlooking glowing city at night"
+      }
+    ],
+    "pricePerNight": 0.72,
+    "rating": 4.88,
+    "reviewCount": 221,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "City View",
+      "Smart Home",
+      "Rooftop Pool"
+    ]
+  },
+  {
+    "id": "stay-38",
+    "name": "The Botanical Church",
+    "type": "CITY",
+    "location": "Antwerp, Belgium",
+    "tagline": "Lush indoor jungle bedroom inside a converted church with a towering stained glass facade.",
+    "description": "A converted industrial brick church has become a botanical sanctuary, filled floor to ceiling with tropical plants — monstera, ferns, massive philodendrons — that climb the walls and cascade from shelves. The focal point is a soaring stained-glass window the height of the building, flooding the space with kaleidoscopic light.",
+    "images": [
+      {
+        "path": "city/34.jpg",
+        "alt": "Botanical jungle loft inside a converted church with stained glass window and tropical plants"
+      }
+    ],
+    "pricePerNight": 0.44,
+    "rating": 4.9,
+    "reviewCount": 304,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "Garden",
+      "Breakfast Included",
+      "Bike Rental"
+    ]
+  },
+  {
+    "id": "stay-39",
+    "name": "The Container Tower Hotel",
+    "type": "CITY",
+    "location": "Berlin, Germany",
+    "tagline": "Stacked shipping container apartments inside a converted industrial tower with river views.",
+    "description": "Inside a cavernous red-brick industrial silo, individual shipping container pods have been stacked and fitted out as private bedrooms, each with a small balcony facing the central atrium. Dramatic neon lighting in green, blue, and violet illuminates the industrial brick above, while a panoramic glass wall reveals the Berlin river and city below at sunset.",
+    "images": [
+      {
+        "path": "city/35.jpg",
+        "alt": "Stacked shipping container pods inside a converted industrial tower with neon lighting and river view"
+      }
+    ],
+    "pricePerNight": 0.29,
+    "rating": 4.7,
+    "reviewCount": 156,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "City View",
+      "Bar",
+      "Gym"
+    ]
+  },
+  {
+    "id": "stay-40",
+    "name": "The Urban Jungle Loft",
+    "type": "CITY",
+    "location": "São Paulo, Brazil",
+    "tagline": "Industrial circular loft with tropical plants and sweeping city skyline views.",
+    "description": "A massive curved former industrial space in the heart of São Paulo has been transformed into a lush bedroom haven. Banks of tropical plants line the perimeter and climb towards enormous steel-framed arched windows, each panel framing a fragment of the dramatic São Paulo skyline beyond.",
+    "images": [
+      {
+        "path": "city/37.jpg",
+        "alt": "Industrial circular loft bedroom with tropical plants and sweeping São Paulo city skyline"
+      }
+    ],
+    "pricePerNight": 0.37,
+    "rating": 4.79,
+    "reviewCount": 189,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "City View",
+      "Rooftop Pool",
+      "Gym"
+    ]
+  },
+  {
+    "id": "stay-41",
+    "name": "The Tokyo Sky Dome",
+    "type": "CITY",
+    "location": "Tokyo, Japan",
+    "tagline": "Glass dome bedroom on a rooftop terrace above Tokyo with a private hot tub.",
+    "description": "A spectacular fully-glazed geodesic dome bedroom sits on a high-rise rooftop in Tokyo, surrounded by a glowing city that stretches to the horizon. Aurora-like projections play on the glass dome from inside, while a steaming outdoor hot tub on the deck offers a sensory overload of city lights and starlit sky.",
+    "images": [
+      {
+        "path": "city/39.jpg",
+        "alt": "Glass dome bedroom on a Tokyo rooftop with hot tub and glowing city panorama at night"
+      }
+    ],
+    "pricePerNight": 0.79,
+    "rating": 4.93,
+    "reviewCount": 388,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "Hot Tub",
+      "City View",
+      "Concierge"
+    ]
+  },
+  {
+    "id": "stay-42",
+    "name": "The Glass Pod NYC",
+    "type": "CITY",
+    "location": "Manhattan, New York, USA",
+    "tagline": "Curved glass tunnel bedroom above the Manhattan skyline with a starry night view.",
+    "description": "A futuristic arched glass pod bedroom has been embedded into a high-rise rooftop structure above midtown Manhattan. The entire surrounding wall and ceiling consist of glass panels, creating a 270-degree view of the glittering New York City skyline at night, with water light reflections dancing overhead.",
+    "images": [
+      {
+        "path": "city/40.jpg",
+        "alt": "Curved glass tunnel bedroom with panoramic Manhattan city skyline at night"
+      }
+    ],
+    "pricePerNight": 0.88,
+    "rating": 4.94,
+    "reviewCount": 415,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "AC",
+      "City View",
+      "Room Service",
+      "Smart Home"
+    ]
+  },
+  {
+    "id": "stay-43",
+    "name": "The Aurora Igloo",
+    "type": "CITY",
+    "location": "Saariselkä, Finland",
+    "tagline": "Glass igloo bedroom with reindeer fur beds under the northern lights.",
+    "description": "A thermal glass igloo sits amid an ice-and-snow landscape above the Arctic Circle, with a geodesic glass ceiling that frames the shimmering green and teal northern lights directly above your bed. Inside, reindeer fur pelts and fur blankets keep you cozy in this ultimate bucket-list arctic experience.",
+    "images": [
+      {
+        "path": "city/41.jpg",
+        "alt": "Glass igloo bedroom with reindeer furs under the northern lights in Finnish Lapland"
+      }
+    ],
+    "pricePerNight": 0.76,
+    "rating": 4.97,
+    "reviewCount": 502,
+    "maxGuests": 2,
+    "rooms": 1,
+    "amenities": [
+      "WiFi",
+      "Heating",
+      "Northern Lights View",
+      "Breakfast Included",
+      "Snowmobile Safari"
+    ]
+  }
+]
