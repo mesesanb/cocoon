@@ -64,7 +64,7 @@ cocoon/
 │       └── package.json
 ├── data/                      # Source stays.json (root)
 ├── docs/                      # Phase docs (when written)
-├── plans/                     # TODOS, Initial_Planning, todo-phase0, todo-phase1, v0_prompt
+├── plans/                     # TODOS, Initial_Planning, v0_prompt.md, Agent_Prompts, phase-1-setup
 ├── README.md
 ```
 
@@ -144,13 +144,13 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 
 | Resource | Purpose |
 |----------|---------|
+| [docs/README.md](docs/README.md) | **Start here**: index of all docs and where to look |
+| [docs/phase-0-ui.md](docs/phase-0-ui.md) | Phase 0 breakdown (v0 UI, data, gateway, API, lint) |
 | [plans/TODOS.md](plans/TODOS.md) | Implementation phases and checklist (assessment-aligned) |
-| [plans/todo-phase0.md](plans/todo-phase0.md) | Phase 0 breakdown (v0 UI, data, gateway, API, lint) |
-| [plans/todo-phase1.md](plans/todo-phase1.md) | Phase 1 setup breakdown |
 | [plans/Initial_Planning.md](plans/Initial_Planning.md) | Product concept, stack, architecture, API, data models |
-| [plans/v0_prompt](plans/v0_prompt) | v0.app UI spec (glassmorphism, narrative flow, StayCard) |
-| [plans/Agent_Prompts.md](plans/Agent_Prompts.md) | Per-phase agent prompts |
-| [docs/](docs/) | Phase docs (`phase-X-*.md`) written after each phase |
+| [plans/v0_prompt.md](plans/v0_prompt.md) | v0.app UI spec (glassmorphism, narrative flow, StayCard) |
+| [plans/Agent_Prompts.md](plans/Agent_Prompts.md) | Per-phase agent prompts and constraints |
+| [plans/phase-1-setup.md](plans/phase-1-setup.md) | Phase 1 setup plan (not yet implemented) |
 
 ---
 

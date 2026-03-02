@@ -94,3 +94,4 @@ Phase 1 establishes the monorepo, frontend and backend apps, shared types, a sin
 **Why**: Follows the workflow in docs/README.md: each phase leaves a doc so the next phase (or another dev) has context without re-reading the whole plan.
 
 **How**: Create `docs/phase-1-setup.md` with: structure created, how to run (single command or two-step), where types live, how images are served, and any gotchas (e.g. shared package build step if used).
+

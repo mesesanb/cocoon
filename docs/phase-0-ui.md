@@ -1,7 +1,7 @@
 # Phase 0: v0.app UI — Todo breakdown
 
-**Source**: [TODOS.md](./TODOS.md) Phase 0.  
-**Reference**: [v0_prompt](./v0_prompt), [Initial_Planning.md](./Initial_Planning.md) Image targeting.
+**Source**: [TODOS.md](../plans/TODOS.md) Phase 0.  
+**Reference**: [v0_prompt.md](../plans/v0_prompt.md), [Initial_Planning.md](../plans/Initial_Planning.md) Image targeting.
 
 Phase 0 delivers the Cocoon UI from v0.dev (glassmorphism, narrative intro → gateway → discovery), integrated into the repo so the app runs locally. No monorepo yet; a single Next.js app in `apps/web` serves both the UI and mock API via Next.js API routes.
 
@@ -9,11 +9,11 @@ Phase 0 delivers the Cocoon UI from v0.dev (glassmorphism, narrative intro → g
 
 ## 0.1 — Paste v0_prompt into v0.dev; generate Cocoon UI
 
-**What**: Use the spec in `plans/v0_prompt` in v0.dev to generate the Cocoon UI (glassmorphism, narrative phases, StayCard, gateway with scenario cards).
+**What**: Use the spec in `plans/v0_prompt.md` in v0.dev to generate the Cocoon UI (glassmorphism, narrative phases, StayCard, gateway with scenario cards).
 
 **Why**: Establishes the design and component set before wiring to a real backend.
 
-**How**: Copy v0_prompt into v0.dev; export the generated project (ZIP). Generated output includes Next.js, Tailwind, Shadcn-style components, Framer Motion.
+**How**: Copy v0_prompt.md into v0.dev; export the generated project (ZIP). Generated output includes Next.js, Tailwind, Shadcn-style components, Framer Motion.
 
 **Status**: ✅ Done. v0 output integrated into `apps/web`.
 
@@ -62,4 +62,5 @@ Phase 0 delivers the Cocoon UI from v0.dev (glassmorphism, narrative intro → g
 - Single-command run from root (`pnpm dev` or `yarn dev` running web + api).
 - Commit message guard (commitlint + husky).
 
-See [TODOS.md](./TODOS.md) Phase 1 and [todo-phase1.md](./todo-phase1.md).
+See [../plans/TODOS.md](../plans/TODOS.md) Phase 1 and [../plans/phase-1-setup.md](../plans/phase-1-setup.md).
+
