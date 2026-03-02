@@ -29,7 +29,7 @@ export function StayCard({ stay, mode, booking, index = 0 }: StayCardProps) {
 		>
 			<Link
 				href={`/stay/${stay.id}`}
-				className="group block overflow-hidden rounded-2xl glass hover:shadow-xl transition-all duration-500"
+				className="group block overflow-hidden rounded-2xl glass hover:shadow-xl transition-all duration-500 cursor-pointer"
 			>
 				{/* Image or video */}
 				<div className="relative aspect-[4/3] overflow-hidden">

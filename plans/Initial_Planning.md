@@ -327,7 +327,7 @@ const imageSrc = `${STAY_IMAGES_BASE}/${stay.images[0].path}`;  // → /images/f
 
 ### 7.2 Stay Details
 
-- **Sections**: Hero image(s), title, type (CITY/FOREST/MOUNTAINS/SEA), rating, price, description, amenities, **Google Map** for stay location (minimalist map/marker), reviews.
+- **Sections**: Hero image(s), title, type (CITY/FOREST/MOUNTAINS/SEA), rating, price, description, amenities, **OpenStreetMap + Leaflet** with **Esri World Imagery** (satellite) for stay location (minimalist map/marker), reviews.
 - **Availability**: Date picker (e.g. react-day-picker + Shadcn) + guests selector; live price.
 - **CTA**: "Claim this stay" (or "Reserve") → Checkout. Avoid generic "Book now."
 
@@ -341,7 +341,7 @@ const imageSrc = `${STAY_IMAGES_BASE}/${stay.images[0].path}`;  // → /images/f
 
 1. **Summary**: Stay, dates, guests, price.
 2. **Guest info**: Name, email, phone (React Hook Form + Valibot/Yup).
-3. **Payment**: Mock ("Pay with ETH/BTC" → simulate success).
+3. **Payment**: Mock ("Pay with ¤" → simulate success).
 4. **Confirmation**: Confirmation ID, aspirational summary ("Your escape is confirmed"), "Discover more" CTA.
 
 ---
@@ -402,7 +402,7 @@ interface Booking {
 - **Empty**: Custom component with illustration + CTA.
 - **Errors**: Shadcn `Toast` or inline with retry.
 - **Forms**: Shadcn `Input`, `Select`, `Button`; react-day-picker for dates; React Hook Form + Valibot (or Yup).
-- **Currency**: Prices as numbers. Display with ETH or BTC suffix (e.g. `0.05 ETH`). Mock payment: "Pay with ETH/BTC" → simulate success.
+- **Currency**: Prices as numbers. Display with ¤ suffix (e.g. `0.05 ¤`). Mock payment: "Pay with ¤" → simulate success.
 
 ---
 
@@ -476,7 +476,7 @@ Or use `concurrently` in root `package.json`:
 1. **Data**: Persist bookings/reviews (SQLite, Supabase, or similar).
 2. **Auth**: Simple auth (e.g. Supabase Auth or NextAuth) for “My Bookings”.
 3. **Favorites**: Server-side favorites with auth.
-4. **Map**: **Google Maps** for stay location display (integrated in Phase 4 — Stay Details).
+4. **Map**: **OpenStreetMap + Leaflet** with **Esri World Imagery** (satellite/aerial tiles) for stay location display (no API key; integrated in Stay Details). Coordinates in data aligned to location names (secluded areas for nature stays, city centers for CITY).
 5. **Image uploads**: For stay images and reviews (S3, Cloudinary).
 6. **Deployment**: Frontend → Vercel, API → Render/Railway; env vars.
 7. **Performance**: Image optimization, bundle analysis, lazy loading.
@@ -512,7 +512,7 @@ Or use `concurrently` in root `package.json`:
 - [class-validator](https://github.com/typestack/class-validator)
 - [Valibot](https://valibot.dev/)
 - [Framer Motion](https://www.framer.com/motion/)
-- [Google Maps Platform — Maps JavaScript API](https://developers.google.com/maps/documentation/javascript) — stay location map (Phase 4)
+- OpenStreetMap + Leaflet + Esri World Imagery — stay location map with satellite imagery (no API key; [Leaflet](https://leafletjs.com/), [Esri](https://www.esri.com/))
 
 ---
 

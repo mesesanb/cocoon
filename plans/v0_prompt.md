@@ -21,7 +21,7 @@ Build a high-fidelity, full-stack React 19 application called **Cocoon: Here, us
 
 1. **Phase 1 — Narrative Intro**: Full-screen random Boomerang video loop. Text: "Hello [Couple Name]... welcome to Cocoon. Here, us." After 7s or on click, liquid ripple transition to next phase.
 2. **Phase 2 — Gateway**: Four vertical glass panels: **CITY**, **FOREST**, **MOUNTAINS**, **SEA**. On hover, panel flex-expands and background video cross-fades; UI color-shifts (Monochromatic Immersion).
-3. **Phase 3 — Sanctuary Discovery**: Heavy backdrop-blur-3xl over background video. Voice mock: search bar with minimalist pulsing Microphone icon (2026 AI voice mock). Listings: 2-guest-only retreats with "Resonance Scores" and prices in ETH/BTC.
+3. **Phase 3 — Sanctuary Discovery**: Heavy backdrop-blur-3xl over background video. Voice mock: search bar with minimalist pulsing Microphone icon (2026 AI voice mock). Listings: 2-guest-only retreats with "Resonance Scores" and prices in ¤.
 
 ---
 
@@ -29,7 +29,7 @@ Build a high-fidelity, full-stack React 19 application called **Cocoon: Here, us
 
 - **Single StayCard**: One component used for (1) listing grid, (2) "Past Echoes" (history), (3) "Upcoming Moments" (bookings). Pass a `mode` prop (e.g. `"listing"` | `"history"` | `"upcoming"`) to vary layout/copy only; no separate card components.
 - **User page**: Title "[Couple Name]'s Sanctuary" — past and future bookings, both using the same StayCard.
-- **Stay details**: Split hero (Media left / Glass sidebar right). Organic minimalist map (Google Maps for location) + "Resonance Review" panel.
+- **Stay details**: Split hero (Media left / Glass sidebar right). Organic minimalist map (OpenStreetMap + Leaflet, satellite imagery for location) + "Resonance Review" panel.
 - **About**: One glass-pane manifesto — "Architecture of Us".
 
 ---
@@ -37,7 +37,7 @@ Build a high-fidelity, full-stack React 19 application called **Cocoon: Here, us
 ## Helpers & Utils (Single Responsibility)
 
 - **One function, one job.** Put each in its own small helper or clearly named export (e.g. in `utils/media.ts`, `utils/price.ts`).
-- **Examples**: `resolveMedia(imagePath)` → returns video URL if video exists, else image URL; `formatPrice(amount, currency)` → returns formatted string (e.g. "0.05 ETH"); `buildImageUrl(path)` → returns full asset URL. No function should do two unrelated things; this keeps code testable and reusable.
+- **Examples**: `resolveMedia(imagePath)` → returns video URL if video exists, else image URL; `formatPrice(amount, currency)` → returns formatted string (e.g. "0.05 ¤"); `buildImageUrl(path)` → returns full asset URL. No function should do two unrelated things; this keeps code testable and reusable.
 
 ---
 
@@ -64,7 +64,7 @@ Build a high-fidelity, full-stack React 19 application called **Cocoon: Here, us
 
 - **State**: TanStack Query v5 only for server state; invalidate `['bookings']` after checkout so "Upcoming Moments" updates immediately.
 - **Validation**: Valibot for forms (e.g. checkout, add review).
-- **Checkout**: Mock crypto payment (ETH/BTC) success with a 2-second simulated delay so the flow feels authentic during demos.
+- **Checkout**: Mock payment (¤) success with a 2-second simulated delay so the flow feels authentic during demos.
 - **Types**: Strict TypeScript; shared interfaces (e.g. Stay, Review, Booking) via a shared package or duplicated types — zero `any`.
 
 ---

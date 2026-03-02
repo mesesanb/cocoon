@@ -7,7 +7,7 @@
     "checkOut": "2025-12-08",
     "guests": 2,
     "totalPrice": 0.504,
-    "currency": "ETH",
+    "currency": "¤",
     "status": "completed",
     "createdAt": "2025-11-15T10:00:00Z"
   },
@@ -19,7 +19,7 @@
     "checkOut": "2026-04-17",
     "guests": 2,
     "totalPrice": 0.0315,
-    "currency": "BTC",
+    "currency": "¤",
     "status": "confirmed",
     "createdAt": "2026-02-20T14:30:00Z"
   },
@@ -31,7 +31,7 @@
     "checkOut": "2026-01-22",
     "guests": 2,
     "totalPrice": 0.84,
-    "currency": "ETH",
+    "currency": "¤",
     "status": "completed",
     "createdAt": "2025-12-30T09:15:00Z"
   }

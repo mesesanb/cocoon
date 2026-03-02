@@ -41,6 +41,7 @@ Phase 0 delivers the Cocoon UI from v0.dev (glassmorphism, narrative intro → g
 | 0.6 | Gateway cards: fixed images per scenario (no random) — City: Tokyo Sky Dome, Forest: Redwood Sphere, Mountains: Wadi Gorge Cabin, Sea: Beacon Suite | ✅ | `CARD_IMAGES` in gateway.tsx |
 | 0.7 | Next.js API routes for stays, availability, reviews, bookings (mock data from `apps/web/data/stays.json`) | ✅ | `app/api/stays`, `app/api/stays/[id]`, `app/api/stays/[id]/availability`, `app/api/stays/[id]/reviews`, `app/api/bookings`, `app/api/bookings/[confirmationId]` |
 | 0.8 | Lint: Biome + TypeScript clean in `apps/web/components` (labels, button types, Next/Image, useId where needed) | ✅ | Biome check passes; a11y and correctness fixes applied |
+| 0.9 | Stay location map: OpenStreetMap + Leaflet; Esri World Imagery (satellite) tiles; coordinates in `stays.json` aligned to location names (secluded areas for forest/mountain/sea, city centers for CITY) | ✅ | `StayMap` in `components/stay-map.tsx`; "Open in OpenStreetMap" link |
 
 ---
 
@@ -50,7 +51,8 @@ Phase 0 delivers the Cocoon UI from v0.dev (glassmorphism, narrative intro → g
 - **Package manager**: pnpm (in `apps/web`)
 - **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS 4, Shadcn/ui (Radix), Framer Motion, TanStack Query, React Hook Form, Valibot
 - **API**: Next.js Route Handlers in `apps/web/app/api/` (no separate backend yet)
-- **Data**: `apps/web/data/stays.json`; in-memory for API (no DB)
+- **Data**: `apps/web/data/stays.json`; in-memory for API (no DB). Each stay has `location` and `coordinates` (lat/lng) aligned so forest/mountain/sea stays point to secluded areas; city stays to city centers.
+- **Map**: Stay location on detail page uses Leaflet with **Esri World Imagery** (satellite/aerial tiles; no API key). Component: `components/stay-map.tsx`; link to open in OpenStreetMap.
 - **Assets**: `apps/web/public/images/` (city, forest, mountains, sea), `apps/web/public/videos/` (forest, rock, water)
 
 ---

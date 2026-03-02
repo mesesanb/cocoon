@@ -8,6 +8,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "./auth-context";
 import { AuthModal } from "./auth-modal";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { CocoonFooter } from "./cocoon-footer";
 
 export function AboutClient() {
@@ -33,46 +38,71 @@ export function AboutClient() {
 			<header className="sticky top-0 z-30 glass-heavy">
 				<div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
 					<div className="flex items-center gap-3">
-						<button
-							type="button"
-							onClick={() => router.back()}
-							className="glass-button rounded-full p-2"
-							aria-label="Go back"
-						>
-							<ArrowLeft className="h-4 w-4 text-foreground" />
-						</button>
-						<Link
-							href="/"
-							className="text-foreground text-base font-medium tracking-[-0.02em] hover:text-sage-deep transition-colors"
-						>
-							cocoon
-						</Link>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<button
+									type="button"
+									onClick={() => router.back()}
+									className="glass-button rounded-full p-2 cursor-pointer"
+									aria-label="Go back"
+								>
+									<ArrowLeft className="h-4 w-4 text-foreground" />
+								</button>
+							</TooltipTrigger>
+							<TooltipContent side="bottom">Back</TooltipContent>
+						</Tooltip>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Link
+									href="/"
+									className="text-foreground text-base font-medium tracking-[-0.02em] hover:text-sage-deep transition-colors cursor-pointer"
+								>
+									cocoon
+								</Link>
+							</TooltipTrigger>
+							<TooltipContent side="bottom">Home</TooltipContent>
+						</Tooltip>
 					</div>
 					<nav className="flex items-center gap-1" aria-label="Main navigation">
-						<Link
-							href="/our-cocoon"
-							className="glass-button rounded-full px-4 py-2 text-foreground text-xs tracking-wider"
-						>
-							Our Cocoon
-						</Link>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Link
+									href="/our-cocoon"
+									className="glass-button rounded-full px-4 py-2 text-foreground text-xs tracking-wider cursor-pointer"
+								>
+									Our Cocoon
+								</Link>
+							</TooltipTrigger>
+							<TooltipContent side="bottom">My bookings</TooltipContent>
+						</Tooltip>
 						{user ? (
-							<button
-								type="button"
-								onClick={signOut}
-								className="glass-button rounded-full px-4 py-2 text-foreground text-xs tracking-wider flex items-center gap-1.5"
-							>
-								<LogOut className="h-3 w-3" />
-								Sign Out
-							</button>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={signOut}
+										className="glass-button rounded-full px-4 py-2 text-foreground text-xs tracking-wider flex items-center gap-1.5 cursor-pointer"
+									>
+										<LogOut className="h-3 w-3" />
+										Sign Out
+									</button>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Sign out</TooltipContent>
+							</Tooltip>
 						) : (
-							<button
-								type="button"
-								onClick={() => setShowAuthModal(true)}
-								className="glass-button rounded-full px-4 py-2 text-foreground text-xs tracking-wider flex items-center gap-1.5"
-							>
-								<LogIn className="h-3 w-3" />
-								Sign In
-							</button>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={() => setShowAuthModal(true)}
+										className="glass-button rounded-full px-4 py-2 text-foreground text-xs tracking-wider flex items-center gap-1.5 cursor-pointer"
+									>
+										<LogIn className="h-3 w-3" />
+										Sign In
+									</button>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Sign in</TooltipContent>
+							</Tooltip>
 						)}
 					</nav>
 				</div>
@@ -138,9 +168,8 @@ export function AboutClient() {
 						</p>
 
 						<p>
-							We accept only cryptocurrency because we believe the future of
-							exchange should be as borderless as love. No intermediaries. No
-							friction. Just two people and a place.
+							We accept payment in our platform currency (¤) — borderless,
+							no intermediaries, no friction. Just two people and a place.
 						</p>
 
 						<div className="text-center pt-6">

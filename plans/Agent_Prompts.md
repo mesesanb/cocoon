@@ -100,7 +100,7 @@ Implement Phase 3 (Search + List) from plans/TODOS.md. Build the frontend search
 - React Router, TanStack Query, typed API client pointing to backend
 - Stays hooks: useStays (with filters), useStay
 - Search page: search bar, type filters (CITY/FOREST/MOUNTAINS/SEA), sort
-- StayCard: image (use `/images/${stay.images[0].path}` per Initial_Planning Image targeting), name, type, rating, price (ETH/BTC suffix)
+- StayCard: image (use `/images/${stay.images[0].path}` per Initial_Planning Image targeting), name, type, rating, price (¤ suffix)
 - Results grid with loading and empty states
 
 Follow Shadcn + Tailwind from Initial_Planning.md. When done:
@@ -120,9 +120,9 @@ Implement Phase 4 (Stay Details) from plans/TODOS.md. Build the stay details pag
 
 - Route /stays/:id
 - Hero image, title, type badge, rating, description, amenities
-- Google Maps: stay location (minimalist map or marker; API key from env)
+- OpenStreetMap + Leaflet + Esri World Imagery: stay location map with satellite imagery (minimalist map or marker; no API key). Coordinates in stays data match location names (secluded for forest/mountain/sea, city for CITY).
 - Date picker (react-day-picker) + guests selector
-- Live price display (ETH/BTC)
+- Live price display (¤)
 - "Reserve" or "Book now" CTA linking to checkout
 
 When done:
@@ -162,7 +162,7 @@ Implement Phase 6 (Checkout) from plans/TODOS.md. Build the checkout flow:
 
 - Summary: stay, dates, guests, total price
 - Guest info: name, email, phone (React Hook Form + Valibot/Yup)
-- Mock payment: "Pay with ETH/BTC" button → simulate success
+- Mock payment: "Pay with ¤" button → simulate success
 - Confirmation page with confirmation ID and summary
 - Link back to search / "Discover more"
 

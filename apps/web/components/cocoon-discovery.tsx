@@ -7,6 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import type { ScenarioType, Stay } from "@/types";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useAuth } from "./auth-context";
 import { AuthModal } from "./auth-modal";
 import { CocoonFooter } from "./cocoon-footer";
@@ -77,53 +82,78 @@ export function CocoonDiscovery({
 				<div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
 					<div className="flex items-center gap-2 md:gap-3">
 						{onBack && (
-							<button
-								type="button"
-								onClick={onBack}
-								className="glass-button rounded-full p-2"
-								aria-label="Go back to landscape selection"
-							>
-								<ArrowLeft className="h-4 w-4 text-foreground" />
-							</button>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={onBack}
+										className="glass-button rounded-full p-2 cursor-pointer"
+										aria-label="Go back to landscape selection"
+									>
+										<ArrowLeft className="h-4 w-4 text-foreground" />
+									</button>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Back to landscape selection</TooltipContent>
+							</Tooltip>
 						)}
-						<Link
-							href="/"
-							className="flex items-baseline gap-2 hover:text-sage-deep transition-colors"
-						>
-							<span className="text-foreground text-base font-medium tracking-[-0.02em]">
-								cocoon
-							</span>
-							<span className="text-muted-foreground/30 text-[10px] tracking-[0.2em] uppercase hidden md:inline">
-								here, us.
-							</span>
-						</Link>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Link
+									href="/"
+									className="flex items-baseline gap-2 hover:text-sage-deep transition-colors cursor-pointer"
+								>
+									<span className="text-foreground text-base font-medium tracking-[-0.02em]">
+										cocoon
+									</span>
+									<span className="text-muted-foreground/30 text-[10px] tracking-[0.2em] uppercase hidden md:inline">
+										here, us.
+									</span>
+								</Link>
+							</TooltipTrigger>
+							<TooltipContent side="bottom">Home</TooltipContent>
+						</Tooltip>
 					</div>
 					<nav className="flex items-center gap-1" aria-label="Main navigation">
-						<a
-							href="/our-cocoon"
-							className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider"
-						>
-							<span className="hidden md:inline">Our Cocoon</span>
-							<span className="md:hidden">Cocoon</span>
-						</a>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<a
+									href="/our-cocoon"
+									className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider cursor-pointer"
+								>
+									<span className="hidden md:inline">Our Cocoon</span>
+									<span className="md:hidden">Cocoon</span>
+								</a>
+							</TooltipTrigger>
+							<TooltipContent side="bottom">My bookings</TooltipContent>
+						</Tooltip>
 						{user ? (
-							<button
-								type="button"
-								onClick={signOut}
-								className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5"
-							>
-								<LogOut className="h-3 w-3" />
-								<span className="hidden md:inline">Sign Out</span>
-							</button>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={signOut}
+										className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5 cursor-pointer"
+									>
+										<LogOut className="h-3 w-3" />
+										<span className="hidden md:inline">Sign Out</span>
+									</button>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Sign out</TooltipContent>
+							</Tooltip>
 						) : (
-							<button
-								type="button"
-								onClick={() => setShowAuthModal(true)}
-								className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5"
-							>
-								<LogIn className="h-3 w-3" />
-								<span className="hidden md:inline">Sign In</span>
-							</button>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={() => setShowAuthModal(true)}
+										className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5 cursor-pointer"
+									>
+										<LogIn className="h-3 w-3" />
+										<span className="hidden md:inline">Sign In</span>
+									</button>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Sign in</TooltipContent>
+							</Tooltip>
 						)}
 					</nav>
 				</div>

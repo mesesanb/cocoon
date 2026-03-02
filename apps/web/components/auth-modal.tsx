@@ -383,13 +383,14 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 											/>
 										</div>
 
-										{/* Date of Birth */}
+										{/* Date of Birth - for the youngest couple member*/}
 										<div>
 											<label
 												htmlFor={`${baseId}-birth-date`}
 												className="block text-sm font-medium text-foreground mb-2"
 											>
-												Date of Birth <span className="text-red-400">*</span>
+												Date of Birth (for the youngest couple member){" "}
+												<span className="text-red-400">*</span>
 												<span className="text-muted-foreground font-normal ml-1">
 													(Must be 18+)
 												</span>
