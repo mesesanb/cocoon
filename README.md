@@ -37,7 +37,7 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | **Lint / format** | Biome, TypeScript strict |
 | **Package manager** | pnpm (in `apps/web`) |
 
-*Planned (Phase 1+):* Monorepo with `apps/api` (NestJS), `packages/shared`, Vite or keep Next.js — see [plans/TODOS.md](plans/TODOS.md) and [plans/Initial_Planning.md](plans/Initial_Planning.md).
+*Planned (Phase 1+):* Monorepo with `apps/api` (simple Express), `packages/shared`, Vite or keep Next.js — see [plans/TODOS.md](plans/TODOS.md) and [plans/Initial_Planning.md](plans/Initial_Planning.md).
 
 ---
 
@@ -157,7 +157,7 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 ## Architecture (high level)
 
 - **Phase 0**: Single Next.js app. App Router for pages; Route Handlers for API. Data from `data/stays.json`; TanStack Query on the client. No monorepo.
-- **Planned**: Frontend feature-based structure; backend NestJS modules (Stays, Reviews, Bookings); shared types in `packages/shared`. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §4–5.
+- **Planned**: Frontend feature-based structure; backend simple Express (stays, reviews, bookings routes); shared types in `packages/shared`. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §4–5.
 
 ---
 
@@ -165,10 +165,10 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 
 | Decision | Choice | Tradeoff |
 |----------|--------|----------|
-| Phase 0 API | Next.js Route Handlers | One app to run; later split to NestJS if desired |
+| Phase 0 API | Next.js Route Handlers | One app to run; later split to simple Express if desired |
 | Data | JSON files | Fast MVP; no persistence — migrate to DB later |
 | Map | OpenStreetMap + Leaflet; Esri World Imagery (satellite) for stay location | No API key required |
-| Validation | Valibot (frontend) | Lightweight; add class-validator when NestJS exists |
+| Validation | Valibot (frontend) | Lightweight; add minimal validation in Express when API exists |
 
 **Next steps (post–timebox):** Phase 1 monorepo, persist data (e.g. Supabase/SQLite), auth for “My Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
 

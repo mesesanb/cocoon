@@ -47,13 +47,13 @@ Phase 1 establishes the monorepo, frontend and backend apps, shared types, a sin
 
 ---
 
-## 1.4 — Scaffold `apps/api` — NestJS
+## 1.4 — Scaffold `apps/api` — Express
 
-**What**: Backend app created with the NestJS CLI (or manual entry point), with a minimal app module and a way to run the HTTP server.
+**What**: Backend app with Express: a single entry file, JSON middleware, and a way to run the HTTP server. No framework boilerplate—just Express.
 
-**Why**: Initial_Planning chooses NestJS for structure, DI, and validation. No routes or data yet—just a runnable API process.
+**Why**: Initial_Planning chooses simple Express for minimal surface and familiarity. No routes or data yet—just a runnable API process.
 
-**How**: `nest new apps/api` (or create `apps/api` and add Nest deps). Ensure it runs with `yarn dev` or `yarn start:dev` from `apps/api`. Root will later run it via workspace script.
+**How**: Create `apps/api` with `package.json`, install `express` and `cors`; add `src/index.ts` that creates an Express app and listens. Run with `yarn dev` or `tsx src/index.ts` from `apps/api`. Root will later run it via workspace script.
 
 ---
 

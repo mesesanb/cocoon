@@ -60,7 +60,7 @@ Phase 0 delivers the Cocoon UI from v0.dev (glassmorphism, narrative intro → g
 ## What Phase 1 will change
 
 - Add monorepo root (`package.json`, workspaces or Turborepo).
-- Optionally migrate `apps/web` to Vite + React Router if the plan stays Vite-based; or keep Next.js and add `apps/api` (NestJS) and `packages/shared`.
+- Optionally migrate `apps/web` to Vite + React Router if the plan stays Vite-based; or keep Next.js and add `apps/api` (simple Express) and `packages/shared`.
 - Single-command run from root (`pnpm dev` or `yarn dev` running web + api).
 - Commit message guard (commitlint + husky).
 

@@ -6,7 +6,7 @@
 
 **Assessment alignment**: Todos below map to the **Original Assignment Brief** in `plans/Initial_Planning.md` — must-haves (search, stay details, reviews, availability+price, checkout, frontend→API), non-functional (single-command run, responsive, loading/empty/error, a11y, tests, observability), release (CI, build, release), and submission (README, LLM note, recording).
 
-**Sync with Initial_Planning**: Stack (Vite, React 19, TS, Shadcn, Tailwind, NestJS, shared types), monorepo layout (§5), API surface (§6), image targeting, single-command run (§13), and NFRs are reflected in these phases. Phase 0 breakdown → `docs/phase-0-ui.md`. Phase 1 plan → `plans/phase-1-setup.md`.
+**Sync with Initial_Planning**: Stack (Vite, React 19, TS, Shadcn, Tailwind, Express, shared types), monorepo layout (§5), API surface (§6), image targeting, single-command run (§13), and NFRs are reflected in these phases. Phase 0 breakdown → `docs/phase-0-ui.md`. Phase 1 plan → `plans/phase-1-setup.md`.
 
 ---
 
@@ -54,7 +54,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 | 1.2 | Scaffold `apps/web` — Vite + React + TypeScript (merge v0 output here if ready) | ⬜ | |
 | 1.3 | Add Shadcn/ui + Tailwind to `apps/web` | ⬜ | |
 | 1.3b | Copy `GENERATED_IMAGES/` to `apps/web/public/images/` (see Initial_Planning: Image targeting) | ⬜ | |
-| 1.4 | Scaffold `apps/api` — NestJS | ⬜ | |
+| 1.4 | Scaffold `apps/api` — Express | ⬜ | |
 | 1.5 | Create `packages/shared` with shared types (Stay, Review, Booking) | ⬜ | |
 | 1.6 | **Single-command run (assessment NFR)**: Root `yarn dev` runs both apps (concurrently); or document two-step in README | ⬜ | |
 | 1.7 | **Guard commit messages**: commitlint + husky (or similar) to enforce Conventional Commits on commit | ⬜ | |
@@ -69,11 +69,11 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
 | 2.1 | Copy `data/stays.json` to `apps/api/src/data/` (or import); add mock reviews + bookings | ⬜ | |
-| 2.2 | Create `StaysModule`, `StaysController`, `StaysService` — GET /stays (list with filters) | ⬜ | |
+| 2.2 | Add stays routes — GET /stays (list with filters) | ⬜ | |
 | 2.3 | Add GET /stays/:id (details) | ⬜ | |
 | 2.4 | Add GET /stays/:id/availability | ⬜ | |
-| 2.5 | Create mock reviews, `ReviewsModule` — GET/POST /stays/:id/reviews | ⬜ | |
-| 2.6 | Create mock bookings, `BookingsModule` — POST /bookings, GET /bookings/:id | ⬜ | |
+| 2.5 | Add reviews routes — GET/POST /stays/:id/reviews | ⬜ | |
+| 2.6 | Add bookings routes — POST /bookings, GET /bookings/:id | ⬜ | |
 | 2.7 | Enable CORS for frontend origin | ⬜ | |
 | 2.8 | **Observability (assessment NFR)**: Helpful logging; optional metrics/error tool | ⬜ | |
 | 2.9 | Document Phase 2 in `docs/phase-2-api.md` | ⬜ | |

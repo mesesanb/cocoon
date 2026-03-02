@@ -43,7 +43,7 @@ Build a high-fidelity, full-stack React 19 application called **Cocoon: Here, us
 
 ## Backend (JSON Only — No Database)
 
-- **Stack**: NestJS. Data from **JSON files only** (e.g. `stays.json`, `reviews.json`, `bookings.json`) in `apps/api/src/data/` or equivalent. No DB, no ORM. Read/write in memory or by reading and writing JSON files.
+- **Stack**: Simple Express. Data from **JSON files only** (e.g. `stays.json`, `reviews.json`, `bookings.json`) in `apps/api/src/data/` or equivalent. No DB, no ORM. Read/write in memory or by reading and writing JSON files.
 - **Implement exactly these endpoints** (same surface as in the project’s Initial_Planning.md):
 
 | Method | Endpoint | Description |
@@ -75,6 +75,6 @@ Build a high-fidelity, full-stack React 19 application called **Cocoon: Here, us
 - **Scenarios**: CITY, FOREST, MOUNTAINS, SEA (four only).
 - **DRY**: One StayCard with `mode`; one `resolveMedia` (and similar) helper; no duplicated media/price logic.
 - **Helpers**: One function = one responsibility; small, testable utils.
-- **Backend**: JSON files only; NestJS; implement the seven endpoints above; no database.
+- **Backend**: JSON files only; simple Express; implement the seven endpoints above; no database.
 - **UI**: Glassmorphism, Pinaud + Schibsted Grotesk, Framer Motion for narrative phases and transitions.
 

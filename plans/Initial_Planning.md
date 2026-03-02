@@ -161,13 +161,13 @@ Instead of "book a hotel," we focus on **unusual stays only**: the kind of place
 | Layer | Choice | Rationale |
 |-------|--------|-----------|
 | **Runtime** | Node.js | Shared with many frontend devs |
-| **Framework** | **NestJS** | Structured, decorator-based, built-in validation, great DX |
-| **Data** | In-memory / JSON file | Mock data; easy to swap for TypeORM/Prisma later |
-| **Validation** | class-validator + class-transformer | Native NestJS ValidationPipe integration, decorator-based DTOs |
+| **Framework** | **Express** | Minimal, familiar; plain routes and JSON; no DI or modules |
+| **Data** | In-memory / JSON file | Mock data; easy to swap for DB later |
+| **Validation** | Minimal (manual checks or Valibot) | Keep backend simple; no heavy validation framework |
 
 ### Validation: Alternatives to Zod
 
-Backend uses **class-validator** (NestJS native). For **frontend** forms, choose one:
+Backend uses **minimal validation** (manual checks or Valibot). For **frontend** forms, choose one:
 
 | Library | Pros | Cons |
 |---------|------|------|
@@ -200,12 +200,10 @@ Backend uses **class-validator** (NestJS native). For **frontend** forms, choose
                               │ REST API
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                    BACKEND (NestJS)                              │
+│                    BACKEND (Express)                             │
 ├─────────────────────────────────────────────────────────────────┤
-│  Controllers    │  Services           │  Data                    │
-│  StaysController     │  StaysService     │  mock-stays.json      │
-│  ReviewsController   │  reviewsService   │  mock-reviews.json   │
-│  BookingsController  │  bookingsService  │  mock-bookings.json  │
+│  Routes (stays, reviews, bookings)  │  Data (JSON / in-memory)  │
+│  GET/POST handlers only             │  mock-stays.json, etc.     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -240,13 +238,11 @@ travel-booking-app/
 │   │   │   └── pages/          # Route entry components
 │   │   └── public/
 │   │
-│   └── api/                    # NestJS backend
+│   └── api/                    # Express backend
 │       ├── src/
-│       │   ├── stays/
-│       │   ├── reviews/
-│       │   ├── bookings/
-│       │   ├── data/            # Mock JSON
-│       │   └── app.module.ts
+│       │   ├── routes/         # stays, reviews, bookings
+│       │   ├── data/           # Mock JSON
+│       │   └── index.ts        # app entry
 │       └── package.json
 │
 ├── packages/
@@ -439,8 +435,8 @@ jobs:
 
 | Phase | Time | Deliverables |
 |-------|------|--------------|
-| **1. Setup** | 30 min | Monorepo (yarn), Vite+React+TS, Shadcn+Tailwind, NestJS, shared types |
-| **2. Data + API** | 45 min | Mock data, NestJS modules, all endpoints working |
+| **1. Setup** | 30 min | Monorepo (yarn), Vite+React+TS, Shadcn+Tailwind, Express API, shared types |
+| **2. Data + API** | 45 min | Mock data, Express routes, all endpoints working |
 | **3. Search + List** | 1h | Search page, filters, sort, card grid |
 | **4. Stay Details** | 45 min | Details page, availability, price display |
 | **5. Reviews** | 45 min | List + add review |
@@ -492,7 +488,7 @@ Or use `concurrently` in root `package.json`:
 | Monorepo vs separate repos | Monorepo | Shared types, one clone; slightly more setup |
 | Shadcn+Tailwind vs MUI | Shadcn+Tailwind | v0-native prompting, easy to modify, built-in themes; smaller bundle |
 | TSQ-only state | No Zustand/Redux | Simpler mental model; URL + Query cache as source of truth |
-| NestJS vs Express | NestJS | Structure, DI, validation; steeper learning curve |
+| Backend framework | Express | Simple routes, minimal deps; no DI or modules |
 | Valibot vs Yup vs Zod | Valibot | Lightweight frontend validation; Yup if prefer mature |
 | Mock data vs DB | Mock | Fast MVP; no persistence, must migrate later |
 
@@ -508,8 +504,7 @@ Or use `concurrently` in root `package.json`:
 - [Vite](https://vitejs.dev/)
 - [Vitest](https://vitest.dev/)
 - [Playwright](https://playwright.dev/)
-- [NestJS](https://nestjs.com/)
-- [class-validator](https://github.com/typestack/class-validator)
+- [Express](https://expressjs.com/)
 - [Valibot](https://valibot.dev/)
 - [Framer Motion](https://www.framer.com/motion/)
 - OpenStreetMap + Leaflet + Esri World Imagery — stay location map with satellite imagery (no API key; [Leaflet](https://leafletjs.com/), [Esri](https://www.esri.com/))

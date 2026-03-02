@@ -19,7 +19,7 @@ Load these files first:
 
 - **Docs as source of truth**
   - Treat `README.md`, `docs/README.md`, and `docs/phase-0-ui.md` as facts about the current stack and layout.
-  - Do **not** assume we have a monorepo, Vite, or NestJS until the corresponding phase is actually implemented and documented in `docs/phase-N-*.md`.
+  - Do **not** assume we have a monorepo, Vite, or a separate Express API until the corresponding phase is actually implemented and documented in `docs/phase-N-*.md`.
 
 - **File layout**
   - Do **not** move or rename files in `plans/` or `docs/` unless explicitly instructed in `plans/TODOS.md` or by the user.
@@ -55,7 +55,7 @@ Implement Phase 1 (Setup) from plans/TODOS.md. Create a monorepo for the Cocoon:
 
 - Yarn workspaces or Turborepo
 - apps/web: Vite + React + TypeScript + Shadcn/ui + Tailwind
-- apps/api: NestJS
+- apps/api: simple Express
 - packages/shared: shared types (Stay, Review, Booking) from Initial_Planning.md data models
 - Root script: yarn dev runs both apps with concurrently
 
@@ -72,7 +72,7 @@ Follow Initial_Planning.md for tech stack. Do not overengineer. When done:
 
 **Prompt**:
 ```
-Implement Phase 2 (Data + API) from plans/TODOS.md. Add NestJS endpoints for the Cocoon API:
+Implement Phase 2 (Data + API) from plans/TODOS.md. Add Express routes for the Cocoon API:
 
 - Use data/stays.json as source (copy to apps/api/src/data/ or import). Add mock reviews and bookings.
 - GET /stays (list, filters: type, location, dates, price; sort)
@@ -82,7 +82,7 @@ Implement Phase 2 (Data + API) from plans/TODOS.md. Add NestJS endpoints for the
 - POST /bookings, GET /bookings/:id
 - Enable CORS for frontend
 
-Use class-validator DTOs. When done:
+Keep validation minimal (manual checks or Valibot). When done:
 1. Mark Phase 2 todos complete in plans/TODOS.md
 2. Write docs/phase-2-api.md
 ```
