@@ -15,6 +15,7 @@ import {
 	Star,
 	Users,
 } from "lucide-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -27,6 +28,20 @@ import { AuthModal } from "./auth-modal";
 import { BookingForm } from "./booking-form";
 import { CocoonFooter } from "./cocoon-footer";
 import { ReviewCard } from "./review-card";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+const StayMap = dynamic(() => import("./stay-map").then((m) => m.StayMap), {
+	ssr: false,
+	loading: () => (
+		<div className="w-full aspect-[2/1] md:aspect-[2.5/1] rounded-2xl bg-muted/30 animate-pulse flex items-center justify-center text-muted-foreground text-sm">
+			Loading map…
+		</div>
+	),
+});
 
 interface StayDetailClientProps {
 	stayId: string;
@@ -130,26 +145,28 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 		mediaItems.push({ type: "image", src: buildImageUrl(img) });
 	});
 
-	// Google Maps embed URL - satellite view
-	const mapUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(stay.location)}&center=${stay.coordinates.lat},${stay.coordinates.lng}&zoom=14&maptype=satellite`;
-
 	return (
 		<div className="min-h-screen bg-linen">
 			{/* Navigation */}
 			<header className="sticky top-0 z-30 glass-heavy">
 				<div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
 					<div className="flex items-center gap-2 md:gap-3">
-						<button
-							type="button"
-							onClick={() => router.back()}
-							className="glass-button rounded-full p-2"
-							aria-label="Go back"
-						>
-							<ArrowLeft className="h-4 w-4 text-foreground" />
-						</button>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<button
+									type="button"
+									onClick={() => router.back()}
+									className="glass-button rounded-full p-2 cursor-pointer"
+									aria-label="Go back"
+								>
+									<ArrowLeft className="h-4 w-4 text-foreground" />
+								</button>
+							</TooltipTrigger>
+							<TooltipContent side="bottom">Back</TooltipContent>
+						</Tooltip>
 						<Link
 							href="/"
-							className="text-foreground text-base font-medium tracking-[-0.02em] hover:text-sage-deep transition-colors"
+							className="text-foreground text-base font-medium tracking-[-0.02em] hover:text-sage-deep transition-colors cursor-pointer"
 						>
 							cocoon
 						</Link>
@@ -157,14 +174,19 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 					<nav className="flex items-center gap-1" aria-label="Main navigation">
 						{/* Share button */}
 						<div className="relative">
-							<button
-								type="button"
-								onClick={() => setShowShareMenu(!showShareMenu)}
-								className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5"
-							>
-								<Share2 className="h-3 w-3" />
-								<span className="hidden md:inline">Share</span>
-							</button>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={() => setShowShareMenu(!showShareMenu)}
+										className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5 cursor-pointer"
+									>
+										<Share2 className="h-3 w-3" />
+										<span className="hidden md:inline">Share</span>
+									</button>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Share this stay</TooltipContent>
+							</Tooltip>
 
 							<AnimatePresence>
 								{showShareMenu && (
@@ -178,21 +200,21 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 										<button
 											type="button"
 											onClick={() => handleShare("twitter")}
-											className="w-full text-left px-3 py-2 text-xs text-foreground hover:bg-foreground/5 rounded-lg transition-colors"
+											className="w-full text-left px-3 py-2 text-xs text-foreground hover:bg-foreground/5 rounded-lg transition-colors cursor-pointer"
 										>
 											Twitter / X
 										</button>
 										<button
 											type="button"
 											onClick={() => handleShare("facebook")}
-											className="w-full text-left px-3 py-2 text-xs text-foreground hover:bg-foreground/5 rounded-lg transition-colors"
+											className="w-full text-left px-3 py-2 text-xs text-foreground hover:bg-foreground/5 rounded-lg transition-colors cursor-pointer"
 										>
 											Facebook
 										</button>
 										<button
 											type="button"
 											onClick={() => handleShare("copy")}
-											className="w-full text-left px-3 py-2 text-xs text-foreground hover:bg-foreground/5 rounded-lg transition-colors flex items-center gap-2"
+											className="w-full text-left px-3 py-2 text-xs text-foreground hover:bg-foreground/5 rounded-lg transition-colors flex items-center gap-2 cursor-pointer"
 										>
 											{copied ? (
 												<>
@@ -211,31 +233,46 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 							</AnimatePresence>
 						</div>
 
-						<Link
-							href="/our-cocoon"
-							className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider"
-						>
-							<span className="hidden md:inline">Our Cocoon</span>
-							<span className="md:hidden">Cocoon</span>
-						</Link>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Link
+									href="/our-cocoon"
+									className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider cursor-pointer"
+								>
+									<span className="hidden md:inline">Our Cocoon</span>
+									<span className="md:hidden">Cocoon</span>
+								</Link>
+							</TooltipTrigger>
+							<TooltipContent side="bottom">My bookings</TooltipContent>
+						</Tooltip>
 						{user ? (
-							<button
-								type="button"
-								onClick={signOut}
-								className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5"
-							>
-								<LogOut className="h-3 w-3" />
-								<span className="hidden md:inline">Sign Out</span>
-							</button>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={signOut}
+										className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5 cursor-pointer"
+									>
+										<LogOut className="h-3 w-3" />
+										<span className="hidden md:inline">Sign Out</span>
+									</button>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Sign out</TooltipContent>
+							</Tooltip>
 						) : (
-							<button
-								type="button"
-								onClick={() => setShowAuthModal(true)}
-								className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5"
-							>
-								<LogIn className="h-3 w-3" />
-								<span className="hidden md:inline">Sign In</span>
-							</button>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<button
+										type="button"
+										onClick={() => setShowAuthModal(true)}
+										className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider flex items-center gap-1.5 cursor-pointer"
+									>
+										<LogIn className="h-3 w-3" />
+										<span className="hidden md:inline">Sign In</span>
+									</button>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Sign in</TooltipContent>
+							</Tooltip>
 						)}
 					</nav>
 				</div>
@@ -282,21 +319,21 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 								)}
 							</AnimatePresence>
 
-							{/* Media dots */}
+							{/* Media dots — compact, 2026-style (min 32px tap target) */}
 							{mediaItems.length > 1 && (
-								<div className="absolute bottom-4 left-1/2 -translate-x-1/2 glass-dark rounded-full px-3 py-2 flex gap-1.5">
+								<div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 rounded-full bg-black/20 backdrop-blur-md px-2.5 py-2 border border-white/10">
 									{mediaItems.map((item, i) => (
 										<button
 											type="button"
 											key={item.src}
 											onClick={() => setActiveImage(i)}
-											className={`h-1.5 rounded-full transition-all duration-300 ${
+											className={`min-w-8 min-h-8 rounded-full flex items-center justify-center transition-all duration-200 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5F2EE]/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
 												i === activeImage
-													? "w-5 bg-[#F5F2EE]"
-													: "w-1.5 bg-[#F5F2EE]/40 hover:bg-[#F5F2EE]/70"
+													? "w-5 md:w-6 h-2 bg-[#F5F2EE]"
+													: "w-2 h-2 bg-[#F5F2EE]/50 hover:bg-[#F5F2EE]/80"
 											}`}
 											aria-label={
-												item.type === "video" ? "View video" : `View image ${i}`
+												item.type === "video" ? "View video" : `View image ${i + 1}`
 											}
 										/>
 									))}
@@ -372,14 +409,13 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 								Location
 							</h2>
 							<div className="rounded-2xl overflow-hidden glass">
-								<iframe
-									src={mapUrl}
-									className="w-full aspect-[2/1] md:aspect-[2.5/1] border-0"
-									allowFullScreen
-									loading="lazy"
-									referrerPolicy="no-referrer-when-downgrade"
-									title={`Map showing ${stay.location}`}
-								/>
+								<div className="w-full aspect-[2/1] md:aspect-[2.5/1]">
+									<StayMap
+										lat={stay.coordinates.lat}
+										lng={stay.coordinates.lng}
+										location={stay.location}
+									/>
+								</div>
 								<div className="p-4 border-t border-foreground/5">
 									<div className="flex items-center justify-between">
 										<div>
@@ -390,12 +426,12 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 											</p>
 										</div>
 										<a
-											href={`https://www.google.com/maps/search/?api=1&query=${stay.coordinates.lat},${stay.coordinates.lng}`}
+											href={`https://www.openstreetmap.org/?mlat=${stay.coordinates.lat}&mlon=${stay.coordinates.lng}&zoom=14`}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="glass-button rounded-full px-4 py-2 text-sage-deep text-[10px] font-medium tracking-wider"
+											className="glass-button rounded-full px-4 py-2 text-sage-deep text-[10px] font-medium tracking-wider cursor-pointer"
 										>
-											Open in Maps
+											Open in OpenStreetMap
 										</a>
 									</div>
 								</div>
@@ -566,7 +602,7 @@ function ReviewForm({
 			<button
 				type="submit"
 				disabled={isSubmitting}
-				className="glass-button rounded-xl py-2.5 text-sage-deep text-[11px] font-semibold tracking-[0.1em] uppercase disabled:opacity-50"
+				className="glass-button rounded-xl py-2.5 text-sage-deep text-[11px] font-semibold tracking-[0.1em] uppercase disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
 			>
 				{isSubmitting ? "Sharing..." : "Share Review"}
 			</button>

@@ -109,9 +109,9 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.5);
   }
   .glass-heavy {
-    background: rgba(245, 242, 238, 0.85);
-    backdrop-filter: blur(32px) saturate(180%);
-    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    background: rgba(245, 242, 238, 0.94);
+    backdrop-filter: blur(96px) saturate(180%);
+    -webkit-backdrop-filter: blur(96px) saturate(180%);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
@@ -122,6 +122,7 @@
     border: 1px solid rgba(255, 255, 255, 0.55);
     box-shadow: 0 1px 2px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.5);
     transition: all 0.2s ease;
+    cursor: pointer;
   }
   .glass-button:hover {
     background: rgba(255, 255, 255, 0.6);

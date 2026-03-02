@@ -11,7 +11,7 @@ export interface Stay {
   video?: string;
   images: string[];
   pricePerNight: number;
-  currency: "ETH" | "BTC";
+  currency: string;
   maxGuests: 2;
   amenities: string[];
   resonanceScore: number;
@@ -41,7 +41,7 @@ export interface Booking {
   checkOut: string;
   guests: number;
   totalPrice: number;
-  currency: "ETH" | "BTC";
+  currency: string;
   status: "confirmed" | "pending" | "completed";
   createdAt: string;
 }
@@ -49,7 +49,7 @@ export interface Booking {
 export interface AvailabilityResponse {
   available: boolean;
   totalPrice: number;
-  currency: "ETH" | "BTC";
+  currency: string;
   nights: number;
   conflictMessage?: string;
 }

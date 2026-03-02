@@ -1,5 +1,10 @@
 "use client";
 
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
 import { ArrowRight, Search } from "lucide-react";
 import { useState } from "react";
@@ -34,17 +39,22 @@ export function SearchBar({ value, onChange, onSearch }: SearchBarProps) {
 					onBlur={() => setIsFocused(false)}
 					onKeyDown={(e) => e.key === "Enter" && onSearch()}
 					placeholder="Search sanctuaries..."
-					className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground/40 text-sm outline-none"
+					className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground/40 text-sm outline-none cursor-text"
 					aria-label="Search for retreats"
 				/>
-				<button
-					type="button"
-					className="shrink-0 glass-button rounded-full p-2 text-sage-deep"
-					aria-label="Search"
-					onClick={onSearch}
-				>
-					<ArrowRight className="h-3.5 w-3.5" />
-				</button>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<button
+							type="button"
+							className="shrink-0 glass-button rounded-full p-2 text-sage-deep cursor-pointer"
+							aria-label="Search"
+							onClick={onSearch}
+						>
+							<ArrowRight className="h-3.5 w-3.5" />
+						</button>
+					</TooltipTrigger>
+					<TooltipContent side="bottom">Search</TooltipContent>
+				</Tooltip>
 			</div>
 		</motion.div>
 	);

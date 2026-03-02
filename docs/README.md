@@ -6,7 +6,7 @@
 
 | File | Purpose |
 |------|---------|
-| [phase-0-ui.md](phase-0-ui.md) | Phase 0 (current state): Next.js app in `apps/web`, API routes, data, gateway, run instructions |
+| [phase-0-ui.md](phase-0-ui.md) | Phase 0 (current state): Next.js app in `apps/web`, API routes, data, gateway, stay location map (Leaflet + satellite imagery), run instructions |
 
 ## Planning (not in this folder)
 

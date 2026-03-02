@@ -42,6 +42,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 |---|------|--------|-------|
 | 0.1 | Paste `plans/v0_prompt.md` into v0.dev; generate Cocoon UI (glassmorphism, narrative phases, StayCard) | ✅ | v0 output integrated into apps/web |
 | 0.2 | Export/copy generated code for integration into `apps/web` | ✅ | Next.js 16, React 19; run: `cd apps/web && pnpm dev` → http://localhost:3000 |
+| 0.3 | Stay location map (OpenStreetMap + Leaflet, Esri satellite imagery; coordinates in `stays.json` match location names) | ✅ | `StayMap` component; forest/mountain/sea → secluded areas; city → city centers |
 
 ---
 
@@ -96,14 +97,14 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 ## Phase 4: Stay Details
 
-*Assessment must-have: Stay details page; availability + price display. Map: Google Maps.*
+*Assessment must-have: Stay details page; availability + price display. Map implemented in Phase 0 (OpenStreetMap + Leaflet, Esri satellite imagery; no API key).*
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 4.1 | Stay details page route and layout | ⬜ | |
-| 4.2 | Hero image, title, type, rating, description, amenities | ⬜ | |
-| 4.3 | Date picker + guests selector, live price display (availability + price) | ⬜ | |
-| 4.4 | **Google Maps**: Stay location map (minimalist map/marker; API key via env) | ⬜ | |
+| 4.1 | Stay details page route and layout | ✅ | Done in Phase 0 |
+| 4.2 | Hero image, title, type, rating, description, amenities | ✅ | Done in Phase 0 |
+| 4.3 | Date picker + guests selector, live price display (availability + price) | ✅ | Done in Phase 0 |
+| 4.4 | **OpenStreetMap + Leaflet**: Stay location map (satellite imagery; no API key) | ✅ | Done in Phase 0 (`StayMap`, Esri World Imagery) |
 | 4.5 | "Reserve" / "Book now" CTA → checkout | ⬜ | |
 | 4.6 | Document Phase 4 in `docs/phase-4-details.md` | ⬜ | |
 
@@ -130,7 +131,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 |---|------|--------|-------|
 | 6.1 | Checkout page: summary (stay, dates, guests, price) | ⬜ | |
 | 6.2 | Guest info form (name, email, phone) — React Hook Form + Valibot/Yup | ⬜ | |
-| 6.3 | Mock payment step ("Pay with ETH/BTC" → simulate success) | ⬜ | |
+| 6.3 | Mock payment step ("Pay with ¤" → simulate success) | ⬜ | |
 | 6.4 | Confirmation page (confirmation ID, summary) | ⬜ | |
 | 6.5 | Document Phase 6 in `docs/phase-6-checkout.md` | ⬜ | |
 

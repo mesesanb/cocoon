@@ -4,6 +4,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import { AlertCircle, Check, Loader2, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import type { AvailabilityResponse, Booking, Stay } from "@/types";
 import { calculateNights } from "@/utils/dates";
 import { formatPrice } from "@/utils/price";
@@ -96,14 +101,19 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 				<h3 className="text-foreground text-xs font-semibold tracking-wider uppercase">
 					Reserve Your Stay
 				</h3>
-				<button
-					type="button"
-					onClick={onClose}
-					className="glass-button rounded-full p-1.5"
-					aria-label="Close booking form"
-				>
-					<X className="h-3.5 w-3.5 text-muted-foreground" />
-				</button>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<button
+							type="button"
+							onClick={onClose}
+							className="glass-button rounded-full p-1.5 cursor-pointer"
+							aria-label="Close booking form"
+						>
+							<X className="h-3.5 w-3.5 text-muted-foreground" />
+						</button>
+					</TooltipTrigger>
+					<TooltipContent side="bottom">Close</TooltipContent>
+				</Tooltip>
 			</div>
 
 			<AnimatePresence mode="wait">

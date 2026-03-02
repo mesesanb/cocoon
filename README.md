@@ -6,7 +6,7 @@
 
 ## What is this?
 
-Cocoon is a full-stack travel booking web app focused on **unusual stays only** — treehouses, lighthouses, floating homes, beach houses — the kind of places that *are* the destination. Users discover stays by scenario (CITY, FOREST, MOUNTAINS, SEA), view details and reviews, and complete a checkout flow with mock crypto payment (ETH/BTC). The UI uses an ethereal glassmorphism theme, Framer Motion narrative flow, and a single reusable StayCard across listings, history, and upcoming bookings.
+Cocoon is a full-stack travel booking web app focused on **unusual stays only** — treehouses, lighthouses, floating homes, beach houses — the kind of places that *are* the destination. Users discover stays by scenario (CITY, FOREST, MOUNTAINS, SEA), view details and reviews, and complete a checkout flow with mock payment (¤). The UI uses an ethereal glassmorphism theme, Framer Motion narrative flow, and a single reusable StayCard across listings, history, and upcoming bookings.
 
 > Frontend and API currently live in one Next.js app (`apps/web`). Data is served from JSON files (no database). Built to satisfy a Booking.com-style assignment with a memorable product angle and clear engineering choices.
 
@@ -19,9 +19,9 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | Capability | Description |
 |------------|-------------|
 | **Search / browse** | Stays list with filters (type, location, dates, guests, price) and sorting |
-| **Stay details** | Hero, description, amenities, availability + price, reviews (map: placeholder until Phase 4) |
+| **Stay details** | Hero, description, amenities, availability + price, reviews, location map (OpenStreetMap + Leaflet, satellite imagery, no API key) |
 | **Reviews** | List + add review with basic moderation |
-| **Checkout** | Guest info form, mock ETH/BTC payment, confirmation with confirmation ID |
+| **Checkout** | Guest info form, mock payment (¤), confirmation with confirmation ID |
 | **Single-command run** | From `apps/web`: `pnpm dev` (Phase 1 will add root command for web + API) |
 | **Responsive** | Desktop + mobile; loading, empty, and error states |
 
@@ -76,7 +76,7 @@ cocoon/
 
 - **Node.js** (LTS, e.g. 20+)
 - **pnpm** (e.g. `npm install -g pnpm`)
-- **Google Maps API key** (optional until Phase 4 — for stay location map)
+- Stay location map uses **OpenStreetMap + Leaflet** (no API key required).
 
 ---
 
@@ -134,7 +134,7 @@ JSON only. Types in `apps/web/types`.
 
 | Variable | Where | Description |
 |----------|--------|-------------|
-| `NEXT_PUBLIC_*` | apps/web | Next.js public env (e.g. future Google Maps key) |
+| `NEXT_PUBLIC_*` | apps/web | Next.js public env (e.g. feature flags) |
 
 Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 
@@ -167,10 +167,10 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 |----------|--------|----------|
 | Phase 0 API | Next.js Route Handlers | One app to run; later split to NestJS if desired |
 | Data | JSON files | Fast MVP; no persistence — migrate to DB later |
-| Map | Placeholder (Phase 4: Google Maps) | No API key needed for demo |
+| Map | OpenStreetMap + Leaflet; Esri World Imagery (satellite) for stay location | No API key required |
 | Validation | Valibot (frontend) | Lightweight; add class-validator when NestJS exists |
 
-**Next steps (post–timebox):** Phase 1 monorepo, persist data (e.g. Supabase/SQLite), auth for “My Bookings,” Google Maps, deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
+**Next steps (post–timebox):** Phase 1 monorepo, persist data (e.g. Supabase/SQLite), auth for “My Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
 
 ---
 

@@ -7,13 +7,13 @@
 		"scenario": "FOREST",
 		"location": "Northern California, USA",
 		"coordinates": {
-			"lat": 47.46392185985371,
-			"lng": 14.304023345046847
+			"lat": 41.2132,
+			"lng": -124.0046
 		},
 		"video": "/videos/forest/01_vid.mp4",
 		"images": ["/images/forest/01.jpg"],
 		"pricePerNight": 0.42,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Fireplace", "Deck"],
 		"resonanceScore": 98,
@@ -32,13 +32,13 @@
 		"scenario": "FOREST",
 		"location": "Tasmania, Australia",
 		"coordinates": {
-			"lat": 54.6554036720927,
-			"lng": 18.452979630788036
+			"lat": -41.6848,
+			"lng": 145.9525
 		},
 		"video": "/videos/forest/02_vid.mp4",
 		"images": ["/images/forest/02.jpg"],
 		"pricePerNight": 0.38,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Deck", "Heating"],
 		"resonanceScore": 96,
@@ -57,13 +57,13 @@
 		"scenario": "FOREST",
 		"location": "Ubud, Bali, Indonesia",
 		"coordinates": {
-			"lat": 50.633184609421356,
-			"lng": 18.15023255049999
+			"lat": -8.5243,
+			"lng": 115.2638
 		},
 		"video": "/videos/forest/03_vid.mp4",
 		"images": ["/images/forest/03.jpg"],
 		"pricePerNight": 0.31,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Breakfast Included", "Deck", "AC"],
 		"resonanceScore": 98,
@@ -82,13 +82,13 @@
 		"scenario": "FOREST",
 		"location": "Waikato, New Zealand",
 		"coordinates": {
-			"lat": 45.67332305793447,
-			"lng": 10.356795530456592
+			"lat": -37.8720,
+			"lng": 175.6830
 		},
 		"video": "/videos/forest/06_vid.mp4",
 		"images": ["/images/forest/06.jpg"],
 		"pricePerNight": 0.29,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden"],
 		"resonanceScore": 99,
@@ -107,13 +107,13 @@
 		"scenario": "FOREST",
 		"location": "Appalachian Mountains, USA",
 		"coordinates": {
-			"lat": 54.40145124076813,
-			"lng": 13.53016095148959
+			"lat": 35.6532,
+			"lng": -82.5630
 		},
 		"video": "/videos/forest/09_vid.mp4",
 		"images": ["/images/forest/09.jpg"],
 		"pricePerNight": 0.26,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Fireplace", "Deck"],
 		"resonanceScore": 94,
@@ -132,13 +132,13 @@
 		"scenario": "FOREST",
 		"location": "Fiordland, New Zealand",
 		"coordinates": {
-			"lat": 52.7339713976668,
-			"lng": 13.685166546880366
+			"lat": -45.4167,
+			"lng": 167.7167
 		},
 		"video": "/videos/forest/22_vid.mp4",
 		"images": ["/images/forest/22.jpg"],
 		"pricePerNight": 0.44,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Heating", "Deck", "Breakfast Included"],
 		"resonanceScore": 98,
@@ -157,13 +157,13 @@
 		"scenario": "FOREST",
 		"location": "Lapland, Finland",
 		"coordinates": {
-			"lat": 54.314699721851156,
-			"lng": 15.95737953033414
+			"lat": 67.7500,
+			"lng": 26.0000
 		},
 		"video": "/videos/forest/42_vid.mp4",
 		"images": ["/images/forest/42.jpg"],
 		"pricePerNight": 0.55,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Heating", "Northern Lights View", "Kitchen"],
 		"resonanceScore": 98,
@@ -182,13 +182,13 @@
 		"scenario": "FOREST",
 		"location": "Swedish Lapland, Sweden",
 		"coordinates": {
-			"lat": 47.57897640089535,
-			"lng": 10.974496316444295
+			"lat": 67.8558,
+			"lng": 20.2253
 		},
 		"video": "/videos/forest/43_vid.mp4",
 		"images": ["/images/forest/43.jpg"],
 		"pricePerNight": 0.61,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Heating", "Sauna", "Deck"],
 		"resonanceScore": 99,
@@ -207,12 +207,12 @@
 		"scenario": "SEA",
 		"location": "Carezza Lake, Dolomites, Italy",
 		"coordinates": {
-			"lat": 53.77133694703118,
-			"lng": 17.935031891590437
+			"lat": 46.4094,
+			"lng": 11.5756
 		},
 		"images": ["/images/sea/05.jpg"],
 		"pricePerNight": 0.48,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Heating", "Panoramic Views", "Breakfast Included"],
 		"resonanceScore": 98,
@@ -231,12 +231,12 @@
 		"scenario": "SEA",
 		"location": "County Donegal, Ireland",
 		"coordinates": {
-			"lat": 45.63809899608021,
-			"lng": 12.649979109998284
+			"lat": 54.6950,
+			"lng": -8.6730
 		},
 		"images": ["/images/sea/08.jpg"],
 		"pricePerNight": 0.22,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Ocean View", "Deck"],
 		"resonanceScore": 95,
@@ -255,12 +255,12 @@
 		"scenario": "SEA",
 		"location": "Scottish Highlands, Scotland",
 		"coordinates": {
-			"lat": 51.165488727077886,
-			"lng": 18.18487889847813
+			"lat": 58.5667,
+			"lng": -4.7500
 		},
 		"images": ["/images/sea/10.jpg"],
 		"pricePerNight": 0.52,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Ocean View", "Fireplace"],
 		"resonanceScore": 97,
@@ -279,12 +279,12 @@
 		"scenario": "SEA",
 		"location": "Saimaa, Finland",
 		"coordinates": {
-			"lat": 45.752748693836985,
-			"lng": 14.859689169776312
+			"lat": 61.1500,
+			"lng": 28.2500
 		},
 		"images": ["/images/sea/11.jpg"],
 		"pricePerNight": 0.43,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Sauna", "Hot Tub", "Deck"],
 		"resonanceScore": 97,
@@ -303,12 +303,12 @@
 		"scenario": "SEA",
 		"location": "Maldives",
 		"coordinates": {
-			"lat": 50.40679919192453,
-			"lng": 19.19497384409394
+			"lat": 3.8167,
+			"lng": 72.8333
 		},
 		"images": ["/images/sea/12.jpg"],
 		"pricePerNight": 1.85,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "Room Service", "Private Reef Access"],
 		"resonanceScore": 100,
@@ -327,13 +327,13 @@
 		"scenario": "SEA",
 		"location": "Orkney Islands, Scotland",
 		"coordinates": {
-			"lat": 52.438299504106205,
-			"lng": 18.746684244358832
+			"lat": 58.9800,
+			"lng": -2.9600
 		},
 		"video": "/videos/sea/13_vid.mp4",
 		"images": ["/images/sea/13.jpg"],
 		"pricePerNight": 0.28,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Ocean View", "Deck"],
 		"resonanceScore": 94,
@@ -352,12 +352,12 @@
 		"scenario": "SEA",
 		"location": "Comino, Malta",
 		"coordinates": {
-			"lat": 54.74989485041529,
-			"lng": 18.38916294599647
+			"lat": 36.0117,
+			"lng": 14.3389
 		},
 		"images": ["/images/sea/14.jpg"],
 		"pricePerNight": 0.36,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Sea View", "Deck", "Snorkeling Gear"],
 		"resonanceScore": 96,
@@ -376,12 +376,12 @@
 		"scenario": "SEA",
 		"location": "Seychelles",
 		"coordinates": {
-			"lat": 45.10441443867443,
-			"lng": 19.14969830927262
+			"lat": -4.3167,
+			"lng": 55.7333
 		},
 		"images": ["/images/sea/15.jpg"],
 		"pricePerNight": 0.95,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["AC", "WiFi", "Private Beach", "Pool", "Kitchen"],
 		"resonanceScore": 99,
@@ -400,12 +400,12 @@
 		"scenario": "SEA",
 		"location": "Puget Sound, Washington, USA",
 		"coordinates": {
-			"lat": 45.94636075513973,
-			"lng": 19.248582267948436
+			"lat": 48.5124,
+			"lng": -122.6129
 		},
 		"images": ["/images/sea/16.jpg"],
 		"pricePerNight": 0.67,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Bay View", "Fireplace", "Deck"],
 		"resonanceScore": 96,
@@ -424,12 +424,12 @@
 		"scenario": "SEA",
 		"location": "British Columbia, Canada",
 		"coordinates": {
-			"lat": 54.42264201937772,
-			"lng": 16.865274544033294
+			"lat": 50.6500,
+			"lng": -119.2500
 		},
 		"images": ["/images/sea/17.jpg"],
 		"pricePerNight": 0.39,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Kayak", "Breakfast Included", "Lake View"],
 		"resonanceScore": 97,
@@ -448,12 +448,12 @@
 		"scenario": "SEA",
 		"location": "Calanques, Provence, France",
 		"coordinates": {
-			"lat": 49.41386601900152,
-			"lng": 14.902681870092776
+			"lat": 43.2136,
+			"lng": 5.5219
 		},
 		"images": ["/images/sea/18.jpg"],
 		"pricePerNight": 0.24,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Sea View", "Kayak", "Breakfast Included"],
 		"resonanceScore": 94,
@@ -472,12 +472,12 @@
 		"scenario": "SEA",
 		"location": "Serengeti, Tanzania",
 		"coordinates": {
-			"lat": 48.85988406685367,
-			"lng": 10.9749007581381
+			"lat": -2.3333,
+			"lng": 34.8333
 		},
 		"images": ["/images/sea/19.jpg"],
 		"pricePerNight": 0.75,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Full Board", "WiFi", "Game Drives", "Deck", "Guided Tours"],
 		"resonanceScore": 99,
@@ -496,12 +496,12 @@
 		"scenario": "MOUNTAINS",
 		"location": "Atlantic Coast, Portugal",
 		"coordinates": {
-			"lat": 49.22190795742963,
-			"lng": 15.315804467321904
+			"lat": 37.0183,
+			"lng": -8.9415
 		},
 		"images": ["/images/mountains/19.jpg"],
 		"pricePerNight": 0.58,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Ocean View", "Heating", "Breakfast Included"],
 		"resonanceScore": 98,
@@ -520,12 +520,12 @@
 		"scenario": "MOUNTAINS",
 		"location": "Cape Winelands, South Africa",
 		"coordinates": {
-			"lat": 51.692302596416894,
-			"lng": 11.998870449257792
+			"lat": -33.8800,
+			"lng": 18.7200
 		},
 		"images": ["/images/mountains/20.jpg"],
 		"pricePerNight": 0.47,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "Rooftop Access", "Wine Tasting"],
 		"resonanceScore": 96,
@@ -544,12 +544,12 @@
 		"scenario": "MOUNTAINS",
 		"location": "Brittany, France",
 		"coordinates": {
-			"lat": 45.41487404566906,
-			"lng": 14.467811937601828
+			"lat": 48.0380,
+			"lng": -4.5500
 		},
 		"images": ["/images/mountains/21.jpg"],
 		"pricePerNight": 0.41,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Ocean View", "Fireplace", "Art Collection"],
 		"resonanceScore": 96,
@@ -568,12 +568,12 @@
 		"scenario": "MOUNTAINS",
 		"location": "Oia, Santorini, Greece",
 		"coordinates": {
-			"lat": 53.719877785843025,
-			"lng": 17.78171112027348
+			"lat": 36.4611,
+			"lng": 25.3764
 		},
 		"images": ["/images/mountains/23.jpg"],
 		"pricePerNight": 0.88,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": [
 			"AC",
@@ -598,12 +598,12 @@
 		"scenario": "MOUNTAINS",
 		"location": "Scottish Highlands, Scotland",
 		"coordinates": {
-			"lat": 48.697427840303725,
-			"lng": 12.388935856163512
+			"lat": 57.2700,
+			"lng": -5.9000
 		},
 		"images": ["/images/mountains/26.jpg"],
 		"pricePerNight": 0.63,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Fireplace", "Loch View", "Heating", "Rowing Boat"],
 		"resonanceScore": 98,
@@ -622,13 +622,13 @@
 		"scenario": "MOUNTAINS",
 		"location": "Joshua Tree, California, USA",
 		"coordinates": {
-			"lat": 51.16410731458827,
-			"lng": 17.1146286594564
+			"lat": 34.1347,
+			"lng": -116.3131
 		},
 		"video": "/videos/mountains/27_vid.mp4",
 		"images": ["/images/mountains/27.jpg"],
 		"pricePerNight": 0.27,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "AC", "Deck", "Stargazing"],
 		"resonanceScore": 95,
@@ -647,12 +647,12 @@
 		"scenario": "MOUNTAINS",
 		"location": "Wadi Dana, Jordan",
 		"coordinates": {
-			"lat": 47.06304207093511,
-			"lng": 10.675140115107258
+			"lat": 30.6919,
+			"lng": 35.5822
 		},
 		"images": ["/images/mountains/36.jpg"],
 		"pricePerNight": 0.34,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Heating", "Deck", "Desert View"],
 		"resonanceScore": 97,
@@ -671,13 +671,13 @@
 		"scenario": "MOUNTAINS",
 		"location": "Lake Saimaa, Finland",
 		"coordinates": {
-			"lat": 47.6454048143976,
-			"lng": 10.606794792564374
+			"lat": 61.1500,
+			"lng": 28.2500
 		},
 		"video": "/videos/mountains/38_vid.mp4",
 		"images": ["/images/mountains/38.jpg"],
 		"pricePerNight": 0.41,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "Sauna", "Heating", "Lake View", "Fireplace"],
 		"resonanceScore": 98,
@@ -696,12 +696,12 @@
 		"scenario": "MOUNTAINS",
 		"location": "Wadi Rum, Jordan",
 		"coordinates": {
-			"lat": 48.07703377194886,
-			"lng": 12.92155271176896
+			"lat": 29.5833,
+			"lng": 35.4167
 		},
 		"images": ["/images/mountains/44.jpg"],
 		"pricePerNight": 0.49,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["AC", "WiFi", "Desert View", "Stargazing", "Jeep Tour"],
 		"resonanceScore": 98,
@@ -720,12 +720,12 @@
 		"scenario": "MOUNTAINS",
 		"location": "Serengeti, Tanzania",
 		"coordinates": {
-			"lat": 52.80511470396146,
-			"lng": 12.007655791825325
+			"lat": -2.3333,
+			"lng": 34.8333
 		},
 		"images": ["/images/city/07.jpg"],
 		"pricePerNight": 0.82,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": [
 			"Full Board",
@@ -750,12 +750,12 @@
 		"scenario": "CITY",
 		"location": "Zeeland, Netherlands",
 		"coordinates": {
-			"lat": 53.96019109428824,
-			"lng": 11.389704894229988
+			"lat": 51.4940,
+			"lng": 3.6150
 		},
 		"images": ["/images/city/24.jpg"],
 		"pricePerNight": 0.35,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Panoramic View", "Cycling"],
 		"resonanceScore": 97,
@@ -774,12 +774,12 @@
 		"scenario": "CITY",
 		"location": "Prague, Czech Republic",
 		"coordinates": {
-			"lat": 46.85397495290583,
-			"lng": 11.504911381693152
+			"lat": 50.0755,
+			"lng": 14.4378
 		},
 		"images": ["/images/city/25.jpg"],
 		"pricePerNight": 0.53,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "City View", "Breakfast Included"],
 		"resonanceScore": 98,
@@ -798,12 +798,12 @@
 		"scenario": "CITY",
 		"location": "Appenzell, Switzerland",
 		"coordinates": {
-			"lat": 50.29607163419614,
-			"lng": 17.158153589430604
+			"lat": 47.3310,
+			"lng": 9.4135
 		},
 		"images": ["/images/city/28.jpg"],
 		"pricePerNight": 0.33,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden", "Hiking Trails"],
 		"resonanceScore": 95,
@@ -822,12 +822,12 @@
 		"scenario": "CITY",
 		"location": "East London, UK",
 		"coordinates": {
-			"lat": 54.782665720054865,
-			"lng": 10.055371877875066
+			"lat": 51.5074,
+			"lng": -0.0722
 		},
 		"images": ["/images/city/29.jpg"],
 		"pricePerNight": 0.46,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "City View", "Sound System", "Rooftop Access"],
 		"resonanceScore": 96,
@@ -846,12 +846,12 @@
 		"scenario": "CITY",
 		"location": "Vienna, Austria",
 		"coordinates": {
-			"lat": 51.6771344184683,
-			"lng": 18.661516263272176
+			"lat": 48.2082,
+			"lng": 16.3738
 		},
 		"images": ["/images/city/30.jpg"],
 		"pricePerNight": 0.58,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "City View", "Gym", "Concierge"],
 		"resonanceScore": 97,
@@ -870,12 +870,12 @@
 		"scenario": "CITY",
 		"location": "Brooklyn, New York, USA",
 		"coordinates": {
-			"lat": 54.675033693150596,
-			"lng": 12.85827325296382
+			"lat": 40.6782,
+			"lng": -73.9442
 		},
 		"images": ["/images/city/31.jpg"],
 		"pricePerNight": 0.69,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "City View", "Art Collection", "Rooftop"],
 		"resonanceScore": 97,
@@ -894,12 +894,12 @@
 		"scenario": "CITY",
 		"location": "Seoul, South Korea",
 		"coordinates": {
-			"lat": 53.45029998028696,
-			"lng": 18.90582614820974
+			"lat": 37.5665,
+			"lng": 126.9780
 		},
 		"images": ["/images/city/32.jpg"],
 		"pricePerNight": 0.72,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "City View", "Smart Home", "Rooftop Pool"],
 		"resonanceScore": 98,
@@ -918,12 +918,12 @@
 		"scenario": "CITY",
 		"location": "Antwerp, Belgium",
 		"coordinates": {
-			"lat": 51.80041502102461,
-			"lng": 16.805393564827597
+			"lat": 51.2213,
+			"lng": 4.4051
 		},
 		"images": ["/images/city/34.jpg"],
 		"pricePerNight": 0.44,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "Garden", "Breakfast Included", "Bike Rental"],
 		"resonanceScore": 98,
@@ -942,12 +942,12 @@
 		"scenario": "CITY",
 		"location": "Berlin, Germany",
 		"coordinates": {
-			"lat": 51.75733885196717,
-			"lng": 10.27494671643267
+			"lat": 52.5200,
+			"lng": 13.4050
 		},
 		"images": ["/images/city/35.jpg"],
 		"pricePerNight": 0.29,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "City View", "Bar", "Gym"],
 		"resonanceScore": 94,
@@ -966,12 +966,12 @@
 		"scenario": "CITY",
 		"location": "São Paulo, Brazil",
 		"coordinates": {
-			"lat": 52.48051891316212,
-			"lng": 14.854721747361435
+			"lat": -23.5505,
+			"lng": -46.6333
 		},
 		"images": ["/images/city/37.jpg"],
 		"pricePerNight": 0.37,
-		"currency": "ETH",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "City View", "Rooftop Pool", "Gym"],
 		"resonanceScore": 96,
@@ -990,12 +990,12 @@
 		"scenario": "CITY",
 		"location": "Tokyo, Japan",
 		"coordinates": {
-			"lat": 50.172797775223955,
-			"lng": 15.18684445362693
+			"lat": 35.6762,
+			"lng": 139.6503
 		},
 		"images": ["/images/city/39.jpg"],
 		"pricePerNight": 0.79,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "Hot Tub", "City View", "Concierge"],
 		"resonanceScore": 99,
@@ -1014,12 +1014,12 @@
 		"scenario": "CITY",
 		"location": "Manhattan, New York, USA",
 		"coordinates": {
-			"lat": 47.2702279441518,
-			"lng": 10.986897533681388
+			"lat": 40.7831,
+			"lng": -73.9712
 		},
 		"images": ["/images/city/40.jpg"],
 		"pricePerNight": 0.88,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": ["WiFi", "AC", "City View", "Room Service", "Smart Home"],
 		"resonanceScore": 99,
@@ -1038,12 +1038,12 @@
 		"scenario": "CITY",
 		"location": "Saariselkä, Finland",
 		"coordinates": {
-			"lat": 54.232829581047,
-			"lng": 19.563502081670833
+			"lat": 68.4200,
+			"lng": 27.4200
 		},
 		"images": ["/images/city/41.jpg"],
 		"pricePerNight": 0.76,
-		"currency": "BTC",
+		"currency": "¤",
 		"maxGuests": 2,
 		"amenities": [
 			"WiFi",

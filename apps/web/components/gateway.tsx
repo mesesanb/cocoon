@@ -1,5 +1,10 @@
 "use client";
 
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -98,14 +103,22 @@ export function Gateway({ onSelect }: GatewayProps) {
 				className="relative z-10 flex items-center justify-between px-4 md:px-8 py-3 md:py-4"
 			>
 				<div className="flex items-center gap-3">
-					<Link href="/" className="hover:opacity-90 transition-opacity">
-						<h1 className="text-[#F5F2EE] text-lg md:text-xl font-medium tracking-[-0.02em]">
-							cocoon
-						</h1>
-						<span className="text-[#F5F2EE]/40 text-[9px] md:text-[10px] tracking-[0.2em] uppercase">
-							here, us.
-						</span>
-					</Link>
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href="/about"
+								className="hover:opacity-90 transition-opacity cursor-pointer"
+							>
+								<h1 className="text-[#F5F2EE] text-lg md:text-xl font-medium tracking-[-0.02em]">
+									cocoon
+								</h1>
+								<span className="text-[#F5F2EE]/40 text-[9px] md:text-[10px] tracking-[0.2em] uppercase">
+									here, us.
+								</span>
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent side="bottom">About</TooltipContent>
+					</Tooltip>
 				</div>
 
 				{/* Title moved to header row */}
