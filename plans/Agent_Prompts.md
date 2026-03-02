@@ -12,14 +12,36 @@ Load these files first:
 - `plans/Initial_Planning.md` — product, stack, architecture, constraints
 - `plans/TODOS.md` — current progress
 - `plans/Agent_Prompts.md` — this file
-- `plans/todo-phase0.md` — Phase 0 delivered (Next.js app, API routes, data)
+- `docs/phase-0-ui.md` — Phase 0 delivered (Next.js app, API routes, data)
 - `docs/phase-X-*.md` — for all completed phases (if any)
+
+### Hard constraints for agents (do not break these)
+
+- **Docs as source of truth**
+  - Treat `README.md`, `docs/README.md`, and `docs/phase-0-ui.md` as facts about the current stack and layout.
+  - Do **not** assume we have a monorepo, Vite, or NestJS until the corresponding phase is actually implemented and documented in `docs/phase-N-*.md`.
+
+- **File layout**
+  - Do **not** move or rename files in `plans/` or `docs/` unless explicitly instructed in `plans/TODOS.md` or by the user.
+  - Phase docs for completed phases must live in `docs/phase-{N}-{slug}.md` and be listed in `docs/README.md`.
+
+- **Phase 0 baseline (current)**
+  - Use Next.js 16 + React 19 in `apps/web`; API is via Next.js Route Handlers under `app/api/`.
+  - Data comes from `apps/web/data/stays.json`; do **not** introduce a database.
+  - Package manager is **pnpm** for `apps/web`; do **not** add a root Yarn workspace until Phase 1 is implemented.
+
+- **Planning vs implementation**
+  - `plans/phase-1-setup.md` and later phase docs are **plans**, not evidence that they’re implemented.
+  - Before modifying architecture, check whether the corresponding `docs/phase-N-*.md` exists. If it does not, treat that phase as not implemented yet.
+
+- **Prompts + docs stability**
+  - When adding new docs or changing structure, always update `plans/TODOS.md`, `plans/Agent_Prompts.md`, and `docs/README.md` so links stay in sync.
 
 ---
 
 ## Phase 0: v0.app UI (complete)
 
-Phase 0 is done. See [plans/todo-phase0.md](plans/todo-phase0.md). Baseline: `apps/web` only; API via Next.js Route Handlers; data in `apps/web/data/stays.json`.
+Phase 0 is done. See [docs/phase-0-ui.md](../docs/phase-0-ui.md). Baseline: `apps/web` only; API via Next.js Route Handlers; data in `apps/web/data/stays.json`.
 
 ---
 

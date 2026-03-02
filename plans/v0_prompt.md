@@ -77,3 +77,4 @@ Build a high-fidelity, full-stack React 19 application called **Cocoon: Here, us
 - **Helpers**: One function = one responsibility; small, testable utils.
 - **Backend**: JSON files only; NestJS; implement the seven endpoints above; no database.
 - **UI**: Glassmorphism, Pinaud + Schibsted Grotesk, Framer Motion for narrative phases and transitions.
+
