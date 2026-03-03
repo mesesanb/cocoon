@@ -2,21 +2,29 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { ArrowLeft, LogIn, LogOut } from "lucide-react";
+import { ArrowLeft, LayoutGrid, List, LogIn, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import type { ScenarioType, Stay } from "@/types";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { ScenarioType, Stay } from "@/types";
 import { useAuth } from "./auth-context";
 import { AuthModal } from "./auth-modal";
 import { CocoonFooter } from "./cocoon-footer";
 import { SearchBar } from "./search-bar";
 import { StayCard } from "./stay-card";
+import { StayCardList } from "./stay-card-list";
 
 interface CocoonDiscoveryProps {
 	initialScenario?: ScenarioType;
@@ -43,14 +51,18 @@ export function CocoonDiscovery({
 	const [activeScenario, setActiveScenario] = useState<
 		ScenarioType | undefined
 	>(initialScenario);
+	const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+	const [sortBy, setSortBy] = useState<
+		"price_asc" | "price_desc" | "rating_asc" | "rating_desc" | "reviews_desc"
+	>("reviews_desc");
 
 	const { data: stays = [], isLoading } = useQuery<Stay[]>({
-		queryKey: ["stays", activeScenario, activeQuery],
+		queryKey: ["stays", activeScenario, activeQuery, sortBy],
 		queryFn: async () => {
 			const params = new URLSearchParams();
 			if (activeScenario) params.set("type", activeScenario);
 			if (activeQuery) params.set("query", activeQuery);
-			params.set("sort", "resonance");
+			params.set("sort", sortBy);
 			const res = await fetch(`/api/stays?${params.toString()}`);
 			return res.json();
 		},
@@ -78,7 +90,7 @@ export function CocoonDiscovery({
 			</div>
 
 			{/* Navigation */}
-			<header className="sticky top-0 z-30 glass-heavy rounded-none">
+			<header className="sticky top-0 z-30 glass-header rounded-none">
 				<div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
 					<div className="flex items-center gap-2 md:gap-3">
 						{onBack && (
@@ -93,7 +105,9 @@ export function CocoonDiscovery({
 										<ArrowLeft className="h-4 w-4 text-foreground" />
 									</button>
 								</TooltipTrigger>
-								<TooltipContent side="bottom">Back to landscape selection</TooltipContent>
+								<TooltipContent side="bottom">
+									Back to landscape selection
+								</TooltipContent>
 							</Tooltip>
 						)}
 						<Tooltip>
@@ -124,7 +138,7 @@ export function CocoonDiscovery({
 									<span className="md:hidden">Cocoon</span>
 								</a>
 							</TooltipTrigger>
-							<TooltipContent side="bottom">My bookings</TooltipContent>
+							<TooltipContent side="bottom">Our bookings</TooltipContent>
 						</Tooltip>
 						{user ? (
 							<Tooltip>
@@ -168,10 +182,10 @@ export function CocoonDiscovery({
 						className="text-center"
 					>
 						<h1 className="text-foreground text-2xl md:text-5xl font-light tracking-[-0.03em] text-balance">
-							Discover Your Retreat
+							fill the space between
 						</h1>
 						<p className="text-muted-foreground text-xs md:text-sm mt-2 md:mt-3 font-light">
-							Nature-based retreats designed for two
+							retreats designed for two
 						</p>
 					</motion.div>
 
@@ -222,7 +236,112 @@ export function CocoonDiscovery({
 					</motion.div>
 				</div>
 
-				{/* Listings grid */}
+				{/* Results header + sort + view toggle */}
+				<div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+					<p className="text-muted-foreground text-xs md:text-sm">
+						{stays.length} retreat{stays.length === 1 ? "" : "s"} found
+					</p>
+					<div className="flex items-center gap-1.5 md:gap-2">
+						<Select
+							value={sortBy}
+							onValueChange={(value) =>
+								setSortBy(
+									value as
+										| "price_asc"
+										| "price_desc"
+										| "rating_asc"
+										| "rating_desc"
+										| "reviews_desc",
+								)
+							}
+						>
+							<SelectTrigger
+								className="glass-button rounded-full px-3 md:px-4 py-1.5 md:py-2 h-auto text-[10px] md:text-[11px] tracking-[0.1em] uppercase font-medium text-foreground focus:ring-2 focus:ring-sage-deep/40 focus:ring-offset-1 border-0 min-w-0 w-fit gap-1.5 [&_svg]:hidden"
+								aria-label="Sort by"
+							>
+								<SelectValue />
+							</SelectTrigger>
+							<SelectContent
+								className="glass-popover rounded-xl py-1 min-w-[var(--radix-select-trigger-width)] text-foreground"
+								position="popper"
+								sideOffset={6}
+							>
+								<SelectItem
+									value="price_asc"
+									className="text-[10px] md:text-[11px] tracking-[0.1em] uppercase font-medium rounded-md mx-1 px-3 py-2 pr-3 focus:bg-sage/25 focus:text-foreground data-[highlighted]:bg-sage/25 data-[highlighted]:text-foreground data-[state=checked]:font-bold [&>span]:hidden"
+								>
+									Price low to high
+								</SelectItem>
+								<SelectItem
+									value="price_desc"
+									className="text-[10px] md:text-[11px] tracking-[0.1em] uppercase font-medium rounded-md mx-1 px-3 py-2 pr-3 focus:bg-sage/25 focus:text-foreground data-[highlighted]:bg-sage/25 data-[highlighted]:text-foreground data-[state=checked]:font-bold [&>span]:hidden"
+								>
+									Price high to low
+								</SelectItem>
+								<SelectItem
+									value="rating_asc"
+									className="text-[10px] md:text-[11px] tracking-[0.1em] uppercase font-medium rounded-md mx-1 px-3 py-2 pr-3 focus:bg-sage/25 focus:text-foreground data-[highlighted]:bg-sage/25 data-[highlighted]:text-foreground data-[state=checked]:font-bold [&>span]:hidden"
+								>
+									Rating low to high
+								</SelectItem>
+								<SelectItem
+									value="rating_desc"
+									className="text-[10px] md:text-[11px] tracking-[0.1em] uppercase font-medium rounded-md mx-1 px-3 py-2 pr-3 focus:bg-sage/25 focus:text-foreground data-[highlighted]:bg-sage/25 data-[highlighted]:text-foreground data-[state=checked]:font-bold [&>span]:hidden"
+								>
+									Rating high to low
+								</SelectItem>
+								<SelectItem
+									value="reviews_desc"
+									className="text-[10px] md:text-[11px] tracking-[0.1em] uppercase font-medium rounded-md mx-1 px-3 py-2 pr-3 focus:bg-sage/25 focus:text-foreground data-[highlighted]:bg-sage/25 data-[highlighted]:text-foreground data-[state=checked]:font-bold [&>span]:hidden"
+								>
+									Top reviewed
+								</SelectItem>
+							</SelectContent>
+						</Select>
+						<div className="inline-flex items-center rounded-full bg-foreground/5 px-1 py-0.5 shadow-sm">
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<button
+									type="button"
+									onClick={() => setViewMode("grid")}
+									className={`inline-flex items-center justify-center rounded-full px-2.5 py-1.5 text-[10px] md:text-xs transition-colors ${
+										viewMode === "grid"
+											? "bg-background text-foreground shadow-sm"
+											: "text-muted-foreground/70 hover:text-foreground"
+									}`}
+									aria-label="Grid view"
+								>
+									<LayoutGrid className="h-3.5 w-3.5 md:h-4 md:w-4" />
+								</button>
+							</TooltipTrigger>
+							<TooltipContent side="bottom">
+								Grid view
+							</TooltipContent>
+						</Tooltip>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<button
+									type="button"
+									onClick={() => setViewMode("list")}
+									className={`ml-0.5 inline-flex items-center justify-center rounded-full px-2.5 py-1.5 text-[10px] md:text-xs transition-colors ${
+										viewMode === "list"
+											? "bg-background text-foreground shadow-sm"
+											: "text-muted-foreground/70 hover:text-foreground"
+									}`}
+									aria-label="List view"
+								>
+									<List className="h-3.5 w-3.5 md:h-4 md:w-4" />
+								</button>
+							</TooltipTrigger>
+							<TooltipContent side="bottom">
+								List view
+							</TooltipContent>
+						</Tooltip>
+						</div>
+					</div>
+				</div>
+
+				{/* Listings */}
 				{isLoading ? (
 					<div className="flex items-center justify-center py-24">
 						<motion.div
@@ -239,10 +358,16 @@ export function CocoonDiscovery({
 							No retreats found. Adjust your search.
 						</p>
 					</div>
-				) : (
+				) : viewMode === "grid" ? (
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
 						{stays.map((stay, i) => (
 							<StayCard key={stay.id} stay={stay} mode="listing" index={i} />
+						))}
+					</div>
+				) : (
+					<div className="flex flex-col gap-2 sm:gap-3">
+						{stays.map((stay, i) => (
+							<StayCardList key={stay.id} stay={stay} index={i} />
 						))}
 					</div>
 				)}

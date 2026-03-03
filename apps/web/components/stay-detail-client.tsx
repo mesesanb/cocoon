@@ -20,6 +20,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import type { Review, Stay } from "@/types";
 import { buildImageUrl } from "@/utils/media";
 import { formatPrice } from "@/utils/price";
@@ -28,11 +33,6 @@ import { AuthModal } from "./auth-modal";
 import { BookingForm } from "./booking-form";
 import { CocoonFooter } from "./cocoon-footer";
 import { ReviewCard } from "./review-card";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 const StayMap = dynamic(() => import("./stay-map").then((m) => m.StayMap), {
 	ssr: false,
@@ -148,7 +148,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 	return (
 		<div className="min-h-screen bg-linen">
 			{/* Navigation */}
-			<header className="sticky top-0 z-30 glass-heavy">
+			<header className="sticky top-0 z-30 glass-header">
 				<div className="mx-auto max-w-7xl flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
 					<div className="flex items-center gap-2 md:gap-3">
 						<Tooltip>
@@ -243,7 +243,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 									<span className="md:hidden">Cocoon</span>
 								</Link>
 							</TooltipTrigger>
-							<TooltipContent side="bottom">My bookings</TooltipContent>
+							<TooltipContent side="bottom">Our bookings</TooltipContent>
 						</Tooltip>
 						{user ? (
 							<Tooltip>
@@ -293,7 +293,10 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 										animate={{ opacity: 1 }}
 										exit={{ opacity: 0 }}
 										transition={{ duration: 0.4 }}
-										className="absolute inset-0 h-full w-full object-cover"
+										onLoadedMetadata={(e) => {
+											e.currentTarget.playbackRate = 0.8;
+										}}
+										className="absolute inset-0 h-full w-full object-cover scale-[1.04]"
 										autoPlay
 										muted
 										loop
@@ -314,6 +317,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 											fill
 											className="object-cover"
 											sizes="(max-width: 768px) 100vw, 80vw"
+											unoptimized
 										/>
 									</motion.div>
 								)}
@@ -327,15 +331,21 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 											type="button"
 											key={item.src}
 											onClick={() => setActiveImage(i)}
-											className={`min-w-8 min-h-8 rounded-full flex items-center justify-center transition-all duration-200 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5F2EE]/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
-												i === activeImage
-													? "w-5 md:w-6 h-2 bg-[#F5F2EE]"
-													: "w-2 h-2 bg-[#F5F2EE]/50 hover:bg-[#F5F2EE]/80"
-											}`}
+											className="group w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5F2EE]/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
 											aria-label={
-												item.type === "video" ? "View video" : `View image ${i + 1}`
+												item.type === "video"
+													? "View video"
+													: `View image ${i + 1}`
 											}
-										/>
+										>
+											<span
+												className={`block transition-all duration-200 ease-out ${
+													i === activeImage
+														? "w-3.5 md:w-4 h-1 rounded-full bg-[#F5F2EE]"
+														: "w-1.5 h-1.5 rounded-full bg-[#F5F2EE]/50 group-hover:bg-[#F5F2EE]/80"
+												}`}
+											/>
+										</button>
 									))}
 								</div>
 							)}
@@ -409,12 +419,14 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 								Location
 							</h2>
 							<div className="rounded-2xl overflow-hidden glass">
-								<div className="w-full aspect-[2/1] md:aspect-[2.5/1]">
-									<StayMap
-										lat={stay.coordinates.lat}
-										lng={stay.coordinates.lng}
-										location={stay.location}
-									/>
+								<div className="w-full aspect-[2/1] md:aspect-[2.5/1] relative stay-detail-map">
+									<div className="absolute inset-0">
+										<StayMap
+											lat={stay.coordinates.lat}
+											lng={stay.coordinates.lng}
+											location={stay.location}
+										/>
+									</div>
 								</div>
 								<div className="p-4 border-t border-foreground/5">
 									<div className="flex items-center justify-between">

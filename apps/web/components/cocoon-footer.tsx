@@ -1,12 +1,12 @@
 "use client";
 
+import { motion } from "framer-motion";
+import Link from "next/link";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { motion } from "framer-motion";
-import Link from "next/link";
 
 export function CocoonFooter() {
 	return (
@@ -60,7 +60,7 @@ export function CocoonFooter() {
 										Our Cocoon
 									</Link>
 								</TooltipTrigger>
-								<TooltipContent side="top">My bookings</TooltipContent>
+								<TooltipContent side="top">Our bookings</TooltipContent>
 							</Tooltip>
 							<Tooltip>
 								<TooltipTrigger asChild>

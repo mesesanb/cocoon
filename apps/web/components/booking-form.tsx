@@ -1,6 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { format, parseISO, startOfDay } from "date-fns";
 import { AnimatePresence, motion } from "framer-motion";
 import { AlertCircle, Check, Loader2, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
@@ -9,6 +10,12 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Calendar } from "@/components/ui/calendar";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
 import type { AvailabilityResponse, Booking, Stay } from "@/types";
 import { calculateNights } from "@/utils/dates";
 import { formatPrice } from "@/utils/price";
@@ -89,9 +96,6 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 		bookingMutation.mutate();
 	};
 
-	// Get minimum date (today)
-	const today = new Date().toISOString().split("T")[0];
-
 	const canBook =
 		nights > 0 && availability?.available && !checkingAvailability;
 
@@ -142,15 +146,48 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 								>
 									Check in
 								</label>
-								<input
-									id={`${baseId}-checkin`}
-									type="date"
-									value={checkIn}
-									min={today}
-									onChange={(e) => setCheckIn(e.target.value)}
-									className="w-full glass-input rounded-xl px-3 py-2 text-foreground text-sm outline-none"
-									required
-								/>
+								<Popover>
+									<PopoverTrigger asChild>
+										<button
+											id={`${baseId}-checkin`}
+											type="button"
+											className="w-full glass-input rounded-xl px-3 py-2 text-foreground text-sm text-left font-normal border border-border h-[2.5rem]"
+										>
+											{checkIn
+												? format(parseISO(checkIn), "MMM d, yyyy")
+												: "dd.mm.yyyy"}
+										</button>
+									</PopoverTrigger>
+									<PopoverContent
+										className="glass-popover rounded-xl p-0 border-0 w-auto"
+										align="start"
+										sideOffset={6}
+									>
+										<Calendar
+											mode="single"
+											captionLayout="dropdown"
+											selected={checkIn ? parseISO(checkIn) : undefined}
+											onSelect={(date) =>
+												setCheckIn(date ? format(date, "yyyy-MM-dd") : "")
+											}
+											disabled={(date) =>
+												date < startOfDay(new Date())
+											}
+											fromYear={new Date().getFullYear()}
+											toYear={new Date().getFullYear() + 2}
+											className="rounded-xl [--cell-size:2.25rem] border-0 bg-transparent p-3 text-foreground [&_[data-selected-single=true]]:bg-sage-deep [&_[data-selected-single=true]]:text-primary-foreground"
+											classNames={{
+												button_previous:
+													"text-foreground hover:bg-sage/20 hover:text-foreground",
+												button_next:
+													"text-foreground hover:bg-sage/20 hover:text-foreground",
+												dropdown_root:
+													"border-border bg-transparent text-foreground rounded-md",
+												caption_label: "text-foreground",
+											}}
+										/>
+									</PopoverContent>
+								</Popover>
 							</div>
 							<div className="flex-1">
 								<label
@@ -159,15 +196,51 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 								>
 									Check out
 								</label>
-								<input
-									id={`${baseId}-checkout`}
-									type="date"
-									value={checkOut}
-									min={checkIn || today}
-									onChange={(e) => setCheckOut(e.target.value)}
-									className="w-full glass-input rounded-xl px-3 py-2 text-foreground text-sm outline-none"
-									required
-								/>
+								<Popover>
+									<PopoverTrigger asChild>
+										<button
+											id={`${baseId}-checkout`}
+											type="button"
+											className="w-full glass-input rounded-xl px-3 py-2 text-foreground text-sm text-left font-normal border border-border h-[2.5rem]"
+										>
+											{checkOut
+												? format(parseISO(checkOut), "MMM d, yyyy")
+												: "dd.mm.yyyy"}
+										</button>
+									</PopoverTrigger>
+									<PopoverContent
+										className="glass-popover rounded-xl p-0 border-0 w-auto"
+										align="start"
+										sideOffset={6}
+									>
+										<Calendar
+											mode="single"
+											captionLayout="dropdown"
+											selected={checkOut ? parseISO(checkOut) : undefined}
+											onSelect={(date) =>
+												setCheckOut(date ? format(date, "yyyy-MM-dd") : "")
+											}
+											disabled={(date) => {
+												const min = checkIn
+													? startOfDay(parseISO(checkIn))
+													: startOfDay(new Date());
+												return date < min;
+											}}
+											fromYear={new Date().getFullYear()}
+											toYear={new Date().getFullYear() + 2}
+											className="rounded-xl [--cell-size:2.25rem] border-0 bg-transparent p-3 text-foreground [&_[data-selected-single=true]]:bg-sage-deep [&_[data-selected-single=true]]:text-primary-foreground"
+											classNames={{
+												button_previous:
+													"text-foreground hover:bg-sage/20 hover:text-foreground",
+												button_next:
+													"text-foreground hover:bg-sage/20 hover:text-foreground",
+												dropdown_root:
+													"border-border bg-transparent text-foreground rounded-md",
+												caption_label: "text-foreground",
+											}}
+										/>
+									</PopoverContent>
+								</Popover>
 							</div>
 						</div>
 

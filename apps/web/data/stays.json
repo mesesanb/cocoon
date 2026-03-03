@@ -11,11 +11,11 @@
 			"lng": -124.0046
 		},
 		"video": "/videos/forest/01_vid.mp4",
-		"images": ["/images/forest/01.jpg"],
+		"images": ["/images/forest/01.jpg", "/images/forest/01_02.jpg"],
 		"pricePerNight": 0.42,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Fireplace", "Deck"],
+		"amenities": ["Kitchen", "WiFi", "Fireplace", "Deck", "Bathtub", "Shower"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -40,7 +40,7 @@
 		"pricePerNight": 0.38,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Deck", "Heating"],
+		"amenities": ["Kitchen", "WiFi", "Deck", "Heating", "Shower", "Waterfall View"],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -65,7 +65,7 @@
 		"pricePerNight": 0.31,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Breakfast Included", "Deck", "AC"],
+		"amenities": ["WiFi", "Breakfast Included", "Deck", "AC", "Shower", "Rice Terrace View"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -82,15 +82,15 @@
 		"scenario": "FOREST",
 		"location": "Waikato, New Zealand",
 		"coordinates": {
-			"lat": -37.8720,
-			"lng": 175.6830
+			"lat": -37.872,
+			"lng": 175.683
 		},
 		"video": "/videos/forest/06_vid.mp4",
 		"images": ["/images/forest/06.jpg"],
 		"pricePerNight": 0.29,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden"],
+		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden", "Bathtub", "Shower", "Pet Friendly", "Accessible with assistance"],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -108,14 +108,14 @@
 		"location": "Appalachian Mountains, USA",
 		"coordinates": {
 			"lat": 35.6532,
-			"lng": -82.5630
+			"lng": -82.563
 		},
 		"video": "/videos/forest/09_vid.mp4",
 		"images": ["/images/forest/09.jpg"],
 		"pricePerNight": 0.26,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Fireplace", "Deck"],
+		"amenities": ["Kitchen", "WiFi", "Fireplace", "Deck", "Shower", "Forest View"],
 		"resonanceScore": 94,
 		"availability": [
 			{
@@ -140,7 +140,7 @@
 		"pricePerNight": 0.44,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Heating", "Deck", "Breakfast Included"],
+		"amenities": ["WiFi", "Heating", "Deck", "Breakfast Included", "Bathtub", "Shower", "Pet Friendly"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -157,15 +157,15 @@
 		"scenario": "FOREST",
 		"location": "Lapland, Finland",
 		"coordinates": {
-			"lat": 67.7500,
-			"lng": 26.0000
+			"lat": 67.75,
+			"lng": 26.0
 		},
 		"video": "/videos/forest/42_vid.mp4",
-		"images": ["/images/forest/42.jpg"],
+		"images": ["/images/forest/42.jpg", "/images/forest/42_02.jpg"],
 		"pricePerNight": 0.55,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Heating", "Northern Lights View", "Kitchen"],
+		"amenities": ["WiFi", "Heating", "Northern Lights View", "Kitchen", "Shower", "Stargazing"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -186,11 +186,11 @@
 			"lng": 20.2253
 		},
 		"video": "/videos/forest/43_vid.mp4",
-		"images": ["/images/forest/43.jpg"],
+		"images": ["/images/forest/43.jpg", "/images/forest/43_02.jpg"],
 		"pricePerNight": 0.61,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Heating", "Sauna", "Deck"],
+		"amenities": ["WiFi", "Heating", "Sauna", "Deck", "Shower", "Forest View"],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -214,7 +214,7 @@
 		"pricePerNight": 0.48,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Heating", "Panoramic Views", "Breakfast Included"],
+		"amenities": ["WiFi", "Heating", "Panoramic Views", "Breakfast Included", "Shower", "Lake View", "Wheelchair Accessible"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -231,14 +231,14 @@
 		"scenario": "SEA",
 		"location": "County Donegal, Ireland",
 		"coordinates": {
-			"lat": 54.6950,
-			"lng": -8.6730
+			"lat": 54.695,
+			"lng": -8.673
 		},
 		"images": ["/images/sea/08.jpg"],
 		"pricePerNight": 0.22,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Ocean View", "Deck"],
+		"amenities": ["Kitchen", "WiFi", "Ocean View", "Deck", "Shower", "Cliff View"],
 		"resonanceScore": 95,
 		"availability": [
 			{
@@ -256,13 +256,13 @@
 		"location": "Scottish Highlands, Scotland",
 		"coordinates": {
 			"lat": 58.5667,
-			"lng": -4.7500
+			"lng": -4.75
 		},
 		"images": ["/images/sea/10.jpg"],
 		"pricePerNight": 0.52,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Ocean View", "Fireplace"],
+		"amenities": ["Kitchen", "WiFi", "Ocean View", "Fireplace", "Bathtub", "Shower", "Accessible with assistance"],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -279,14 +279,14 @@
 		"scenario": "SEA",
 		"location": "Saimaa, Finland",
 		"coordinates": {
-			"lat": 61.1500,
-			"lng": 28.2500
+			"lat": 61.15,
+			"lng": 28.25
 		},
 		"images": ["/images/sea/11.jpg"],
 		"pricePerNight": 0.43,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Sauna", "Hot Tub", "Deck"],
+		"amenities": ["Kitchen", "WiFi", "Sauna", "Hot Tub", "Deck", "Shower", "Lake View"],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -310,7 +310,7 @@
 		"pricePerNight": 1.85,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "Room Service", "Private Reef Access"],
+		"amenities": ["WiFi", "AC", "Room Service", "Private Reef Access", "Shower", "Underwater View", "Wheelchair Accessible"],
 		"resonanceScore": 100,
 		"availability": [
 			{
@@ -327,15 +327,15 @@
 		"scenario": "SEA",
 		"location": "Orkney Islands, Scotland",
 		"coordinates": {
-			"lat": 58.9800,
-			"lng": -2.9600
+			"lat": 58.98,
+			"lng": -2.96
 		},
 		"video": "/videos/sea/13_vid.mp4",
 		"images": ["/images/sea/13.jpg"],
 		"pricePerNight": 0.28,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Ocean View", "Deck"],
+		"amenities": ["Kitchen", "WiFi", "Ocean View", "Deck", "Shower"],
 		"resonanceScore": 94,
 		"availability": [
 			{
@@ -359,7 +359,7 @@
 		"pricePerNight": 0.36,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Sea View", "Deck", "Snorkeling Gear"],
+		"amenities": ["Kitchen", "WiFi", "Sea View", "Deck", "Snorkeling Gear", "Shower", "Pet Friendly"],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -383,7 +383,7 @@
 		"pricePerNight": 0.95,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["AC", "WiFi", "Private Beach", "Pool", "Kitchen"],
+		"amenities": ["AC", "WiFi", "Private Beach", "Pool", "Kitchen", "Bathtub", "Shower"],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -407,7 +407,7 @@
 		"pricePerNight": 0.67,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Bay View", "Fireplace", "Deck"],
+		"amenities": ["Kitchen", "WiFi", "Bay View", "Fireplace", "Deck", "Shower", "Pet Friendly", "Accessible with assistance"],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -424,14 +424,14 @@
 		"scenario": "SEA",
 		"location": "British Columbia, Canada",
 		"coordinates": {
-			"lat": 50.6500,
-			"lng": -119.2500
+			"lat": 50.65,
+			"lng": -119.25
 		},
 		"images": ["/images/sea/17.jpg"],
 		"pricePerNight": 0.39,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Kayak", "Breakfast Included", "Lake View"],
+		"amenities": ["WiFi", "Kayak", "Breakfast Included", "Lake View", "Shower", "Deck"],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -455,7 +455,7 @@
 		"pricePerNight": 0.24,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Sea View", "Kayak", "Breakfast Included"],
+		"amenities": ["WiFi", "Sea View", "Kayak", "Breakfast Included", "Shower"],
 		"resonanceScore": 94,
 		"availability": [
 			{
@@ -479,7 +479,7 @@
 		"pricePerNight": 0.75,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Full Board", "WiFi", "Game Drives", "Deck", "Guided Tours"],
+		"amenities": ["Full Board", "WiFi", "Game Drives", "Deck", "Guided Tours", "Shower", "Savanna View"],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -503,7 +503,7 @@
 		"pricePerNight": 0.58,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Ocean View", "Heating", "Breakfast Included"],
+		"amenities": ["WiFi", "Ocean View", "Heating", "Breakfast Included", "Shower", "Cliff View"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -520,14 +520,14 @@
 		"scenario": "MOUNTAINS",
 		"location": "Cape Winelands, South Africa",
 		"coordinates": {
-			"lat": -33.8800,
-			"lng": 18.7200
+			"lat": -33.88,
+			"lng": 18.72
 		},
 		"images": ["/images/mountains/20.jpg"],
 		"pricePerNight": 0.47,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "Rooftop Access", "Wine Tasting"],
+		"amenities": ["WiFi", "AC", "Rooftop Access", "Wine Tasting", "Bathtub", "Shower", "Wheelchair Accessible"],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -544,14 +544,14 @@
 		"scenario": "MOUNTAINS",
 		"location": "Brittany, France",
 		"coordinates": {
-			"lat": 48.0380,
-			"lng": -4.5500
+			"lat": 48.038,
+			"lng": -4.55
 		},
 		"images": ["/images/mountains/21.jpg"],
 		"pricePerNight": 0.41,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Ocean View", "Fireplace", "Art Collection"],
+		"amenities": ["WiFi", "Ocean View", "Fireplace", "Art Collection", "Shower"],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -580,7 +580,9 @@
 			"WiFi",
 			"Plunge Pool",
 			"Breakfast Included",
-			"Caldera View"
+			"Caldera View",
+			"Bathtub",
+			"Shower"
 		],
 		"resonanceScore": 99,
 		"availability": [
@@ -598,14 +600,14 @@
 		"scenario": "MOUNTAINS",
 		"location": "Scottish Highlands, Scotland",
 		"coordinates": {
-			"lat": 57.2700,
-			"lng": -5.9000
+			"lat": 57.27,
+			"lng": -5.9
 		},
 		"images": ["/images/mountains/26.jpg"],
 		"pricePerNight": 0.63,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Fireplace", "Loch View", "Heating", "Rowing Boat"],
+		"amenities": ["WiFi", "Fireplace", "Loch View", "Heating", "Rowing Boat", "Bathtub", "Shower"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -630,7 +632,7 @@
 		"pricePerNight": 0.27,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "AC", "Deck", "Stargazing"],
+		"amenities": ["Kitchen", "WiFi", "AC", "Deck", "Stargazing", "Shower", "Desert View", "Pet Friendly", "Wheelchair Accessible"],
 		"resonanceScore": 95,
 		"availability": [
 			{
@@ -654,7 +656,7 @@
 		"pricePerNight": 0.34,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Heating", "Deck", "Desert View"],
+		"amenities": ["WiFi", "Heating", "Deck", "Desert View", "Shower"],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -671,15 +673,15 @@
 		"scenario": "MOUNTAINS",
 		"location": "Lake Saimaa, Finland",
 		"coordinates": {
-			"lat": 61.1500,
-			"lng": 28.2500
+			"lat": 61.15,
+			"lng": 28.25
 		},
 		"video": "/videos/mountains/38_vid.mp4",
 		"images": ["/images/mountains/38.jpg"],
 		"pricePerNight": 0.41,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Sauna", "Heating", "Lake View", "Fireplace"],
+		"amenities": ["WiFi", "Sauna", "Heating", "Lake View", "Fireplace", "Shower", "Deck"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -703,7 +705,7 @@
 		"pricePerNight": 0.49,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["AC", "WiFi", "Desert View", "Stargazing", "Jeep Tour"],
+		"amenities": ["AC", "WiFi", "Desert View", "Stargazing", "Jeep Tour", "Shower"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -732,7 +734,9 @@
 			"WiFi",
 			"Game Drives",
 			"Deck",
-			"Guided Night Walk"
+			"Guided Night Walk",
+			"Shower",
+			"Savanna View"
 		],
 		"resonanceScore": 99,
 		"availability": [
@@ -750,14 +754,14 @@
 		"scenario": "CITY",
 		"location": "Zeeland, Netherlands",
 		"coordinates": {
-			"lat": 51.4940,
-			"lng": 3.6150
+			"lat": 51.494,
+			"lng": 3.615
 		},
 		"images": ["/images/city/24.jpg"],
 		"pricePerNight": 0.35,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Panoramic View", "Cycling"],
+		"amenities": ["Kitchen", "WiFi", "Panoramic View", "Cycling", "Bathtub", "Shower", "Pet Friendly", "Accessible with assistance"],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -781,7 +785,7 @@
 		"pricePerNight": 0.53,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Breakfast Included"],
+		"amenities": ["WiFi", "AC", "City View", "Breakfast Included", "Shower", "Balcony", "Accessible with assistance"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -798,14 +802,14 @@
 		"scenario": "CITY",
 		"location": "Appenzell, Switzerland",
 		"coordinates": {
-			"lat": 47.3310,
+			"lat": 47.331,
 			"lng": 9.4135
 		},
 		"images": ["/images/city/28.jpg"],
 		"pricePerNight": 0.33,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden", "Hiking Trails"],
+		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden", "Hiking Trails", "Bathtub", "Shower", "Pet Friendly", "Accessible with assistance"],
 		"resonanceScore": 95,
 		"availability": [
 			{
@@ -829,7 +833,7 @@
 		"pricePerNight": 0.46,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Sound System", "Rooftop Access"],
+		"amenities": ["WiFi", "AC", "City View", "Sound System", "Rooftop Access", "Shower"],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -853,7 +857,7 @@
 		"pricePerNight": 0.58,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Gym", "Concierge"],
+		"amenities": ["WiFi", "AC", "City View", "Gym", "Concierge", "Balcony", "Shower", "Wheelchair Accessible"],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -877,7 +881,7 @@
 		"pricePerNight": 0.69,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Art Collection", "Rooftop"],
+		"amenities": ["WiFi", "AC", "City View", "Art Collection", "Rooftop", "Shower"],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -895,13 +899,13 @@
 		"location": "Seoul, South Korea",
 		"coordinates": {
 			"lat": 37.5665,
-			"lng": 126.9780
+			"lng": 126.978
 		},
 		"images": ["/images/city/32.jpg"],
 		"pricePerNight": 0.72,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Smart Home", "Rooftop Pool"],
+		"amenities": ["WiFi", "AC", "City View", "Smart Home", "Rooftop Pool", "Balcony", "Shower"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -925,7 +929,7 @@
 		"pricePerNight": 0.44,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "Garden", "Breakfast Included", "Bike Rental"],
+		"amenities": ["WiFi", "AC", "Garden", "Breakfast Included", "Bike Rental", "Shower", "Pet Friendly", "Wheelchair Accessible"],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -942,14 +946,15 @@
 		"scenario": "CITY",
 		"location": "Berlin, Germany",
 		"coordinates": {
-			"lat": 52.5200,
-			"lng": 13.4050
+			"lat": 52.52,
+			"lng": 13.405
 		},
 		"images": ["/images/city/35.jpg"],
+		"video": "/videos/city/35_vid.mp4",
 		"pricePerNight": 0.29,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Bar", "Gym"],
+		"amenities": ["WiFi", "AC", "City View", "Bar", "Gym", "Balcony", "Shower", "Wheelchair Accessible"],
 		"resonanceScore": 94,
 		"availability": [
 			{
@@ -973,7 +978,7 @@
 		"pricePerNight": 0.37,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Rooftop Pool", "Gym"],
+		"amenities": ["WiFi", "AC", "City View", "Rooftop Pool", "Gym", "Balcony", "Shower"],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -993,11 +998,15 @@
 			"lat": 35.6762,
 			"lng": 139.6503
 		},
-		"images": ["/images/city/39.jpg"],
+		"images": [
+			"/images/city/39.jpg",
+			"/images/city/39_02.jpg",
+			"/images/city/39_03.jpg"
+		],
 		"pricePerNight": 0.79,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "Hot Tub", "City View", "Concierge"],
+		"amenities": ["WiFi", "AC", "Hot Tub", "City View", "Concierge", "Balcony", "Shower"],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -1021,7 +1030,7 @@
 		"pricePerNight": 0.88,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Room Service", "Smart Home"],
+		"amenities": ["WiFi", "AC", "City View", "Room Service", "Smart Home", "Balcony", "Shower", "Wheelchair Accessible"],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -1038,8 +1047,8 @@
 		"scenario": "CITY",
 		"location": "Saariselkä, Finland",
 		"coordinates": {
-			"lat": 68.4200,
-			"lng": 27.4200
+			"lat": 68.42,
+			"lng": 27.42
 		},
 		"images": ["/images/city/41.jpg"],
 		"pricePerNight": 0.76,
@@ -1050,7 +1059,10 @@
 			"Heating",
 			"Northern Lights View",
 			"Breakfast Included",
-			"Snowmobile Safari"
+			"Snowmobile Safari",
+			"Shower",
+			"Stargazing",
+			"Accessible with assistance"
 		],
 		"resonanceScore": 99,
 		"availability": [

@@ -1,8 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import staysData from "@/data/stays.json";
-import type { Stay, ScenarioType } from "@/types";
+import reviewsData from "@/data/reviews.json";
+import type { Review, Stay, ScenarioType } from "@/types";
 
 const stays = staysData as Stay[];
+const reviews = reviewsData as Review[];
+
+function attachReviewCounts(stayList: Stay[]): (Stay & { reviewCount: number })[] {
+  const countByStay: Record<string, number> = {};
+  reviews.forEach((r) => {
+    countByStay[r.stayId] = (countByStay[r.stayId] ?? 0) + 1;
+  });
+  return stayList.map((s) => ({
+    ...s,
+    reviewCount: countByStay[s.id] ?? 0,
+  }));
+}
 
 // list stays with optional query, type, dates, price, sort
 export async function GET(request: NextRequest) {
@@ -21,6 +34,7 @@ export async function GET(request: NextRequest) {
   const sort = searchParams.get("sort");
 
   let filtered = [...stays];
+  filtered = attachReviewCounts(filtered) as Stay[];
 
   if (query) {
     filtered = filtered.filter(
@@ -60,6 +74,14 @@ export async function GET(request: NextRequest) {
     filtered.sort((a, b) => a.pricePerNight - b.pricePerNight);
   } else if (sort === "price_desc") {
     filtered.sort((a, b) => b.pricePerNight - a.pricePerNight);
+  } else if (sort === "rating_asc") {
+    filtered.sort((a, b) => a.resonanceScore - b.resonanceScore);
+  } else if (sort === "rating_desc") {
+    filtered.sort((a, b) => b.resonanceScore - a.resonanceScore);
+  } else if (sort === "reviews_desc") {
+    filtered.sort(
+      (a, b) => (b.reviewCount ?? 0) - (a.reviewCount ?? 0)
+    );
   } else if (sort === "resonance") {
     filtered.sort((a, b) => b.resonanceScore - a.resonanceScore);
   }

@@ -470,7 +470,7 @@ Or use `concurrently` in root `package.json`:
 ## 14. What We Would Do Next (Post–Timebox)
 
 1. **Data**: Persist bookings/reviews (SQLite, Supabase, or similar).
-2. **Auth**: Simple auth (e.g. Supabase Auth or NextAuth) for “My Bookings”.
+2. **Auth**: Simple auth (e.g. Supabase Auth or NextAuth) for “Our Bookings”.
 3. **Favorites**: Server-side favorites with auth.
 4. **Map**: **OpenStreetMap + Leaflet** with **Esri World Imagery** (satellite/aerial tiles) for stay location display (no API key; integrated in Stay Details). Coordinates in data aligned to location names (secluded areas for nature stays, city centers for CITY).
 5. **Image uploads**: For stay images and reviews (S3, Cloudinary).

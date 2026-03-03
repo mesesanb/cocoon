@@ -32,15 +32,15 @@ export function StayCard({ stay, mode, booking, index = 0 }: StayCardProps) {
 				className="group block overflow-hidden rounded-2xl glass hover:shadow-xl transition-all duration-500 cursor-pointer"
 			>
 				{/* Image or video */}
-				<div className="relative aspect-[4/3] overflow-hidden">
+				<div className="relative aspect-4/3 overflow-hidden">
 					{media.type === "video" ? (
 						<video
 							src={media.src}
-							className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+							className="h-full w-full object-cover scale-[1.04] transition-transform duration-700 group-hover:scale-[1.06]"
 							muted
-							loop
 							playsInline
 							autoPlay
+							loop
 						/>
 					) : (
 						<Image
@@ -51,7 +51,7 @@ export function StayCard({ stay, mode, booking, index = 0 }: StayCardProps) {
 							sizes="(max-width: 768px) 100vw, 33vw"
 						/>
 					)}
-					<div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/40 via-transparent to-transparent" />
+					<div className="absolute inset-0 bg-linear-to-t from-[#1A1A1A]/40 via-transparent to-transparent" />
 
 					{/* Top badges */}
 					<div className="absolute top-3 left-3 right-3 flex items-start justify-between">
@@ -97,9 +97,14 @@ export function StayCard({ stay, mode, booking, index = 0 }: StayCardProps) {
 						</div>
 					</div>
 
-					<p className="text-muted-foreground/60 text-[11px]">
-						{stay.location}
-					</p>
+					<div className="flex items-center gap-2 flex-wrap">
+						<p className="text-muted-foreground/60 text-[11px]">
+							{stay.location}
+						</p>
+						<span className="text-muted-foreground/70 text-[11px]">
+							· {(stay.reviewCount ?? 0)} review{(stay.reviewCount ?? 0) === 1 ? "" : "s"}
+						</span>
+					</div>
 
 					{/* Booking dates */}
 					{booking && (
