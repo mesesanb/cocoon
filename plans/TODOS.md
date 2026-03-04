@@ -40,8 +40,8 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 0.1 | Paste `plans/v0_prompt.md` into v0.dev; generate Cocoon UI (glassmorphism, narrative phases, StayCard) | ✅ | v0 output integrated into apps/web |
-| 0.2 | Export/copy generated code for integration into `apps/web` | ✅ | Next.js 16, React 19; run: `pnpm dev` from root → http://localhost:3000 (app now at root) |
+| 0.1 | Paste `plans/v0_prompt.md` into v0.dev; generate Cocoon UI (glassmorphism, narrative phases, StayCard) | ✅ | v0 output integrated; app at root |
+| 0.2 | Export/copy generated code for integration | ✅ | Next.js 16, React 19; run: `pnpm dev` from root → http://localhost:3000 |
 | 0.3 | Stay location map (OpenStreetMap + Leaflet, Esri satellite imagery; coordinates in `stays.json` match location names) | ✅ | `StayMap` component; forest/mountain/sea → secluded areas; city → city centers |
 
 ---
@@ -54,7 +54,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 |---|------|--------|-------|
 | 1.0 | Add root `package.json` with `yarn dev`; move/restructure files so root runs the app | ✅ | Root `pnpm dev` / `yarn dev` |
 | 1.1 | Fix `typescript.ignoreBuildErrors: true` in `next.config.mjs`; resolve exposed TS errors | ✅ | Calendar CustomComponents type assertion |
-| 1.2 | Align `lint` script: replace `eslint .` with `biome check .` in `apps/web/package.json` | ✅ | Biome 2.4.5; @biomejs/biome added |
+| 1.2 | Align `lint` script: replace `eslint .` with `biome check .` in `package.json` | ✅ | Biome 2.4.5; @biomejs/biome added |
 | 1.3 | Remove unused v0 artifacts from deps: `zod`, `recharts`, `input-otp`, `react-resizable-panels` | ✅ | Removed packages + chart, input-otp, resizable components |
 | 1.4 | Pin `valibot` to a stable non-beta release; verify forms still work | ✅ | valibot ^1.2.0 |
 | 1.5 | **Guard commit messages**: commitlint + husky to enforce Conventional Commits on commit | ✅ | .husky/commit-msg; commitlint.config.js |

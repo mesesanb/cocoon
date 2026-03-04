@@ -3,10 +3,10 @@
 **Document**: Initial Planning  
 **Focus**: Fullstack (Frontend-heavy)  
 **Date**: February 2026  
-**Package manager**: pnpm (in `apps/web`; no monorepo)  
+**Package manager**: pnpm (at root; no monorepo)  
 **TO CONSIDER**: https://looking-ahead.hotmetalapp.com/how-i-10x-d-my-ai-coding-productivity-and-you-can-too — clear directions to follow while developing this project.
 
-**Current state (Phase 0 complete, architecture final)**: The repo has a single Next.js 16 app in `apps/web` (React 19, TypeScript, Tailwind, Shadcn, Framer Motion). Stays, availability, reviews, and bookings are served by Next.js Route Handlers in `app/api/`; data from `apps/web/data/stays.json`. **BE solution will remain as-is** — no monorepo, no separate `apps/api`, no `packages/shared`. Package manager is pnpm. Run with `pnpm dev` or `yarn dev` from root. **Phase 1 done**: App at root; commitlint + husky. Discovery toolbar (filters, date pickers, sticky glass bar), search bar behaviour, and image/video loading optimisation are described in [phase-0-ui.md](../docs/phase-0-ui.md). See [TODOS.md](TODOS.md).
+**Current state (Phase 0–1 complete, architecture final)**: Single Next.js 16 app at repo root (React 19, TypeScript, Tailwind, Shadcn, Framer Motion). Stays, availability, reviews, and bookings are served by Next.js Route Handlers in `app/api/`; data from `data/stays.json`, `data/reviews.json`, `data/bookings.json`. **BE solution will remain as-is** — no monorepo, no separate `apps/api`, no `packages/shared`. Package manager is pnpm. Run with `pnpm dev` or `yarn dev` from root. Phase 1 done: commitlint + husky. Discovery toolbar, search bar, image/video optimisation: [phase-0-ui.md](../docs/phase-0-ui.md). See [TODOS.md](TODOS.md).
 
 ---
 
@@ -178,7 +178,7 @@ Backend uses **minimal validation** (manual checks or Valibot). For **frontend**
 
 ### Monorepo
 
-No monorepo. Single `apps/web` package; no `apps/api` or `packages/shared`. Types live in `apps/web/types/index.ts`.
+No monorepo. Single package at root; no `apps/api` or `packages/shared`. Types live in `types/index.ts`.
 
 ---
 
@@ -244,7 +244,7 @@ cocoon/
 │       ├── types/              # TypeScript interfaces (Stay, Review, Booking, …)
 │       └── utils/              # media, price, dates helpers
 │
-├── data/                       # Source stays data (root copy; API data lives in apps/web/data/)
+├── data/                       # stays.json, reviews.json, bookings.json (API data)
 ├── GENERATED_IMAGES/           # AI-generated assets (images + videos by scenario)
 ├── docs/                       # Phase completion docs
 ├── plans/                      # Planning and prompts
@@ -265,7 +265,7 @@ cocoon/
 | POST | `/bookings` | Create booking (checkout) |
 | GET | `/bookings/:confirmationId` | Booking confirmation (optional) |
 
-**Request/Response**: JSON. Types defined in `apps/web/types/index.ts`.
+**Request/Response**: JSON. Types defined in `types/index.ts`.
 
 ---
 
@@ -287,7 +287,7 @@ GENERATED_IMAGES/
 
 ### Image targeting (how to serve and reference)
 
-**Setup**: Copy or symlink `GENERATED_IMAGES/` into `apps/web/public/images/` so the frontend serves them as static assets.
+**Setup**: Copy or symlink `GENERATED_IMAGES/` into `public/images/` so the frontend serves them as static assets.
 
 **Paths in data**: Each stay's `images[].path` is relative (e.g. `forest/01.jpg`, `sea/10.jpg`).
 
@@ -447,7 +447,7 @@ jobs:
 Single command — already working:
 
 ```bash
-cd apps/web && pnpm dev
+pnpm dev
 ```
 
 This starts the Next.js development server which serves both the UI and all Route Handler endpoints. No second process needed.

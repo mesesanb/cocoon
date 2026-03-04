@@ -25,10 +25,10 @@ Load these files first:
   - Do **not** move or rename files in `plans/` or `docs/` unless explicitly instructed in `plans/TODOS.md` or by the user.
   - Phase docs for completed phases must live in `docs/phase-{N}-{slug}.md` and be listed in `docs/README.md`.
 
-- **Phase 0 baseline (current)**
-  - Use Next.js 16 + React 19 in `apps/web`; API is via Next.js Route Handlers under `app/api/`.
-  - Data comes from `apps/web/data/stays.json`; do **not** introduce a database.
-  - Package manager is **pnpm** for `apps/web`. Phase 1 will add root `package.json` with `yarn dev` (no full monorepo).
+- **Phase 0–1 baseline (current)**
+  - Next.js 16 + React 19 at repo root; API is via Next.js Route Handlers under `app/api/`.
+  - Data comes from `data/stays.json`, `data/reviews.json`, `data/bookings.json`; do **not** introduce a database.
+  - Package manager is **pnpm** at root. Run `pnpm dev` from root.
 
 - **Planning vs implementation**
   - `plans/phase-1-setup.md` and later phase docs are **plans**, not evidence that they’re implemented.
@@ -41,7 +41,7 @@ Load these files first:
 
 ## Phase 0: v0.app UI (complete)
 
-Phase 0 is done. See [docs/phase-0-ui.md](../docs/phase-0-ui.md). Baseline: `apps/web` only; API via Next.js Route Handlers; data in `apps/web/data/stays.json`.
+Phase 0 is done. See [docs/phase-0-ui.md](../docs/phase-0-ui.md). Baseline: app at root; API via Next.js Route Handlers; data in `data/`.
 
 ---
 
@@ -55,7 +55,7 @@ Implement Phase 1 (Setup) from plans/TODOS.md and plans/phase-1-setup.md. BE sol
 
 - 1.0: Add root package.json with yarn dev; move/restructure files so root runs the app
 - 1.1: Fix typescript.ignoreBuildErrors: true in next.config.mjs; resolve exposed TS errors
-- 1.2: Align lint script: replace "eslint ." with "biome check ." in apps/web/package.json
+- 1.2: Align lint script: replace "eslint ." with "biome check ." in package.json
 - 1.3: Remove unused v0 artifacts from deps: zod, recharts, input-otp, react-resizable-panels
 - 1.4: Pin valibot to a stable non-beta release; verify forms still work
 - 1.5: Guard commit messages: commitlint + husky to enforce Conventional Commits
@@ -70,7 +70,7 @@ When done:
 
 ## Phase 2: API Polish
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-1-setup.md` (if exists), `apps/web/app/api/`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-1-setup.md` (if exists), `app/api/`
 
 **Prompt**:
 ```
@@ -93,7 +93,7 @@ When done:
 
 ## Phase 3: Search + List
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-0-ui.md`, `docs/phase-2-api.md` (if exists), `apps/web` structure
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-0-ui.md`, `docs/phase-2-api.md` (if exists), project root
 
 **Prompt**:
 ```
@@ -103,7 +103,7 @@ Implement Phase 3 (Search + List) from plans/TODOS.md. Search UI, filters, StayC
 - Stays hooks: useStays (with filters), useStay
 - Ensure search page uses API client; results grid has loading and empty states
 
-API is Next.js Route Handlers in apps/web/app/api/ (not Express). Follow Shadcn + Tailwind from Initial_Planning.md. When done:
+API is Next.js Route Handlers in app/api/ (not Express). Follow Shadcn + Tailwind from Initial_Planning.md. When done:
 1. Mark Phase 3 todos complete in plans/TODOS.md
 2. Write docs/phase-3-search.md
 ```
@@ -112,7 +112,7 @@ API is Next.js Route Handlers in apps/web/app/api/ (not Express). Follow Shadcn 
 
 ## Phase 4: Stay Details
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-0-ui.md`, `docs/phase-3-search.md`, `apps/web`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-0-ui.md`, `docs/phase-3-search.md`, project root
 
 **Prompt**:
 ```
@@ -130,7 +130,7 @@ When done:
 
 ## Phase 5: Reviews
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-4-details.md`, `apps/web`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-4-details.md`, project root
 
 **Prompt**:
 ```
@@ -149,7 +149,7 @@ When done:
 
 ## Phase 6: Checkout
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-5-reviews.md`, `apps/web`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-5-reviews.md`, project root
 
 **Prompt**:
 ```
@@ -170,7 +170,7 @@ When done:
 
 ## Phase 7: Polish
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-6-checkout.md`, `apps/web`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-6-checkout.md`, project root
 
 **Prompt**:
 ```
@@ -192,7 +192,7 @@ When done:
 
 ## Phase 8: Tests + CI
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, all `docs/phase-*.md`, full `apps/web`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, all `docs/phase-*.md`, project root
 
 **Prompt**:
 ```
@@ -204,7 +204,7 @@ Implement Phase 8 (Tests + CI) from plans/TODOS.md. Add testing and CI:
 - E2E (Playwright): search → details → add review → checkout
 - GitHub Actions: lint, test, build on push/PR
 
-API is Next.js Route Handlers in apps/web/app/api/. When done:
+API is Next.js Route Handlers in app/api/. When done:
 1. Mark Phase 8 todos complete in plans/TODOS.md
 2. Write docs/phase-8-tests.md
 ```

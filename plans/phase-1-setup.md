@@ -3,7 +3,11 @@
 **Source**: [TODOS.md](./TODOS.md) Phase 1.
 **Reference**: [Initial_Planning.md](./Initial_Planning.md) §3 Tech Stack, §13 Single-command Run.
 
-Phase 1 adds **root `yarn dev`** and developer hygiene. The core architecture is settled (see decisions below): **BE solution remains as-is** — `apps/web` stays Next.js 16; Next.js Route Handlers remain the backend; no monorepo, no Vite migration, no separate `apps/api`. All must-have API endpoints are already live from Phase 0. Files will be moved/restructured so `yarn dev` from root starts the app.
+**Status**: ✅ Implemented. App moved to root; `apps/web` removed. Run `pnpm dev` from root.
+
+*Note: Steps below were written when the app lived in `apps/web`. All paths now refer to root (e.g. `next.config.mjs`, `package.json` at repo root).*
+
+Phase 1 adds **root `yarn dev`** (or `pnpm dev`) and developer hygiene. The core architecture is settled (see decisions below): **BE solution remains as-is** — Next.js 16; Next.js Route Handlers remain the backend; no monorepo, no Vite migration, no separate `apps/api`. All must-have API endpoints are already live from Phase 0.
 
 ---
 

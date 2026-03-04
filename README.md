@@ -47,20 +47,35 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 cocoon/
 ├── app/                       # Next.js App Router
 │   ├── api/                   # Route Handlers (stays, bookings, reviews)
+│   │   ├── bookings/
+│   │   ├── reviews/
+│   │   └── stays/
 │   ├── about/
 │   ├── our-cocoon/
 │   ├── stay/[id]/
 │   ├── layout.tsx
 │   └── page.tsx
-├── components/
+├── components/                # React components
+│   └── ui/                    # Shadcn/ui primitives
 ├── data/                      # stays.json, reviews.json, bookings.json
+├── docs/                      # Phase docs (phase-0-ui, phase-1-setup)
+├── hooks/
+├── lib/                       # utils (cn, etc.)
+├── plans/                     # TODOS, Initial_Planning, Agent_Prompts
 ├── public/
 │   ├── images/                # city, forest, mountains, sea
-│   └── videos/                # forest, rock, water
-├── types/
-├── utils/
-├── docs/
-├── plans/
+│   └── videos/                # forest, city, mountains, sea
+├── styles/
+├── types/                     # Stay, Booking, Review, etc.
+├── utils/                     # dates, media, price
+├── .husky/                    # commit-msg hook (commitlint)
+├── biome.json
+├── commitlint.config.js
+├── components.json            # Shadcn config
+├── next.config.mjs
+├── package.json
+├── postcss.config.mjs
+├── tsconfig.json
 └── README.md
 ```
 
