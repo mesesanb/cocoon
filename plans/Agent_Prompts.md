@@ -19,7 +19,7 @@ Load these files first:
 
 - **Docs as source of truth**
   - Treat `README.md`, `docs/README.md`, and `docs/phase-0-ui.md` as facts about the current stack and layout.
-  - Do **not** assume we have a monorepo, Vite, or a separate Express API until the corresponding phase is actually implemented and documented in `docs/phase-N-*.md`.
+  - **BE solution remains as-is**: Do **not** assume monorepo, Vite, or separate Express API. Next.js Route Handlers are the backend; no `apps/api` or `packages/shared` planned.
 
 - **File layout**
   - Do **not** move or rename files in `plans/` or `docs/` unless explicitly instructed in `plans/TODOS.md` or by the user.
@@ -28,7 +28,7 @@ Load these files first:
 - **Phase 0 baseline (current)**
   - Use Next.js 16 + React 19 in `apps/web`; API is via Next.js Route Handlers under `app/api/`.
   - Data comes from `apps/web/data/stays.json`; do **not** introduce a database.
-  - Package manager is **pnpm** for `apps/web`; do **not** add a root Yarn workspace until Phase 1 is implemented.
+  - Package manager is **pnpm** for `apps/web`. Phase 1 will add root `package.json` with `yarn dev` (no full monorepo).
 
 - **Planning vs implementation**
   - `plans/phase-1-setup.md` and later phase docs are **plans**, not evidence that they’re implemented.
@@ -47,42 +47,44 @@ Phase 0 is done. See [docs/phase-0-ui.md](../docs/phase-0-ui.md). Baseline: `app
 
 ## Phase 1: Setup
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `plans/phase-1-setup.md`
 
 **Prompt**:
 ```
-Implement Phase 1 (Setup) from plans/TODOS.md. Create a monorepo for the Cocoon: Here, us. project:
+Implement Phase 1 (Setup) from plans/TODOS.md and plans/phase-1-setup.md. BE solution remains as-is — no monorepo, no apps/api, no packages/shared.
 
-- Yarn workspaces or Turborepo
-- apps/web: Vite + React + TypeScript + Shadcn/ui + Tailwind
-- apps/api: simple Express
-- packages/shared: shared types (Stay, Review, Booking) from Initial_Planning.md data models
-- Root script: yarn dev runs both apps with concurrently
+- 1.0: Add root package.json with yarn dev; move/restructure files so root runs the app
+- 1.1: Fix typescript.ignoreBuildErrors: true in next.config.mjs; resolve exposed TS errors
+- 1.2: Align lint script: replace "eslint ." with "biome check ." in apps/web/package.json
+- 1.3: Remove unused v0 artifacts from deps: zod, recharts, input-otp, react-resizable-panels
+- 1.4: Pin valibot to a stable non-beta release; verify forms still work
+- 1.5: Guard commit messages: commitlint + husky to enforce Conventional Commits
+- 1.6: Document Phase 1 in docs/phase-1-setup.md
 
-Follow Initial_Planning.md for tech stack. Do not overengineer. When done:
+When done:
 1. Mark Phase 1 todos complete in plans/TODOS.md
 2. Write docs/phase-1-setup.md explaining what was built and key decisions
 ```
 
 ---
 
-## Phase 2: Data + API
+## Phase 2: API Polish
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-1-setup.md` (if exists), `packages/shared`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-1-setup.md` (if exists), `apps/web/app/api/`
 
 **Prompt**:
 ```
-Implement Phase 2 (Data + API) from plans/TODOS.md. Add Express routes for the Cocoon API:
+Implement Phase 2 (API Polish) from plans/TODOS.md. All 7 routes already exist as Next.js Route Handlers. Polish correctness, validation, and observability — no new routes.
 
-- Use data/stays.json as source (copy to apps/api/src/data/ or import). Add mock reviews and bookings.
-- GET /stays (list, filters: type, location, dates, price; sort)
-- GET /stays/:id (details)
-- GET /stays/:id/availability
-- GET/POST /stays/:id/reviews
-- POST /bookings, GET /bookings/:id
-- Enable CORS for frontend
+- 2.1: Input validation on POST /api/bookings — check stayId, coupleName, checkIn, checkOut; return 400 on missing/invalid
+- 2.2: Input validation on POST /api/stays/:id/reviews — check coupleName, rating (1–5), text (min length)
+- 2.3: Fix GET /api/bookings — accept coupleName query param; do not return all bookings unfiltered
+- 2.4: Align availability check in GET /api/stays list — add booking-conflict check (not just availability windows)
+- 2.5: Remove duplicate sort option — sort=resonance duplicates sort=rating_desc; consolidate
+- 2.6: Guard calculateNights against zero/negative — return 400 if checkOut <= checkIn
+- 2.7: Add structured logging on route handlers (method, path, status, duration)
 
-Keep validation minimal (manual checks or Valibot). When done:
+When done:
 1. Mark Phase 2 todos complete in plans/TODOS.md
 2. Write docs/phase-2-api.md
 ```
@@ -91,19 +93,17 @@ Keep validation minimal (manual checks or Valibot). When done:
 
 ## Phase 3: Search + List
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-1-setup.md`, `docs/phase-2-api.md`, `apps/web` structure
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-0-ui.md`, `docs/phase-2-api.md` (if exists), `apps/web` structure
 
 **Prompt**:
 ```
-Implement Phase 3 (Search + List) from plans/TODOS.md. Build the frontend search experience:
+Implement Phase 3 (Search + List) from plans/TODOS.md. Search UI, filters, StayCard, and discovery toolbar already exist from Phase 0. Focus on:
 
-- React Router, TanStack Query, typed API client pointing to backend
+- Configure TanStack Query provider and typed API client (fetch wrappers for Next.js Route Handlers)
 - Stays hooks: useStays (with filters), useStay
-- Search page: search bar, type filters (CITY/FOREST/MOUNTAINS/SEA), sort
-- StayCard: image (use `/images/${stay.images[0].path}` per Initial_Planning Image targeting), name, type, rating, price (¤ suffix)
-- Results grid with loading and empty states
+- Ensure search page uses API client; results grid has loading and empty states
 
-Follow Shadcn + Tailwind from Initial_Planning.md. When done:
+API is Next.js Route Handlers in apps/web/app/api/ (not Express). Follow Shadcn + Tailwind from Initial_Planning.md. When done:
 1. Mark Phase 3 todos complete in plans/TODOS.md
 2. Write docs/phase-3-search.md
 ```
@@ -112,18 +112,14 @@ Follow Shadcn + Tailwind from Initial_Planning.md. When done:
 
 ## Phase 4: Stay Details
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-3-search.md`, `apps/web`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, `docs/phase-0-ui.md`, `docs/phase-3-search.md`, `apps/web`
 
 **Prompt**:
 ```
-Implement Phase 4 (Stay Details) from plans/TODOS.md. Build the stay details page:
+Implement Phase 4 (Stay Details) from plans/TODOS.md. Stay details page, hero, map (OpenStreetMap + Leaflet + Esri), date picker, guests selector, and live price already exist from Phase 0. Focus on:
 
-- Route /stays/:id
-- Hero image, title, type badge, rating, description, amenities
-- OpenStreetMap + Leaflet + Esri World Imagery: stay location map with satellite imagery (minimalist map or marker; no API key). Coordinates in stays data match location names (secluded for forest/mountain/sea, city for CITY).
-- Date picker (react-day-picker) + guests selector
-- Live price display (¤)
-- "Reserve" or "Book now" CTA linking to checkout
+- 4.5: "Reserve" / "Book now" CTA → checkout flow
+- Document Phase 4 in docs/phase-4-details.md
 
 When done:
 1. Mark Phase 4 todos complete in plans/TODOS.md
@@ -140,10 +136,9 @@ When done:
 ```
 Implement Phase 5 (Reviews) from plans/TODOS.md. Add reviews to the stay details page:
 
-- List reviews (paginated or load more; sort by newest)
-- Add review form: rating 1–5 stars, text field, validation (Valibot or Yup)
-- POST to /stays/:id/reviews, invalidate query, show new review
-- Basic moderation: min length
+- Reviews section: list (paginated/sortable)
+- Add review form: rating 1–5, text, basic validation/moderation
+- POST to /api/stays/:id/reviews (Next.js Route Handler), invalidate query, show new review
 
 When done:
 1. Mark Phase 5 todos complete in plans/TODOS.md
@@ -197,7 +192,7 @@ When done:
 
 ## Phase 8: Tests + CI
 
-**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, all `docs/phase-*.md`, full `apps/`
+**Context to load**: `plans/Initial_Planning.md`, `plans/TODOS.md`, all `docs/phase-*.md`, full `apps/web`
 
 **Prompt**:
 ```
@@ -205,11 +200,11 @@ Implement Phase 8 (Tests + CI) from plans/TODOS.md. Add testing and CI:
 
 - Unit tests (Vitest): utils, hooks
 - Component tests (RTL + Vitest): forms, StayCard
-- API tests (supertest): stays, reviews, bookings routes
+- API tests (supertest or fetch): Next.js Route Handlers (stays, reviews, bookings)
 - E2E (Playwright): search → details → add review → checkout
 - GitHub Actions: lint, test, build on push/PR
 
-When done:
+API is Next.js Route Handlers in apps/web/app/api/. When done:
 1. Mark Phase 8 todos complete in plans/TODOS.md
 2. Write docs/phase-8-tests.md
 ```

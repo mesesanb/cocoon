@@ -48,10 +48,11 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 ## Phase 1: Setup
 
-*Developer hygiene only. Architecture settled: Next.js stays; pnpm stays; no monorepo; no separate Express backend. Detailed breakdown: [plans/phase-1-setup.md](phase-1-setup.md).*
+*Architecture settled: Next.js stays; BE solution remains as-is; no monorepo; no separate Express backend. Add root `yarn dev`; files will be moved/restructured. Detailed breakdown: [plans/phase-1-setup.md](phase-1-setup.md).*
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
+| 1.0 | Add root `package.json` with `yarn dev`; move/restructure files so root runs the app | ⬜ | |
 | 1.1 | Fix `typescript.ignoreBuildErrors: true` in `next.config.mjs`; resolve exposed TS errors | ⬜ | |
 | 1.2 | Align `lint` script: replace `eslint .` with `biome check .` in `apps/web/package.json` | ⬜ | |
 | 1.3 | Remove unused v0 artifacts from deps: `zod`, `recharts`, `input-otp`, `react-resizable-panels` | ⬜ | |

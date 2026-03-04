@@ -22,7 +22,7 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | **Stay details** | Hero, description, amenities, availability + price, reviews, location map (OpenStreetMap + Leaflet, satellite imagery, no API key) |
 | **Reviews** | List + add review with basic moderation |
 | **Checkout** | Guest info form, mock payment (¤), confirmation with confirmation ID |
-| **Single-command run** | From `apps/web`: `pnpm dev` (Phase 1 will add root command for web + API) |
+| **Single-command run** | From `apps/web`: `pnpm dev` (Phase 1 will add root `yarn dev`) |
 | **Responsive** | Desktop + mobile; loading, empty, and error states |
 
 ---
@@ -37,7 +37,7 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | **Lint / format** | Biome, TypeScript strict |
 | **Package manager** | pnpm (in `apps/web`) |
 
-*Planned (Phase 1+):* Monorepo with `apps/api` (simple Express), `packages/shared`, Vite or keep Next.js — see [plans/TODOS.md](plans/TODOS.md) and [plans/Initial_Planning.md](plans/Initial_Planning.md).
+*Planned (Phase 1):* Root `yarn dev`; developer hygiene (TS errors, lint, deps). BE solution remains as-is — no monorepo, no separate Express API. See [plans/TODOS.md](plans/TODOS.md) and [plans/Initial_Planning.md](plans/Initial_Planning.md).
 
 ---
 
@@ -68,7 +68,7 @@ cocoon/
 ├── README.md
 ```
 
-*After Phase 1:* `apps/api`, `packages/shared`, root `package.json` with workspaces.
+*After Phase 1:* Root `package.json` with `yarn dev`; files moved/restructured so root runs the app.
 
 ---
 
@@ -108,7 +108,7 @@ App: **http://localhost:3000** (or 3001 if 3000 is in use). No separate API proc
 | `pnpm dev` | Next.js dev server (frontend + API) |
 | `pnpm build` | Production build |
 | `pnpm start` | Run production build |
-| `pnpm lint` | ESLint |
+| `pnpm lint` | Lint (ESLint today; Phase 1 will align to Biome) |
 
 Biome: `pnpm exec biome check .` from `apps/web` (or `components/`).
 
@@ -157,7 +157,7 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 ## Architecture (high level)
 
 - **Phase 0**: Single Next.js app. App Router for pages; Route Handlers for API. Data from `data/stays.json`; TanStack Query on the client. No monorepo.
-- **Planned**: Frontend feature-based structure; backend simple Express (stays, reviews, bookings routes); shared types in `packages/shared`. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §4–5.
+- **Planned**: Root `yarn dev`; BE solution remains as-is (Next.js Route Handlers). No separate Express API or `packages/shared`. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §4–5.
 
 ---
 
@@ -165,12 +165,12 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 
 | Decision | Choice | Tradeoff |
 |----------|--------|----------|
-| Phase 0 API | Next.js Route Handlers | One app to run; later split to simple Express if desired |
+| Phase 0 API | Next.js Route Handlers | One app to run; BE solution will remain as-is (no separate Express) |
 | Data | JSON files | Fast MVP; no persistence — migrate to DB later |
 | Map | OpenStreetMap + Leaflet; Esri World Imagery (satellite) for stay location | No API key required |
-| Validation | Valibot (frontend) | Lightweight; add minimal validation in Express when API exists |
+| Validation | Valibot (frontend) | Lightweight; add minimal validation in Route Handlers (Phase 2) |
 
-**Next steps (post–timebox):** Phase 1 monorepo, persist data (e.g. Supabase/SQLite), auth for “Our Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
+**Next steps (post–timebox):** Phase 1 root `yarn dev` + hygiene, Phase 2 API polish (validation, logging), persist data (e.g. Supabase/SQLite), auth for “Our Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
 
 ---
 
