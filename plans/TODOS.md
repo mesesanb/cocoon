@@ -6,7 +6,7 @@
 
 **Assessment alignment**: Todos below map to the **Original Assignment Brief** in `plans/Initial_Planning.md` — must-haves (search, stay details, reviews, availability+price, checkout, frontend→API), non-functional (single-command run, responsive, loading/empty/error, a11y, tests, observability), release (CI, build, release), and submission (README, LLM note, recording).
 
-**Sync with Initial_Planning**: Stack (Next.js 16, React 19, TS, Shadcn, Tailwind; Next.js Route Handlers as backend; pnpm), API surface (§6), image targeting, and NFRs are reflected in these phases. **Architecture decision**: `apps/web` stays Next.js; no monorepo; no separate Express backend; package manager stays pnpm. Phase 0 breakdown → `docs/phase-0-ui.md`. Phase 1 plan → `plans/phase-1-setup.md`.
+**Sync with Initial_Planning**: Stack (Next.js 16, React 19, TS, Shadcn, Tailwind; Next.js Route Handlers as backend; pnpm), API surface (§6), image targeting, and NFRs are reflected in these phases. **Architecture decision**: Next.js at root; no monorepo; no separate Express backend; package manager stays pnpm. Phase 0 breakdown → `docs/phase-0-ui.md`. Phase 1 plan → `plans/phase-1-setup.md`.
 
 ---
 
@@ -36,12 +36,12 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 ## Phase 0: v0.app UI ✅
 
-*Detailed breakdown: [docs/phase-0-ui.md](docs/phase-0-ui.md). Current state: single Next.js app in `apps/web`, API via Next.js Route Handlers. Architecture is final — no monorepo planned. Post-integration refinements (discovery toolbar, search bar, image/video optimisation) are documented in the same file.*
+*Detailed breakdown: [docs/phase-0-ui.md](docs/phase-0-ui.md). Current state: Next.js app at root, API via Next.js Route Handlers. Architecture is final — no monorepo planned. Post-integration refinements (discovery toolbar, search bar, image/video optimisation) are documented in the same file.*
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 0.1 | Paste `plans/v0_prompt.md` into v0.dev; generate Cocoon UI (glassmorphism, narrative phases, StayCard) | ✅ | v0 output integrated into apps/web |
-| 0.2 | Export/copy generated code for integration into `apps/web` | ✅ | Next.js 16, React 19; run: `cd apps/web && pnpm dev` → http://localhost:3000 |
+| 0.1 | Paste `plans/v0_prompt.md` into v0.dev; generate Cocoon UI (glassmorphism, narrative phases, StayCard) | ✅ | v0 output integrated; app at root |
+| 0.2 | Export/copy generated code for integration | ✅ | Next.js 16, React 19; run: `pnpm dev` from root → http://localhost:3000 |
 | 0.3 | Stay location map (OpenStreetMap + Leaflet, Esri satellite imagery; coordinates in `stays.json` match location names) | ✅ | `StayMap` component; forest/mountain/sea → secluded areas; city → city centers |
 
 ---
@@ -52,13 +52,13 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 1.0 | Add root `package.json` with `yarn dev`; move/restructure files so root runs the app | ⬜ | |
-| 1.1 | Fix `typescript.ignoreBuildErrors: true` in `next.config.mjs`; resolve exposed TS errors | ⬜ | |
-| 1.2 | Align `lint` script: replace `eslint .` with `biome check .` in `apps/web/package.json` | ⬜ | |
-| 1.3 | Remove unused v0 artifacts from deps: `zod`, `recharts`, `input-otp`, `react-resizable-panels` | ⬜ | |
-| 1.4 | Pin `valibot` to a stable non-beta release; verify forms still work | ⬜ | |
-| 1.5 | **Guard commit messages**: commitlint + husky to enforce Conventional Commits on commit | ⬜ | |
-| 1.6 | Document Phase 1 in `docs/phase-1-setup.md` | ⬜ | |
+| 1.0 | Add root `package.json` with `yarn dev`; move/restructure files so root runs the app | ✅ | Root `pnpm dev` / `yarn dev` |
+| 1.1 | Fix `typescript.ignoreBuildErrors: true` in `next.config.mjs`; resolve exposed TS errors | ✅ | Calendar CustomComponents type assertion |
+| 1.2 | Align `lint` script: replace `eslint .` with `biome check .` in `package.json` | ✅ | Biome 2.4.5; @biomejs/biome added |
+| 1.3 | Remove unused v0 artifacts from deps: `zod`, `recharts`, `input-otp`, `react-resizable-panels` | ✅ | Removed packages + chart, input-otp, resizable components |
+| 1.4 | Pin `valibot` to a stable non-beta release; verify forms still work | ✅ | valibot ^1.2.0 |
+| 1.5 | **Guard commit messages**: commitlint + husky to enforce Conventional Commits on commit | ✅ | .husky/commit-msg; commitlint.config.js |
+| 1.6 | Document Phase 1 in `docs/phase-1-setup.md` | ✅ | docs/phase-1-setup.md |
 
 ---
 

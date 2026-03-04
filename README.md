@@ -8,9 +8,9 @@
 
 Cocoon is a full-stack travel booking web app focused on **unusual stays only** — treehouses, lighthouses, floating homes, beach houses — the kind of places that *are* the destination. Users discover stays by scenario (CITY, FOREST, MOUNTAINS, SEA), view details and reviews, and complete a checkout flow with mock payment (¤). The UI uses an ethereal glassmorphism theme, Framer Motion narrative flow, and a single reusable StayCard across listings, history, and upcoming bookings.
 
-> Frontend and API currently live in one Next.js app (`apps/web`). Data is served from JSON files (no database). Built to satisfy a Booking.com-style assignment with a memorable product angle and clear engineering choices.
+> Frontend and API live in one Next.js app at the repo root. Data is served from JSON files (no database). Built to satisfy a Booking.com-style assignment with a memorable product angle and clear engineering choices.
 
-**Assets**: Images and videos in `apps/web/public/images/` and `apps/web/public/videos/` were generated with **Gemini**.
+**Assets**: Images and videos in `public/images/` and `public/videos/` were generated with **Gemini**.
 
 ---
 
@@ -22,7 +22,7 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | **Stay details** | Hero, description, amenities, availability + price, reviews, location map (OpenStreetMap + Leaflet, satellite imagery, no API key) |
 | **Reviews** | List + add review with basic moderation |
 | **Checkout** | Guest info form, mock payment (¤), confirmation with confirmation ID |
-| **Single-command run** | From `apps/web`: `pnpm dev` (Phase 1 will add root `yarn dev`) |
+| **Single-command run** | From root: `pnpm dev` or `yarn dev` |
 | **Responsive** | Desktop + mobile; loading, empty, and error states |
 
 ---
@@ -32,12 +32,12 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | Layer | Choice |
 |-------|--------|
 | **Frontend** | Next.js 16, React 19, TypeScript, Shadcn/ui, Tailwind CSS 4, Framer Motion, TanStack Query, React Hook Form, Valibot |
-| **API** | Next.js Route Handlers in `apps/web/app/api/` (stays, availability, reviews, bookings) |
-| **Data** | `apps/web/data/stays.json`; in-memory in API (no DB) |
+| **API** | Next.js Route Handlers in `app/api/` (stays, availability, reviews, bookings) |
+| **Data** | `data/stays.json`, `data/reviews.json`, `data/bookings.json`; in-memory in API (no DB) |
 | **Lint / format** | Biome, TypeScript strict |
-| **Package manager** | pnpm (in `apps/web`) |
+| **Package manager** | pnpm |
 
-*Planned (Phase 1):* Root `yarn dev`; developer hygiene (TS errors, lint, deps). BE solution remains as-is — no monorepo, no separate Express API. See [plans/TODOS.md](plans/TODOS.md) and [plans/Initial_Planning.md](plans/Initial_Planning.md).
+*Phase 1 done:* Root `pnpm dev`; TS/lint/deps hygiene; commitlint + husky. BE solution remains as-is. See [plans/TODOS.md](plans/TODOS.md) and [docs/phase-1-setup.md](docs/phase-1-setup.md).
 
 ---
 
@@ -45,30 +45,39 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 
 ```
 cocoon/
-├── apps/
-│   └── web/                    # Next.js frontend + API (Phase 0)
-│       ├── app/
-│       │   ├── api/            # Route Handlers (stays, bookings, reviews)
-│       │   ├── about/
-│       │   ├── our-cocoon/
-│       │   ├── stay/[id]/
-│       │   ├── layout.tsx
-│       │   └── page.tsx
-│       ├── components/
-│       ├── data/              # stays.json (web shape)
-│       ├── public/
-│       │   ├── images/        # city, forest, mountains, sea
-│       │   └── videos/        # forest, rock, water
-│       ├── types/
-│       ├── utils/
-│       └── package.json
-├── data/                      # Source stays.json (root)
-├── docs/                      # Phase docs (when written)
-├── plans/                     # TODOS, Initial_Planning, v0_prompt.md, Agent_Prompts, phase-1-setup
-├── README.md
+├── app/                       # Next.js App Router
+│   ├── api/                   # Route Handlers (stays, bookings, reviews)
+│   │   ├── bookings/
+│   │   ├── reviews/
+│   │   └── stays/
+│   ├── about/
+│   ├── our-cocoon/
+│   ├── stay/[id]/
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/                # React components
+│   └── ui/                    # Shadcn/ui primitives
+├── data/                      # stays.json, reviews.json, bookings.json
+├── docs/                      # Phase docs (phase-0-ui, phase-1-setup)
+├── hooks/
+├── lib/                       # utils (cn, etc.)
+├── plans/                     # TODOS, Initial_Planning, Agent_Prompts
+├── public/
+│   ├── images/                # city, forest, mountains, sea
+│   └── videos/                # forest, city, mountains, sea
+├── styles/
+├── types/                     # Stay, Booking, Review, etc.
+├── utils/                     # dates, media, price
+├── .husky/                    # commit-msg hook (commitlint)
+├── biome.json
+├── commitlint.config.js
+├── components.json            # Shadcn config
+├── next.config.mjs
+├── package.json
+├── postcss.config.mjs
+├── tsconfig.json
+└── README.md
 ```
-
-*After Phase 1:* Root `package.json` with `yarn dev`; files moved/restructured so root runs the app.
 
 ---
 
@@ -87,7 +96,6 @@ cocoon/
 ```bash
 git clone <repo-url>
 cd cocoon
-cd apps/web
 pnpm install
 ```
 
@@ -101,16 +109,14 @@ App: **http://localhost:3000** (or 3001 if 3000 is in use). No separate API proc
 
 ---
 
-## Scripts (apps/web)
+## Scripts
 
 | Script | Description |
 |--------|-------------|
 | `pnpm dev` | Next.js dev server (frontend + API) |
 | `pnpm build` | Production build |
 | `pnpm start` | Run production build |
-| `pnpm lint` | Lint (ESLint today; Phase 1 will align to Biome) |
-
-Biome: `pnpm exec biome check .` from `apps/web` (or `components/`).
+| `pnpm lint` | Lint (Biome) |
 
 ---
 
@@ -126,7 +132,7 @@ Biome: `pnpm exec biome check .` from `apps/web` (or `components/`).
 | POST | `/api/bookings` | Create booking (checkout) |
 | GET | `/api/bookings/[confirmationId]` | Booking confirmation |
 
-JSON only. Types in `apps/web/types`.
+JSON only. Types in `types/`.
 
 ---
 
@@ -134,7 +140,7 @@ JSON only. Types in `apps/web/types`.
 
 | Variable | Where | Description |
 |----------|--------|-------------|
-| `NEXT_PUBLIC_*` | apps/web | Next.js public env (e.g. feature flags) |
+| `NEXT_PUBLIC_*` | root | Next.js public env (e.g. feature flags) |
 
 Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 
@@ -150,14 +156,15 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 | [plans/Initial_Planning.md](plans/Initial_Planning.md) | Product concept, stack, architecture, API, data models |
 | [plans/v0_prompt.md](plans/v0_prompt.md) | v0.app UI spec (glassmorphism, narrative flow, StayCard) |
 | [plans/Agent_Prompts.md](plans/Agent_Prompts.md) | Per-phase agent prompts and constraints |
-| [plans/phase-1-setup.md](plans/phase-1-setup.md) | Phase 1 setup plan (not yet implemented) |
+| [plans/phase-1-setup.md](plans/phase-1-setup.md) | Phase 1 setup plan |
+| [docs/phase-1-setup.md](docs/phase-1-setup.md) | Phase 1 doc (root dev, hygiene, commitlint) |
 
 ---
 
 ## Architecture (high level)
 
 - **Phase 0**: Single Next.js app. App Router for pages; Route Handlers for API. Data from `data/stays.json`; TanStack Query on the client. No monorepo.
-- **Planned**: Root `yarn dev`; BE solution remains as-is (Next.js Route Handlers). No separate Express API or `packages/shared`. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §4–5.
+- **Phase 1**: Root `pnpm dev`; commitlint + husky. BE solution remains as-is (Next.js Route Handlers). See [docs/phase-1-setup.md](docs/phase-1-setup.md).
 
 ---
 
@@ -170,10 +177,10 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 | Map | OpenStreetMap + Leaflet; Esri World Imagery (satellite) for stay location | No API key required |
 | Validation | Valibot (frontend) | Lightweight; add minimal validation in Route Handlers (Phase 2) |
 
-**Next steps (post–timebox):** Phase 1 root `yarn dev` + hygiene, Phase 2 API polish (validation, logging), persist data (e.g. Supabase/SQLite), auth for “Our Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
+**Next steps (post–timebox):** Phase 2 API polish (validation, logging), persist data (e.g. Supabase/SQLite), auth for “Our Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
 
 ---
 
 ## Commit convention
 
-We use [Conventional Commits](https://www.conventionalcommits.org/): `type[(scope)]: description` (e.g. `feat(search): add type filters`). To be enforced via commitlint + husky in Phase 1. Types: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`.
+We use [Conventional Commits](https://www.conventionalcommits.org/): `type[(scope)]: description` (e.g. `feat(search): add type filters`). Enforced via commitlint + husky. Types: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`.
