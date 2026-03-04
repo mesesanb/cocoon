@@ -6,7 +6,7 @@
 **Package manager**: pnpm (in `apps/web`; no monorepo)  
 **TO CONSIDER**: https://looking-ahead.hotmetalapp.com/how-i-10x-d-my-ai-coding-productivity-and-you-can-too — clear directions to follow while developing this project.
 
-**Current state (Phase 0 complete, architecture final)**: The repo has a single Next.js 16 app in `apps/web` (React 19, TypeScript, Tailwind, Shadcn, Framer Motion). Stays, availability, reviews, and bookings are served by Next.js Route Handlers in `app/api/`; data from `apps/web/data/stays.json`. **BE solution will remain as-is** — no monorepo, no separate `apps/api`, no `packages/shared`. Package manager is pnpm. Run with `pnpm dev` or `yarn dev` from root, or `cd apps/web && pnpm dev`. **Phase 1 done**: Root `package.json` with `dev` and `lint`; commitlint + husky. Discovery toolbar (filters, date pickers, sticky glass bar), search bar behaviour, and image/video loading optimisation are described in [phase-0-ui.md](../docs/phase-0-ui.md). See [TODOS.md](TODOS.md).
+**Current state (Phase 0 complete, architecture final)**: The repo has a single Next.js 16 app in `apps/web` (React 19, TypeScript, Tailwind, Shadcn, Framer Motion). Stays, availability, reviews, and bookings are served by Next.js Route Handlers in `app/api/`; data from `apps/web/data/stays.json`. **BE solution will remain as-is** — no monorepo, no separate `apps/api`, no `packages/shared`. Package manager is pnpm. Run with `pnpm dev` or `yarn dev` from root. **Phase 1 done**: App at root; commitlint + husky. Discovery toolbar (filters, date pickers, sticky glass bar), search bar behaviour, and image/video loading optimisation are described in [phase-0-ui.md](../docs/phase-0-ui.md). See [TODOS.md](TODOS.md).
 
 ---
 

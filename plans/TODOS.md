@@ -6,7 +6,7 @@
 
 **Assessment alignment**: Todos below map to the **Original Assignment Brief** in `plans/Initial_Planning.md` — must-haves (search, stay details, reviews, availability+price, checkout, frontend→API), non-functional (single-command run, responsive, loading/empty/error, a11y, tests, observability), release (CI, build, release), and submission (README, LLM note, recording).
 
-**Sync with Initial_Planning**: Stack (Next.js 16, React 19, TS, Shadcn, Tailwind; Next.js Route Handlers as backend; pnpm), API surface (§6), image targeting, and NFRs are reflected in these phases. **Architecture decision**: `apps/web` stays Next.js; no monorepo; no separate Express backend; package manager stays pnpm. Phase 0 breakdown → `docs/phase-0-ui.md`. Phase 1 plan → `plans/phase-1-setup.md`.
+**Sync with Initial_Planning**: Stack (Next.js 16, React 19, TS, Shadcn, Tailwind; Next.js Route Handlers as backend; pnpm), API surface (§6), image targeting, and NFRs are reflected in these phases. **Architecture decision**: Next.js at root; no monorepo; no separate Express backend; package manager stays pnpm. Phase 0 breakdown → `docs/phase-0-ui.md`. Phase 1 plan → `plans/phase-1-setup.md`.
 
 ---
 
@@ -36,12 +36,12 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 ## Phase 0: v0.app UI ✅
 
-*Detailed breakdown: [docs/phase-0-ui.md](docs/phase-0-ui.md). Current state: single Next.js app in `apps/web`, API via Next.js Route Handlers. Architecture is final — no monorepo planned. Post-integration refinements (discovery toolbar, search bar, image/video optimisation) are documented in the same file.*
+*Detailed breakdown: [docs/phase-0-ui.md](docs/phase-0-ui.md). Current state: Next.js app at root, API via Next.js Route Handlers. Architecture is final — no monorepo planned. Post-integration refinements (discovery toolbar, search bar, image/video optimisation) are documented in the same file.*
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
 | 0.1 | Paste `plans/v0_prompt.md` into v0.dev; generate Cocoon UI (glassmorphism, narrative phases, StayCard) | ✅ | v0 output integrated into apps/web |
-| 0.2 | Export/copy generated code for integration into `apps/web` | ✅ | Next.js 16, React 19; run: `cd apps/web && pnpm dev` → http://localhost:3000 |
+| 0.2 | Export/copy generated code for integration into `apps/web` | ✅ | Next.js 16, React 19; run: `pnpm dev` from root → http://localhost:3000 (app now at root) |
 | 0.3 | Stay location map (OpenStreetMap + Leaflet, Esri satellite imagery; coordinates in `stays.json` match location names) | ✅ | `StayMap` component; forest/mountain/sea → secluded areas; city → city centers |
 
 ---

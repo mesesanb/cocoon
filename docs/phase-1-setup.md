@@ -3,7 +3,7 @@
 **Source**: [TODOS.md](../plans/TODOS.md) Phase 1.  
 **Reference**: [Initial_Planning.md](../plans/Initial_Planning.md) §3 Tech Stack, §13 Single-command Run.
 
-Phase 1 adds **root `yarn dev`** (or `pnpm dev`) and developer hygiene. The core architecture is settled: **BE solution remains as-is** — `apps/web` stays Next.js 16; Next.js Route Handlers remain the backend; no monorepo, no Vite migration, no separate `apps/api`. All must-have API endpoints are already live from Phase 0.
+Phase 1 adds **root `yarn dev`** (or `pnpm dev`) and developer hygiene. The core architecture is settled: **BE solution remains as-is** — Next.js 16; Next.js Route Handlers remain the backend; no monorepo, no Vite migration, no separate `apps/api`. All must-have API endpoints are already live from Phase 0. *(Post–Phase 1: App moved to root; `apps/web` removed.)*
 
 ---
 
@@ -13,27 +13,27 @@ Phase 1 adds **root `yarn dev`** (or `pnpm dev`) and developer hygiene. The core
 |----------|----------|-----------|
 | Keep Next.js or migrate to Vite? | **Keep Next.js** | Phase 0 is deeply Next.js-specific. Migration would be pure churn with no product value. |
 | Add separate Express `apps/api`? | **No — use Route Handlers** | Next.js Route Handlers satisfy the assignment. All 7 required endpoints are implemented. |
-| Yarn workspaces / monorepo? | **Minimal — root `dev` only** | Root `package.json` with `dev` script; runs `cd apps/web && pnpm dev`. No full monorepo. |
+| Yarn workspaces / monorepo? | **Minimal — root only** | App at root; `pnpm dev` runs directly. No full monorepo. |
 | Package manager | **pnpm** | Already working; root uses pnpm for husky/commitlint. |
 
 ---
 
 ## What was changed
 
-### 1.0 — Root `package.json` with `dev` script
+### 1.0 — Root `package.json` with `dev` and `lint` scripts
 
-- Added root `package.json` with `"dev": "cd apps/web && pnpm dev"`.
-- Run from repo root: `pnpm dev` or `yarn dev` (if yarn is installed).
-- App starts at http://localhost:3000.
+- Root `package.json` with `"dev": "next dev"` and `"lint": "biome check ."`.
+- Run from repo root: `pnpm dev` or `yarn dev`; `pnpm lint` or `yarn lint` for linting.
+- App starts at http://localhost:3000. *(Post–Phase 1: App moved to root; no `cd apps/web` needed.)*
 
 ### 1.1 — Removed `typescript.ignoreBuildErrors`
 
-- Removed `typescript: { ignoreBuildErrors: true }` from `apps/web/next.config.mjs`.
+- Removed `typescript: { ignoreBuildErrors: true }` from `next.config.mjs`.
 - Fixed exposed TypeScript error: `Calendar` component `CustomComponents` type mismatch with react-day-picker (resolved via type assertion).
 
 ### 1.2 — Lint script aligned to Biome
 
-- Replaced `"lint": "eslint ."` with `"lint": "biome check ."` in `apps/web/package.json`.
+- Replaced `"lint": "eslint ."` with `"lint": "biome check ."` in `package.json`.
 - Added `@biomejs/biome` as dev dependency.
 - Migrated `biome.json` to schema 2.4.5; excluded `app/globals.css` and `styles/globals.css` (Tailwind directives).
 - Fixed lint issues: `parseInt` radix, import types, format, `noArrayIndexKey` (with targeted ignores where appropriate).
@@ -41,7 +41,7 @@ Phase 1 adds **root `yarn dev`** (or `pnpm dev`) and developer hygiene. The core
 ### 1.3 — Removed unused v0 artifacts
 
 - **Packages removed**: `zod`, `recharts`, `input-otp`, `react-resizable-panels`.
-- **Components removed**: `chart.tsx`, `input-otp.tsx`, `resizable.tsx` (unused in Cocoon).
+- **Components removed**: `chart.tsx`, `input-otp.tsx`, `resizable.tsx` (unused in Cocoon). *(Post–Phase 1: App flattened to root; `apps/web` removed.)*
 
 ### 1.4 — Pinned Valibot to stable
 
@@ -66,12 +66,7 @@ pnpm dev
 yarn dev
 ```
 
-Or from `apps/web`:
-
-```bash
-cd apps/web
-pnpm dev
-```
+All commands run from repo root.
 
 ---
 
@@ -86,7 +81,7 @@ The existing Route Handler surface (Phase 0) is unchanged. Phase 2 will add:
 - Guard `calculateNights` against zero/negative
 - Structured logging on route handlers
 
-All 7 routes remain in `apps/web/app/api/`:
+All 7 routes are in `app/api/`:
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|

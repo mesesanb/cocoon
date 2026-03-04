@@ -8,9 +8,9 @@
 
 Cocoon is a full-stack travel booking web app focused on **unusual stays only** — treehouses, lighthouses, floating homes, beach houses — the kind of places that *are* the destination. Users discover stays by scenario (CITY, FOREST, MOUNTAINS, SEA), view details and reviews, and complete a checkout flow with mock payment (¤). The UI uses an ethereal glassmorphism theme, Framer Motion narrative flow, and a single reusable StayCard across listings, history, and upcoming bookings.
 
-> Frontend and API currently live in one Next.js app (`apps/web`). Data is served from JSON files (no database). Built to satisfy a Booking.com-style assignment with a memorable product angle and clear engineering choices.
+> Frontend and API live in one Next.js app at the repo root. Data is served from JSON files (no database). Built to satisfy a Booking.com-style assignment with a memorable product angle and clear engineering choices.
 
-**Assets**: Images and videos in `apps/web/public/images/` and `apps/web/public/videos/` were generated with **Gemini**.
+**Assets**: Images and videos in `public/images/` and `public/videos/` were generated with **Gemini**.
 
 ---
 
@@ -22,7 +22,7 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | **Stay details** | Hero, description, amenities, availability + price, reviews, location map (OpenStreetMap + Leaflet, satellite imagery, no API key) |
 | **Reviews** | List + add review with basic moderation |
 | **Checkout** | Guest info form, mock payment (¤), confirmation with confirmation ID |
-| **Single-command run** | From root: `pnpm dev` or `yarn dev`; from `apps/web`: `pnpm dev` |
+| **Single-command run** | From root: `pnpm dev` or `yarn dev` |
 | **Responsive** | Desktop + mobile; loading, empty, and error states |
 
 ---
@@ -32,10 +32,10 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | Layer | Choice |
 |-------|--------|
 | **Frontend** | Next.js 16, React 19, TypeScript, Shadcn/ui, Tailwind CSS 4, Framer Motion, TanStack Query, React Hook Form, Valibot |
-| **API** | Next.js Route Handlers in `apps/web/app/api/` (stays, availability, reviews, bookings) |
-| **Data** | `apps/web/data/stays.json`; in-memory in API (no DB) |
+| **API** | Next.js Route Handlers in `app/api/` (stays, availability, reviews, bookings) |
+| **Data** | `data/stays.json`, `data/reviews.json`, `data/bookings.json`; in-memory in API (no DB) |
 | **Lint / format** | Biome, TypeScript strict |
-| **Package manager** | pnpm (in `apps/web`) |
+| **Package manager** | pnpm |
 
 *Phase 1 done:* Root `pnpm dev`; TS/lint/deps hygiene; commitlint + husky. BE solution remains as-is. See [plans/TODOS.md](plans/TODOS.md) and [docs/phase-1-setup.md](docs/phase-1-setup.md).
 
@@ -45,30 +45,24 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 
 ```
 cocoon/
-├── apps/
-│   └── web/                    # Next.js frontend + API (Phase 0)
-│       ├── app/
-│       │   ├── api/            # Route Handlers (stays, bookings, reviews)
-│       │   ├── about/
-│       │   ├── our-cocoon/
-│       │   ├── stay/[id]/
-│       │   ├── layout.tsx
-│       │   └── page.tsx
-│       ├── components/
-│       ├── data/              # stays.json (web shape)
-│       ├── public/
-│       │   ├── images/        # city, forest, mountains, sea
-│       │   └── videos/        # forest, rock, water
-│       ├── types/
-│       ├── utils/
-│       └── package.json
-├── data/                      # Source stays.json (root)
-├── docs/                      # Phase docs (when written)
-├── plans/                     # TODOS, Initial_Planning, v0_prompt.md, Agent_Prompts, phase-1-setup
-├── README.md
+├── app/                       # Next.js App Router
+│   ├── api/                   # Route Handlers (stays, bookings, reviews)
+│   ├── about/
+│   ├── our-cocoon/
+│   ├── stay/[id]/
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+├── data/                      # stays.json, reviews.json, bookings.json
+├── public/
+│   ├── images/                # city, forest, mountains, sea
+│   └── videos/                # forest, rock, water
+├── types/
+├── utils/
+├── docs/
+├── plans/
+└── README.md
 ```
-
-*Phase 1 done:* Root `package.json` with `dev` and `lint` scripts; run from root: `pnpm dev` or `yarn dev`.
 
 ---
 
@@ -88,22 +82,19 @@ cocoon/
 git clone <repo-url>
 cd cocoon
 pnpm install
-cd apps/web && pnpm install
 ```
 
-**Run (from root):**
+**Run:**
 
 ```bash
 pnpm dev
 ```
 
-Or from `apps/web`: `pnpm dev`
-
 App: **http://localhost:3000** (or 3001 if 3000 is in use). No separate API process; API is served by the same Next.js app.
 
 ---
 
-## Scripts (apps/web)
+## Scripts
 
 | Script | Description |
 |--------|-------------|
@@ -111,8 +102,6 @@ App: **http://localhost:3000** (or 3001 if 3000 is in use). No separate API proc
 | `pnpm build` | Production build |
 | `pnpm start` | Run production build |
 | `pnpm lint` | Lint (Biome) |
-
-Lint: `pnpm lint` from `apps/web` (Biome).
 
 ---
 
@@ -128,7 +117,7 @@ Lint: `pnpm lint` from `apps/web` (Biome).
 | POST | `/api/bookings` | Create booking (checkout) |
 | GET | `/api/bookings/[confirmationId]` | Booking confirmation |
 
-JSON only. Types in `apps/web/types`.
+JSON only. Types in `types/`.
 
 ---
 
@@ -136,7 +125,7 @@ JSON only. Types in `apps/web/types`.
 
 | Variable | Where | Description |
 |----------|--------|-------------|
-| `NEXT_PUBLIC_*` | apps/web | Next.js public env (e.g. feature flags) |
+| `NEXT_PUBLIC_*` | root | Next.js public env (e.g. feature flags) |
 
 Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 
