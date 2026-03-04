@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	typescript: {
-		ignoreBuildErrors: true,
-	},
 	images: {
 		// Enable automatic optimisation: WebP/AVIF, responsive sizes, lazy load
 		formats: ["image/avif", "image/webp"],

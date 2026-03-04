@@ -5,17 +5,17 @@ import { format, parseISO, startOfDay } from "date-fns";
 import { AnimatePresence, motion } from "framer-motion";
 import { AlertCircle, Check, Loader2, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Calendar } from "@/components/ui/calendar";
 import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import type { AvailabilityResponse, Booking, Stay } from "@/types";
 import { calculateNights } from "@/utils/dates";
 import { formatPrice } from "@/utils/price";
@@ -170,9 +170,7 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 											onSelect={(date) =>
 												setCheckIn(date ? format(date, "yyyy-MM-dd") : "")
 											}
-											disabled={(date) =>
-												date < startOfDay(new Date())
-											}
+											disabled={(date) => date < startOfDay(new Date())}
 											fromYear={new Date().getFullYear()}
 											toYear={new Date().getFullYear() + 2}
 											className="rounded-xl [--cell-size:2.25rem] border-0 bg-transparent p-3 text-foreground [&_[data-selected-single=true]]:bg-sage-deep [&_[data-selected-single=true]]:text-primary-foreground"

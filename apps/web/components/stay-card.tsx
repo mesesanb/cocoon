@@ -5,8 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Booking, Stay, StayCardMode } from "@/types";
 import { formatDateRange } from "@/utils/dates";
-import { buildImageUrl } from "@/utils/media";
-import { resolveMedia } from "@/utils/media";
+import { buildImageUrl, resolveMedia } from "@/utils/media";
 import { formatPrice } from "@/utils/price";
 import { LazyVideo } from "./lazy-video";
 
@@ -101,7 +100,8 @@ export function StayCard({ stay, mode, booking, index = 0 }: StayCardProps) {
 							{stay.location}
 						</p>
 						<span className="text-muted-foreground/70 text-[11px]">
-							· {(stay.reviewCount ?? 0)} review{(stay.reviewCount ?? 0) === 1 ? "" : "s"}
+							· {stay.reviewCount ?? 0} review
+							{(stay.reviewCount ?? 0) === 1 ? "" : "s"}
 						</span>
 					</div>
 

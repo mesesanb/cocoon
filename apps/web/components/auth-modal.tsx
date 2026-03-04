@@ -1,9 +1,9 @@
 "use client";
 
+import { format, parseISO } from "date-fns";
 import { AnimatePresence, motion } from "framer-motion";
 import { AlertCircle, Check, Eye, EyeOff, X } from "lucide-react";
 import { useId, useState } from "react";
-import { useAuth } from "./auth-context";
 import { Calendar } from "@/components/ui/calendar";
 import {
 	Popover,
@@ -17,7 +17,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { format, parseISO } from "date-fns";
+import { useAuth } from "./auth-context";
 
 interface AuthModalProps {
 	isOpen: boolean;
@@ -429,9 +429,13 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 													<Calendar
 														mode="single"
 														captionLayout="dropdown"
-														selected={birthDate ? parseISO(birthDate) : undefined}
+														selected={
+															birthDate ? parseISO(birthDate) : undefined
+														}
 														onSelect={(date) =>
-															setBirthDate(date ? format(date, "yyyy-MM-dd") : "")
+															setBirthDate(
+																date ? format(date, "yyyy-MM-dd") : "",
+															)
 														}
 														disabled={(date) => {
 															const maxDate = new Date();

@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import type { Stay } from "@/types";
-import { buildImageUrl } from "@/utils/media";
-import { resolveMedia } from "@/utils/media";
+import { buildImageUrl, resolveMedia } from "@/utils/media";
 import { formatPrice } from "@/utils/price";
 import { LazyVideo } from "./lazy-video";
 
@@ -68,7 +67,8 @@ export function StayCardList({ stay, index = 0 }: StayCardListProps) {
 							{stay.location}
 						</p>
 						<p className="text-muted-foreground/60 text-[11px] mt-0.5">
-							{(stay.reviewCount ?? 0)} review{(stay.reviewCount ?? 0) === 1 ? "" : "s"}
+							{stay.reviewCount ?? 0} review
+							{(stay.reviewCount ?? 0) === 1 ? "" : "s"}
 						</p>
 					</div>
 					<div className="shrink-0 text-right">

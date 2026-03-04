@@ -209,6 +209,7 @@ function FieldError({
 				{errors.map(
 					(error, index) =>
 						error?.message && (
+							// biome-ignore lint/suspicious/noArrayIndexKey: form errors are stable; index disambiguates duplicates
 							<li key={`${error.message}-${index}`}>{error.message}</li>
 						),
 				)}

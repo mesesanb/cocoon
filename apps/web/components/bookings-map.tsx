@@ -3,13 +3,7 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useMemo, useState } from "react";
-import {
-	MapContainer,
-	Marker,
-	Popup,
-	TileLayer,
-	useMap,
-} from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 
 const defaultIcon = L.icon({
 	iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
@@ -63,7 +57,8 @@ export function BookingsMap({ pins, className = "" }: BookingsMapProps) {
 
 	const center = useMemo(() => {
 		if (pins.length === 0) return [20, 0] as [number, number];
-		if (pins.length === 1) return [pins[0].lat, pins[0].lng] as [number, number];
+		if (pins.length === 1)
+			return [pins[0].lat, pins[0].lng] as [number, number];
 		const sum = pins.reduce(
 			(acc, p) => ({ lat: acc.lat + p.lat, lng: acc.lng + p.lng }),
 			{ lat: 0, lng: 0 },
@@ -94,7 +89,9 @@ export function BookingsMap({ pins, className = "" }: BookingsMapProps) {
 	}
 
 	return (
-		<div className={`overflow-hidden rounded-2xl [&_.leaflet-pane]:z-[1] ${className}`}>
+		<div
+			className={`overflow-hidden rounded-2xl [&_.leaflet-pane]:z-[1] ${className}`}
+		>
 			<MapContainer
 				center={center}
 				zoom={zoom}
@@ -103,18 +100,24 @@ export function BookingsMap({ pins, className = "" }: BookingsMapProps) {
 				style={{ minHeight: "220px" }}
 			>
 				<TileLayer
-					attribution='Tiles &copy; Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+					attribution="Tiles &copy; Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
 					url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
 				/>
 				{pins.length >= 2 && <FitBounds pins={pins} />}
 				{pins.map((pin, i) => (
-					<Marker key={`${pin.lat}-${pin.lng}-${i}`} position={[pin.lat, pin.lng]}>
+					<Marker
+						// biome-ignore lint/suspicious/noArrayIndexKey: pins lack unique id; lat-lng-label-index is stable
+						key={`${pin.lat}-${pin.lng}-${pin.label}-${i}`}
+						position={[pin.lat, pin.lng]}
+					>
 						<Popup>
 							{pin.stayName ? (
 								<>
 									<span className="font-medium">{pin.stayName}</span>
 									<br />
-									<span className="text-muted-foreground text-xs">{pin.label}</span>
+									<span className="text-muted-foreground text-xs">
+										{pin.label}
+									</span>
 								</>
 							) : (
 								pin.label

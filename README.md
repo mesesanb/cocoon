@@ -22,7 +22,7 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | **Stay details** | Hero, description, amenities, availability + price, reviews, location map (OpenStreetMap + Leaflet, satellite imagery, no API key) |
 | **Reviews** | List + add review with basic moderation |
 | **Checkout** | Guest info form, mock payment (¤), confirmation with confirmation ID |
-| **Single-command run** | From `apps/web`: `pnpm dev` (Phase 1 will add root `yarn dev`) |
+| **Single-command run** | From root: `pnpm dev` or `yarn dev`; from `apps/web`: `pnpm dev` |
 | **Responsive** | Desktop + mobile; loading, empty, and error states |
 
 ---
@@ -37,7 +37,7 @@ Cocoon is a full-stack travel booking web app focused on **unusual stays only** 
 | **Lint / format** | Biome, TypeScript strict |
 | **Package manager** | pnpm (in `apps/web`) |
 
-*Planned (Phase 1):* Root `yarn dev`; developer hygiene (TS errors, lint, deps). BE solution remains as-is — no monorepo, no separate Express API. See [plans/TODOS.md](plans/TODOS.md) and [plans/Initial_Planning.md](plans/Initial_Planning.md).
+*Phase 1 done:* Root `pnpm dev`; TS/lint/deps hygiene; commitlint + husky. BE solution remains as-is. See [plans/TODOS.md](plans/TODOS.md) and [docs/phase-1-setup.md](docs/phase-1-setup.md).
 
 ---
 
@@ -68,7 +68,7 @@ cocoon/
 ├── README.md
 ```
 
-*After Phase 1:* Root `package.json` with `yarn dev`; files moved/restructured so root runs the app.
+*Phase 1 done:* Root `package.json` with `dev` and `lint` scripts; run from root: `pnpm dev` or `yarn dev`.
 
 ---
 
@@ -87,15 +87,17 @@ cocoon/
 ```bash
 git clone <repo-url>
 cd cocoon
-cd apps/web
 pnpm install
+cd apps/web && pnpm install
 ```
 
-**Run:**
+**Run (from root):**
 
 ```bash
 pnpm dev
 ```
+
+Or from `apps/web`: `pnpm dev`
 
 App: **http://localhost:3000** (or 3001 if 3000 is in use). No separate API process; API is served by the same Next.js app.
 
@@ -108,9 +110,9 @@ App: **http://localhost:3000** (or 3001 if 3000 is in use). No separate API proc
 | `pnpm dev` | Next.js dev server (frontend + API) |
 | `pnpm build` | Production build |
 | `pnpm start` | Run production build |
-| `pnpm lint` | Lint (ESLint today; Phase 1 will align to Biome) |
+| `pnpm lint` | Lint (Biome) |
 
-Biome: `pnpm exec biome check .` from `apps/web` (or `components/`).
+Lint: `pnpm lint` from `apps/web` (Biome).
 
 ---
 
@@ -150,14 +152,15 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 | [plans/Initial_Planning.md](plans/Initial_Planning.md) | Product concept, stack, architecture, API, data models |
 | [plans/v0_prompt.md](plans/v0_prompt.md) | v0.app UI spec (glassmorphism, narrative flow, StayCard) |
 | [plans/Agent_Prompts.md](plans/Agent_Prompts.md) | Per-phase agent prompts and constraints |
-| [plans/phase-1-setup.md](plans/phase-1-setup.md) | Phase 1 setup plan (not yet implemented) |
+| [plans/phase-1-setup.md](plans/phase-1-setup.md) | Phase 1 setup plan |
+| [docs/phase-1-setup.md](docs/phase-1-setup.md) | Phase 1 doc (root dev, hygiene, commitlint) |
 
 ---
 
 ## Architecture (high level)
 
 - **Phase 0**: Single Next.js app. App Router for pages; Route Handlers for API. Data from `data/stays.json`; TanStack Query on the client. No monorepo.
-- **Planned**: Root `yarn dev`; BE solution remains as-is (Next.js Route Handlers). No separate Express API or `packages/shared`. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §4–5.
+- **Phase 1**: Root `pnpm dev`; commitlint + husky. BE solution remains as-is (Next.js Route Handlers). See [docs/phase-1-setup.md](docs/phase-1-setup.md).
 
 ---
 
@@ -170,10 +173,10 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 | Map | OpenStreetMap + Leaflet; Esri World Imagery (satellite) for stay location | No API key required |
 | Validation | Valibot (frontend) | Lightweight; add minimal validation in Route Handlers (Phase 2) |
 
-**Next steps (post–timebox):** Phase 1 root `yarn dev` + hygiene, Phase 2 API polish (validation, logging), persist data (e.g. Supabase/SQLite), auth for “Our Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
+**Next steps (post–timebox):** Phase 2 API polish (validation, logging), persist data (e.g. Supabase/SQLite), auth for “Our Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
 
 ---
 
 ## Commit convention
 
-We use [Conventional Commits](https://www.conventionalcommits.org/): `type[(scope)]: description` (e.g. `feat(search): add type filters`). To be enforced via commitlint + husky in Phase 1. Types: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`.
+We use [Conventional Commits](https://www.conventionalcommits.org/): `type[(scope)]: description` (e.g. `feat(search): add type filters`). Enforced via commitlint + husky. Types: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`.

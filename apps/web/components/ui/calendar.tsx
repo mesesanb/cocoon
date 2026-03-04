@@ -25,8 +25,14 @@ import { cn } from "@/lib/utils";
 function CalendarGlassSelect(
 	props: React.ComponentProps<"select"> & { children?: React.ReactNode },
 ) {
-	const { value, onChange, disabled, children, className: _omit, ...rest } =
-		props;
+	const {
+		value,
+		onChange,
+		disabled,
+		children,
+		className: _omit,
+		...rest
+	} = props;
 	const numValue = value !== undefined && value !== "" ? Number(value) : 0;
 	return (
 		<Select
@@ -94,11 +100,15 @@ function CalendarGlassDropdown(
 	return (
 		<span
 			data-disabled={selectProps.disabled}
-			className={classNames["dropdown_root"]}
+			className={classNames.dropdown_root}
 		>
 			<SelectComp {...selectProps}>
 				{options?.map(({ value, label, disabled }) =>
-					React.createElement(OptionComp, { key: value, value, disabled }, label),
+					React.createElement(
+						OptionComp,
+						{ key: value, value, disabled },
+						label,
+					),
 				)}
 			</SelectComp>
 		</span>
@@ -171,7 +181,8 @@ function Calendar({
 					defaultClassNames.dropdown_root,
 				),
 				dropdown: cn(
-					captionLayout !== "dropdown" && "absolute bg-popover inset-0 opacity-0",
+					captionLayout !== "dropdown" &&
+						"absolute bg-popover inset-0 opacity-0",
 					defaultClassNames.dropdown,
 				),
 				caption_label: cn(
@@ -221,59 +232,61 @@ function Calendar({
 				hidden: cn("invisible", defaultClassNames.hidden),
 				...classNames,
 			}}
-			components={{
-				// biome-ignore lint/correctness/noNestedComponentDefinitions: API required by react-day-picker
-				Root: ({ className, rootRef, ...props }) => {
-					return (
-						<div
-							data-slot="calendar"
-							ref={rootRef}
-							className={cn(className)}
-							{...props}
-						/>
-					);
-				},
-				...(captionLayout === "dropdown"
-					? {
-							Dropdown: CalendarGlassDropdown,
-							Select: CalendarGlassSelect,
-							Option: CalendarGlassOption,
-						}
-					: {}),
-				// biome-ignore lint/correctness/noNestedComponentDefinitions: API required by react-day-picker
-				Chevron: ({ className, orientation, ...props }) => {
-					if (orientation === "left") {
+			components={
+				{
+					Root: ({ className, rootRef, ...props }) => {
 						return (
-							<ChevronLeftIcon className={cn("size-4", className)} {...props} />
-						);
-					}
-
-					if (orientation === "right") {
-						return (
-							<ChevronRightIcon
-								className={cn("size-4", className)}
+							<div
+								data-slot="calendar"
+								ref={rootRef}
+								className={cn(className)}
 								{...props}
 							/>
 						);
-					}
+					},
+					...(captionLayout === "dropdown"
+						? {
+								Dropdown: CalendarGlassDropdown,
+								Select: CalendarGlassSelect,
+								Option: CalendarGlassOption,
+							}
+						: {}),
+					Chevron: ({ className, orientation, ...props }) => {
+						if (orientation === "left") {
+							return (
+								<ChevronLeftIcon
+									className={cn("size-4", className)}
+									{...props}
+								/>
+							);
+						}
 
-					return (
-						<ChevronDownIcon className={cn("size-4", className)} {...props} />
-					);
-				},
-				DayButton: CalendarDayButton,
-				// biome-ignore lint/correctness/noNestedComponentDefinitions: API required by react-day-picker
-				WeekNumber: ({ children, ...props }) => {
-					return (
-						<td {...props}>
-							<div className="flex size-(--cell-size) items-center justify-center text-center">
-								{children}
-							</div>
-						</td>
-					);
-				},
-				...components,
-			}}
+						if (orientation === "right") {
+							return (
+								<ChevronRightIcon
+									className={cn("size-4", className)}
+									{...props}
+								/>
+							);
+						}
+
+						return (
+							<ChevronDownIcon className={cn("size-4", className)} {...props} />
+						);
+					},
+					DayButton: CalendarDayButton,
+					WeekNumber: ({ children, ...props }) => {
+						return (
+							<td {...props}>
+								<div className="flex size-(--cell-size) items-center justify-center text-center">
+									{children}
+								</div>
+							</td>
+						);
+					},
+					...components,
+				} as React.ComponentProps<typeof DayPicker>["components"]
+			}
 			{...props}
 		/>
 	);

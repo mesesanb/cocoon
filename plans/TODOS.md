@@ -52,13 +52,13 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 1.0 | Add root `package.json` with `yarn dev`; move/restructure files so root runs the app | ⬜ | |
-| 1.1 | Fix `typescript.ignoreBuildErrors: true` in `next.config.mjs`; resolve exposed TS errors | ⬜ | |
-| 1.2 | Align `lint` script: replace `eslint .` with `biome check .` in `apps/web/package.json` | ⬜ | |
-| 1.3 | Remove unused v0 artifacts from deps: `zod`, `recharts`, `input-otp`, `react-resizable-panels` | ⬜ | |
-| 1.4 | Pin `valibot` to a stable non-beta release; verify forms still work | ⬜ | |
-| 1.5 | **Guard commit messages**: commitlint + husky to enforce Conventional Commits on commit | ⬜ | |
-| 1.6 | Document Phase 1 in `docs/phase-1-setup.md` | ⬜ | |
+| 1.0 | Add root `package.json` with `yarn dev`; move/restructure files so root runs the app | ✅ | Root `pnpm dev` / `yarn dev` |
+| 1.1 | Fix `typescript.ignoreBuildErrors: true` in `next.config.mjs`; resolve exposed TS errors | ✅ | Calendar CustomComponents type assertion |
+| 1.2 | Align `lint` script: replace `eslint .` with `biome check .` in `apps/web/package.json` | ✅ | Biome 2.4.5; @biomejs/biome added |
+| 1.3 | Remove unused v0 artifacts from deps: `zod`, `recharts`, `input-otp`, `react-resizable-panels` | ✅ | Removed packages + chart, input-otp, resizable components |
+| 1.4 | Pin `valibot` to a stable non-beta release; verify forms still work | ✅ | valibot ^1.2.0 |
+| 1.5 | **Guard commit messages**: commitlint + husky to enforce Conventional Commits on commit | ✅ | .husky/commit-msg; commitlint.config.js |
+| 1.6 | Document Phase 1 in `docs/phase-1-setup.md` | ✅ | docs/phase-1-setup.md |
 
 ---
 

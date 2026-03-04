@@ -6,13 +6,14 @@
 
 - **Backend**: Next.js Route Handlers in `apps/web/app/api/` — stays, availability, reviews, bookings. **BE solution will remain as-is.**
 - **Frontend**: Next.js 16, React 19, TypeScript, Tailwind, Shadcn in `apps/web`.
-- **Run**: Today: `cd apps/web && pnpm dev`. **Planned**: Add root `package.json` with `yarn dev` so you can start from the repo root (files will be moved/restructured to support this).
+- **Run**: From root: `pnpm dev` or `yarn dev`. From `apps/web`: `pnpm dev`. Root `package.json` has `dev` and `lint` scripts.
 
 ## What exists today
 
 | File | Purpose |
 |------|---------|
 | [phase-0-ui.md](phase-0-ui.md) | Phase 0 (current state): Next.js app in `apps/web`, API routes, data, gateway, discovery toolbar (filters, dates, sticky glass bar), search bar behaviour, stay location map (Leaflet + satellite imagery), image/video loading optimisation, run instructions |
+| [phase-1-setup.md](phase-1-setup.md) | Phase 1: Root `dev` script, TS/lint/deps hygiene, commitlint + husky |
 
 ## Planning (not in this folder)
 

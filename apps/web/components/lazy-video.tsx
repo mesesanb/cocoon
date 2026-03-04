@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-interface LazyVideoProps
-	extends Omit<React.ComponentProps<"video">, "src"> {
+interface LazyVideoProps extends Omit<React.ComponentProps<"video">, "src"> {
 	src: string;
 	poster?: string;
 }
