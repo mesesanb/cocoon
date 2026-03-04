@@ -1,26 +1,19 @@
 import { type NextRequest, NextResponse } from "next/server";
 import bookingsData from "@/data/bookings.json";
 import staysData from "@/data/stays.json";
+import { logRoute } from "@/lib/api-logger";
 import type { AvailabilityResponse, Booking, Stay } from "@/types";
-import { calculateNights } from "@/utils/dates";
+import { calculateNights, datesOverlap } from "@/utils/dates";
 
 const stays = staysData as Stay[];
 const bookings = bookingsData as Booking[];
-
-// true when the two ranges overlap
-function datesOverlap(
-	start1: string,
-	end1: string,
-	start2: string,
-	end2: string,
-): boolean {
-	return start1 < end2 && start2 < end1;
-}
 
 export async function GET(
 	request: NextRequest,
 	{ params }: { params: Promise<{ id: string }> },
 ) {
+	const start = Date.now();
+	const path = request.nextUrl.pathname;
 	const { id } = await params;
 	const { searchParams } = request.nextUrl;
 	const checkIn = searchParams.get("checkIn");
@@ -29,14 +22,27 @@ export async function GET(
 	const stay = stays.find((s) => s.id === id);
 
 	if (!stay) {
-		return NextResponse.json({ error: "Stay not found" }, { status: 404 });
+		const res = NextResponse.json({ error: "Stay not found" }, { status: 404 });
+		logRoute("GET", path, 404, Date.now() - start);
+		return res;
 	}
 
 	if (!checkIn || !checkOut) {
-		return NextResponse.json(
+		const res = NextResponse.json(
 			{ error: "checkIn and checkOut are required" },
 			{ status: 400 },
 		);
+		logRoute("GET", path, 400, Date.now() - start);
+		return res;
+	}
+
+	if (checkOut <= checkIn) {
+		const res = NextResponse.json(
+			{ error: "checkOut must be after checkIn" },
+			{ status: 400 },
+		);
+		logRoute("GET", path, 400, Date.now() - start);
+		return res;
 	}
 
 	// Check if dates are within stay's availability windows
@@ -71,5 +77,7 @@ export async function GET(
 				: undefined,
 	};
 
-	return NextResponse.json(response);
+	const res = NextResponse.json(response);
+	logRoute("GET", path, 200, Date.now() - start);
+	return res;
 }
