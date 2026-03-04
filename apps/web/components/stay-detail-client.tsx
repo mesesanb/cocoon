@@ -98,6 +98,10 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 	const handleShare = async (platform: "twitter" | "facebook" | "copy") => {
 		if (!stay) return;
 
+		if (typeof window === "undefined") {
+			return;
+		}
+
 		const url = window.location.href;
 		const text = `Discover ${stay.name} on Cocoon - ${stay.tagline}`;
 

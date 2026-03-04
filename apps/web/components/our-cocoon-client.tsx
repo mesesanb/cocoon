@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import {
@@ -23,9 +24,15 @@ import {
 import type { Booking, Review, Stay } from "@/types";
 import { useAuth } from "./auth-context";
 import { AuthModal } from "./auth-modal";
-import { BookingsMap } from "./bookings-map";
 import { CocoonFooter } from "./cocoon-footer";
 import { StayCard } from "./stay-card";
+
+const BookingsMap = dynamic(
+	() => import("./bookings-map").then((m) => m.BookingsMap),
+	{
+		ssr: false,
+	},
+);
 
 export function OurCocoonClient() {
 	const router = useRouter();
