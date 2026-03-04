@@ -1,9 +1,9 @@
 # Phase 1: Setup — Todo breakdown
 
 **Source**: [TODOS.md](./TODOS.md) Phase 1.
-**Reference**: [Initial_Planning.md](./Initial_Planning.md) §3 Tech Stack.
+**Reference**: [Initial_Planning.md](./Initial_Planning.md) §3 Tech Stack, §13 Single-command Run.
 
-Phase 1 is **developer hygiene only**. The core architecture is settled (see decisions below): `apps/web` stays Next.js 16; Next.js Route Handlers remain the backend; pnpm stays the package manager; no monorepo, no Vite migration, no separate `apps/api`. All must-have API endpoints are already live from Phase 0.
+Phase 1 adds **root `yarn dev`** and developer hygiene. The core architecture is settled (see decisions below): **BE solution remains as-is** — `apps/web` stays Next.js 16; Next.js Route Handlers remain the backend; no monorepo, no Vite migration, no separate `apps/api`. All must-have API endpoints are already live from Phase 0. Files will be moved/restructured so `yarn dev` from root starts the app.
 
 ---
 
@@ -13,8 +13,18 @@ Phase 1 is **developer hygiene only**. The core architecture is settled (see dec
 |----------|----------|-----------|
 | Keep Next.js or migrate to Vite? | **Keep Next.js** | Phase 0 is deeply Next.js-specific (`next/image`, `next/link`, App Router, `"use client"` directives throughout). Migration would be pure churn with no product value for the timebox. |
 | Add separate Express `apps/api`? | **No — use Route Handlers** | Next.js Route Handlers satisfy the assignment's "small server that frontend talks to" requirement. All 7 required endpoints are already implemented and working. |
-| Yarn workspaces / monorepo? | **No — single app** | No separate backend means no need for workspace tooling. pnpm + single `apps/web` is the right fit. |
+| Yarn workspaces / monorepo? | **Minimal — root `yarn dev` only** | Add root `package.json` with `yarn dev`; files moved so root runs the app. No full monorepo. |
 | Package manager: pnpm or Yarn? | **Keep pnpm** | Already working; no migration needed. |
+
+---
+
+## 1.0 — Add root `package.json` with `yarn dev`
+
+**What**: Add a root `package.json` with a `dev` script so `yarn dev` from the repo root starts the app. Move/restructure files as needed to support this.
+
+**Why**: Single-command run from root satisfies the assessment NFR ("runs locally with a single command").
+
+**How**: Create root `package.json` with `"dev": "yarn workspace web dev"` (or equivalent; may use workspaces or a simple script that `cd`s into `apps/web` and runs `pnpm dev`). Align package manager (yarn at root vs pnpm in apps/web) as needed.
 
 ---
 

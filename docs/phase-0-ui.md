@@ -80,12 +80,60 @@ These updates were applied after the initial Phase 0 integration; they are part 
 
 ---
 
+## Code review (current state)
+
+*Supplementary findings from code review. Phase 1–2 tasks in [TODOS.md](../plans/TODOS.md) and [phase-1-setup.md](../plans/phase-1-setup.md) remain the source of truth; this section adds observations, does not replace them.*
+
+### Strengths
+
+- **API structure**: Route handlers organized by resource (`/api/stays`, `/api/bookings`, `/api/reviews`).
+- **Next.js usage**: `next/image` and `next/link` used correctly in StayCard, Gateway, StayDetailClient, CocoonDiscovery.
+- **TypeScript**: `types/index.ts` defines Stay, Booking, Review, AvailabilityResponse.
+- **Data flow**: TanStack Query for fetching, caching, invalidation.
+- **Image config**: `next.config.mjs` sets image formats and sizes.
+- **Accessibility**: Many components use `aria-label`, `aria-hidden`, `focus-visible:ring`, nav labels.
+- **Availability**: `GET /api/stays/:id/availability` checks both availability windows and existing bookings.
+
+### Issues observed (reference existing Phase 1–2 tasks)
+
+| Area | Issue | Maps to |
+|------|-------|---------|
+| **API** | `GET /api/bookings` returns all bookings; no `coupleName` filter | Phase 2.3 |
+| **API** | `POST /api/bookings` — no validation for `stayId`, `coupleName`, `checkIn`, `checkOut` | Phase 2.1 |
+| **API** | `POST /api/bookings` — no check for `checkOut <= checkIn` | Phase 2.6 |
+| **API** | `POST /api/stays/:id/reviews` — no validation for `coupleName`, `rating`, `text` | Phase 2.2 |
+| **API** | `GET /api/stays` date filter checks availability windows only, not existing bookings | Phase 2.4 |
+| **API** | `sort=resonance` duplicates `sort=rating_desc` | Phase 2.5 |
+| **API** | No structured logging on route handlers | Phase 2.7 |
+| **Config** | `typescript.ignoreBuildErrors: true` in `next.config.mjs` | Phase 1.1 |
+| **Config** | `lint` uses `eslint .`; no ESLint config; Biome is configured | Phase 1.2 |
+| **Deps** | Unused: `zod`, `recharts`, `input-otp`, `react-resizable-panels` | Phase 1.3 |
+| **Deps** | Valibot on beta (`^1.0.0-beta.0`) | Phase 1.4 |
+
+### Additional findings (not yet in Phase 1–2)
+
+| Area | Issue |
+|------|-------|
+| **Components** | `<a>` instead of `<Link>` in `booking-form.tsx` (internal link to `/our-cocoon`) |
+| **Components** | Review form: inputs lack labels; star rating buttons lack `aria-label` |
+
+### Data layer notes
+
+- In-memory mutation: `bookings.push()` and `reviews.push()` mutate imported JSON; changes are not persisted.
+- JSON imports create a mutable copy; runtime changes are lost on restart. Acceptable for Phase 0 mock.
+
+---
+
 ## What Phase 1 will change
 
-- Add monorepo root (`package.json`, workspaces or Turborepo).
-- Optionally migrate `apps/web` to Vite + React Router if the plan stays Vite-based; or keep Next.js and add `apps/api` (simple Express) and `packages/shared`.
-- Single-command run from root (`pnpm dev` or `yarn dev` running web + api).
-- Commit message guard (commitlint + husky).
+- **BE solution remains as-is** — Next.js Route Handlers stay; no separate Express API.
+- **1.0** Add root `package.json` with `yarn dev`; move/restructure files so root runs the app.
+- **1.1** Fix `typescript.ignoreBuildErrors: true` in `next.config.mjs`; resolve exposed TS errors.
+- **1.2** Align `lint` script: replace `eslint .` with `biome check .` in `apps/web/package.json`.
+- **1.3** Remove unused v0 artifacts from deps: `zod`, `recharts`, `input-otp`, `react-resizable-panels`.
+- **1.4** Pin `valibot` to a stable non-beta release; verify forms still work.
+- **1.5** Guard commit messages: commitlint + husky to enforce Conventional Commits on commit.
+- **1.6** Document Phase 1 in `docs/phase-1-setup.md`.
 
 See [../plans/TODOS.md](../plans/TODOS.md) Phase 1 and [../plans/phase-1-setup.md](../plans/phase-1-setup.md).
 

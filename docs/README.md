@@ -2,6 +2,12 @@
 
 **Start here** if you’re new: this folder describes what the project **actually is now**, phase by phase.
 
+## Current state (brief)
+
+- **Backend**: Next.js Route Handlers in `apps/web/app/api/` — stays, availability, reviews, bookings. **BE solution will remain as-is.**
+- **Frontend**: Next.js 16, React 19, TypeScript, Tailwind, Shadcn in `apps/web`.
+- **Run**: Today: `cd apps/web && pnpm dev`. **Planned**: Add root `package.json` with `yarn dev` so you can start from the repo root (files will be moved/restructured to support this).
+
 ## What exists today
 
 | File | Purpose |
@@ -18,7 +24,7 @@ Planning and prompts live in `plans/`:
 | [../plans/Initial_Planning.md](../plans/Initial_Planning.md) | Product concept, architecture, API, data models |
 | [../plans/v0_prompt.md](../plans/v0_prompt.md) | v0.app UI spec used to generate the UI |
 | [../plans/Agent_Prompts.md](../plans/Agent_Prompts.md) | Instructions for AI agents per phase |
-| [../plans/phase-1-setup.md](../plans/phase-1-setup.md) | Phase 1 setup plan (monorepo, shared types, etc.) |
+| [../plans/phase-1-setup.md](../plans/phase-1-setup.md) | Phase 1 setup plan (root yarn dev, developer hygiene) |
 
 ## Workflow
 
