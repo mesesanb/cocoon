@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import {
@@ -14,17 +15,24 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import type { Booking, Review, Stay } from "@/types";
-import { useAuth } from "./auth-context";
-import { AuthModal } from "./auth-modal";
+import { useMemo, useState } from "react";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { Booking, Review, Stay } from "@/types";
+import { useAuth } from "./auth-context";
+import { AuthModal } from "./auth-modal";
 import { CocoonFooter } from "./cocoon-footer";
 import { StayCard } from "./stay-card";
+
+const BookingsMap = dynamic(
+	() => import("./bookings-map").then((m) => m.BookingsMap),
+	{
+		ssr: false,
+	},
+);
 
 export function OurCocoonClient() {
 	const router = useRouter();
@@ -76,6 +84,31 @@ export function OurCocoonClient() {
 
 	const getStay = (stayId: string) => stays.find((s) => s.id === stayId);
 
+	// Pins for past bookings map (unique stays by coordinates)
+	const bookingMapPins = useMemo(() => {
+		const seen = new Set<string>();
+		return pastBookings
+			.map((b) => {
+				const stay = stays.find((s) => s.id === b.stayId);
+				if (!stay?.coordinates) return null;
+				const key = `${stay.coordinates.lat},${stay.coordinates.lng}`;
+				if (seen.has(key)) return null;
+				seen.add(key);
+				return {
+					lat: stay.coordinates.lat,
+					lng: stay.coordinates.lng,
+					label: stay.location,
+					stayName: stay.name,
+				};
+			})
+			.filter(Boolean) as {
+			lat: number;
+			lng: number;
+			label: string;
+			stayName?: string;
+		}[];
+	}, [pastBookings, stays]);
+
 	// Calculate journey stats
 	const totalNights = pastBookings.reduce((acc, b) => {
 		const checkIn = new Date(b.checkIn);
@@ -107,7 +140,7 @@ export function OurCocoonClient() {
 			</div>
 
 			{/* Navigation */}
-			<header className="sticky top-0 z-30 glass-heavy">
+			<header className="sticky top-0 z-30 glass-header">
 				<div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
 					<div className="flex items-center gap-3">
 						<Tooltip>
@@ -179,7 +212,7 @@ export function OurCocoonClient() {
 						{coupleName}&apos;s <span className="font-medium">Cocoon</span>
 					</h1>
 					<p className="text-muted-foreground text-sm mt-2">
-						Your journey through solitude, together.
+						Our journey through solitude, together.
 					</p>
 				</motion.div>
 
@@ -284,7 +317,7 @@ export function OurCocoonClient() {
 						{/* Journey Stats */}
 						<div className="glass rounded-2xl p-6">
 							<h3 className="text-foreground text-xs font-semibold tracking-wider uppercase mb-5">
-								Your Journey
+								Our Journey
 							</h3>
 							<div className="grid grid-cols-3 gap-4">
 								<div className="text-center">
@@ -322,11 +355,18 @@ export function OurCocoonClient() {
 								</div>
 							</div>
 						</div>
+						{/* Map: past booking locations */}
+						<div className="glass rounded-2xl p-4">
+							<h3 className="text-foreground text-xs font-semibold tracking-wider uppercase mb-4">
+								Our Landscapes
+							</h3>
+							<BookingsMap pins={bookingMapPins} className="w-full" />
+						</div>
 
 						{/* User Reviews */}
 						<div className="glass rounded-2xl p-6">
 							<h3 className="text-foreground text-xs font-semibold tracking-wider uppercase mb-5">
-								Your Resonances
+								Our Resonances
 							</h3>
 							{userReviews.length === 0 ? (
 								<p className="text-muted-foreground text-sm text-center py-4">

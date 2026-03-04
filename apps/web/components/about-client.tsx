@@ -6,13 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useAuth } from "./auth-context";
-import { AuthModal } from "./auth-modal";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useAuth } from "./auth-context";
+import { AuthModal } from "./auth-modal";
 import { CocoonFooter } from "./cocoon-footer";
 
 export function AboutClient() {
@@ -35,7 +35,7 @@ export function AboutClient() {
 			</div>
 
 			{/* Navigation */}
-			<header className="sticky top-0 z-30 glass-heavy">
+			<header className="sticky top-0 z-30 glass-header">
 				<div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
 					<div className="flex items-center gap-3">
 						<Tooltip>
@@ -73,7 +73,7 @@ export function AboutClient() {
 									Our Cocoon
 								</Link>
 							</TooltipTrigger>
-							<TooltipContent side="bottom">My bookings</TooltipContent>
+							<TooltipContent side="bottom">Our bookings</TooltipContent>
 						</Tooltip>
 						{user ? (
 							<Tooltip>
@@ -126,7 +126,7 @@ export function AboutClient() {
 							Manifesto
 						</p>
 						<h1 className="text-foreground text-4xl md:text-5xl lg:text-6xl font-light tracking-[-0.03em]">
-							Architecture of <span className="font-medium">Us</span>
+							fill the space <span className="font-medium">together</span>
 						</h1>
 						<div className="h-px w-12 bg-sage-deep/30 mx-auto mt-6" />
 					</motion.div>
@@ -141,8 +141,10 @@ export function AboutClient() {
 						<p>
 							Cocoon was born from a quiet observation: that the world builds
 							everything for individuals. Productivity apps, wellness routines,
-							career paths. But the most important unit of human meaning is not
-							the self. It is the space between two people.
+							career paths. Even if one of the most important units of human
+							meaning is the self, we believe that the space between two people
+							is also important, and the architecture that brings them together
+							is what makes them whole.
 						</p>
 
 						<p>
@@ -168,8 +170,8 @@ export function AboutClient() {
 						</p>
 
 						<p>
-							We accept payment in our platform currency (¤) — borderless,
-							no intermediaries, no friction. Just two people and a place.
+							We accept payment in our platform currency (¤) — borderless, no
+							intermediaries, no friction. Just two people and a place.
 						</p>
 
 						<div className="text-center pt-6">

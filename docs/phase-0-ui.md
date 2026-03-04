@@ -57,6 +57,29 @@ Phase 0 delivers the Cocoon UI from v0.dev (glassmorphism, narrative intro → g
 
 ---
 
+## Phase 0 refinements (post-integration)
+
+These updates were applied after the initial Phase 0 integration; they are part of the current “Phase 0 complete” state.
+
+### Discovery page (search + toolbar)
+
+- **Toolbar**: One row with scenario chips (All, City, Forest, Mountains, Sea), Begin stay / End stay date pickers (same style as booking form), “X retreats found”, sort dropdown, and grid/list view toggle. Same height and glass effect as the header; sticky under the header on scroll; rounded bottom corners; full viewport width.
+- **Narrow viewports**: Toolbar uses horizontal scroll (single row, no wrap) with a glass-styled scrollbar so controls don’t overlap.
+- **Search**: Submitting search resets the category filter to “All” so results aren’t limited by the current chip. Clearing the search (X) clears the query and updates results immediately (via `onClear` on the search bar).
+
+### Search bar
+
+- Wider (`max-w-3xl`). When there is text, a clear (X) button is shown; mic icon and arrow button remain. Optional `onClear` callback so the parent can clear the active query and refresh results.
+
+### Image and video optimisation
+
+- **Images**: Next.js image optimisation is **enabled** in `next.config.mjs` (no `unoptimized`). Formats: AVIF and WebP. Responsive `deviceSizes` and `imageSizes` so the right resolution is served per viewport. All `<Image>` usage benefits from lazy loading (except where `priority` is set), responsive `srcset`, and modern formats.
+- **Videos on listing cards**: `LazyVideo` (`components/lazy-video.tsx`) only sets the video `src` when the card enters the viewport (IntersectionObserver). Until then, a **poster** (first stay image) is shown and no video is downloaded. When in view: `preload="metadata"`, then autoplay. Used in `StayCard` and `StayCardList`.
+- **Stay detail hero video**: `poster` set to the first stay image; `preload="metadata"` so the full file isn’t fetched until playback.
+- **Media URLs**: `utils/media.ts` exposes `buildImageUrl(path)` and `buildVideoUrl(path)` for consistent `/images/` and `/videos/` paths; used in stay-detail and `resolveMedia`.
+
+---
+
 ## What Phase 1 will change
 
 - Add monorepo root (`package.json`, workspaces or Turborepo).

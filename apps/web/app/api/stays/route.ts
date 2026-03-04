@@ -1,8 +1,21 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import staysData from "@/data/stays.json";
-import type { Stay, ScenarioType } from "@/types";
+import reviewsData from "@/data/reviews.json";
+import type { Review, ScenarioType, Stay } from "@/types";
 
 const stays = staysData as Stay[];
+const reviews = reviewsData as Review[];
+
+function attachReviewCounts(stayList: Stay[]): (Stay & { reviewCount: number })[] {
+  const countByStay: Record<string, number> = {};
+  reviews.forEach((r) => {
+    countByStay[r.stayId] = (countByStay[r.stayId] ?? 0) + 1;
+  });
+  return stayList.map((s) => ({
+    ...s,
+    reviewCount: countByStay[s.id] ?? 0,
+  }));
+}
 
 // list stays with optional query, type, dates, price, sort
 export async function GET(request: NextRequest) {
@@ -12,15 +25,16 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get("type")?.toUpperCase() as ScenarioType | null;
   const checkIn = searchParams.get("checkIn");
   const checkOut = searchParams.get("checkOut");
-  const minPrice = searchParams.get("minPrice")
-    ? parseFloat(searchParams.get("minPrice")!)
-    : null;
-  const maxPrice = searchParams.get("maxPrice")
-    ? parseFloat(searchParams.get("maxPrice")!)
-    : null;
+  const amenitiesParam = searchParams.get("amenities");
+  const amenitiesMode = (searchParams.get("amenitiesMode") ?? "any").toLowerCase();
+  const minPriceRaw = searchParams.get("minPrice");
+  const minPrice = minPriceRaw ? parseFloat(minPriceRaw) : null;
+  const maxPriceRaw = searchParams.get("maxPrice");
+  const maxPrice = maxPriceRaw ? parseFloat(maxPriceRaw) : null;
   const sort = searchParams.get("sort");
 
   let filtered = [...stays];
+  filtered = attachReviewCounts(filtered) as Stay[];
 
   if (query) {
     filtered = filtered.filter(
@@ -48,6 +62,25 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  if (amenitiesParam) {
+    const requested = amenitiesParam
+      .split(",")
+      .map((a) => a.trim())
+      .filter(Boolean)
+      .map((a) => a.toLowerCase());
+
+    if (requested.length > 0) {
+      filtered = filtered.filter((s) => {
+        const stayAmenities = (s.amenities ?? []).map((a) => a.toLowerCase());
+        if (amenitiesMode === "all") {
+          return requested.every((a) => stayAmenities.includes(a));
+        }
+        // default: any
+        return requested.some((a) => stayAmenities.includes(a));
+      });
+    }
+  }
+
   if (minPrice !== null) {
     filtered = filtered.filter((s) => s.pricePerNight >= minPrice);
   }
@@ -60,6 +93,14 @@ export async function GET(request: NextRequest) {
     filtered.sort((a, b) => a.pricePerNight - b.pricePerNight);
   } else if (sort === "price_desc") {
     filtered.sort((a, b) => b.pricePerNight - a.pricePerNight);
+  } else if (sort === "rating_asc") {
+    filtered.sort((a, b) => a.resonanceScore - b.resonanceScore);
+  } else if (sort === "rating_desc") {
+    filtered.sort((a, b) => b.resonanceScore - a.resonanceScore);
+  } else if (sort === "reviews_desc") {
+    filtered.sort(
+      (a, b) => (b.reviewCount ?? 0) - (a.reviewCount ?? 0)
+    );
   } else if (sort === "resonance") {
     filtered.sort((a, b) => b.resonanceScore - a.resonanceScore);
   }

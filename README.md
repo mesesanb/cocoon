@@ -170,7 +170,7 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 | Map | OpenStreetMap + Leaflet; Esri World Imagery (satellite) for stay location | No API key required |
 | Validation | Valibot (frontend) | Lightweight; add minimal validation in Express when API exists |
 
-**Next steps (post–timebox):** Phase 1 monorepo, persist data (e.g. Supabase/SQLite), auth for “My Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
+**Next steps (post–timebox):** Phase 1 monorepo, persist data (e.g. Supabase/SQLite), auth for “Our Bookings,” deploy (e.g. Vercel), WCAG audit. See [plans/Initial_Planning.md](plans/Initial_Planning.md) §14.
 
 ---
 

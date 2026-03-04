@@ -12,7 +12,98 @@ import {
 	getDefaultClassNames,
 } from "react-day-picker";
 import { Button, buttonVariants } from "@/components/ui/button";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+
+/** Glass-styled select for month/year dropdowns (replaces native select so dropdown list matches site) */
+function CalendarGlassSelect(
+	props: React.ComponentProps<"select"> & { children?: React.ReactNode },
+) {
+	const { value, onChange, disabled, children, className: _omit, ...rest } =
+		props;
+	const numValue = value !== undefined && value !== "" ? Number(value) : 0;
+	return (
+		<Select
+			value={String(numValue)}
+			onValueChange={(v) => {
+				const n = Number(v);
+				if (!Number.isNaN(n) && onChange)
+					onChange({
+						target: { value: String(n) },
+					} as React.ChangeEvent<HTMLSelectElement>);
+			}}
+			disabled={disabled}
+		>
+			<SelectTrigger
+				className="glass-input h-8 min-w-0 flex-1 rounded-md border border-border text-sm font-medium [&_svg]:hidden"
+				aria-label={rest["aria-label"]}
+			>
+				<SelectValue />
+			</SelectTrigger>
+			<SelectContent
+				className="glass-popover rounded-lg border-0 py-1 z-[1001]"
+				position="popper"
+				sideOffset={4}
+			>
+				{children}
+			</SelectContent>
+		</Select>
+	);
+}
+
+/** Option for calendar dropdowns – renders as Radix SelectItem for glass styling */
+function CalendarGlassOption(
+	props: React.ComponentProps<"option"> & { children?: React.ReactNode },
+) {
+	const { value, disabled, children } = props;
+	return (
+		<SelectItem
+			value={String(value ?? "")}
+			disabled={disabled}
+			className="rounded-md px-3 py-2 text-sm focus:bg-sage/25 focus:text-foreground data-[highlighted]:bg-sage/25 data-[highlighted]:text-foreground data-[state=checked]:font-semibold [&>span]:hidden"
+		>
+			{children}
+		</SelectItem>
+	);
+}
+
+/** Dropdown that renders only the glass Select (no duplicate label + chevron span) */
+function CalendarGlassDropdown(
+	props: Record<string, unknown> & {
+		options?: { value: number; label: string; disabled?: boolean }[];
+		classNames: Record<string, string>;
+		components: Record<string, React.ComponentType<unknown>>;
+		value?: number;
+		onChange?: (e: { target: { value: string } }) => void;
+		disabled?: boolean;
+	},
+) {
+	const { options, classNames, components, ...selectProps } = props;
+	const SelectComp = components.Select as React.ComponentType<
+		React.ComponentProps<"select"> & { children?: React.ReactNode }
+	>;
+	const OptionComp = components.Option as React.ComponentType<
+		React.ComponentProps<"option"> & { children?: React.ReactNode }
+	>;
+	return (
+		<span
+			data-disabled={selectProps.disabled}
+			className={classNames["dropdown_root"]}
+		>
+			<SelectComp {...selectProps}>
+				{options?.map(({ value, label, disabled }) =>
+					React.createElement(OptionComp, { key: value, value, disabled }, label),
+				)}
+			</SelectComp>
+		</span>
+	);
+}
 
 function Calendar({
 	className,
@@ -31,6 +122,7 @@ function Calendar({
 	return (
 		<DayPicker
 			showOutsideDays={showOutsideDays}
+			hideNavigation={captionLayout === "dropdown"}
 			className={cn(
 				"bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
 				String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
@@ -57,11 +149,13 @@ function Calendar({
 				button_previous: cn(
 					buttonVariants({ variant: buttonVariant }),
 					"size-(--cell-size) aria-disabled:opacity-50 p-0 select-none",
+					captionLayout === "dropdown" && "hidden",
 					defaultClassNames.button_previous,
 				),
 				button_next: cn(
 					buttonVariants({ variant: buttonVariant }),
 					"size-(--cell-size) aria-disabled:opacity-50 p-0 select-none",
+					captionLayout === "dropdown" && "hidden",
 					defaultClassNames.button_next,
 				),
 				month_caption: cn(
@@ -77,7 +171,7 @@ function Calendar({
 					defaultClassNames.dropdown_root,
 				),
 				dropdown: cn(
-					"absolute bg-popover inset-0 opacity-0",
+					captionLayout !== "dropdown" && "absolute bg-popover inset-0 opacity-0",
 					defaultClassNames.dropdown,
 				),
 				caption_label: cn(
@@ -139,6 +233,13 @@ function Calendar({
 						/>
 					);
 				},
+				...(captionLayout === "dropdown"
+					? {
+							Dropdown: CalendarGlassDropdown,
+							Select: CalendarGlassSelect,
+							Option: CalendarGlassOption,
+						}
+					: {}),
 				// biome-ignore lint/correctness/noNestedComponentDefinitions: API required by react-day-picker
 				Chevron: ({ className, orientation, ...props }) => {
 					if (orientation === "left") {

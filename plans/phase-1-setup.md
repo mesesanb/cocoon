@@ -1,97 +1,84 @@
 # Phase 1: Setup — Todo breakdown
 
-**Source**: [TODOS.md](./TODOS.md) Phase 1.  
-**Reference**: [Initial_Planning.md](./Initial_Planning.md) §3 Tech Stack, §5 Project Structure, §13 Single-command Run.
+**Source**: [TODOS.md](./TODOS.md) Phase 1.
+**Reference**: [Initial_Planning.md](./Initial_Planning.md) §3 Tech Stack.
 
-Phase 1 establishes the monorepo, frontend and backend apps, shared types, a single-command dev experience, and commit hygiene. No feature work yet.
-
----
-
-## 1.1 — Create monorepo (yarn workspaces or Turborepo) with `apps/web` and `apps/api`
-
-**What**: Root repo with workspaces so `apps/web` and `apps/api` are separate packages under one repo; optional Turborepo for cached builds and task pipelines.
-
-**Why**: Single clone, shared tooling (Yarn), and later a shared `packages/shared` for types consumed by both apps. Aligns with Initial_Planning “optional but recommended” monorepo.
-
-**How**: Root `package.json` with `"private": true` and `"workspaces": ["apps/*", "packages/*"]` (Yarn). Create empty `apps/web` and `apps/api` with their own `package.json`. Add `turbo.json` if using Turborepo.
+Phase 1 is **developer hygiene only**. The core architecture is settled (see decisions below): `apps/web` stays Next.js 16; Next.js Route Handlers remain the backend; pnpm stays the package manager; no monorepo, no Vite migration, no separate `apps/api`. All must-have API endpoints are already live from Phase 0.
 
 ---
 
-## 1.2 — Scaffold `apps/web` — Vite + React + TypeScript (merge v0 output here if ready)
+## Architecture decisions (recorded here, reflected in Initial_Planning.md)
 
-**What**: Frontend app bootstrapped with Vite, React 19, and TypeScript. If Phase 0 (v0) output exists, merge it into this app instead of a blank CRA/Vite template.
-
-**Why**: Vite gives fast HMR and simple config; React 19 + TS is the chosen stack. Merging v0 here keeps one source of truth for the UI.
-
-**How**: `yarn create vite apps/web --template react-ts` (or equivalent), then add React 19 and TS deps. Replace or merge `src/` with v0-generated code; align entry point and any path aliases.
-
----
-
-## 1.3 — Add Shadcn/ui + Tailwind to `apps/web`
-
-**What**: Install and wire Tailwind CSS and Shadcn/ui (Radix-based components + Tailwind) so the app can use the design system and v0-style components.
-
-**Why**: Initial_Planning and v0_prompt specify Shadcn + Tailwind; Shadcn is copy-paste and themeable via CSS variables.
-
-**How**: Tailwind init in `apps/web`; add Shadcn with `npx shadcn@latest init` and install components as needed. Ensure Tailwind content paths include all component and page files.
+| Question | Decision | Rationale |
+|----------|----------|-----------|
+| Keep Next.js or migrate to Vite? | **Keep Next.js** | Phase 0 is deeply Next.js-specific (`next/image`, `next/link`, App Router, `"use client"` directives throughout). Migration would be pure churn with no product value for the timebox. |
+| Add separate Express `apps/api`? | **No — use Route Handlers** | Next.js Route Handlers satisfy the assignment's "small server that frontend talks to" requirement. All 7 required endpoints are already implemented and working. |
+| Yarn workspaces / monorepo? | **No — single app** | No separate backend means no need for workspace tooling. pnpm + single `apps/web` is the right fit. |
+| Package manager: pnpm or Yarn? | **Keep pnpm** | Already working; no migration needed. |
 
 ---
 
-## 1.3b — Copy `GENERATED_IMAGES/` to `apps/web/public/images/`
+## 1.1 — Fix `typescript.ignoreBuildErrors: true`
 
-**What**: Make stay imagery and videos available to the frontend at `/images/...` by copying (or symlinking) the repo’s `GENERATED_IMAGES/` into `apps/web/public/images/`.
+**What**: Remove `typescript: { ignoreBuildErrors: true }` from `apps/web/next.config.mjs` and fix any TypeScript errors it was suppressing.
 
-**Why**: Initial_Planning “Image targeting”: stay `images[].path` is relative (e.g. `forest/01.jpg`); the app resolves URLs as `STAY_IMAGES_BASE + path` → `/images/forest/01.jpg`. Static assets must live under `public/` for that to work.
+**Why**: This flag silently passes the production build despite type errors. It was likely added during Phase 0 to ship fast. Phase 1 is the right moment to clean this up before adding more typed code in later phases.
 
-**How**: `cp -r GENERATED_IMAGES/* apps/web/public/images/` or symlink. Confirm folder layout matches stays data (e.g. `city/`, `forest/`, `mountains/`, `sea/`).
-
----
-
-## 1.4 — Scaffold `apps/api` — Express
-
-**What**: Backend app with Express: a single entry file, JSON middleware, and a way to run the HTTP server. No framework boilerplate—just Express.
-
-**Why**: Initial_Planning chooses simple Express for minimal surface and familiarity. No routes or data yet—just a runnable API process.
-
-**How**: Create `apps/api` with `package.json`, install `express` and `cors`; add `src/index.ts` that creates an Express app and listens. Run with `yarn dev` or `tsx src/index.ts` from `apps/api`. Root will later run it via workspace script.
+**How**: Remove the flag; run `pnpm build`; fix any reported TS errors until build passes cleanly.
 
 ---
 
-## 1.5 — Create `packages/shared` with shared types (Stay, Review, Booking)
+## 1.2 — Align `lint` script to Biome
 
-**What**: A workspace package that exports TypeScript interfaces (and optionally DTOs) for Stay, Review, and Booking so both `apps/web` and `apps/api` use the same contracts.
+**What**: Replace `"lint": "eslint ."` in `apps/web/package.json` with `"lint": "biome check ."`. There is no ESLint config in the project; Biome is the configured linter (`biome.json`).
 
-**Why**: Prevents drift between frontend and backend types and keeps API contracts in one place. Stay type must include the four scenario types: CITY, FOREST, MOUNTAINS, SEA.
+**Why**: Running `pnpm lint` currently either errors (no ESLint config) or does nothing useful. The `lint` script should call the linter that is actually configured.
 
-**How**: Add `packages/shared` with `package.json` (main/typings pointing to built or source). Define `Stay`, `Review`, `Booking` (and any enums) per Initial_Planning §8. Export from `packages/shared/src`; have both apps depend on `@cocoon/shared` or a workspace reference.
-
----
-
-## 1.6 — Single-command run (assessment NFR): Root `yarn dev` runs both apps (concurrently); or document two-step in README
-
-**What**: From the repo root, one command starts both the web app and the API (e.g. `yarn dev`). If you keep two processes, document the two-step flow clearly in the README.
-
-**Why**: Assignment requires “runs locally with a single command (or clearly documented two-step setup).” Single command improves DX and onboarding.
-
-**How**: Root `package.json` script: `"dev": "concurrently \"yarn workspace api dev\" \"yarn workspace web dev\""` (or Turborepo `turbo dev`). Ensure `apps/api` and `apps/web` each expose a `dev` script. If you use two terminals, add a short “Run” section in README with exact commands.
+**How**: Update `scripts.lint` in `apps/web/package.json`. Verify `pnpm lint` exits 0 on a clean codebase.
 
 ---
 
-## 1.7 — Guard commit messages: commitlint + husky (or similar) to enforce Conventional Commits on commit
+## 1.3 — Remove unused v0 artifacts from dependencies
 
-**What**: Reject commits that don’t follow Conventional Commits (e.g. `feat:`, `fix:`, `chore:`). Use a commit-msg hook (husky + commitlint) so invalid messages are blocked locally.
+**What**: Remove the following packages from `apps/web/package.json` — they were generated by v0.app but are not used in the Cocoon app:
 
-**Why**: Keeps history consistent and enables tooling (changelogs, semantic-release). Aligns with TODOS “Commit messages” section and 2026-style conventions.
+- `zod` — plan specifies Valibot; Zod was pulled in by v0 generation
+- `recharts` — no charts in the app
+- `input-otp` — one-time password input; no OTP auth flow
+- `react-resizable-panels` — no resizable panel UI in the app
 
-**How**: Install `husky` and `@commitlint/cli` + `@commitlint/config-conventional` at root. Add `commit-msg` hook that runs `commitlint -e $HUSKY_GIT_PARAMS`. Add `commitlint.config.js` extending the conventional config. Optionally add a `lint-staged` or pre-commit for format/lint.
+**Why**: Dead dependencies add bundle weight and create ambiguity about which validation library is canonical.
+
+**How**: `pnpm remove zod recharts input-otp react-resizable-panels` from `apps/web`. Verify `pnpm dev` and `pnpm build` still pass.
 
 ---
 
-## 1.8 — Document Phase 1 in `docs/phase-1-setup.md`
+## 1.4 — Pin Valibot to a stable release
 
-**What**: After Phase 1 is done, write a short doc under `docs/` that describes what was created (monorepo layout, scripts, key config), any decisions (e.g. Turborepo vs plain workspaces, symlink vs copy for images), and what Phase 2 should know.
+**What**: Replace `"valibot": "^1.0.0-beta.0"` with the latest stable non-beta release.
 
-**Why**: Follows the workflow in docs/README.md: each phase leaves a doc so the next phase (or another dev) has context without re-reading the whole plan.
+**Why**: `1.0.0-beta.0` is a pre-release. Its API surface may differ from the released `1.x` or stable `0.x`. Pinning to a stable version avoids surprise breakage in later phases when form validation is extended.
 
-**How**: Create `docs/phase-1-setup.md` with: structure created, how to run (single command or two-step), where types live, how images are served, and any gotchas (e.g. shared package build step if used).
+**How**: Check the latest stable Valibot release on npm; update the version in `apps/web/package.json`; run `pnpm install`; verify that all forms using Valibot schemas still work correctly.
 
+---
+
+## 1.5 — Guard commit messages: commitlint + husky
+
+**What**: Reject commits that don't follow Conventional Commits. Use a `commit-msg` hook (husky + commitlint).
+
+**Why**: Keeps history consistent and enables tooling (changelogs, semantic-release). Aligns with the TODOS commit convention section.
+
+**How**: Install `husky` and `@commitlint/cli` + `@commitlint/config-conventional` in `apps/web`. Add `commit-msg` hook running `commitlint --edit`. Add `commitlint.config.js` extending `@commitlint/config-conventional`.
+
+**Note on husky v9**: Uses `npx husky init` — not the old `prepare` script pattern.
+
+---
+
+## 1.6 — Document Phase 1 in `docs/phase-1-setup.md`
+
+**What**: After Phase 1 is done, write a short doc under `docs/` describing what was changed and confirming the architecture decisions recorded above.
+
+**Why**: Follows the workflow in `docs/README.md`: each phase leaves a doc so the next phase (and any contributor) has context without re-reading the full plan.
+
+**How**: Create `docs/phase-1-setup.md` with: architecture decisions, what was removed/fixed, how to run (`cd apps/web && pnpm dev`), and what Phase 2 should know about the existing Route Handler surface.

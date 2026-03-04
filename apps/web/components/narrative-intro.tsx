@@ -9,6 +9,13 @@ interface NarrativeIntroProps {
 	onComplete: () => void;
 }
 
+const INTRO_SCHEDULE = [
+	{ at: 800, phase: 1 },
+	{ at: 2800, phase: 2 },
+	{ at: 5000, phase: 3 },
+	{ at: 8000, onComplete: true },
+] as const;
+
 // intro screen: phased text, completes after delay or on click
 export function NarrativeIntro({
 	coupleName,
@@ -17,13 +24,16 @@ export function NarrativeIntro({
 	const [textPhase, setTextPhase] = useState(0);
 
 	useEffect(() => {
-		const timers = [
-			setTimeout(() => setTextPhase(1), 800),
-			setTimeout(() => setTextPhase(2), 2800),
-			setTimeout(() => setTextPhase(3), 5000),
-			setTimeout(() => onComplete(), 8000),
-		];
-		return () => timers.forEach(clearTimeout);
+		const timeouts = INTRO_SCHEDULE.map((step) =>
+			setTimeout(() => {
+				if ("onComplete" in step) {
+					onComplete();
+				} else {
+					setTextPhase(step.phase);
+				}
+			}, step.at),
+		);
+		return () => timeouts.forEach(clearTimeout);
 	}, [onComplete]);
 
 	const handleClick = useCallback(() => {

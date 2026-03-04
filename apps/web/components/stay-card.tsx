@@ -5,8 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Booking, Stay, StayCardMode } from "@/types";
 import { formatDateRange } from "@/utils/dates";
+import { buildImageUrl } from "@/utils/media";
 import { resolveMedia } from "@/utils/media";
 import { formatPrice } from "@/utils/price";
+import { LazyVideo } from "./lazy-video";
 
 interface StayCardProps {
 	stay: Stay;
@@ -31,16 +33,13 @@ export function StayCard({ stay, mode, booking, index = 0 }: StayCardProps) {
 				href={`/stay/${stay.id}`}
 				className="group block overflow-hidden rounded-2xl glass hover:shadow-xl transition-all duration-500 cursor-pointer"
 			>
-				{/* Image or video */}
-				<div className="relative aspect-[4/3] overflow-hidden">
+				{/* Image or video — video loads only when card is in view, poster shows until then */}
+				<div className="relative aspect-4/3 overflow-hidden">
 					{media.type === "video" ? (
-						<video
+						<LazyVideo
 							src={media.src}
-							className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-							muted
-							loop
-							playsInline
-							autoPlay
+							poster={buildImageUrl(stay.images[0])}
+							className="h-full w-full object-cover scale-[1.04] transition-transform duration-700 group-hover:scale-[1.06]"
 						/>
 					) : (
 						<Image
@@ -51,7 +50,7 @@ export function StayCard({ stay, mode, booking, index = 0 }: StayCardProps) {
 							sizes="(max-width: 768px) 100vw, 33vw"
 						/>
 					)}
-					<div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/40 via-transparent to-transparent" />
+					<div className="absolute inset-0 bg-linear-to-t from-[#1A1A1A]/40 via-transparent to-transparent" />
 
 					{/* Top badges */}
 					<div className="absolute top-3 left-3 right-3 flex items-start justify-between">
@@ -97,9 +96,14 @@ export function StayCard({ stay, mode, booking, index = 0 }: StayCardProps) {
 						</div>
 					</div>
 
-					<p className="text-muted-foreground/60 text-[11px]">
-						{stay.location}
-					</p>
+					<div className="flex items-center gap-2 flex-wrap">
+						<p className="text-muted-foreground/60 text-[11px]">
+							{stay.location}
+						</p>
+						<span className="text-muted-foreground/70 text-[11px]">
+							· {(stay.reviewCount ?? 0)} review{(stay.reviewCount ?? 0) === 1 ? "" : "s"}
+						</span>
+					</div>
 
 					{/* Booking dates */}
 					{booking && (

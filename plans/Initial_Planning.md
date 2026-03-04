@@ -3,10 +3,10 @@
 **Document**: Initial Planning  
 **Focus**: Fullstack (Frontend-heavy)  
 **Date**: February 2026  
-**Package manager**: Yarn (planned); **Phase 0 uses pnpm in `apps/web`**  
+**Package manager**: pnpm (in `apps/web`; no monorepo)  
 **TO CONSIDER**: https://looking-ahead.hotmetalapp.com/how-i-10x-d-my-ai-coding-productivity-and-you-can-too — clear directions to follow while developing this project.
 
-**Current state (Phase 0 complete)**: The repo has a single Next.js 16 app in `apps/web` (React 19, TypeScript, Tailwind, Shadcn, Framer Motion). Stays, availability, reviews, and bookings are served by Next.js Route Handlers; data from `apps/web/data/stays.json`. No monorepo yet; no `apps/api` or `packages/shared`. Run with `cd apps/web && pnpm dev`. See [TODOS.md](TODOS.md) Phase 0 and [phase-0-ui.md](../docs/phase-0-ui.md).
+**Current state (Phase 0 complete, architecture final)**: The repo has a single Next.js 16 app in `apps/web` (React 19, TypeScript, Tailwind, Shadcn, Framer Motion). Stays, availability, reviews, and bookings are served by Next.js Route Handlers in `app/api/`; data from `apps/web/data/stays.json`. **No monorepo, no separate `apps/api`, no `packages/shared`** — Next.js Route Handlers are the backend (satisfies the "small server" requirement). Package manager is pnpm. Run with `cd apps/web && pnpm dev`. Discovery toolbar (filters, date pickers, sticky glass bar), search bar behaviour, and image/video loading optimisation are described in [phase-0-ui.md](../docs/phase-0-ui.md). See [TODOS.md](TODOS.md).
 
 ---
 
@@ -144,10 +144,10 @@ Instead of "book a hotel," we focus on **unusual stays only**: the kind of place
 
 | Layer | Choice | Rationale |
 |-------|--------|-----------|
-| **Framework** | React 19 + TypeScript | Modern, strong ecosystem and types |
-| **Build** | Vite | Fast dev, simple config |
+| **Framework** | Next.js 16 + React 19 + TypeScript | Fullstack; Route Handlers serve the API; no separate backend needed |
+| **Build** | Next.js (App Router) | Already configured; file-based routing and server components |
 | **UI library** | Shadcn/ui | Copy-paste components, easy to modify, v0-native | tailwind
-| **Routing** | React Router v6 | Standard for SPA routing |
+| **Routing** | Next.js App Router | Already configured; file-based; no React Router needed |
 | **State** | **TanStack Query v5 only** | Server state + cache as single source of truth; no Zustand/Redux |
 | **Forms** | React Hook Form + validation lib (see below) | Performant validation, minimal re-renders |
 | **Styling** | Tailwind CSS | Utility-first; `dark:` for themes; works with Shadcn |
@@ -160,10 +160,10 @@ Instead of "book a hotel," we focus on **unusual stays only**: the kind of place
 
 | Layer | Choice | Rationale |
 |-------|--------|-----------|
-| **Runtime** | Node.js | Shared with many frontend devs |
-| **Framework** | **Express** | Minimal, familiar; plain routes and JSON; no DI or modules |
+| **Runtime** | Node.js (via Next.js) | Same process as the frontend |
+| **Framework** | **Next.js Route Handlers** (`app/api/`) | Satisfies "small server that frontend talks to"; all 7 endpoints already live; no separate process or Express needed |
 | **Data** | In-memory / JSON file | Mock data; easy to swap for DB later |
-| **Validation** | Minimal (manual checks or Valibot) | Keep backend simple; no heavy validation framework |
+| **Validation** | Minimal (manual checks) | Keep backend simple; validate at route level in Phase 2 |
 
 ### Validation: Alternatives to Zod
 
@@ -176,11 +176,9 @@ Backend uses **minimal validation** (manual checks or Valibot). For **frontend**
 
 **Recommendation**: **Valibot** for frontend — lightweight, similar to Zod, RHF-compatible. Or **Yup** if you prefer battle-tested.
 
-### Monorepo (optional but recommended)
+### Monorepo
 
-- Single repo: `apps/web` (React) + `apps/api` (Node)
-- Shared `packages/shared` for types and schemas
-- Tool: **Turborepo** or **npm workspaces**
+No monorepo. Single `apps/web` package; no `apps/api` or `packages/shared`. Types live in `apps/web/types/index.ts`.
 
 ---
 
@@ -220,39 +218,36 @@ Backend uses **minimal validation** (manual checks or Valibot). For **frontend**
 ## 5. Project Structure
 
 ```
-travel-booking-app/
+cocoon/
 ├── apps/
-│   ├── web/                    # React frontend
-│   │   ├── src/
-│   │   │   ├── app/            # Router, providers, layouts
-│   │   │   ├── features/
-│   │   │   │   ├── stays/
-│   │   │   │   ├── reviews/
-│   │   │   │   ├── bookings/
-│   │   │   │   └── availability/
-│   │   │   ├── shared/
-│   │   │   │   ├── api/
-│   │   │   │   ├── components/
-│   │   │   │   ├── hooks/
-│   │   │   │   └── utils/
-│   │   │   └── pages/          # Route entry components
-│   │   └── public/
-│   │
-│   └── api/                    # Express backend
-│       ├── src/
-│       │   ├── routes/         # stays, reviews, bookings
-│       │   ├── data/           # Mock JSON
-│       │   └── index.ts        # app entry
-│       └── package.json
+│   └── web/                    # Next.js fullstack app (frontend + Route Handler backend)
+│       ├── app/
+│       │   ├── api/            # Route Handlers (backend)
+│       │   │   ├── stays/
+│       │   │   ├── stays/[id]/
+│       │   │   ├── stays/[id]/availability/
+│       │   │   ├── stays/[id]/reviews/
+│       │   │   ├── bookings/
+│       │   │   └── bookings/[confirmationId]/
+│       │   ├── stay/[id]/      # Stay detail page
+│       │   ├── our-cocoon/     # User's bookings page
+│       │   ├── about/
+│       │   ├── layout.tsx
+│       │   └── page.tsx        # Home / gateway
+│       ├── components/         # React components (UI + feature)
+│       ├── data/               # Mock JSON (stays, reviews, bookings)
+│       ├── hooks/
+│       ├── lib/
+│       ├── public/
+│       │   ├── images/         # city, forest, mountains, sea
+│       │   └── videos/
+│       ├── types/              # TypeScript interfaces (Stay, Review, Booking, …)
+│       └── utils/              # media, price, dates helpers
 │
-├── packages/
-│   └── shared/
-│       └── src/
-│           ├── types.ts        # Shared TS interfaces
-│           └── dto/            # Optional: DTOs if sharing validation
-│
-├── package.json                # Workspace root
-├── turbo.json                  # Turborepo config
+├── data/                       # Source stays data (root copy; API data lives in apps/web/data/)
+├── GENERATED_IMAGES/           # AI-generated assets (images + videos by scenario)
+├── docs/                       # Phase completion docs
+├── plans/                      # Planning and prompts
 └── README.md
 ```
 
@@ -270,7 +265,7 @@ travel-booking-app/
 | POST | `/bookings` | Create booking (checkout) |
 | GET | `/bookings/:confirmationId` | Booking confirmation (optional) |
 
-**Request/Response**: JSON. Shared types via `packages/shared`.
+**Request/Response**: JSON. Types defined in `apps/web/types/index.ts`.
 
 ---
 
@@ -435,8 +430,8 @@ jobs:
 
 | Phase | Time | Deliverables |
 |-------|------|--------------|
-| **1. Setup** | 30 min | Monorepo (yarn), Vite+React+TS, Shadcn+Tailwind, Express API, shared types |
-| **2. Data + API** | 45 min | Mock data, Express routes, all endpoints working |
+| **1. Setup** | 30 min | Dev hygiene: fix TS errors, align lint script, remove unused deps, commitlint |
+| **2. Data + API** | 45 min | API polish: input validation, booking filter, availability consistency, observability |
 | **3. Search + List** | 1h | Search page, filters, sort, card grid |
 | **4. Stay Details** | 45 min | Details page, availability, price display |
 | **5. Reviews** | 45 min | List + add review |
@@ -449,28 +444,20 @@ jobs:
 
 ## 13. Single-command Run
 
-**Option A (monorepo)**: `yarn dev` runs both frontend and backend via Turborepo (or npm workspaces).
+Single command — already working:
 
-**Option B (separate)**: Document as:
 ```bash
-# Terminal 1
-yarn workspace api dev
-
-# Terminal 2
-yarn workspace web dev
+cd apps/web && pnpm dev
 ```
 
-Or use `concurrently` in root `package.json`:
-```json
-"dev": "concurrently \"yarn workspace api dev\" \"yarn workspace web dev\""
-```
+This starts the Next.js development server which serves both the UI and all Route Handler endpoints. No second process needed.
 
 ---
 
 ## 14. What We Would Do Next (Post–Timebox)
 
 1. **Data**: Persist bookings/reviews (SQLite, Supabase, or similar).
-2. **Auth**: Simple auth (e.g. Supabase Auth or NextAuth) for “My Bookings”.
+2. **Auth**: Simple auth (e.g. Supabase Auth or NextAuth) for “Our Bookings”.
 3. **Favorites**: Server-side favorites with auth.
 4. **Map**: **OpenStreetMap + Leaflet** with **Esri World Imagery** (satellite/aerial tiles) for stay location display (no API key; integrated in Stay Details). Coordinates in data aligned to location names (secluded areas for nature stays, city centers for CITY).
 5. **Image uploads**: For stay images and reviews (S3, Cloudinary).
@@ -485,11 +472,13 @@ Or use `concurrently` in root `package.json`:
 
 | Decision | Choice | Tradeoff |
 |----------|--------|----------|
-| Monorepo vs separate repos | Monorepo | Shared types, one clone; slightly more setup |
+| Monorepo vs single app | Single Next.js app | No separate backend means no need for workspace tooling; simpler, less churn |
+| Next.js vs Vite | Next.js | Phase 0 UI is deeply Next.js-specific; migration would be pure churn with no product value |
+| Express vs Route Handlers | Next.js Route Handlers | Same process, no CORS needed, satisfies "small server" requirement, all 7 endpoints already live |
+| Yarn vs pnpm | pnpm (keep) | Already working; no migration needed |
 | Shadcn+Tailwind vs MUI | Shadcn+Tailwind | v0-native prompting, easy to modify, built-in themes; smaller bundle |
 | TSQ-only state | No Zustand/Redux | Simpler mental model; URL + Query cache as source of truth |
-| Backend framework | Express | Simple routes, minimal deps; no DI or modules |
-| Valibot vs Yup vs Zod | Valibot | Lightweight frontend validation; Yup if prefer mature |
+| Valibot vs Yup vs Zod | Valibot (stable) | Lightweight frontend validation; drop Zod (unused v0 artifact) |
 | Mock data vs DB | Mock | Fast MVP; no persistence, must migrate later |
 
 ---

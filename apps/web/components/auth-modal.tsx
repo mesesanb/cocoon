@@ -4,6 +4,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import { AlertCircle, Check, Eye, EyeOff, X } from "lucide-react";
 import { useId, useState } from "react";
 import { useAuth } from "./auth-context";
+import { Calendar } from "@/components/ui/calendar";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+import { format, parseISO } from "date-fns";
 
 interface AuthModalProps {
 	isOpen: boolean;
@@ -210,7 +224,7 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.2 }}
-					className="fixed inset-0 z-50 flex items-center justify-center p-4"
+					className="fixed inset-0 z-[1000] flex items-center justify-center p-4"
 				>
 					{/* Backdrop */}
 					<motion.div
@@ -395,23 +409,50 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 													(Must be 18+)
 												</span>
 											</label>
-											<input
-												id={`${baseId}-birth-date`}
-												type="date"
-												value={birthDate}
-												onChange={(e) => setBirthDate(e.target.value)}
-												max={
-													new Date(
-														new Date().setFullYear(
-															new Date().getFullYear() - 18,
-														),
-													)
-														.toISOString()
-														.split("T")[0]
-												}
-												className="glass-input w-full px-4 py-3 rounded-xl text-sm"
-												required
-											/>
+											<Popover>
+												<PopoverTrigger asChild>
+													<button
+														id={`${baseId}-birth-date`}
+														type="button"
+														className="glass-input w-full px-4 py-3 rounded-xl text-sm h-auto text-left font-normal border border-border"
+													>
+														{birthDate
+															? format(parseISO(birthDate), "MMM d, yyyy")
+															: "Select date"}
+													</button>
+												</PopoverTrigger>
+												<PopoverContent
+													className="glass-popover rounded-xl p-0 border-0 z-[1001] w-auto"
+													align="start"
+													sideOffset={6}
+												>
+													<Calendar
+														mode="single"
+														captionLayout="dropdown"
+														selected={birthDate ? parseISO(birthDate) : undefined}
+														onSelect={(date) =>
+															setBirthDate(date ? format(date, "yyyy-MM-dd") : "")
+														}
+														disabled={(date) => {
+															const maxDate = new Date();
+															maxDate.setFullYear(maxDate.getFullYear() - 18);
+															return date > maxDate;
+														}}
+														fromYear={new Date().getFullYear() - 100}
+														toYear={new Date().getFullYear()}
+														className="rounded-xl [--cell-size:2.25rem] border-0 bg-transparent p-3 text-foreground [&_[data-selected-single=true]]:bg-sage-deep [&_[data-selected-single=true]]:text-primary-foreground"
+														classNames={{
+															button_previous:
+																"text-foreground hover:bg-sage/20 hover:text-foreground",
+															button_next:
+																"text-foreground hover:bg-sage/20 hover:text-foreground",
+															dropdown_root:
+																"border-border bg-transparent text-foreground rounded-md",
+															caption_label: "text-foreground",
+														}}
+													/>
+												</PopoverContent>
+											</Popover>
 											{birthDate && !isAdult && (
 												<p className="text-red-500 text-xs mt-1.5 flex items-center gap-1">
 													<AlertCircle className="w-3 h-3" />
@@ -434,20 +475,32 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 											>
 												Country <span className="text-red-400">*</span>
 											</label>
-											<select
-												id={`${baseId}-country`}
-												value={country}
-												onChange={(e) => setCountry(e.target.value)}
-												className="glass-input w-full px-4 py-3 rounded-xl text-sm appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7A5E%22%20stroke-width%3D%222%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_1rem_center] bg-[length:1rem]"
-												required
+											<Select
+												value={country || undefined}
+												onValueChange={setCountry}
 											>
-												<option value="">Select your country</option>
-												{COUNTRIES.map((c) => (
-													<option key={c} value={c}>
-														{c}
-													</option>
-												))}
-											</select>
+												<SelectTrigger
+													id={`${baseId}-country`}
+													className="glass-input w-full px-4 py-3 rounded-xl text-sm h-auto border border-border [&_svg]:hidden"
+												>
+													<SelectValue placeholder="Select your country" />
+												</SelectTrigger>
+												<SelectContent
+													className="glass-popover rounded-xl py-1 max-h-[280px] text-foreground border-0 z-[1001]"
+													position="popper"
+													sideOffset={6}
+												>
+													{COUNTRIES.map((c) => (
+														<SelectItem
+															key={c}
+															value={c}
+															className="rounded-lg mx-1 px-3 py-2.5 text-sm focus:bg-sage/25 focus:text-foreground data-[highlighted]:bg-sage/25 data-[highlighted]:text-foreground data-[state=checked]:font-semibold [&>span]:hidden"
+														>
+															{c}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 
 										{/* Phone Number */}
@@ -640,7 +693,7 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 								disabled={
 									isSubmitting || (tab === "signup" && !canSubmitSignUp)
 								}
-								className="w-full py-3.5 rounded-xl glass-button bg-sage/90 text-white font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:bg-sage"
+								className="w-full py-3.5 rounded-xl font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 bg-sage-deep text-primary-foreground hover:bg-sage-deep/90 focus-visible:ring-2 focus-visible:ring-sage-deep/40 focus-visible:ring-offset-2"
 							>
 								{isSubmitting ? (
 									<span className="flex items-center justify-center gap-2">

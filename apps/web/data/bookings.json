@@ -1,10 +1,10 @@
 [
   {
     "confirmationId": "CCN-2026-001",
-    "stayId": "forest-001",
+    "stayId": "stay-1",
     "coupleName": "Kai & Luna",
-    "checkIn": "2025-12-01",
-    "checkOut": "2025-12-08",
+    "checkIn": "2025-11-25",
+    "checkOut": "2025-12-02",
     "guests": 2,
     "totalPrice": 0.504,
     "currency": "¤",
@@ -13,7 +13,7 @@
   },
   {
     "confirmationId": "CCN-2026-002",
-    "stayId": "mountains-001",
+    "stayId": "stay-22",
     "coupleName": "Kai & Luna",
     "checkIn": "2026-04-10",
     "checkOut": "2026-04-17",
@@ -25,14 +25,26 @@
   },
   {
     "confirmationId": "CCN-2026-003",
-    "stayId": "sea-001",
+    "stayId": "stay-10",
     "coupleName": "Kai & Luna",
-    "checkIn": "2026-01-15",
-    "checkOut": "2026-01-22",
+    "checkIn": "2026-01-05",
+    "checkOut": "2026-01-12",
     "guests": 2,
     "totalPrice": 0.84,
     "currency": "¤",
     "status": "completed",
     "createdAt": "2025-12-30T09:15:00Z"
+  },
+  {
+    "confirmationId": "CCN-2026-004",
+    "stayId": "stay-21",
+    "coupleName": "Kai & Luna",
+    "checkIn": "2025-10-10",
+    "checkOut": "2025-10-17",
+    "guests": 2,
+    "totalPrice": 0.52,
+    "currency": "¤",
+    "status": "completed",
+    "createdAt": "2025-09-28T11:00:00Z"
   }
 ]
