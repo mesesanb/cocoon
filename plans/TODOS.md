@@ -6,7 +6,7 @@
 
 **Assessment alignment**: Todos below map to the **Original Assignment Brief** in `plans/Initial_Planning.md` — must-haves (search, stay details, reviews, availability+price, checkout, frontend→API), non-functional (single-command run, responsive, loading/empty/error, a11y, tests, observability), release (CI, build, release), and submission (README, LLM note, recording).
 
-**Sync with Initial_Planning**: Stack (Vite, React 19, TS, Shadcn, Tailwind, Express, shared types), monorepo layout (§5), API surface (§6), image targeting, single-command run (§13), and NFRs are reflected in these phases. Phase 0 breakdown → `docs/phase-0-ui.md`. Phase 1 plan → `plans/phase-1-setup.md`.
+**Sync with Initial_Planning**: Stack (Next.js 16, React 19, TS, Shadcn, Tailwind; Next.js Route Handlers as backend; pnpm), API surface (§6), image targeting, and NFRs are reflected in these phases. **Architecture decision**: `apps/web` stays Next.js; no monorepo; no separate Express backend; package manager stays pnpm. Phase 0 breakdown → `docs/phase-0-ui.md`. Phase 1 plan → `plans/phase-1-setup.md`.
 
 ---
 
@@ -30,13 +30,13 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 - Optional **scope**: e.g. `feat(api):`, `fix(web):`.
 - **Breaking changes**: `feat(api)!: remove legacy endpoint` or footer `BREAKING CHANGE: ...`.
 - Keep description short; add body/footer if needed.
-- **Guard**: Enforce with commitlint + husky (see Phase 1 todo 1.7).
+- **Guard**: Enforce with commitlint + husky (see Phase 1 todo 1.5).
 
 ---
 
 ## Phase 0: v0.app UI ✅
 
-*Detailed breakdown: [docs/phase-0-ui.md](docs/phase-0-ui.md). Current state: single Next.js app in `apps/web`, API via Next.js Route Handlers; no monorepo yet.*
+*Detailed breakdown: [docs/phase-0-ui.md](docs/phase-0-ui.md). Current state: single Next.js app in `apps/web`, API via Next.js Route Handlers. Architecture is final — no monorepo planned. Post-integration refinements (discovery toolbar, search bar, image/video optimisation) are documented in the same file.*
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
@@ -48,35 +48,33 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 ## Phase 1: Setup
 
+*Developer hygiene only. Architecture settled: Next.js stays; pnpm stays; no monorepo; no separate Express backend. Detailed breakdown: [plans/phase-1-setup.md](phase-1-setup.md).*
+
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 1.1 | Create monorepo (yarn workspaces or Turborepo) with `apps/web` and `apps/api` | ⬜ | |
-| 1.2 | Scaffold `apps/web` — Vite + React + TypeScript (merge v0 output here if ready) | ⬜ | |
-| 1.3 | Add Shadcn/ui + Tailwind to `apps/web` | ⬜ | |
-| 1.3b | Copy `GENERATED_IMAGES/` to `apps/web/public/images/` (see Initial_Planning: Image targeting) | ⬜ | |
-| 1.4 | Scaffold `apps/api` — Express | ⬜ | |
-| 1.5 | Create `packages/shared` with shared types (Stay, Review, Booking) | ⬜ | |
-| 1.6 | **Single-command run (assessment NFR)**: Root `yarn dev` runs both apps (concurrently); or document two-step in README | ⬜ | |
-| 1.7 | **Guard commit messages**: commitlint + husky (or similar) to enforce Conventional Commits on commit | ⬜ | |
-| 1.8 | Document Phase 1 in `docs/phase-1-setup.md` | ⬜ | |
+| 1.1 | Fix `typescript.ignoreBuildErrors: true` in `next.config.mjs`; resolve exposed TS errors | ⬜ | |
+| 1.2 | Align `lint` script: replace `eslint .` with `biome check .` in `apps/web/package.json` | ⬜ | |
+| 1.3 | Remove unused v0 artifacts from deps: `zod`, `recharts`, `input-otp`, `react-resizable-panels` | ⬜ | |
+| 1.4 | Pin `valibot` to a stable non-beta release; verify forms still work | ⬜ | |
+| 1.5 | **Guard commit messages**: commitlint + husky to enforce Conventional Commits on commit | ⬜ | |
+| 1.6 | Document Phase 1 in `docs/phase-1-setup.md` | ⬜ | |
 
 ---
 
-## Phase 2: Data + API
+## Phase 2: API Polish
 
-*Assessment: Backend API surface; frontend will call this API (must-have).*
+*Assessment: Backend API surface (must-have). All 7 routes are already live as Next.js Route Handlers from Phase 0. Phase 2 polishes correctness, validation, and observability — no new routes needed.*
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 2.1 | Copy `data/stays.json` to `apps/api/src/data/` (or import); add mock reviews + bookings | ⬜ | |
-| 2.2 | Add stays routes — GET /stays (list with filters) | ⬜ | |
-| 2.3 | Add GET /stays/:id (details) | ⬜ | |
-| 2.4 | Add GET /stays/:id/availability | ⬜ | |
-| 2.5 | Add reviews routes — GET/POST /stays/:id/reviews | ⬜ | |
-| 2.6 | Add bookings routes — POST /bookings, GET /bookings/:id | ⬜ | |
-| 2.7 | Enable CORS for frontend origin | ⬜ | |
-| 2.8 | **Observability (assessment NFR)**: Helpful logging; optional metrics/error tool | ⬜ | |
-| 2.9 | Document Phase 2 in `docs/phase-2-api.md` | ⬜ | |
+| 2.1 | Input validation on `POST /bookings` — check required fields (`stayId`, `coupleName`, `checkIn`, `checkOut`); return 400 on missing/invalid | ⬜ | |
+| 2.2 | Input validation on `POST /stays/:id/reviews` — check `coupleName`, `rating` (1–5), `text` (min length) | ⬜ | |
+| 2.3 | Fix `GET /api/bookings` — accept `coupleName` query param; do not return all bookings unfiltered | ⬜ | |
+| 2.4 | Align availability check in `GET /stays` list — add booking-conflict check (currently only checks availability windows, not existing bookings) | ⬜ | |
+| 2.5 | Remove duplicate sort option — `sort=resonance` duplicates `sort=rating_desc`; consolidate | ⬜ | |
+| 2.6 | Guard `calculateNights` against zero/negative — return 400 in routes if `checkOut <= checkIn` | ⬜ | |
+| 2.7 | **Observability (assessment NFR)**: Add structured logging on route handlers (method, path, status, duration) | ⬜ | |
+| 2.8 | Document Phase 2 in `docs/phase-2-api.md` | ⬜ | |
 
 ---
 
@@ -86,7 +84,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 3.1 | Set up React Router, TanStack Query, API client | ⬜ | |
+| 3.1 | Configure TanStack Query provider and typed API client (fetch wrappers for Next.js Route Handlers) | ⬜ | |
 | 3.2 | Create stays API hooks (useStays, useStay) | ⬜ | |
 | 3.3 | Build Search page: search bar, type filters (CITY/FOREST/MOUNTAINS/SEA), sort | ⬜ | |
 | 3.4 | Build StayCard component (image, name, type, rating, price) | ⬜ | |

@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import type { Stay } from "@/types";
+import { buildImageUrl } from "@/utils/media";
 import { resolveMedia } from "@/utils/media";
 import { formatPrice } from "@/utils/price";
+import { LazyVideo } from "./lazy-video";
 
 interface StayCardListProps {
 	stay: Stay;
@@ -26,16 +28,13 @@ export function StayCardList({ stay, index = 0 }: StayCardListProps) {
 				href={`/stay/${stay.id}`}
 				className="group flex overflow-hidden rounded-xl glass hover:shadow-lg transition-all duration-300 cursor-pointer border border-foreground/5"
 			>
-				{/* Image / video — fixed width, compact */}
+				{/* Image / video — video loads only when in view */}
 				<div className="relative w-28 sm:w-32 md:w-36 shrink-0 aspect-4/3 overflow-hidden bg-muted/30">
 					{media.type === "video" ? (
-						<video
+						<LazyVideo
 							src={media.src}
+							poster={buildImageUrl(stay.images[0])}
 							className="h-full w-full object-cover scale-[1.05] transition-transform duration-500 group-hover:scale-[1.07]"
-							muted
-							playsInline
-							autoPlay
-							loop
 						/>
 					) : (
 						<Image

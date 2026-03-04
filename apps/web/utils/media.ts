@@ -5,7 +5,7 @@ export function resolveMedia(
 ): { src: string; type: "video" | "image" } {
 	if (videoUrl?.trim()) {
 		return {
-			src: videoUrl.startsWith("/") ? videoUrl : `/videos/${videoUrl}`,
+			src: buildVideoUrl(videoUrl),
 			type: "video",
 		};
 	}
@@ -18,4 +18,9 @@ export function resolveMedia(
 export function buildImageUrl(path: string): string {
 	if (path.startsWith("/")) return path;
 	return `/images/${path}`;
+}
+
+export function buildVideoUrl(path: string): string {
+	if (path.startsWith("/")) return path;
+	return `/videos/${path}`;
 }

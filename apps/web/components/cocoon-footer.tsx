@@ -76,7 +76,7 @@ export function CocoonFooter() {
 						</nav>
 
 						<p className="text-muted-foreground/30 text-[10px] tracking-wider">
-							{"Cocoon \u00A9 2026"}
+							{"Bogdan Mesesan @ Cocoon \u00A9 2026"}
 						</p>
 					</div>
 				</div>

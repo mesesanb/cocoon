@@ -5,8 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Booking, Stay, StayCardMode } from "@/types";
 import { formatDateRange } from "@/utils/dates";
+import { buildImageUrl } from "@/utils/media";
 import { resolveMedia } from "@/utils/media";
 import { formatPrice } from "@/utils/price";
+import { LazyVideo } from "./lazy-video";
 
 interface StayCardProps {
 	stay: Stay;
@@ -31,16 +33,13 @@ export function StayCard({ stay, mode, booking, index = 0 }: StayCardProps) {
 				href={`/stay/${stay.id}`}
 				className="group block overflow-hidden rounded-2xl glass hover:shadow-xl transition-all duration-500 cursor-pointer"
 			>
-				{/* Image or video */}
+				{/* Image or video — video loads only when card is in view, poster shows until then */}
 				<div className="relative aspect-4/3 overflow-hidden">
 					{media.type === "video" ? (
-						<video
+						<LazyVideo
 							src={media.src}
+							poster={buildImageUrl(stay.images[0])}
 							className="h-full w-full object-cover scale-[1.04] transition-transform duration-700 group-hover:scale-[1.06]"
-							muted
-							playsInline
-							autoPlay
-							loop
 						/>
 					) : (
 						<Image

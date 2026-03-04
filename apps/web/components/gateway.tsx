@@ -1,14 +1,14 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
 import type { ScenarioType } from "@/types";
 
 // fixed card images: Tokyo Sky Dome (city), The Redwood Sphere (forest), The Wadi Gorge Cabin (mountains), The Beacon Suite (sea)
@@ -88,6 +88,7 @@ export function Gateway({ onSelect }: GatewayProps) {
 								fill
 								className="object-cover"
 								sizes="100vw"
+								quality={100}
 							/>
 						</motion.div>
 					)}
@@ -161,6 +162,7 @@ export function Gateway({ onSelect }: GatewayProps) {
 									fill
 									className="object-cover transition-transform duration-500 group-hover:scale-105"
 									sizes="(max-width: 768px) 25vw, 20vw"
+									unoptimized
 								/>
 								<motion.div
 									className="absolute inset-0"

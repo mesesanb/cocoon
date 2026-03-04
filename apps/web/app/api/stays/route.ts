@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import staysData from "@/data/stays.json";
 import reviewsData from "@/data/reviews.json";
-import type { Review, Stay, ScenarioType } from "@/types";
+import type { Review, ScenarioType, Stay } from "@/types";
 
 const stays = staysData as Stay[];
 const reviews = reviewsData as Review[];
@@ -25,12 +25,12 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get("type")?.toUpperCase() as ScenarioType | null;
   const checkIn = searchParams.get("checkIn");
   const checkOut = searchParams.get("checkOut");
-  const minPrice = searchParams.get("minPrice")
-    ? parseFloat(searchParams.get("minPrice")!)
-    : null;
-  const maxPrice = searchParams.get("maxPrice")
-    ? parseFloat(searchParams.get("maxPrice")!)
-    : null;
+  const amenitiesParam = searchParams.get("amenities");
+  const amenitiesMode = (searchParams.get("amenitiesMode") ?? "any").toLowerCase();
+  const minPriceRaw = searchParams.get("minPrice");
+  const minPrice = minPriceRaw ? parseFloat(minPriceRaw) : null;
+  const maxPriceRaw = searchParams.get("maxPrice");
+  const maxPrice = maxPriceRaw ? parseFloat(maxPriceRaw) : null;
   const sort = searchParams.get("sort");
 
   let filtered = [...stays];
@@ -60,6 +60,25 @@ export async function GET(request: NextRequest) {
     filtered = filtered.filter((s) =>
       s.availability.some((a) => a.checkIn <= checkIn && a.checkOut >= checkOut)
     );
+  }
+
+  if (amenitiesParam) {
+    const requested = amenitiesParam
+      .split(",")
+      .map((a) => a.trim())
+      .filter(Boolean)
+      .map((a) => a.toLowerCase());
+
+    if (requested.length > 0) {
+      filtered = filtered.filter((s) => {
+        const stayAmenities = (s.amenities ?? []).map((a) => a.toLowerCase());
+        if (amenitiesMode === "all") {
+          return requested.every((a) => stayAmenities.includes(a));
+        }
+        // default: any
+        return requested.some((a) => stayAmenities.includes(a));
+      });
+    }
   }
 
   if (minPrice !== null) {

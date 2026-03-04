@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  images: {
-    unoptimized: true,
-  },
-}
+	typescript: {
+		ignoreBuildErrors: true,
+	},
+	images: {
+		// Enable automatic optimisation: WebP/AVIF, responsive sizes, lazy load
+		formats: ["image/avif", "image/webp"],
+		deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+		imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+	},
+};
 
-export default nextConfig
+export default nextConfig;

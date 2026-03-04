@@ -40,7 +40,14 @@
 		"pricePerNight": 0.38,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Deck", "Heating", "Shower", "Waterfall View"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Deck",
+			"Heating",
+			"Shower",
+			"Waterfall View"
+		],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -65,7 +72,14 @@
 		"pricePerNight": 0.31,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Breakfast Included", "Deck", "AC", "Shower", "Rice Terrace View"],
+		"amenities": [
+			"WiFi",
+			"Breakfast Included",
+			"Deck",
+			"AC",
+			"Shower",
+			"Rice Terrace View"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -90,7 +104,16 @@
 		"pricePerNight": 0.29,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden", "Bathtub", "Shower", "Pet Friendly", "Accessible with assistance"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Fireplace",
+			"Garden",
+			"Bathtub",
+			"Shower",
+			"Pet Friendly",
+			"Accessible with assistance"
+		],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -115,7 +138,14 @@
 		"pricePerNight": 0.26,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Fireplace", "Deck", "Shower", "Forest View"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Fireplace",
+			"Deck",
+			"Shower",
+			"Forest View"
+		],
 		"resonanceScore": 94,
 		"availability": [
 			{
@@ -140,7 +170,15 @@
 		"pricePerNight": 0.44,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Heating", "Deck", "Breakfast Included", "Bathtub", "Shower", "Pet Friendly"],
+		"amenities": [
+			"WiFi",
+			"Heating",
+			"Deck",
+			"Breakfast Included",
+			"Bathtub",
+			"Shower",
+			"Pet Friendly"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -165,7 +203,14 @@
 		"pricePerNight": 0.55,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Heating", "Northern Lights View", "Kitchen", "Shower", "Stargazing"],
+		"amenities": [
+			"WiFi",
+			"Heating",
+			"Northern Lights View",
+			"Kitchen",
+			"Shower",
+			"Stargazing"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -214,7 +259,15 @@
 		"pricePerNight": 0.48,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Heating", "Panoramic Views", "Breakfast Included", "Shower", "Lake View", "Wheelchair Accessible"],
+		"amenities": [
+			"WiFi",
+			"Heating",
+			"Panoramic Views",
+			"Breakfast Included",
+			"Shower",
+			"Lake View",
+			"Wheelchair Accessible"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -238,7 +291,14 @@
 		"pricePerNight": 0.22,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Ocean View", "Deck", "Shower", "Cliff View"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Ocean View",
+			"Deck",
+			"Shower",
+			"Cliff View"
+		],
 		"resonanceScore": 95,
 		"availability": [
 			{
@@ -259,10 +319,19 @@
 			"lng": -4.75
 		},
 		"images": ["/images/sea/10.jpg"],
+		"video": "/videos/sea/10_vid.mp4",
 		"pricePerNight": 0.52,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Ocean View", "Fireplace", "Bathtub", "Shower", "Accessible with assistance"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Ocean View",
+			"Fireplace",
+			"Bathtub",
+			"Shower",
+			"Accessible with assistance"
+		],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -286,7 +355,15 @@
 		"pricePerNight": 0.43,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Sauna", "Hot Tub", "Deck", "Shower", "Lake View"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Sauna",
+			"Hot Tub",
+			"Deck",
+			"Shower",
+			"Lake View"
+		],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -310,7 +387,15 @@
 		"pricePerNight": 1.85,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "Room Service", "Private Reef Access", "Shower", "Underwater View", "Wheelchair Accessible"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"Room Service",
+			"Private Reef Access",
+			"Shower",
+			"Underwater View",
+			"Wheelchair Accessible"
+		],
 		"resonanceScore": 100,
 		"availability": [
 			{
@@ -359,7 +444,15 @@
 		"pricePerNight": 0.36,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Sea View", "Deck", "Snorkeling Gear", "Shower", "Pet Friendly"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Sea View",
+			"Deck",
+			"Snorkeling Gear",
+			"Shower",
+			"Pet Friendly"
+		],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -383,7 +476,15 @@
 		"pricePerNight": 0.95,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["AC", "WiFi", "Private Beach", "Pool", "Kitchen", "Bathtub", "Shower"],
+		"amenities": [
+			"AC",
+			"WiFi",
+			"Private Beach",
+			"Pool",
+			"Kitchen",
+			"Bathtub",
+			"Shower"
+		],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -407,7 +508,16 @@
 		"pricePerNight": 0.67,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Bay View", "Fireplace", "Deck", "Shower", "Pet Friendly", "Accessible with assistance"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Bay View",
+			"Fireplace",
+			"Deck",
+			"Shower",
+			"Pet Friendly",
+			"Accessible with assistance"
+		],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -431,7 +541,14 @@
 		"pricePerNight": 0.39,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Kayak", "Breakfast Included", "Lake View", "Shower", "Deck"],
+		"amenities": [
+			"WiFi",
+			"Kayak",
+			"Breakfast Included",
+			"Lake View",
+			"Shower",
+			"Deck"
+		],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -479,7 +596,15 @@
 		"pricePerNight": 0.75,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Full Board", "WiFi", "Game Drives", "Deck", "Guided Tours", "Shower", "Savanna View"],
+		"amenities": [
+			"Full Board",
+			"WiFi",
+			"Game Drives",
+			"Deck",
+			"Guided Tours",
+			"Shower",
+			"Savanna View"
+		],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -503,7 +628,14 @@
 		"pricePerNight": 0.58,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Ocean View", "Heating", "Breakfast Included", "Shower", "Cliff View"],
+		"amenities": [
+			"WiFi",
+			"Ocean View",
+			"Heating",
+			"Breakfast Included",
+			"Shower",
+			"Cliff View"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -527,7 +659,15 @@
 		"pricePerNight": 0.47,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "Rooftop Access", "Wine Tasting", "Bathtub", "Shower", "Wheelchair Accessible"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"Rooftop Access",
+			"Wine Tasting",
+			"Bathtub",
+			"Shower",
+			"Wheelchair Accessible"
+		],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -551,7 +691,13 @@
 		"pricePerNight": 0.41,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Ocean View", "Fireplace", "Art Collection", "Shower"],
+		"amenities": [
+			"WiFi",
+			"Ocean View",
+			"Fireplace",
+			"Art Collection",
+			"Shower"
+		],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -607,7 +753,15 @@
 		"pricePerNight": 0.63,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Fireplace", "Loch View", "Heating", "Rowing Boat", "Bathtub", "Shower"],
+		"amenities": [
+			"WiFi",
+			"Fireplace",
+			"Loch View",
+			"Heating",
+			"Rowing Boat",
+			"Bathtub",
+			"Shower"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -632,7 +786,17 @@
 		"pricePerNight": 0.27,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "AC", "Deck", "Stargazing", "Shower", "Desert View", "Pet Friendly", "Wheelchair Accessible"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"AC",
+			"Deck",
+			"Stargazing",
+			"Shower",
+			"Desert View",
+			"Pet Friendly",
+			"Wheelchair Accessible"
+		],
 		"resonanceScore": 95,
 		"availability": [
 			{
@@ -681,7 +845,15 @@
 		"pricePerNight": 0.41,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "Sauna", "Heating", "Lake View", "Fireplace", "Shower", "Deck"],
+		"amenities": [
+			"WiFi",
+			"Sauna",
+			"Heating",
+			"Lake View",
+			"Fireplace",
+			"Shower",
+			"Deck"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -705,7 +877,14 @@
 		"pricePerNight": 0.49,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["AC", "WiFi", "Desert View", "Stargazing", "Jeep Tour", "Shower"],
+		"amenities": [
+			"AC",
+			"WiFi",
+			"Desert View",
+			"Stargazing",
+			"Jeep Tour",
+			"Shower"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -761,7 +940,16 @@
 		"pricePerNight": 0.35,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Panoramic View", "Cycling", "Bathtub", "Shower", "Pet Friendly", "Accessible with assistance"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Panoramic View",
+			"Cycling",
+			"Bathtub",
+			"Shower",
+			"Pet Friendly",
+			"Accessible with assistance"
+		],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -782,10 +970,19 @@
 			"lng": 14.4378
 		},
 		"images": ["/images/city/25.jpg"],
+		"video": "/videos/city/25_vid.mp4",
 		"pricePerNight": 0.53,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Breakfast Included", "Shower", "Balcony", "Accessible with assistance"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"City View",
+			"Breakfast Included",
+			"Shower",
+			"Balcony",
+			"Accessible with assistance"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -809,7 +1006,17 @@
 		"pricePerNight": 0.33,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["Kitchen", "WiFi", "Fireplace", "Garden", "Hiking Trails", "Bathtub", "Shower", "Pet Friendly", "Accessible with assistance"],
+		"amenities": [
+			"Kitchen",
+			"WiFi",
+			"Fireplace",
+			"Garden",
+			"Hiking Trails",
+			"Bathtub",
+			"Shower",
+			"Pet Friendly",
+			"Accessible with assistance"
+		],
 		"resonanceScore": 95,
 		"availability": [
 			{
@@ -833,7 +1040,14 @@
 		"pricePerNight": 0.46,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Sound System", "Rooftop Access", "Shower"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"City View",
+			"Sound System",
+			"Rooftop Access",
+			"Shower"
+		],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -857,7 +1071,16 @@
 		"pricePerNight": 0.58,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Gym", "Concierge", "Balcony", "Shower", "Wheelchair Accessible"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"City View",
+			"Gym",
+			"Concierge",
+			"Balcony",
+			"Shower",
+			"Wheelchair Accessible"
+		],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -881,7 +1104,14 @@
 		"pricePerNight": 0.69,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Art Collection", "Rooftop", "Shower"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"City View",
+			"Art Collection",
+			"Rooftop",
+			"Shower"
+		],
 		"resonanceScore": 97,
 		"availability": [
 			{
@@ -905,7 +1135,15 @@
 		"pricePerNight": 0.72,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Smart Home", "Rooftop Pool", "Balcony", "Shower"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"City View",
+			"Smart Home",
+			"Rooftop Pool",
+			"Balcony",
+			"Shower"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -929,7 +1167,16 @@
 		"pricePerNight": 0.44,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "Garden", "Breakfast Included", "Bike Rental", "Shower", "Pet Friendly", "Wheelchair Accessible"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"Garden",
+			"Breakfast Included",
+			"Bike Rental",
+			"Shower",
+			"Pet Friendly",
+			"Wheelchair Accessible"
+		],
 		"resonanceScore": 98,
 		"availability": [
 			{
@@ -954,7 +1201,16 @@
 		"pricePerNight": 0.29,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Bar", "Gym", "Balcony", "Shower", "Wheelchair Accessible"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"City View",
+			"Bar",
+			"Gym",
+			"Balcony",
+			"Shower",
+			"Wheelchair Accessible"
+		],
 		"resonanceScore": 94,
 		"availability": [
 			{
@@ -978,7 +1234,15 @@
 		"pricePerNight": 0.37,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Rooftop Pool", "Gym", "Balcony", "Shower"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"City View",
+			"Rooftop Pool",
+			"Gym",
+			"Balcony",
+			"Shower"
+		],
 		"resonanceScore": 96,
 		"availability": [
 			{
@@ -1006,7 +1270,15 @@
 		"pricePerNight": 0.79,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "Hot Tub", "City View", "Concierge", "Balcony", "Shower"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"Hot Tub",
+			"City View",
+			"Concierge",
+			"Balcony",
+			"Shower"
+		],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -1030,7 +1302,16 @@
 		"pricePerNight": 0.88,
 		"currency": "¤",
 		"maxGuests": 2,
-		"amenities": ["WiFi", "AC", "City View", "Room Service", "Smart Home", "Balcony", "Shower", "Wheelchair Accessible"],
+		"amenities": [
+			"WiFi",
+			"AC",
+			"City View",
+			"Room Service",
+			"Smart Home",
+			"Balcony",
+			"Shower",
+			"Wheelchair Accessible"
+		],
 		"resonanceScore": 99,
 		"availability": [
 			{
@@ -1051,6 +1332,7 @@
 			"lng": 27.42
 		},
 		"images": ["/images/city/41.jpg"],
+		"video": "/videos/city/41_vid.mp4",
 		"pricePerNight": 0.76,
 		"currency": "¤",
 		"maxGuests": 2,

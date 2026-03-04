@@ -26,7 +26,7 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import type { Review, Stay } from "@/types";
-import { buildImageUrl } from "@/utils/media";
+import { buildImageUrl, buildVideoUrl } from "@/utils/media";
 import { formatPrice } from "@/utils/price";
 import { useAuth } from "./auth-context";
 import { AuthModal } from "./auth-modal";
@@ -139,7 +139,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 	// Build media array: video first (if exists), then images
 	const mediaItems: { type: "video" | "image"; src: string }[] = [];
 	if (stay.video) {
-		mediaItems.push({ type: "video", src: stay.video });
+		mediaItems.push({ type: "video", src: buildVideoUrl(stay.video) });
 	}
 	stay.images.forEach((img) => {
 		mediaItems.push({ type: "image", src: buildImageUrl(img) });
@@ -317,7 +317,6 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 											fill
 											className="object-cover"
 											sizes="(max-width: 768px) 100vw, 80vw"
-											unoptimized
 										/>
 									</motion.div>
 								)}
