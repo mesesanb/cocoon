@@ -6,6 +6,8 @@ dist/
 build/
 .DS_Store
 .claude/
+package-lock.json
+tsconfig.tsbuildinfo
 
 # v0 runtime files
 __v0_runtime_loader.js
