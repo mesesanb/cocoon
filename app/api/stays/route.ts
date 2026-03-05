@@ -1,10 +1,14 @@
 import { type NextRequest, NextResponse } from "next/server";
+import bookingsData from "@/data/bookings.json";
 import reviewsData from "@/data/reviews.json";
 import staysData from "@/data/stays.json";
-import type { Review, ScenarioType, Stay } from "@/types";
+import { logRoute } from "@/lib/api-logger";
+import type { Booking, Review, ScenarioType, Stay } from "@/types";
+import { datesOverlap } from "@/utils/dates";
 
 const stays = staysData as Stay[];
 const reviews = reviewsData as Review[];
+const bookings = bookingsData as Booking[];
 
 function attachReviewCounts(
 	stayList: Stay[],
@@ -21,6 +25,8 @@ function attachReviewCounts(
 
 // list stays with optional query, type, dates, price, sort
 export async function GET(request: NextRequest) {
+	const start = Date.now();
+	const path = request.nextUrl.pathname;
 	const { searchParams } = request.nextUrl;
 	const query = searchParams.get("query")?.toLowerCase();
 	const location = searchParams.get("location")?.toLowerCase();
@@ -61,11 +67,29 @@ export async function GET(request: NextRequest) {
 	}
 
 	if (checkIn && checkOut) {
-		filtered = filtered.filter((s) =>
-			s.availability.some(
+		if (checkOut <= checkIn) {
+			const res = NextResponse.json(
+				{ error: "checkOut must be after checkIn" },
+				{ status: 400 },
+			);
+			logRoute("GET", path, 400, Date.now() - start);
+			return res;
+		}
+		filtered = filtered.filter((s) => {
+			const withinAvailability = s.availability.some(
 				(a) => a.checkIn <= checkIn && a.checkOut >= checkOut,
-			),
-		);
+			);
+			if (!withinAvailability) return false;
+			const stayBookings = bookings.filter(
+				(b) =>
+					b.stayId === s.id &&
+					(b.status === "confirmed" || b.status === "pending"),
+			);
+			const hasConflict = stayBookings.some((b) =>
+				datesOverlap(checkIn, checkOut, b.checkIn, b.checkOut),
+			);
+			return !hasConflict;
+		});
 	}
 
 	if (amenitiesParam) {
@@ -105,9 +129,10 @@ export async function GET(request: NextRequest) {
 		filtered.sort((a, b) => b.resonanceScore - a.resonanceScore);
 	} else if (sort === "reviews_desc") {
 		filtered.sort((a, b) => (b.reviewCount ?? 0) - (a.reviewCount ?? 0));
-	} else if (sort === "resonance") {
-		filtered.sort((a, b) => b.resonanceScore - a.resonanceScore);
 	}
+	// sort=resonance removed — use sort=rating_desc instead
 
-	return NextResponse.json(filtered);
+	const res = NextResponse.json(filtered);
+	logRoute("GET", path, 200, Date.now() - start);
+	return res;
 }

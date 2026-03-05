@@ -39,10 +39,15 @@ export function OurCocoonClient() {
 	const { user, signOut } = useAuth();
 	const [showAuthModal, setShowAuthModal] = useState(false);
 
+	const coupleName = user?.coupleName || "Guest";
+
 	const { data: bookings = [] } = useQuery<Booking[]>({
-		queryKey: ["bookings"],
+		queryKey: ["bookings", coupleName],
 		queryFn: async () => {
-			const res = await fetch("/api/bookings");
+			const res = await fetch(
+				`/api/bookings?coupleName=${encodeURIComponent(coupleName)}`,
+			);
+			if (!res.ok) return [];
 			return res.json();
 		},
 	});
@@ -63,7 +68,6 @@ export function OurCocoonClient() {
 		},
 	});
 
-	const coupleName = user?.coupleName || "Guest";
 	const now = new Date().toISOString().split("T")[0];
 
 	// Filter user's reviews

@@ -68,14 +68,14 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 2.1 | Input validation on `POST /bookings` — check required fields (`stayId`, `coupleName`, `checkIn`, `checkOut`); return 400 on missing/invalid | ⬜ | |
-| 2.2 | Input validation on `POST /stays/:id/reviews` — check `coupleName`, `rating` (1–5), `text` (min length) | ⬜ | |
-| 2.3 | Fix `GET /api/bookings` — accept `coupleName` query param; do not return all bookings unfiltered | ⬜ | |
-| 2.4 | Align availability check in `GET /stays` list — add booking-conflict check (currently only checks availability windows, not existing bookings) | ⬜ | |
-| 2.5 | Remove duplicate sort option — `sort=resonance` duplicates `sort=rating_desc`; consolidate | ⬜ | |
-| 2.6 | Guard `calculateNights` against zero/negative — return 400 in routes if `checkOut <= checkIn` | ⬜ | |
-| 2.7 | **Observability (assessment NFR)**: Add structured logging on route handlers (method, path, status, duration) | ⬜ | |
-| 2.8 | Document Phase 2 in `docs/phase-2-api.md` | ⬜ | |
+| 2.1 | Input validation on `POST /bookings` — check required fields (`stayId`, `coupleName`, `checkIn`, `checkOut`); return 400 on missing/invalid | ✅ | lib/validators.ts |
+| 2.2 | Input validation on `POST /stays/:id/reviews` — check `coupleName`, `rating` (1–5), `text` (min length) | ✅ | lib/validators.ts |
+| 2.3 | Fix `GET /api/bookings` — accept `coupleName` query param; do not return all bookings unfiltered | ✅ | coupleName required |
+| 2.4 | Align availability check in `GET /stays` list — add booking-conflict check (currently only checks availability windows, not existing bookings) | ✅ | datesOverlap + bookings |
+| 2.5 | Remove duplicate sort option — `sort=resonance` duplicates `sort=rating_desc`; consolidate | ✅ | use rating_desc |
+| 2.6 | Guard `calculateNights` against zero/negative — return 400 in routes if `checkOut <= checkIn` | ✅ | availability, stays, validators |
+| 2.7 | **Observability (assessment NFR)**: Add structured logging on route handlers (method, path, status, duration) | ✅ | lib/api-logger.ts |
+| 2.8 | Document Phase 2 in `docs/phase-2-api.md` | ✅ | docs/phase-2-api.md |
 
 ---
 
