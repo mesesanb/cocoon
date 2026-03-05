@@ -58,11 +58,21 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 	const [copied, setCopied] = useState(false);
 	const queryClient = useQueryClient();
 
-	const { data: stay, isLoading } = useQuery<Stay, Error>({
+	const {
+		data: stay,
+		isLoading,
+		error: stayError,
+	} = useQuery<Stay, Error>({
 		queryKey: ["stay", stayId],
 		queryFn: async () => {
 			const res = await fetch(`/api/stays/${stayId}`);
-			if (!res.ok) throw new Error("Stay not found");
+			if (!res.ok) {
+				const error = new Error("Stay not found") as Error & {
+					status?: number;
+				};
+				error.status = res.status;
+				throw error;
+			}
 			return res.json();
 		},
 		retry: 2,
@@ -90,7 +100,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 		Review,
 		Error,
 		{
-			coupleName: string;
+			userId: string;
 			rating: number;
 			text: string;
 		}
@@ -148,6 +158,68 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 
 		setShowShareMenu(false);
 	};
+
+	// Show 404 error screen
+	if (!isLoading && (stayError || !stay)) {
+		return (
+			<div className="min-h-screen bg-linen flex items-center justify-center px-4">
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					className="text-center max-w-md"
+				>
+					<div className="mb-8">
+						<motion.h1
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ delay: 0.1 }}
+							className="text-6xl md:text-7xl font-bold text-muted-foreground/30 mb-4"
+						>
+							404
+						</motion.h1>
+						<motion.p
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ delay: 0.2 }}
+							className="text-foreground text-xl md:text-2xl font-semibold mb-2"
+						>
+							Retreat Not Found
+						</motion.p>
+						<motion.p
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ delay: 0.3 }}
+							className="text-muted-foreground text-sm md:text-base mb-8"
+						>
+							The retreat you're looking for doesn't exist or has been removed.
+						</motion.p>
+					</div>
+
+					<motion.div
+						initial={{ opacity: 0, y: 10 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ delay: 0.4 }}
+						className="flex flex-col gap-3 sm:flex-row justify-center"
+					>
+						<button
+							type="button"
+							onClick={() => router.push("/")}
+							className="glass-button rounded-2xl px-6 py-3 text-foreground text-sm font-medium tracking-wide hover:bg-foreground/5 transition-all cursor-pointer"
+						>
+							Browse All Retreats
+						</button>
+						<button
+							type="button"
+							onClick={() => router.back()}
+							className="bg-sage-deep text-primary-foreground rounded-2xl px-6 py-3 text-sm font-medium tracking-wide hover:bg-sage-deep/90 transition-all cursor-pointer"
+						>
+							Go Back
+						</button>
+					</motion.div>
+				</motion.div>
+			</div>
+		);
+	}
 
 	if (isLoading || !stay) {
 		return (
@@ -262,18 +334,20 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 							</AnimatePresence>
 						</div>
 
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<Link
-									href="/our-cocoon"
-									className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider cursor-pointer"
-								>
-									<span className="hidden md:inline">Our Cocoon</span>
-									<span className="md:hidden">Cocoon</span>
-								</Link>
-							</TooltipTrigger>
-							<TooltipContent side="bottom">Our bookings</TooltipContent>
-						</Tooltip>
+						{user && (
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Link
+										href="/our-cocoon"
+										className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider cursor-pointer"
+									>
+										<span className="hidden md:inline">Our Cocoon</span>
+										<span className="md:hidden">Cocoon</span>
+									</Link>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Our bookings</TooltipContent>
+							</Tooltip>
+						)}
 						{user ? (
 							<Tooltip>
 								<TooltipTrigger asChild>
@@ -509,6 +583,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 									onSubmit={(review) => addReviewMutation.mutate(review)}
 									isSubmitting={addReviewMutation.isPending}
 									defaultCoupleName={user?.coupleName}
+									userId={user?.userId}
 								/>
 							</div>
 						</motion.div>
@@ -588,24 +663,23 @@ function ReviewForm({
 	onSubmit,
 	isSubmitting,
 	defaultCoupleName,
+	userId,
 }: {
-	onSubmit: (review: {
-		coupleName: string;
-		rating: number;
-		text: string;
-	}) => void;
+	onSubmit: (review: { userId: string; rating: number; text: string }) => void;
 	isSubmitting: boolean;
 	defaultCoupleName?: string;
+	userId?: string;
 }) {
 	const [coupleName, setCoupleName] = useState(defaultCoupleName || "");
 	const [rating, setRating] = useState(5);
 	const [text, setText] = useState("");
 
+	const isLoggedIn = !!userId;
+
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!coupleName.trim() || !text.trim()) return;
-		onSubmit({ coupleName, rating, text });
-		setCoupleName(defaultCoupleName || "");
+		if (!text.trim() || !userId) return;
+		onSubmit({ userId, rating, text });
 		setText("");
 	};
 
@@ -617,6 +691,7 @@ function ReviewForm({
 				onChange={(e) => setCoupleName(e.target.value)}
 				placeholder="Your couple name"
 				className="glass-input rounded-xl px-3.5 py-2.5 text-foreground text-sm placeholder:text-muted-foreground/40 outline-none"
+				disabled={!isLoggedIn}
 				required
 			/>
 			<div className="flex items-center gap-0.5">
@@ -625,7 +700,10 @@ function ReviewForm({
 						key={star}
 						type="button"
 						onClick={() => setRating(star)}
-						className={`p-0.5 transition-colors ${star <= rating ? "text-sage-deep" : "text-foreground/15"}`}
+						disabled={!isLoggedIn}
+						className={`p-0.5 transition-colors ${
+							isLoggedIn ? "cursor-pointer" : "cursor-not-allowed opacity-50"
+						} ${star <= rating ? "text-sage-deep" : "text-foreground/15"}`}
 					>
 						<Star className="h-4 w-4 fill-current" />
 					</button>
@@ -636,16 +714,26 @@ function ReviewForm({
 				onChange={(e) => setText(e.target.value)}
 				placeholder="Share your resonance..."
 				rows={3}
-				className="glass-input rounded-xl px-3.5 py-2.5 text-foreground text-sm placeholder:text-muted-foreground/40 outline-none resize-none"
+				className="glass-input rounded-xl px-3.5 py-2.5 text-foreground text-sm placeholder:text-muted-foreground/40 outline-none resize-none disabled:opacity-50"
+				disabled={!isLoggedIn}
 				required
 			/>
-			<button
-				type="submit"
-				disabled={isSubmitting}
-				className="glass-button rounded-xl py-2.5 text-sage-deep text-[11px] font-semibold tracking-[0.1em] uppercase disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-			>
-				{isSubmitting ? "Sharing..." : "Share Review"}
-			</button>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<button
+						type="submit"
+						disabled={isSubmitting || !isLoggedIn}
+						className="glass-button rounded-xl py-2.5 text-sage-deep text-[11px] font-semibold tracking-[0.1em] uppercase disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+					>
+						{isSubmitting ? "Sharing..." : "Share Review"}
+					</button>
+				</TooltipTrigger>
+				{!isLoggedIn && (
+					<TooltipContent side="top">
+						<p className="text-xs">Sign in to share your review</p>
+					</TooltipContent>
+				)}
+			</Tooltip>
 		</form>
 	);
 }

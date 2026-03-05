@@ -9,14 +9,23 @@ import { calculateNights } from "@/utils/dates";
 const bookings = bookingsData as Booking[];
 const stays = staysData as Stay[];
 
+interface BookingPayload {
+	stayId: string;
+	userId: string;
+	coupleName?: string;
+	checkIn: string;
+	checkOut: string;
+	guests?: number;
+}
+
 export async function GET(request: NextRequest) {
 	const start = Date.now();
 	const path = request.nextUrl.pathname;
 
-	const coupleName = request.nextUrl.searchParams.get("coupleName");
-	if (!coupleName || !coupleName.trim()) {
+	const userId = request.nextUrl.searchParams.get("userId");
+	if (!userId || !userId.trim()) {
 		const res = NextResponse.json(
-			{ error: "coupleName query parameter is required" },
+			{ error: "userId query parameter is required" },
 			{ status: 400 },
 		);
 		logRoute("GET", path, 400, Date.now() - start);
@@ -24,7 +33,7 @@ export async function GET(request: NextRequest) {
 	}
 
 	const filtered = bookings.filter(
-		(b) => b.coupleName.toLowerCase() === coupleName.trim().toLowerCase(),
+		(b) => b.userId.toLowerCase() === userId.trim().toLowerCase(),
 	);
 	const res = NextResponse.json(filtered);
 	logRoute("GET", path, 200, Date.now() - start);
@@ -55,12 +64,8 @@ export async function POST(request: NextRequest) {
 		return res;
 	}
 
-	const { stayId, coupleName, checkIn, checkOut } = body as {
-		stayId: string;
-		coupleName: string;
-		checkIn: string;
-		checkOut: string;
-	};
+	const payload = body as BookingPayload;
+	const { stayId, userId, coupleName, checkIn, checkOut, guests } = payload;
 
 	const stay = stays.find((s) => s.id === stayId);
 
@@ -70,16 +75,46 @@ export async function POST(request: NextRequest) {
 		return res;
 	}
 
+	// Check for date conflicts with existing bookings
+	const existingBookings = bookings.filter(
+		(b) =>
+			b.stayId === stayId &&
+			(b.status === "confirmed" || b.status === "pending"),
+	);
+
+	const conflictingBookings = existingBookings.filter((b) => {
+		// Check if date ranges overlap
+		return !(checkOut <= b.checkIn || checkIn >= b.checkOut);
+	});
+
+	if (conflictingBookings.length > 0) {
+		const conflictDates = conflictingBookings.map((b) => ({
+			checkIn: b.checkIn,
+			checkOut: b.checkOut,
+		}));
+		const res = NextResponse.json(
+			{
+				error: "Dates conflict with existing bookings",
+				conflictDates,
+				message: `This retreat is already booked for ${conflictingBookings.map((b) => `${b.checkIn} to ${b.checkOut}`).join(", ")}`,
+			},
+			{ status: 409 },
+		);
+		logRoute("POST", path, 409, Date.now() - start);
+		return res;
+	}
+
 	const nights = calculateNights(checkIn, checkOut);
 	const totalPrice = parseFloat((stay.pricePerNight * nights).toFixed(6));
 
 	const newBooking: Booking = {
 		confirmationId: `CCN-${Date.now()}`,
 		stayId,
-		coupleName,
+		userId,
+		coupleName: coupleName?.trim() || "",
 		checkIn,
 		checkOut,
-		guests: (body as { guests?: number }).guests || 2,
+		guests: guests ?? 2,
 		totalPrice,
 		currency: stay.currency,
 		status: "confirmed",

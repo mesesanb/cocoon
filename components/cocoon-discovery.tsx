@@ -221,18 +221,20 @@ export function CocoonDiscovery({
 						</Tooltip>
 					</div>
 					<nav className="flex items-center gap-1" aria-label="Main navigation">
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<a
-									href="/our-cocoon"
-									className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider cursor-pointer"
-								>
-									<span className="hidden md:inline">Our Cocoon</span>
-									<span className="md:hidden">Cocoon</span>
-								</a>
-							</TooltipTrigger>
-							<TooltipContent side="bottom">Our bookings</TooltipContent>
-						</Tooltip>
+						{user && (
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<a
+										href="/our-cocoon"
+										className="glass-button rounded-full px-3 md:px-4 py-2 text-foreground text-[10px] md:text-xs tracking-wider cursor-pointer"
+									>
+										<span className="hidden md:inline">Our Cocoon</span>
+										<span className="md:hidden">Cocoon</span>
+									</a>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Our bookings</TooltipContent>
+							</Tooltip>
+						)}
 						{user ? (
 							<Tooltip>
 								<TooltipTrigger asChild>

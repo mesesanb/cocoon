@@ -9,6 +9,7 @@ import {
 } from "react";
 
 export interface User {
+	userId: string; // Unique identifier (UUID)
 	email: string;
 	coupleName: string;
 }
@@ -31,6 +32,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const STORAGE_KEY = "cocoon_user";
+const LOGGED_OUT_KEY = "cocoon_logged_out";
 
 const isValidEmail = (email: string): boolean => {
 	return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -51,25 +53,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		const stored = localStorage.getItem(STORAGE_KEY);
-		if (stored) {
-			try {
-				setUser(JSON.parse(stored));
-			} catch {
+		// Check if user explicitly logged out
+		const isLoggedOut = localStorage.getItem(LOGGED_OUT_KEY) === "true";
+
+		if (isLoggedOut) {
+			// User logged out - keep them logged out
+			setUser(null);
+		} else {
+			// Check for stored user
+			const stored = localStorage.getItem(STORAGE_KEY);
+			if (stored) {
+				try {
+					setUser(JSON.parse(stored));
+				} catch {
+					const defaultUser = {
+						userId: "user-kai-luna-001",
+						email: "kai.luna@cocoon.us",
+						coupleName: "Kai and Luna",
+					};
+					setUser(defaultUser);
+					localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultUser));
+				}
+			} else {
+				// No stored user and not logged out - set default
 				const defaultUser = {
+					userId: "user-kai-luna-001",
 					email: "kai.luna@cocoon.us",
-					coupleName: "Kai & Luna",
+					coupleName: "Kai and Luna",
 				};
 				setUser(defaultUser);
 				localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultUser));
 			}
-		} else {
-			const defaultUser = {
-				email: "kai.luna@cocoon.us",
-				coupleName: "Kai & Luna",
-			};
-			setUser(defaultUser);
-			localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultUser));
 		}
 		setIsLoading(false);
 	}, []);
@@ -95,9 +109,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 			.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
 			.join(" & ");
 
-		const newUser = { email, coupleName };
+		const newUser = {
+			userId: `user-${Date.now()}`,
+			email,
+			coupleName,
+		};
 		setUser(newUser);
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(newUser));
+		localStorage.removeItem(LOGGED_OUT_KEY); // Clear logged out flag
 		return { success: true };
 	};
 
@@ -120,15 +139,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 			return { success: false, error: "Please enter your couple name" };
 		}
 
-		const newUser = { email, coupleName: coupleName.trim() };
+		const newUser = {
+			userId: `user-${Date.now()}`,
+			email,
+			coupleName: coupleName.trim(),
+		};
 		setUser(newUser);
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(newUser));
+		localStorage.removeItem(LOGGED_OUT_KEY); // Clear logged out flag
 		return { success: true };
 	};
 
 	const signOut = () => {
 		setUser(null);
 		localStorage.removeItem(STORAGE_KEY);
+		localStorage.setItem(LOGGED_OUT_KEY, "true");
 	};
 
 	return (

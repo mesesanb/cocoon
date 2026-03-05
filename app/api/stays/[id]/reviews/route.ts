@@ -6,6 +6,14 @@ import type { Review } from "@/types";
 
 const reviews = reviewsData as Review[];
 
+interface ReviewPayload {
+	userId: string;
+	coupleName?: string;
+	rating: number;
+	text: string;
+	resonanceScore?: number;
+}
+
 export async function GET(
 	request: NextRequest,
 	{ params }: { params: Promise<{ id: string }> },
@@ -59,21 +67,18 @@ export async function POST(
 		return res;
 	}
 
-	const b = body as {
-		coupleName: string;
-		rating: number;
-		text: string;
-		resonanceScore?: number;
-	};
+	const payload = body as ReviewPayload;
+	const { userId, coupleName, rating, text, resonanceScore } = payload;
 
 	const newReview: Review = {
 		id: `rev-${Date.now()}`,
 		stayId: id,
-		coupleName: b.coupleName.trim(),
-		rating: b.rating,
-		text: b.text.trim(),
+		userId: userId.trim(),
+		coupleName: coupleName?.trim() || "",
+		rating,
+		text: text.trim(),
 		date: new Date().toISOString().split("T")[0],
-		resonanceScore: b.resonanceScore ?? Math.floor(Math.random() * 10) + 90,
+		resonanceScore: resonanceScore ?? Math.floor(Math.random() * 10) + 90,
 	};
 
 	reviews.push(newReview);

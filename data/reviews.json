@@ -2,7 +2,8 @@
 	{
 		"id": "rev-kl-1",
 		"stayId": "stay-1",
-		"coupleName": "Kai & Luna",
+		"userId": "user-kai-luna-001",
+		"coupleName": "Kai and Luna",
 		"rating": 5,
 		"text": "We arrived as two people carrying the weight of separate lives. We left as one breath. The forest held us in ways words cannot.",
 		"date": "2025-12-05",
@@ -11,7 +12,8 @@
 	{
 		"id": "rev-kl-2",
 		"stayId": "stay-10",
-		"coupleName": "Kai & Luna",
+		"userId": "user-kai-luna-001",
+		"coupleName": "Kai and Luna",
 		"rating": 5,
 		"text": "Time dissolved. We watched the horizon from the deck at 3am, held hands, and said nothing. It was everything.",
 		"date": "2026-01-14",
@@ -20,7 +22,8 @@
 	{
 		"id": "rev-kl-3",
 		"stayId": "stay-21",
-		"coupleName": "Kai & Luna",
+		"userId": "user-kai-luna-001",
+		"coupleName": "Kai and Luna",
 		"rating": 5,
 		"text": "The cliff over the Atlantic. We cried, we laughed, we watched the stars from the glass box. Transformative.",
 		"date": "2025-10-18",
@@ -29,6 +32,7 @@
 	{
 		"id": "rev-002",
 		"stayId": "stay-10",
+		"userId": "user-ava-sol-001",
 		"coupleName": "Ava & Sol",
 		"rating": 5,
 		"text": "Every sunset over the Donegal cliffs felt like it was painted just for us. The cedar tiny house held us in its rhythm.",
@@ -38,6 +42,7 @@
 	{
 		"id": "rev-003",
 		"stayId": "stay-21",
+		"userId": "user-river-sage-001",
 		"coupleName": "River & Sage",
 		"rating": 5,
 		"text": "The Portuguese coast from the glass box. We whispered things we'd never said before. The Atlantic gave us courage.",
@@ -47,6 +52,7 @@
 	{
 		"id": "rev-004",
 		"stayId": "stay-41",
+		"userId": "user-miro-yuki-001",
 		"coupleName": "Miro & Yuki",
 		"rating": 4,
 		"text": "The paradox of finding silence in Tokyo. The sky dome became our world. We cooked together, danced to vinyl, forgot the city existed.",
@@ -56,6 +62,7 @@
 	{
 		"id": "rev-005",
 		"stayId": "stay-2",
+		"userId": "user-ember-ash-001",
 		"coupleName": "Ember & Ash",
 		"rating": 5,
 		"text": "Walking barefoot by the waterfall, we remembered why we chose each other. Tasmania stripped away everything unnecessary.",
@@ -65,6 +72,7 @@
 	{
 		"id": "rev-006",
 		"stayId": "stay-11",
+		"userId": "user-nyx-atlas-001",
 		"coupleName": "Nyx & Atlas",
 		"rating": 5,
 		"text": "The Scottish lighthouse and every sunset. The sea held us in its rhythm. We'll never forget.",
@@ -74,6 +82,7 @@
 	{
 		"id": "rev-007",
 		"stayId": "stay-22",
+		"userId": "user-iris-cedar-001",
 		"coupleName": "Iris & Cedar",
 		"rating": 4,
 		"text": "The Cape Winelands from the silo. We whispered things we'd never said at sea level. The view gave us courage.",
@@ -83,6 +92,7 @@
 	{
 		"id": "rev-008",
 		"stayId": "stay-32",
+		"userId": "user-lux-ora-001",
 		"coupleName": "Lux & Ora",
 		"rating": 5,
 		"text": "Prague hummed below us while we existed in our own frequency. The clock tower at midnight was our cathedral.",
@@ -92,6 +102,7 @@
 	{
 		"id": "rev-009",
 		"stayId": "stay-1",
+		"userId": "user-jade-reed-001",
 		"coupleName": "Jade & Reed",
 		"rating": 5,
 		"text": "The Redwood Sphere exceeded every expectation. Waking up among ancient trees felt like stepping into another world.",
@@ -101,6 +112,7 @@
 	{
 		"id": "rev-010",
 		"stayId": "stay-1",
+		"userId": "user-sage-fern-001",
 		"coupleName": "Sage & Fern",
 		"rating": 5,
 		"text": "We didn't want to leave. The spiral staircase at dusk, the silence—pure magic.",
@@ -110,6 +122,7 @@
 	{
 		"id": "rev-011",
 		"stayId": "stay-2",
+		"userId": "user-moss-brook-001",
 		"coupleName": "Moss & Brook",
 		"rating": 5,
 		"text": "The waterfall was our soundtrack for a week. The A-frame cabin in Tasmania is a dream.",
@@ -119,6 +132,7 @@
 	{
 		"id": "rev-012",
 		"stayId": "stay-3",
+		"userId": "user-terra-sky-001",
 		"coupleName": "Terra & Sky",
 		"rating": 5,
 		"text": "Rice terraces at dawn from the bamboo pod in Ubud. We'll carry this with us forever.",
@@ -128,6 +142,7 @@
 	{
 		"id": "rev-013",
 		"stayId": "stay-4",
+		"userId": "user-hazel-bramble-001",
 		"coupleName": "Hazel & Bramble",
 		"rating": 5,
 		"text": "Our inner hobbits were very happy. Wildflowers, round door, warm light in Waikato—perfection.",
@@ -137,6 +152,7 @@
 	{
 		"id": "rev-014",
 		"stayId": "stay-5",
+		"userId": "user-ivy-stone-001",
 		"coupleName": "Ivy & Stone",
 		"rating": 4,
 		"text": "The wisteria tower in the Appalachians is stunning. A bit of a climb but worth every step.",
@@ -146,6 +162,7 @@
 	{
 		"id": "rev-015",
 		"stayId": "stay-9",
+		"userId": "user-coral-tide-001",
 		"coupleName": "Coral & Tide",
 		"rating": 5,
 		"text": "The dome on Carezza Lake. The Dolomites reflected in the water—we've never slept better.",
@@ -155,6 +172,7 @@
 	{
 		"id": "rev-016",
 		"stayId": "stay-10",
+		"userId": "user-pearl-shell-001",
 		"coupleName": "Pearl & Shell",
 		"rating": 5,
 		"text": "Incredible cliff views in Donegal. We watched storms roll in from the deck. Romantic and wild.",
@@ -164,6 +182,7 @@
 	{
 		"id": "rev-017",
 		"stayId": "stay-11",
+		"userId": "user-marina-reef-001",
 		"coupleName": "Marina & Reef",
 		"rating": 5,
 		"text": "The Beacon Suite in the Highlands. The sea and the lighthouse at night—we'll never forget.",
@@ -173,6 +192,7 @@
 	{
 		"id": "rev-018",
 		"stayId": "stay-21",
+		"userId": "user-summit-ridge-001",
 		"coupleName": "Summit & Ridge",
 		"rating": 5,
 		"text": "The cliff glass box over the Atlantic. We proposed here. No place could have been more right.",
@@ -182,6 +202,7 @@
 	{
 		"id": "rev-019",
 		"stayId": "stay-22",
+		"userId": "user-alpine-frost-001",
 		"coupleName": "Alpine & Frost",
 		"rating": 4,
 		"text": "The Silo Suite in the Cape Winelands. Stunning. The stars over the vines were the highlight.",
@@ -191,6 +212,7 @@
 	{
 		"id": "rev-020",
 		"stayId": "stay-41",
+		"userId": "user-neon-pulse-001",
 		"coupleName": "Neon & Pulse",
 		"rating": 5,
 		"text": "Tokyo from above in the sky dome. We found silence in the sky. The city hummed below like a lullaby.",
@@ -200,6 +222,7 @@
 	{
 		"id": "rev-021",
 		"stayId": "stay-32",
+		"userId": "user-echo-arc-001",
 		"coupleName": "Echo & Arc",
 		"rating": 5,
 		"text": "Prague at our feet from the clock tower. The rooftops at midnight—we danced until dawn.",
@@ -209,6 +232,7 @@
 	{
 		"id": "rev-022",
 		"stayId": "stay-6",
+		"userId": "user-pine-bark-001",
 		"coupleName": "Pine & Bark",
 		"rating": 5,
 		"text": "The railway carriage in Fiordland. Deep in the forest, just us and the trees. Exactly what we needed.",
@@ -218,6 +242,7 @@
 	{
 		"id": "rev-023",
 		"stayId": "stay-12",
+		"userId": "user-wave-drift-001",
 		"coupleName": "Wave & Drift",
 		"rating": 5,
 		"text": "A week by Saimaa in the lakehouse. We read, we swam in the sauna, we forgot our phones existed.",
@@ -227,15 +252,17 @@
 	{
 		"id": "rev-024",
 		"stayId": "stay-23",
+		"userId": "user-crag-vale-001",
 		"coupleName": "Crag & Vale",
-		"rating": 4,
-		"text": "The Atlantic bunker in Brittany. Dramatic views. The coastal light at golden hour is unreal. Would return.",
+		"rating": 3,
+		"text": "The Atlantic bunker in Brittany has dramatic views but the wind was louder than expected. Beautiful location, though the accommodation felt a bit cramped for us.",
 		"date": "2026-02-22",
-		"resonanceScore": 95
+		"resonanceScore": 78
 	},
 	{
 		"id": "rev-025",
 		"stayId": "stay-33",
+		"userId": "user-lumen-volt-001",
 		"coupleName": "Lumen & Volt",
 		"rating": 5,
 		"text": "The Swiss barn in Appenzell. Valley lights and quiet inside. The best of both worlds. Already planning our next visit.",
@@ -245,6 +272,7 @@
 	{
 		"id": "rev-026",
 		"stayId": "stay-31",
+		"userId": "user-wind-mill-001",
 		"coupleName": "Wind & Mill",
 		"rating": 5,
 		"text": "Sleeping under the gears of the windmill in Zeeland. The polder views at dusk, the canal, the peace—unforgettable.",
@@ -254,10 +282,61 @@
 	{
 		"id": "rev-027",
 		"stayId": "stay-31",
+		"userId": "user-polder-dyke-001",
 		"coupleName": "Polder & Dyke",
 		"rating": 5,
 		"text": "The Netherlands countryside from the mill. We cycled, we watched the sails turn, we fell in love with the green fields.",
 		"date": "2026-02-05",
 		"resonanceScore": 96
+	},
+	{
+		"id": "rev-028",
+		"stayId": "stay-1",
+		"userId": "user-amber-oak-001",
+		"coupleName": "Amber & Oak",
+		"rating": 4,
+		"text": "The Redwood Sphere is truly magical, but the access road was quite rough. The stay itself was worth it though.",
+		"date": "2026-02-25",
+		"resonanceScore": 89
+	},
+	{
+		"id": "rev-029",
+		"stayId": "stay-2",
+		"userId": "user-teal-stone-001",
+		"coupleName": "Teal & Stone",
+		"rating": 3,
+		"text": "Tasmania is beautiful and the waterfall is spectacular. The accommodation was clean but the heating system was temperamental during our stay.",
+		"date": "2026-02-28",
+		"resonanceScore": 82
+	},
+	{
+		"id": "rev-030",
+		"stayId": "stay-12",
+		"userId": "user-grace-pine-001",
+		"coupleName": "Grace & Pine",
+		"rating": 4,
+		"text": "The lakehouse in Finland is serene and the sauna is excellent. Would have loved better WiFi for staying connected.",
+		"date": "2026-03-01",
+		"resonanceScore": 88
+	},
+	{
+		"id": "rev-031",
+		"stayId": "stay-41",
+		"userId": "user-luna-sky-001",
+		"coupleName": "Luna & Sky",
+		"rating": 3,
+		"text": "Tokyo's perspective from the dome is incredible. The neighborhood is lively but quite noisy at night. Still a memorable experience.",
+		"date": "2026-02-28",
+		"resonanceScore": 80
+	},
+	{
+		"id": "rev-032",
+		"stayId": "stay-21",
+		"userId": "user-diamond-light-001",
+		"coupleName": "Diamond & Light",
+		"rating": 4,
+		"text": "The glass box overlooking the Atlantic is unforgettable. The view alone makes it worth it, though the space is quite intimate.",
+		"date": "2026-03-02",
+		"resonanceScore": 91
 	}
 ]

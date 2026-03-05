@@ -129,19 +129,28 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 		// Simulate OAuth flow delay
 		await new Promise((resolve) => setTimeout(resolve, 1500));
 
-		// Mock successful social auth
-		const mockName =
-			provider === "google"
-				? "Kai & Luna"
-				: provider === "apple"
-					? "Alex & Jordan"
-					: "Sam & Taylor";
+		// Generate unique mock names for each provider
+		const mockNames: Record<
+			"google" | "apple" | "x",
+			{ email: string; couple: string }
+		> = {
+			google: {
+				email: "user.google." + Date.now() + "@oauth.cocoon",
+				couple: "Google Couple " + Math.random().toString(36).substring(7),
+			},
+			apple: {
+				email: "user.apple." + Date.now() + "@oauth.cocoon",
+				couple: "Apple Couple " + Math.random().toString(36).substring(7),
+			},
+			x: {
+				email: "user.x." + Date.now() + "@oauth.cocoon",
+				couple: "X Couple " + Math.random().toString(36).substring(7),
+			},
+		};
 
-		const result = await signUp(
-			`${provider}@oauth.cocoon`,
-			"OAuth2026!",
-			mockName,
-		);
+		const mockData = mockNames[provider];
+
+		const result = await signUp(mockData.email, "OAuth2026!", mockData.couple);
 
 		if (result.success) {
 			onSuccess?.();

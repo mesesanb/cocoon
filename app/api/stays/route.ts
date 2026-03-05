@@ -10,9 +10,11 @@ const stays = staysData as Stay[];
 const reviews = reviewsData as Review[];
 const bookings = bookingsData as Booking[];
 
-function attachReviewCounts(
-	stayList: Stay[],
-): (Stay & { reviewCount: number })[] {
+interface StayWithReviewCount extends Stay {
+	reviewCount: number;
+}
+
+function attachReviewCounts(stayList: Stay[]): StayWithReviewCount[] {
 	const countByStay: Record<string, number> = {};
 	reviews.forEach((r) => {
 		countByStay[r.stayId] = (countByStay[r.stayId] ?? 0) + 1;
@@ -43,8 +45,7 @@ export async function GET(request: NextRequest) {
 	const maxPrice = maxPriceRaw ? parseFloat(maxPriceRaw) : null;
 	const sort = searchParams.get("sort");
 
-	let filtered = [...stays];
-	filtered = attachReviewCounts(filtered) as Stay[];
+	let filtered: StayWithReviewCount[] = attachReviewCounts([...stays]);
 
 	if (query) {
 		filtered = filtered.filter(

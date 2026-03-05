@@ -14,12 +14,8 @@ export function validateBookingBody(body: unknown): string | null {
 	if (!b.stayId || typeof b.stayId !== "string" || !b.stayId.trim()) {
 		return "stayId is required and must be a non-empty string";
 	}
-	if (
-		!b.coupleName ||
-		typeof b.coupleName !== "string" ||
-		!b.coupleName.trim()
-	) {
-		return "coupleName is required and must be a non-empty string";
+	if (!b.userId || typeof b.userId !== "string" || !b.userId.trim()) {
+		return "userId is required and must be a non-empty string";
 	}
 	if (!b.checkIn || typeof b.checkIn !== "string") {
 		return "checkIn is required and must be a string (YYYY-MM-DD)";
@@ -50,12 +46,8 @@ export function validateReviewBody(body: unknown): string | null {
 	}
 	const b = body as Record<string, unknown>;
 
-	if (
-		!b.coupleName ||
-		typeof b.coupleName !== "string" ||
-		!b.coupleName.trim()
-	) {
-		return "coupleName is required and must be a non-empty string";
+	if (!b.userId || typeof b.userId !== "string" || !b.userId.trim()) {
+		return "userId is required and must be a non-empty string";
 	}
 	if (b.rating === undefined || b.rating === null) {
 		return "rating is required";
