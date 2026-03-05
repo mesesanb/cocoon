@@ -44,6 +44,7 @@ export async function GET(request: NextRequest) {
 	const maxPriceRaw = searchParams.get("maxPrice");
 	const maxPrice = maxPriceRaw ? parseFloat(maxPriceRaw) : null;
 	const sort = searchParams.get("sort");
+	const userId = searchParams.get("userId");
 
 	let filtered: StayWithReviewCount[] = attachReviewCounts([...stays]);
 
@@ -91,6 +92,20 @@ export async function GET(request: NextRequest) {
 			);
 			return !hasConflict;
 		});
+	}
+
+	// If userId is provided, exclude stays where the user has active (confirmed/pending) bookings
+	if (userId) {
+		const userBookedStayIds = new Set<string>();
+		bookings.forEach((b) => {
+			if (
+				b.userId.toLowerCase() === userId.toLowerCase() &&
+				(b.status === "confirmed" || b.status === "pending")
+			) {
+				userBookedStayIds.add(b.stayId);
+			}
+		});
+		filtered = filtered.filter((s) => !userBookedStayIds.has(s.id));
 	}
 
 	if (amenitiesParam) {

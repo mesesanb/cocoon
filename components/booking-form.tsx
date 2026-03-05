@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { format, parseISO, startOfDay } from "date-fns";
+import { addDays, format, parseISO, startOfDay } from "date-fns";
 import { AnimatePresence, motion } from "framer-motion";
 import { AlertCircle, Check, Loader2, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
@@ -244,7 +244,12 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 												setCheckIn(date ? format(date, "yyyy-MM-dd") : "");
 												setCheckInOpen(false);
 											}}
-											disabled={(date) => date < startOfDay(new Date())}
+											disabled={(date) => {
+												if (date < startOfDay(new Date())) return true;
+												const dateStr = format(date, "yyyy-MM-dd");
+												// Disable nights that are already booked
+												return bookedDates.has(dateStr);
+											}}
 											fromYear={new Date().getFullYear()}
 											toYear={new Date().getFullYear() + 2}
 											className="rounded-xl [--cell-size:2.25rem] border-0 bg-transparent p-3 text-foreground [&_[data-selected-single=true]]:bg-sage-deep [&_[data-selected-single=true]]:text-primary-foreground"
@@ -294,10 +299,14 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 												setCheckOutOpen(false);
 											}}
 											disabled={(date) => {
+												// Check-out must be after check-in
 												const min = checkIn
-													? startOfDay(parseISO(checkIn))
+													? addDays(startOfDay(parseISO(checkIn)), 1)
 													: startOfDay(new Date());
-												return date < min;
+												if (date < min) return true;
+												const dateStr = format(date, "yyyy-MM-dd");
+												// Disable nights that are already booked
+												return bookedDates.has(dateStr);
 											}}
 											fromYear={new Date().getFullYear()}
 											toYear={new Date().getFullYear() + 2}

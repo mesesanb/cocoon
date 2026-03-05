@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { format, parseISO, startOfDay } from "date-fns";
+import { addDays, format, parseISO, startOfDay } from "date-fns";
 import { motion } from "framer-motion";
 import {
 	AlertCircle,
@@ -135,20 +135,29 @@ export function CocoonDiscovery({
 			dateBegin,
 			dateEnd,
 			amenitiesSelected.join(","),
+			user?.userId,
 		],
 		queryFn: async () => {
 			const params = new URLSearchParams();
 			if (activeScenario) params.set("type", activeScenario);
 			if (activeQuery) params.set("query", activeQuery);
-			if (dateBegin) params.set("checkIn", dateBegin);
-			if (dateEnd) params.set("checkOut", dateEnd);
+			// Only send dates when both are set — API excludes booked properties only when both checkIn and checkOut are provided
+			if (dateBegin && dateEnd) {
+				params.set("checkIn", dateBegin);
+				params.set("checkOut", dateEnd);
+			}
 			if (amenitiesSelected.length > 0)
 				params.set("amenities", amenitiesSelected.join(","));
 			params.set("sort", sortBy);
+			// Pass userId to exclude properties the user has already booked
+			if (user?.userId) {
+				params.set("userId", user.userId);
+			}
 			const res = await fetch(`/api/stays?${params.toString()}`);
 			if (!res.ok) throw new Error(`Failed to fetch stays: ${res.status}`);
 			return res.json();
 		},
+		staleTime: 0, // Always refetch when dates/filters change to get accurate availability
 		retry: 2,
 		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
@@ -500,7 +509,12 @@ export function CocoonDiscovery({
 												captionLayout="dropdown"
 												selected={dateBegin ? parseISO(dateBegin) : undefined}
 												onSelect={(date) => {
-													setDateBegin(date ? format(date, "yyyy-MM-dd") : "");
+													const begin = date ? format(date, "yyyy-MM-dd") : "";
+													setDateBegin(begin);
+													// If user clears check-in, also clear check-out
+													if (!begin) {
+														setDateEnd("");
+													}
 													setOpenBeginStay(false);
 												}}
 												disabled={(date) => date < startOfDay(new Date())}
@@ -544,8 +558,9 @@ export function CocoonDiscovery({
 													setOpenEndStay(false);
 												}}
 												disabled={(date) => {
+													// End stay must be after Begin stay (checkOut > checkIn)
 													const min = dateBegin
-														? startOfDay(parseISO(dateBegin))
+														? addDays(startOfDay(parseISO(dateBegin)), 1)
 														: startOfDay(new Date());
 													return date < min;
 												}}
