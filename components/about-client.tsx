@@ -64,17 +64,19 @@ export function AboutClient() {
 						</Tooltip>
 					</div>
 					<nav className="flex items-center gap-1" aria-label="Main navigation">
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<Link
-									href="/our-cocoon"
-									className="glass-button rounded-full px-4 py-2 text-foreground text-xs tracking-wider cursor-pointer"
-								>
-									Our Cocoon
-								</Link>
-							</TooltipTrigger>
-							<TooltipContent side="bottom">Our bookings</TooltipContent>
-						</Tooltip>
+						{user && (
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Link
+										href="/our-cocoon"
+										className="glass-button rounded-full px-4 py-2 text-foreground text-xs tracking-wider cursor-pointer"
+									>
+										Our Cocoon
+									</Link>
+								</TooltipTrigger>
+								<TooltipContent side="bottom">Our bookings</TooltipContent>
+							</Tooltip>
+						)}
 						{user ? (
 							<Tooltip>
 								<TooltipTrigger asChild>

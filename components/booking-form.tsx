@@ -27,6 +27,12 @@ interface BookingFormProps {
 	onClose: () => void;
 }
 
+interface BookingErrorResponse {
+	error: string;
+	conflictDates?: Array<{ checkIn: string; checkOut: string }>;
+	message?: string;
+}
+
 export function BookingForm({ stay, onClose }: BookingFormProps) {
 	const baseId = useId();
 	const { user } = useAuth();
@@ -35,6 +41,11 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 	const [checkOut, setCheckOut] = useState("");
 	const [step, setStep] = useState<"form" | "processing" | "confirmed">("form");
 	const [booking, setBooking] = useState<Booking | null>(null);
+	const [bookingError, setBookingError] = useState<BookingErrorResponse | null>(
+		null,
+	);
+	const [checkInOpen, setCheckInOpen] = useState(false);
+	const [checkOutOpen, setCheckOutOpen] = useState(false);
 	const queryClient = useQueryClient();
 	const userId = user?.userId;
 
@@ -46,6 +57,39 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 
 	const nights = checkIn && checkOut ? calculateNights(checkIn, checkOut) : 0;
 	const totalPrice = nights * stay.pricePerNight;
+
+	// Fetch all bookings for this stay to show disabled dates
+	const { data: allBookings } = useQuery<Booking[]>({
+		queryKey: ["stay-bookings", stay.id],
+		queryFn: async () => {
+			const res = await fetch(`/api/bookings?stayId=${stay.id}`);
+			if (!res.ok) return [];
+			const data = await res.json();
+			// Filter to only confirmed/pending bookings for this stay
+			return Array.isArray(data)
+				? data.filter(
+						(b) =>
+							b.stayId === stay.id &&
+							(b.status === "confirmed" || b.status === "pending"),
+					)
+				: [];
+		},
+		retry: 1,
+		retryDelay: 500,
+	});
+
+	// Calculate booked dates set for disabled calendar dates
+	const bookedDates = new Set<string>();
+	if (allBookings) {
+		for (const booking of allBookings) {
+			const current = new Date(booking.checkIn);
+			const end = new Date(booking.checkOut);
+			while (current < end) {
+				bookedDates.add(format(current, "yyyy-MM-dd"));
+				current.setDate(current.getDate() + 1);
+			}
+		}
+	}
 
 	// Check availability when dates change
 	const { data: availability, isLoading: checkingAvailability } =
@@ -77,26 +121,37 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 				}),
 			});
 			if (!res.ok) {
+				const errorData = await res.json().catch(() => ({}));
 				logger.error("Booking submission failed", {
 					status: res.status,
 					userId,
 					stayId: stay.id,
+					error: errorData,
 				});
-				throw new Error(`Booking failed: ${res.status}`);
+				throw { status: res.status, data: errorData };
 			}
 			return res.json();
 		},
 		onMutate: () => {
 			setStep("processing");
+			setBookingError(null);
 		},
 		onSuccess: (data: Booking) => {
 			setBooking(data);
 			setStep("confirmed");
 			queryClient.invalidateQueries({ queryKey: ["bookings"] });
 			queryClient.invalidateQueries({ queryKey: ["availability", stay.id] });
+			queryClient.invalidateQueries({ queryKey: ["stay-bookings", stay.id] });
 		},
-		onError: (error: Error) => {
-			logger.error("Booking mutation error", { error: error.message });
+		onError: (error: unknown) => {
+			const err = error as { status: number; data: BookingErrorResponse };
+			logger.error("Booking mutation error", {
+				status: err.status,
+				error: err.data,
+			});
+			setBookingError(
+				err.data || { error: "Booking failed. Please try again." },
+			);
 			setStep("form");
 		},
 	});
@@ -112,6 +167,10 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 
 	const canBook =
 		nights > 0 && availability?.available && !checkingAvailability;
+
+	const hasBookingError = bookingError && bookingMutation.isError;
+	const hasConflictError =
+		bookingError?.conflictDates && bookingError.conflictDates.length > 0;
 
 	return (
 		<div className="flex flex-col gap-4">
@@ -160,7 +219,7 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 								>
 									Check in
 								</label>
-								<Popover>
+								<Popover open={checkInOpen} onOpenChange={setCheckInOpen}>
 									<PopoverTrigger asChild>
 										<button
 											id={`${baseId}-checkin`}
@@ -181,9 +240,10 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 											mode="single"
 											captionLayout="dropdown"
 											selected={checkIn ? parseISO(checkIn) : undefined}
-											onSelect={(date) =>
-												setCheckIn(date ? format(date, "yyyy-MM-dd") : "")
-											}
+											onSelect={(date) => {
+												setCheckIn(date ? format(date, "yyyy-MM-dd") : "");
+												setCheckInOpen(false);
+											}}
 											disabled={(date) => date < startOfDay(new Date())}
 											fromYear={new Date().getFullYear()}
 											toYear={new Date().getFullYear() + 2}
@@ -208,7 +268,7 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 								>
 									Check out
 								</label>
-								<Popover>
+								<Popover open={checkOutOpen} onOpenChange={setCheckOutOpen}>
 									<PopoverTrigger asChild>
 										<button
 											id={`${baseId}-checkout`}
@@ -229,9 +289,10 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 											mode="single"
 											captionLayout="dropdown"
 											selected={checkOut ? parseISO(checkOut) : undefined}
-											onSelect={(date) =>
-												setCheckOut(date ? format(date, "yyyy-MM-dd") : "")
-											}
+											onSelect={(date) => {
+												setCheckOut(date ? format(date, "yyyy-MM-dd") : "");
+												setCheckOutOpen(false);
+											}}
 											disabled={(date) => {
 												const min = checkIn
 													? startOfDay(parseISO(checkIn))
@@ -255,6 +316,30 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 								</Popover>
 							</div>
 						</div>
+
+						{/* Show unavailable date ranges */}
+						{allBookings && allBookings.length > 0 && (
+							<motion.div
+								initial={{ opacity: 0, height: 0 }}
+								animate={{ opacity: 1, height: "auto" }}
+								className="text-muted-foreground text-xs space-y-1 bg-muted/30 rounded-lg px-3 py-2"
+							>
+								<p className="font-medium text-foreground/70">
+									Unavailable dates:
+								</p>
+								<div className="flex flex-col gap-1">
+									{allBookings.map((booking) => (
+										<span
+											key={`${booking.confirmationId}`}
+											className="text-[10px]"
+										>
+											{format(parseISO(booking.checkIn), "MMM d")} –{" "}
+											{format(parseISO(booking.checkOut), "MMM d, yyyy")}
+										</span>
+									))}
+								</div>
+							</motion.div>
+						)}
 
 						{/* Availability status */}
 						{nights > 0 && (
@@ -281,15 +366,29 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 									</div>
 								) : null}
 
-								{bookingMutation.isError && (
-									<div className="flex items-start gap-2 text-red-600/90 text-xs bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
-										<AlertCircle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
-										<div className="flex-1">
-											<p className="font-medium">
-												{bookingMutation.error?.message ||
-													"Booking failed. Please try again."}
-											</p>
+								{hasBookingError && (
+									<div className="flex items-start gap-2 text-red-600/90 text-xs bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2 flex-col gap-2">
+										<div className="flex items-start gap-2">
+											<AlertCircle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
+											<div className="flex-1">
+												<p className="font-medium">
+													{bookingError.message ||
+														bookingError.error ||
+														"Booking failed. Please try again."}
+												</p>
+											</div>
 										</div>
+										{hasConflictError && (
+											<div className="text-[10px] text-red-500/70 bg-red-500/5 rounded px-2 py-1 ml-5">
+												<p className="font-medium mb-1">Conflicting dates:</p>
+												{bookingError.conflictDates?.map((conflict) => (
+													<p key={`${conflict.checkIn}-${conflict.checkOut}`}>
+														{format(parseISO(conflict.checkIn), "MMM d")} –{" "}
+														{format(parseISO(conflict.checkOut), "MMM d")}
+													</p>
+												))}
+											</div>
+										)}
 									</div>
 								)}
 

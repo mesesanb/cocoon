@@ -7,8 +7,10 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useAuth } from "./auth-context";
 
 export function CocoonFooter() {
+	const { user } = useAuth();
 	return (
 		<motion.footer
 			initial={{ opacity: 0 }}
@@ -51,17 +53,19 @@ export function CocoonFooter() {
 								</TooltipTrigger>
 								<TooltipContent side="top">Discover retreats</TooltipContent>
 							</Tooltip>
-							<Tooltip>
-								<TooltipTrigger asChild>
-									<Link
-										href="/our-cocoon"
-										className="text-muted-foreground text-xs tracking-wider hover:text-foreground transition-colors cursor-pointer"
-									>
-										Our Cocoon
-									</Link>
-								</TooltipTrigger>
-								<TooltipContent side="top">Our bookings</TooltipContent>
-							</Tooltip>
+							{user && (
+								<Tooltip>
+									<TooltipTrigger asChild>
+										<Link
+											href="/our-cocoon"
+											className="text-muted-foreground text-xs tracking-wider hover:text-foreground transition-colors cursor-pointer"
+										>
+											Our Cocoon
+										</Link>
+									</TooltipTrigger>
+									<TooltipContent side="top">Our bookings</TooltipContent>
+								</Tooltip>
+							)}
 							<Tooltip>
 								<TooltipTrigger asChild>
 									<Link
