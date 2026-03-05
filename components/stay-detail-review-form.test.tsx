@@ -74,3 +74,7 @@ describe("ReviewForm UI validation", () => {
 		).toBeInTheDocument();
 	});
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> main

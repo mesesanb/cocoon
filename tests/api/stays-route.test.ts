@@ -22,7 +22,13 @@ describe("GET /api/stays", () => {
 	});
 
 	it("filters by type when type param is provided", async () => {
+<<<<<<< HEAD
 		const req = new NextRequest("http://localhost:3000/api/stays?type=FOREST");
+=======
+		const req = new NextRequest(
+			"http://localhost:3000/api/stays?type=FOREST",
+		);
+>>>>>>> main
 		const res = await GET(req);
 		expect(res.status).toBe(200);
 		const data = await res.json();
