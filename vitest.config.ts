@@ -1,11 +1,6 @@
 import path from "node:path";
-<<<<<<< HEAD
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
-=======
-import { defineConfig } from "vitest/config";
-import react from "@vitejs/plugin-react";
->>>>>>> main
 
 export default defineConfig({
 	plugins: [react()],
