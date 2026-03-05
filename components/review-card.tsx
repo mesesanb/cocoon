@@ -18,9 +18,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
 		<div className="glass rounded-2xl p-5">
 			<div className="flex items-start justify-between mb-3">
 				<div>
-					<p className="text-foreground text-sm font-medium">
-						{displayName}
-					</p>
+					<p className="text-foreground text-sm font-medium">{displayName}</p>
 					<p className="text-muted-foreground/50 text-[10px] mt-0.5">
 						{formatDate(review.date)}
 					</p>

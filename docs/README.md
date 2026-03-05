@@ -16,6 +16,7 @@
 | [phase-1-setup.md](phase-1-setup.md) | Phase 1: Root `dev` script, TS/lint/deps hygiene, commitlint + husky |
 | [phase-2-api.md](phase-2-api.md) | Phase 2: API Polish — validation, observability, booking conflicts |
 | [phase-2-5-frontend-errors.md](phase-2-5-frontend-errors.md) | **Phase 2.5 (CRITICAL)**: Frontend error handling, type safety, observability — MUST COMPLETE BEFORE PHASE 3 |
+| [phase-2-6-error-handling-and-date-picker.md](phase-2-6-error-handling-and-date-picker.md) | Phase 2.6: 404/409 UX, smart date picker |
 | [phase-3-search.md](phase-3-search.md) | Phase 3: Search, availability & reviews polishing — keeps discovery, booking dates, and review names in sync |
 | [phase-8-tests.md](phase-8-tests.md) | Phase 8: Tests (Vitest, RTL, API route tests) and CI (GitHub Actions — lint, test, build) |
 

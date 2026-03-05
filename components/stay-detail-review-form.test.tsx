@@ -74,4 +74,3 @@ describe("ReviewForm UI validation", () => {
 		).toBeInTheDocument();
 	});
 });
-
