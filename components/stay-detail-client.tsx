@@ -98,10 +98,6 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 
 	const [reviewError, setReviewError] = useState<string | null>(null);
 
-	// Debug: inspect raw reviews payload coming from the API
-	// eslint-disable-next-line no-console
-	console.log("StayDetailClient: raw reviewsData", reviewsData);
-
 	const addReviewMutation = useMutation<
 		Review,
 		Error,
@@ -132,40 +128,10 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 			}
 			return res.json();
 		},
-		onSuccess: (data, variables) => {
+		onSuccess: () => {
 			setReviewError(null);
-			// Ensure coupleName is present on the new review, even if the backend
-			// returned it as an empty string.
-			const hydratedReview: Review = {
-				...data,
-				coupleName: data.coupleName || variables.coupleName,
-			};
-
-			// Debug: inspect review result from API and hydrated version
-			// eslint-disable-next-line no-console
-			console.log("StayDetailClient: addReview success", {
-				apiReview: data,
-				variables,
-				hydratedReview,
-			});
-
-			queryClient.setQueryData<
-				{ reviews: Review[]; total: number; page: number; totalPages: number } | undefined
-			>(["reviews", stayId], (current) => {
-				if (!current) {
-					return {
-						reviews: [hydratedReview],
-						total: 1,
-						page: 1,
-						totalPages: 1,
-					};
-				}
-				return {
-					...current,
-					reviews: [hydratedReview, ...current.reviews],
-					total: current.total + 1,
-				};
-			});
+			// Refetch reviews so the newly added review appears immediately
+			queryClient.invalidateQueries({ queryKey: ["reviews", stayId] });
 		},
 		onError: (error: Error) => {
 			logger.error("Review mutation error", { error: error.message });
@@ -723,7 +689,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 	);
 }
 
-function ReviewForm({
+export function ReviewForm({
 	onSubmit,
 	isSubmitting,
 	defaultCoupleName,

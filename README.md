@@ -117,6 +117,10 @@ App: **http://localhost:3000** (or 3001 if 3000 is in use). No separate API proc
 | `pnpm build` | Production build |
 | `pnpm start` | Run production build |
 | `pnpm lint` | Lint (Biome) |
+| `pnpm test` | Run tests once (Vitest) — used in CI |
+| `pnpm test:watch` | Run tests in watch mode |
+
+**Testing and CI**: Unit tests (validators, date utils), component tests (e.g. ReviewCard), and API route tests (GET /api/stays) run with Vitest. GitHub Actions runs lint, test, and build on push/PR to `main` and `develop`. See [docs/phase-8-tests.md](docs/phase-8-tests.md).
 
 ---
 
@@ -152,12 +156,15 @@ Use `.env.local` for secrets; do not commit. No required env for Phase 0 run.
 |----------|---------|
 | [docs/README.md](docs/README.md) | **Start here**: index of all docs and where to look |
 | [docs/phase-0-ui.md](docs/phase-0-ui.md) | Phase 0 breakdown (v0 UI, data, gateway, API, lint) |
+| [docs/phase-1-setup.md](docs/phase-1-setup.md) | Phase 1 doc (root dev, hygiene, commitlint) |
+| [docs/phase-2-api.md](docs/phase-2-api.md) | Phase 2: API polish (validation, observability) |
+| [docs/phase-3-search.md](docs/phase-3-search.md) | Phase 3: Search, availability & reviews polishing |
+| [docs/phase-8-tests.md](docs/phase-8-tests.md) | Phase 8: Tests (Vitest, RTL, API) and CI (GitHub Actions) |
 | [plans/TODOS.md](plans/TODOS.md) | Implementation phases and checklist (assessment-aligned) |
 | [plans/Initial_Planning.md](plans/Initial_Planning.md) | Product concept, stack, architecture, API, data models |
 | [plans/v0_prompt.md](plans/v0_prompt.md) | v0.app UI spec (glassmorphism, narrative flow, StayCard) |
 | [plans/Agent_Prompts.md](plans/Agent_Prompts.md) | Per-phase agent prompts and constraints |
 | [plans/phase-1-setup.md](plans/phase-1-setup.md) | Phase 1 setup plan |
-| [docs/phase-1-setup.md](docs/phase-1-setup.md) | Phase 1 doc (root dev, hygiene, commitlint) |
 
 ---
 
