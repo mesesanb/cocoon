@@ -9,6 +9,15 @@ import { calculateNights } from "@/utils/dates";
 const bookings = bookingsData as Booking[];
 const stays = staysData as Stay[];
 
+interface BookingPayload {
+	stayId: string;
+	userId: string;
+	coupleName?: string;
+	checkIn: string;
+	checkOut: string;
+	guests?: number;
+}
+
 export async function GET(request: NextRequest) {
 	const start = Date.now();
 	const path = request.nextUrl.pathname;
@@ -55,13 +64,8 @@ export async function POST(request: NextRequest) {
 		return res;
 	}
 
-	const { stayId, userId, coupleName, checkIn, checkOut } = body as {
-		stayId: string;
-		userId: string;
-		coupleName?: string;
-		checkIn: string;
-		checkOut: string;
-	};
+	const payload = body as BookingPayload;
+	const { stayId, userId, coupleName, checkIn, checkOut, guests } = payload;
 
 	const stay = stays.find((s) => s.id === stayId);
 
@@ -81,7 +85,7 @@ export async function POST(request: NextRequest) {
 		coupleName: coupleName?.trim() || "",
 		checkIn,
 		checkOut,
-		guests: (body as { guests?: number }).guests || 2,
+		guests: guests ?? 2,
 		totalPrice,
 		currency: stay.currency,
 		status: "confirmed",
