@@ -135,16 +135,16 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
 			{ email: string; couple: string }
 		> = {
 			google: {
-				email: "user.google." + Date.now() + "@oauth.cocoon",
-				couple: "Google Couple " + Math.random().toString(36).substring(7),
+				email: `user.google.${Date.now()}@oauth.cocoon`,
+				couple: `Google Couple ${Math.random().toString(36).substring(7)}`,
 			},
 			apple: {
-				email: "user.apple." + Date.now() + "@oauth.cocoon",
-				couple: "Apple Couple " + Math.random().toString(36).substring(7),
+				email: `user.apple.${Date.now()}@oauth.cocoon`,
+				couple: `Apple Couple ${Math.random().toString(36).substring(7)}`,
 			},
 			x: {
-				email: "user.x." + Date.now() + "@oauth.cocoon",
-				couple: "X Couple " + Math.random().toString(36).substring(7),
+				email: `user.x.${Date.now()}@oauth.cocoon`,
+				couple: `X Couple ${Math.random().toString(36).substring(7)}`,
 			},
 		};
 

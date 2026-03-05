@@ -40,14 +40,12 @@ export async function GET(request: NextRequest) {
 
 	let filtered = bookings;
 
-	if (userId && userId.trim()) {
+	if (userId?.trim()) {
 		const userIdNorm = userId.trim().toLowerCase();
-		filtered = filtered.filter(
-			(b) => b.userId.toLowerCase() === userIdNorm,
-		);
+		filtered = filtered.filter((b) => b.userId.toLowerCase() === userIdNorm);
 	}
 
-	if (stayId && stayId.trim()) {
+	if (stayId?.trim()) {
 		const stayIdNorm = stayId.trim();
 		// For stay-level availability, only return active bookings
 		filtered = filtered.filter(

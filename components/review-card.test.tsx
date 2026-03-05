@@ -33,16 +33,12 @@ describe("ReviewCard", () => {
 	});
 
 	it("shows fallback name when coupleName is empty", () => {
-		render(
-			<ReviewCard review={{ ...baseReview, coupleName: "" }} />,
-		);
+		render(<ReviewCard review={{ ...baseReview, coupleName: "" }} />);
 		expect(screen.getByText("Cocoon couple")).toBeInTheDocument();
 	});
 
 	it("shows fallback name when coupleName is whitespace", () => {
-		render(
-			<ReviewCard review={{ ...baseReview, coupleName: "   " }} />,
-		);
+		render(<ReviewCard review={{ ...baseReview, coupleName: "   " }} />);
 		expect(screen.getByText("Cocoon couple")).toBeInTheDocument();
 	});
 });

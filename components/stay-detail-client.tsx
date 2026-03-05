@@ -117,8 +117,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 			if (!res.ok) {
 				const error = await res.json().catch(() => ({}));
 				const message =
-					(error && (error.error || error.message)) ||
-					`Failed: ${res.status}`;
+					(error && (error.error || error.message)) || `Failed: ${res.status}`;
 				logger.error("Review submission failed", {
 					stayId,
 					status: res.status,
@@ -249,7 +248,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 			// Ensure a visible name for the current user's reviews even if the
 			// backend didn't persist coupleName correctly.
 			const fallbackName =
-				user && review.userId === user.userId ? user.coupleName ?? "" : "";
+				user && review.userId === user.userId ? (user.coupleName ?? "") : "";
 			return {
 				...review,
 				coupleName: review.coupleName?.trim()
@@ -604,7 +603,9 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 									onSubmit={(review) => {
 										// Always send a non-empty couple name: form value or current user's name
 										const name =
-											review.coupleName?.trim() || user?.coupleName?.trim() || "";
+											review.coupleName?.trim() ||
+											user?.coupleName?.trim() ||
+											"";
 										addReviewMutation.mutate({
 											...review,
 											coupleName: name,
@@ -763,7 +764,8 @@ export function ReviewForm({
 				value={coupleName}
 				onChange={(e) => {
 					setCoupleName(e.target.value);
-					if (localError === "Please enter your couple name.") setLocalError(null);
+					if (localError === "Please enter your couple name.")
+						setLocalError(null);
 				}}
 				placeholder="Your couple name"
 				className="glass-input rounded-xl px-3.5 py-2.5 text-foreground text-sm placeholder:text-muted-foreground/40 outline-none"
