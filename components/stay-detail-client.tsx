@@ -19,7 +19,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	Tooltip,
 	TooltipContent,
@@ -96,11 +96,18 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
 
+	const [reviewError, setReviewError] = useState<string | null>(null);
+
+	// Debug: inspect raw reviews payload coming from the API
+	// eslint-disable-next-line no-console
+	console.log("StayDetailClient: raw reviewsData", reviewsData);
+
 	const addReviewMutation = useMutation<
 		Review,
 		Error,
 		{
 			userId: string;
+			coupleName: string;
 			rating: number;
 			text: string;
 		}
@@ -113,20 +120,56 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 			});
 			if (!res.ok) {
 				const error = await res.json().catch(() => ({}));
+				const message =
+					(error && (error.error || error.message)) ||
+					`Failed: ${res.status}`;
 				logger.error("Review submission failed", {
 					stayId,
 					status: res.status,
 					error,
 				});
-				throw new Error(error.message || `Failed: ${res.status}`);
+				throw new Error(message);
 			}
 			return res.json();
 		},
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["reviews", stayId] });
+		onSuccess: (data, variables) => {
+			setReviewError(null);
+			// Ensure coupleName is present on the new review, even if the backend
+			// returned it as an empty string.
+			const hydratedReview: Review = {
+				...data,
+				coupleName: data.coupleName || variables.coupleName,
+			};
+
+			// Debug: inspect review result from API and hydrated version
+			// eslint-disable-next-line no-console
+			console.log("StayDetailClient: addReview success", {
+				apiReview: data,
+				variables,
+				hydratedReview,
+			});
+
+			queryClient.setQueryData<
+				{ reviews: Review[]; total: number; page: number; totalPages: number } | undefined
+			>(["reviews", stayId], (current) => {
+				if (!current) {
+					return {
+						reviews: [hydratedReview],
+						total: 1,
+						page: 1,
+						totalPages: 1,
+					};
+				}
+				return {
+					...current,
+					reviews: [hydratedReview, ...current.reviews],
+					total: current.total + 1,
+				};
+			});
 		},
 		onError: (error: Error) => {
 			logger.error("Review mutation error", { error: error.message });
+			setReviewError(error.message || "Review failed. Please try again.");
 		},
 	});
 
@@ -235,7 +278,19 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 		);
 	}
 
-	const reviews = reviewsData?.reviews || [];
+	const reviews: Review[] =
+		reviewsData?.reviews.map((review) => {
+			// Ensure a visible name for the current user's reviews even if the
+			// backend didn't persist coupleName correctly.
+			const fallbackName =
+				user && review.userId === user.userId ? user.coupleName ?? "" : "";
+			return {
+				...review,
+				coupleName: review.coupleName?.trim()
+					? review.coupleName
+					: fallbackName,
+			};
+		}) || [];
 
 	// Build media array: video first (if exists), then images
 	const mediaItems: { type: "video" | "image"; src: string }[] = [];
@@ -580,10 +635,19 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 									Share Your Resonance
 								</h3>
 								<ReviewForm
-									onSubmit={(review) => addReviewMutation.mutate(review)}
+									onSubmit={(review) => {
+										// Always send a non-empty couple name: form value or current user's name
+										const name =
+											review.coupleName?.trim() || user?.coupleName?.trim() || "";
+										addReviewMutation.mutate({
+											...review,
+											coupleName: name,
+										});
+									}}
 									isSubmitting={addReviewMutation.isPending}
 									defaultCoupleName={user?.coupleName}
 									userId={user?.userId}
+									errorMessage={reviewError ?? undefined}
 								/>
 							</div>
 						</motion.div>
@@ -664,22 +728,65 @@ function ReviewForm({
 	isSubmitting,
 	defaultCoupleName,
 	userId,
+	errorMessage,
 }: {
-	onSubmit: (review: { userId: string; rating: number; text: string }) => void;
+	onSubmit: (review: {
+		userId: string;
+		coupleName: string;
+		rating: number;
+		text: string;
+	}) => void;
 	isSubmitting: boolean;
 	defaultCoupleName?: string;
 	userId?: string;
+	errorMessage?: string;
 }) {
 	const [coupleName, setCoupleName] = useState(defaultCoupleName || "");
 	const [rating, setRating] = useState(5);
 	const [text, setText] = useState("");
+	const [localError, setLocalError] = useState<string | null>(null);
+
+	// Keep couple name in sync when user loads (e.g. after mount)
+	useEffect(() => {
+		if (defaultCoupleName?.trim()) {
+			setCoupleName(defaultCoupleName.trim());
+		}
+	}, [defaultCoupleName]);
 
 	const isLoggedIn = !!userId;
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!text.trim() || !userId) return;
-		onSubmit({ userId, rating, text });
+		if (!userId) return;
+
+		const trimmedName = coupleName.trim();
+		if (!trimmedName) {
+			setLocalError("Please enter your couple name.");
+			return;
+		}
+
+		const trimmedText = text.trim();
+		if (!trimmedText) {
+			setLocalError("Please share a few words about your resonance.");
+			return;
+		}
+		if (trimmedText.length < 10) {
+			setLocalError("Please write at least 10 characters.");
+			return;
+		}
+
+		setLocalError(null);
+
+		const payload = {
+			userId,
+			coupleName: trimmedName,
+			rating,
+			text: trimmedText,
+		};
+		// Debug: inspect payload sent from the form
+		// eslint-disable-next-line no-console
+		console.log("ReviewForm: submit payload", payload);
+		onSubmit(payload);
 		setText("");
 	};
 
@@ -688,11 +795,13 @@ function ReviewForm({
 			<input
 				type="text"
 				value={coupleName}
-				onChange={(e) => setCoupleName(e.target.value)}
+				onChange={(e) => {
+					setCoupleName(e.target.value);
+					if (localError === "Please enter your couple name.") setLocalError(null);
+				}}
 				placeholder="Your couple name"
 				className="glass-input rounded-xl px-3.5 py-2.5 text-foreground text-sm placeholder:text-muted-foreground/40 outline-none"
 				disabled={!isLoggedIn}
-				required
 			/>
 			<div className="flex items-center gap-0.5">
 				{[1, 2, 3, 4, 5].map((star) => (
@@ -711,13 +820,23 @@ function ReviewForm({
 			</div>
 			<textarea
 				value={text}
-				onChange={(e) => setText(e.target.value)}
+				onChange={(e) => {
+					const value = e.target.value;
+					setText(value);
+					if (localError && value.trim().length >= 10) {
+						setLocalError(null);
+					}
+				}}
 				placeholder="Share your resonance..."
 				rows={3}
 				className="glass-input rounded-xl px-3.5 py-2.5 text-foreground text-sm placeholder:text-muted-foreground/40 outline-none resize-none disabled:opacity-50"
 				disabled={!isLoggedIn}
-				required
 			/>
+			{(localError || errorMessage) && (
+				<p className="text-[11px] text-red-600/90">
+					{localError || errorMessage}
+				</p>
+			)}
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<button

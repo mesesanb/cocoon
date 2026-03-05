@@ -8,7 +8,7 @@ const reviews = reviewsData as Review[];
 
 interface ReviewPayload {
 	userId: string;
-	coupleName?: string;
+	coupleName: string;
 	rating: number;
 	text: string;
 	resonanceScore?: number;
@@ -70,11 +70,23 @@ export async function POST(
 	const payload = body as ReviewPayload;
 	const { userId, coupleName, rating, text, resonanceScore } = payload;
 
+	let trimmedCoupleName = coupleName.trim();
+	// Fallback: if coupleName somehow arrives empty, try to infer it from
+	// existing reviews for this user, so the UI always has a displayable name.
+	if (!trimmedCoupleName) {
+		const existingForUser = reviews.find((r) => r.userId === userId.trim());
+		if (existingForUser?.coupleName?.trim()) {
+			trimmedCoupleName = existingForUser.coupleName.trim();
+		} else {
+			trimmedCoupleName = "Cocoon couple";
+		}
+	}
+
 	const newReview: Review = {
 		id: `rev-${Date.now()}`,
 		stayId: id,
 		userId: userId.trim(),
-		coupleName: coupleName?.trim() || "",
+		coupleName: trimmedCoupleName,
 		rating,
 		text: text.trim(),
 		date: new Date().toISOString().split("T")[0],

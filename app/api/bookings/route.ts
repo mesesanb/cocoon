@@ -22,19 +22,41 @@ export async function GET(request: NextRequest) {
 	const start = Date.now();
 	const path = request.nextUrl.pathname;
 
-	const userId = request.nextUrl.searchParams.get("userId");
-	if (!userId || !userId.trim()) {
+	const searchParams = request.nextUrl.searchParams;
+	const userId = searchParams.get("userId");
+	const stayId = searchParams.get("stayId");
+
+	// Support two read patterns:
+	// - /api/bookings?userId=...  → bookings for a specific user
+	// - /api/bookings?stayId=...  → bookings for a specific stay (for availability/date pickers)
+	if ((!userId || !userId.trim()) && (!stayId || !stayId.trim())) {
 		const res = NextResponse.json(
-			{ error: "userId query parameter is required" },
+			{ error: "userId or stayId query parameter is required" },
 			{ status: 400 },
 		);
 		logRoute("GET", path, 400, Date.now() - start);
 		return res;
 	}
 
-	const filtered = bookings.filter(
-		(b) => b.userId.toLowerCase() === userId.trim().toLowerCase(),
-	);
+	let filtered = bookings;
+
+	if (userId && userId.trim()) {
+		const userIdNorm = userId.trim().toLowerCase();
+		filtered = filtered.filter(
+			(b) => b.userId.toLowerCase() === userIdNorm,
+		);
+	}
+
+	if (stayId && stayId.trim()) {
+		const stayIdNorm = stayId.trim();
+		// For stay-level availability, only return active bookings
+		filtered = filtered.filter(
+			(b) =>
+				b.stayId === stayIdNorm &&
+				(b.status === "confirmed" || b.status === "pending"),
+		);
+	}
+
 	const res = NextResponse.json(filtered);
 	logRoute("GET", path, 200, Date.now() - start);
 	return res;

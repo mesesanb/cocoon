@@ -46,6 +46,9 @@ export function validateReviewBody(body: unknown): string | null {
 	}
 	const b = body as Record<string, unknown>;
 
+	if (!b.coupleName || typeof b.coupleName !== "string" || !b.coupleName.trim()) {
+		return "coupleName is required and must be a non-empty string";
+	}
 	if (!b.userId || typeof b.userId !== "string" || !b.userId.trim()) {
 		return "userId is required and must be a non-empty string";
 	}

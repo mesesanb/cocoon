@@ -100,12 +100,12 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 3.1 | Configure TanStack Query provider and typed API client (fetch wrappers for Next.js Route Handlers) | ⬜ | **Depends on 2.5.1** |
-| 3.2 | Create stays API hooks (useStays, useStay) | ⬜ | **Depends on 2.5.1** — must include error handling |
-| 3.3 | Build Search page: search bar, type filters (CITY/FOREST/MOUNTAINS/SEA), sort | ⬜ | **Depends on 2.5.3** — safe type casting |
-| 3.4 | Build StayCard component (image, name, type, rating, price) | ⬜ | **Depends on 2.5.3** — avgRating field |
-| 3.5 | Results grid with loading + empty + error states | ⬜ | **Depends on 2.5.1** — error UI |
-| 3.6 | Document Phase 3 in `docs/phase-3-search.md` | ⬜ | |
+| 3.1 | Configure TanStack Query provider and typed API client (fetch wrappers for Next.js Route Handlers) | ⬜ | Existing React Query usage kept; no new infra needed in this branch |
+| 3.2 | Create stays API hooks (useStays, useStay) | ⬜ | Discovery/detail continue to use inline `useQuery` — unchanged in this branch |
+| 3.3 | Build Search page: search bar, type filters (CITY/FOREST/MOUNTAINS/SEA), sort | ⬜ | Search UI already exists; this branch focused on availability/date correctness rather than new UI |
+| 3.4 | Build StayCard component (image, name, type, rating, price) | ⬜ | Stay cards unchanged in this branch |
+| 3.5 | Results grid with loading + empty + error states | ⬜ | Grid/error UX unchanged in this branch |
+| 3.6 | Document Phase 3 in `docs/phase-3-search.md` | ✅ | Added `docs/phase-3-search.md` describing search/availability/review polishing done in this branch |
 
 ---
 
@@ -130,10 +130,10 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 5.1 | Reviews section on stay details — list (paginated/sortable) | ⬜ | |
-| 5.2 | Add review form: rating (1–5), text, basic validation/moderation | ⬜ | |
-| 5.3 | POST review, invalidate query, show new review | ⬜ | |
-| 5.4 | Document Phase 5 in `docs/phase-5-reviews.md` | ⬜ | |
+| 5.1 | Reviews section on stay details — list (paginated/sortable) | ✅ | |
+| 5.2 | Add review form: rating (1–5), text, basic validation/moderation | ✅ | |
+| 5.3 | POST review, invalidate query, show new review | ✅ | |
+| 5.4 | Document Phase 5 in `docs/phase-5-reviews.md` |  | |
 
 ---
 
@@ -158,11 +158,11 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
 | 7.1 | Dark/Light theme toggle | ⬜ | |
-| 7.2 | Loading states (Skeleton, spinner) for async screens | ⬜ | |
-| 7.3 | Empty states (no results, etc.) | ⬜ | |
-| 7.4 | Error states (retry, toast) | ⏸ | **Moved to Phase 2.5** — CRITICAL blocker |
-| 7.5 | **Responsive (assessment NFR)**: Desktop + mobile; mobile drawer for filters | ⬜ | |
-| 7.6 | **Basic a11y (assessment NFR)**: Labels, keyboard nav, sensible focus | ⬜ | |
+| 7.2 | Loading states (Skeleton, spinner) for async screens | ✅ | |
+| 7.3 | Empty states (no results, etc.) | ✅ | |
+| 7.4 | Error states (retry, toast) | ⏸ | **Moved to Phase 2.5** — CRITICAL blocker | ✅
+| 7.5 | **Responsive (assessment NFR)**: Desktop + mobile; mobile drawer for filters | ✅| |
+| 7.6 | **Basic a11y (assessment NFR)**: Labels, keyboard nav, sensible focus | ✅ | |
 | 7.7 | Document Phase 7 in `docs/phase-7-polish.md` | ⬜ | |
 
 ---
