@@ -13,10 +13,10 @@ export async function GET(request: NextRequest) {
 	const start = Date.now();
 	const path = request.nextUrl.pathname;
 
-	const coupleName = request.nextUrl.searchParams.get("coupleName");
-	if (!coupleName || !coupleName.trim()) {
+	const userId = request.nextUrl.searchParams.get("userId");
+	if (!userId || !userId.trim()) {
 		const res = NextResponse.json(
-			{ error: "coupleName query parameter is required" },
+			{ error: "userId query parameter is required" },
 			{ status: 400 },
 		);
 		logRoute("GET", path, 400, Date.now() - start);
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
 	}
 
 	const filtered = bookings.filter(
-		(b) => b.coupleName.toLowerCase() === coupleName.trim().toLowerCase(),
+		(b) => b.userId.toLowerCase() === userId.trim().toLowerCase(),
 	);
 	const res = NextResponse.json(filtered);
 	logRoute("GET", path, 200, Date.now() - start);
@@ -55,9 +55,10 @@ export async function POST(request: NextRequest) {
 		return res;
 	}
 
-	const { stayId, coupleName, checkIn, checkOut } = body as {
+	const { stayId, userId, coupleName, checkIn, checkOut } = body as {
 		stayId: string;
-		coupleName: string;
+		userId: string;
+		coupleName?: string;
 		checkIn: string;
 		checkOut: string;
 	};
@@ -76,7 +77,8 @@ export async function POST(request: NextRequest) {
 	const newBooking: Booking = {
 		confirmationId: `CCN-${Date.now()}`,
 		stayId,
-		coupleName,
+		userId,
+		coupleName: coupleName?.trim() || "",
 		checkIn,
 		checkOut,
 		guests: (body as { guests?: number }).guests || 2,

@@ -9,6 +9,7 @@ import {
 } from "react";
 
 export interface User {
+	userId: string; // Unique identifier (UUID)
 	email: string;
 	coupleName: string;
 }
@@ -57,16 +58,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 				setUser(JSON.parse(stored));
 			} catch {
 				const defaultUser = {
+					userId: "user-kai-luna-001",
 					email: "kai.luna@cocoon.us",
-					coupleName: "Kai & Luna",
+					coupleName: "Kai and Luna",
 				};
 				setUser(defaultUser);
 				localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultUser));
 			}
 		} else {
 			const defaultUser = {
+				userId: "user-kai-luna-001",
 				email: "kai.luna@cocoon.us",
-				coupleName: "Kai & Luna",
+				coupleName: "Kai and Luna",
 			};
 			setUser(defaultUser);
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultUser));
@@ -95,7 +98,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 			.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
 			.join(" & ");
 
-		const newUser = { email, coupleName };
+		const newUser = {
+			userId: `user-${Date.now()}`,
+			email,
+			coupleName,
+		};
 		setUser(newUser);
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(newUser));
 		return { success: true };
@@ -120,7 +127,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 			return { success: false, error: "Please enter your couple name" };
 		}
 
-		const newUser = { email, coupleName: coupleName.trim() };
+		const newUser = {
+			userId: `user-${Date.now()}`,
+			email,
+			coupleName: coupleName.trim(),
+		};
 		setUser(newUser);
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(newUser));
 		return { success: true };

@@ -36,6 +36,7 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 	const [step, setStep] = useState<"form" | "processing" | "confirmed">("form");
 	const [booking, setBooking] = useState<Booking | null>(null);
 	const queryClient = useQueryClient();
+	const userId = user?.userId;
 
 	useEffect(() => {
 		if (user?.coupleName) {
@@ -69,7 +70,7 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
 					stayId: stay.id,
-					coupleName,
+					userId,
 					checkIn,
 					checkOut,
 					guests: 2,
@@ -78,7 +79,7 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 			if (!res.ok) {
 				logger.error("Booking submission failed", {
 					status: res.status,
-					coupleName,
+					userId,
 					stayId: stay.id,
 				});
 				throw new Error(`Booking failed: ${res.status}`);

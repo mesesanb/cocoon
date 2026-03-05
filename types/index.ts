@@ -28,6 +28,7 @@ export interface DateRange {
 export interface Review {
 	id: string;
 	stayId: string;
+	userId: string;
 	coupleName: string;
 	rating: number;
 	text: string;
@@ -38,6 +39,7 @@ export interface Review {
 export interface Booking {
 	confirmationId: string;
 	stayId: string;
+	userId: string;
 	coupleName: string;
 	checkIn: string;
 	checkOut: string;

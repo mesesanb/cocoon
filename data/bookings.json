@@ -2,7 +2,8 @@
 	{
 		"confirmationId": "CCN-2026-001",
 		"stayId": "stay-1",
-		"coupleName": "Kai & Luna",
+		"userId": "user-kai-luna-001",
+		"coupleName": "Kai and Luna",
 		"checkIn": "2025-11-25",
 		"checkOut": "2025-12-02",
 		"guests": 2,
@@ -14,7 +15,8 @@
 	{
 		"confirmationId": "CCN-2026-002",
 		"stayId": "stay-22",
-		"coupleName": "Kai & Luna",
+		"userId": "user-kai-luna-001",
+		"coupleName": "Kai and Luna",
 		"checkIn": "2026-04-10",
 		"checkOut": "2026-04-17",
 		"guests": 2,
@@ -26,7 +28,8 @@
 	{
 		"confirmationId": "CCN-2026-003",
 		"stayId": "stay-10",
-		"coupleName": "Kai & Luna",
+		"userId": "user-kai-luna-001",
+		"coupleName": "Kai and Luna",
 		"checkIn": "2026-01-05",
 		"checkOut": "2026-01-12",
 		"guests": 2,
@@ -38,7 +41,8 @@
 	{
 		"confirmationId": "CCN-2026-004",
 		"stayId": "stay-21",
-		"coupleName": "Kai & Luna",
+		"userId": "user-kai-luna-001",
+		"coupleName": "Kai and Luna",
 		"checkIn": "2025-10-10",
 		"checkOut": "2025-10-17",
 		"guests": 2,

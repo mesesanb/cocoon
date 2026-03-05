@@ -39,17 +39,19 @@ export function OurCocoonClient() {
 	const { user, signOut } = useAuth();
 	const [showAuthModal, setShowAuthModal] = useState(false);
 
+	const userId = user?.userId;
 	const coupleName = user?.coupleName || "Guest";
 
 	const { data: bookings = [] } = useQuery<Booking[], Error>({
-		queryKey: ["bookings", coupleName],
+		queryKey: ["bookings", userId],
 		queryFn: async () => {
 			const res = await fetch(
-				`/api/bookings?coupleName=${encodeURIComponent(coupleName)}`,
+				`/api/bookings?userId=${encodeURIComponent(userId || "")}`,
 			);
 			if (!res.ok) throw new Error(`Failed to fetch bookings: ${res.status}`);
 			return res.json();
 		},
+		enabled: !!userId,
 		retry: 2,
 		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
@@ -78,19 +80,17 @@ export function OurCocoonClient() {
 
 	const now = new Date().toISOString().split("T")[0];
 
-	// Filter user's reviews
-	const userReviews = allReviews.filter((r) => r.coupleName === coupleName);
+	// Filter user's reviews - use userId for verification
+	const userReviews = allReviews.filter((r) => r.userId === userId);
 
 	const pastBookings = bookings
-		.filter((b) => b.coupleName === coupleName && b.checkOut < now)
+		.filter((b) => b.userId === userId && b.checkOut < now)
 		.sort((a, b) => b.checkOut.localeCompare(a.checkOut));
 
 	const upcomingBookings = bookings
 		.filter(
 			(b) =>
-				b.coupleName === coupleName &&
-				b.checkIn >= now &&
-				b.status === "confirmed",
+				b.userId === userId && b.checkIn >= now && b.status === "confirmed",
 		)
 		.sort((a, b) => a.checkIn.localeCompare(b.checkIn));
 

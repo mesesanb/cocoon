@@ -90,7 +90,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 		Review,
 		Error,
 		{
-			coupleName: string;
+			userId: string;
 			rating: number;
 			text: string;
 		}
@@ -509,6 +509,7 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 									onSubmit={(review) => addReviewMutation.mutate(review)}
 									isSubmitting={addReviewMutation.isPending}
 									defaultCoupleName={user?.coupleName}
+									userId={user?.userId}
 								/>
 							</div>
 						</motion.div>
@@ -588,14 +589,12 @@ function ReviewForm({
 	onSubmit,
 	isSubmitting,
 	defaultCoupleName,
+	userId,
 }: {
-	onSubmit: (review: {
-		coupleName: string;
-		rating: number;
-		text: string;
-	}) => void;
+	onSubmit: (review: { userId: string; rating: number; text: string }) => void;
 	isSubmitting: boolean;
 	defaultCoupleName?: string;
+	userId?: string;
 }) {
 	const [coupleName, setCoupleName] = useState(defaultCoupleName || "");
 	const [rating, setRating] = useState(5);
@@ -603,9 +602,8 @@ function ReviewForm({
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!coupleName.trim() || !text.trim()) return;
-		onSubmit({ coupleName, rating, text });
-		setCoupleName(defaultCoupleName || "");
+		if (!text.trim() || !userId) return;
+		onSubmit({ userId, rating, text });
 		setText("");
 	};
 

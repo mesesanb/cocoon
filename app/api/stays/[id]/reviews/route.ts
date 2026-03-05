@@ -60,7 +60,8 @@ export async function POST(
 	}
 
 	const b = body as {
-		coupleName: string;
+		userId: string;
+		coupleName?: string;
 		rating: number;
 		text: string;
 		resonanceScore?: number;
@@ -69,7 +70,8 @@ export async function POST(
 	const newReview: Review = {
 		id: `rev-${Date.now()}`,
 		stayId: id,
-		coupleName: b.coupleName.trim(),
+		userId: b.userId.trim(),
+		coupleName: b.coupleName?.trim() || "",
 		rating: b.rating,
 		text: b.text.trim(),
 		date: new Date().toISOString().split("T")[0],
