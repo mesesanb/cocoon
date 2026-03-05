@@ -25,6 +25,7 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { logger } from "@/lib/logger";
 import type { Review, Stay } from "@/types";
 import { buildImageUrl, buildVideoUrl } from "@/utils/media";
 import { formatPrice } from "@/utils/price";
@@ -57,41 +58,65 @@ export function StayDetailClient({ stayId }: StayDetailClientProps) {
 	const [copied, setCopied] = useState(false);
 	const queryClient = useQueryClient();
 
-	const { data: stay, isLoading } = useQuery<Stay>({
+	const { data: stay, isLoading } = useQuery<Stay, Error>({
 		queryKey: ["stay", stayId],
 		queryFn: async () => {
 			const res = await fetch(`/api/stays/${stayId}`);
 			if (!res.ok) throw new Error("Stay not found");
 			return res.json();
 		},
+		retry: 2,
+		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
 
-	const { data: reviewsData } = useQuery<{
-		reviews: Review[];
-		total: number;
-	}>({
+	const { data: reviewsData } = useQuery<
+		{
+			reviews: Review[];
+			total: number;
+		},
+		Error
+	>({
 		queryKey: ["reviews", stayId],
 		queryFn: async () => {
 			const res = await fetch(`/api/stays/${stayId}/reviews`);
+			if (!res.ok) throw new Error("Failed to fetch reviews");
 			return res.json();
 		},
+		retry: 2,
+		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
 
-	const addReviewMutation = useMutation({
-		mutationFn: async (review: {
+	const addReviewMutation = useMutation<
+		Review,
+		Error,
+		{
 			coupleName: string;
 			rating: number;
 			text: string;
-		}) => {
+		}
+	>({
+		mutationFn: async (review) => {
 			const res = await fetch(`/api/stays/${stayId}/reviews`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(review),
 			});
+			if (!res.ok) {
+				const error = await res.json().catch(() => ({}));
+				logger.error("Review submission failed", {
+					stayId,
+					status: res.status,
+					error,
+				});
+				throw new Error(error.message || `Failed: ${res.status}`);
+			}
 			return res.json();
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["reviews", stayId] });
+		},
+		onError: (error: Error) => {
+			logger.error("Review mutation error", { error: error.message });
 		},
 	});
 

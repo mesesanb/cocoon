@@ -16,6 +16,7 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { logger } from "@/lib/logger";
 import type { AvailabilityResponse, Booking, Stay } from "@/types";
 import { calculateNights } from "@/utils/dates";
 import { formatPrice } from "@/utils/price";
@@ -74,6 +75,14 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 					guests: 2,
 				}),
 			});
+			if (!res.ok) {
+				logger.error("Booking submission failed", {
+					status: res.status,
+					coupleName,
+					stayId: stay.id,
+				});
+				throw new Error(`Booking failed: ${res.status}`);
+			}
 			return res.json();
 		},
 		onMutate: () => {
@@ -84,6 +93,10 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 			setStep("confirmed");
 			queryClient.invalidateQueries({ queryKey: ["bookings"] });
 			queryClient.invalidateQueries({ queryKey: ["availability", stay.id] });
+		},
+		onError: (error: Error) => {
+			logger.error("Booking mutation error", { error: error.message });
+			setStep("form");
 		},
 	});
 
@@ -266,6 +279,18 @@ export function BookingForm({ stay, onClose }: BookingFormProps) {
 										Available
 									</div>
 								) : null}
+
+								{bookingMutation.isError && (
+									<div className="flex items-start gap-2 text-red-600/90 text-xs bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+										<AlertCircle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
+										<div className="flex-1">
+											<p className="font-medium">
+												{bookingMutation.error?.message ||
+													"Booking failed. Please try again."}
+											</p>
+										</div>
+									</div>
+								)}
 
 								{availability?.available && (
 									<div className="border-t border-foreground/5 pt-3 flex flex-col gap-1">

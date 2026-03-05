@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { format, parseISO, startOfDay } from "date-fns";
 import { motion } from "framer-motion";
 import {
+	AlertCircle,
 	ArrowLeft,
 	LayoutGrid,
 	List,
@@ -104,19 +105,28 @@ export function CocoonDiscovery({
 	const [amenitiesDraft, setAmenitiesDraft] = useState<string[]>([]);
 	const [amenitiesSearch, setAmenitiesSearch] = useState("");
 
-	const { data: allStays = [] } = useQuery<Stay[]>({
+	const { data: allStays = [] } = useQuery<Stay[], Error>({
 		queryKey: ["stays_all_for_amenities"],
 		queryFn: async () => {
 			const res = await fetch("/api/stays");
+			if (!res.ok) throw new Error(`Failed to fetch stays: ${res.status}`);
 			return res.json();
 		},
+		retry: 2,
+		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
 
 	const availableAmenities = Array.from(
 		new Set(allStays.flatMap((s) => (s.amenities ?? []).map((a) => String(a)))),
 	).sort((a, b) => a.localeCompare(b));
 
-	const { data: stays = [], isLoading } = useQuery<Stay[]>({
+	const {
+		data: stays = [],
+		isLoading,
+		isError: staysError,
+		error: staysErrorObj,
+		refetch: refetchStays,
+	} = useQuery<Stay[], Error>({
 		queryKey: [
 			"stays",
 			activeScenario,
@@ -136,8 +146,11 @@ export function CocoonDiscovery({
 				params.set("amenities", amenitiesSelected.join(","));
 			params.set("sort", sortBy);
 			const res = await fetch(`/api/stays?${params.toString()}`);
+			if (!res.ok) throw new Error(`Failed to fetch stays: ${res.status}`);
 			return res.json();
 		},
+		retry: 2,
+		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
 
 	const handleSearch = useCallback(() => {
@@ -558,16 +571,20 @@ export function CocoonDiscovery({
 								</p>
 								<Select
 									value={sortBy}
-									onValueChange={(value) =>
-										setSortBy(
-											value as
-												| "price_asc"
-												| "price_desc"
-												| "rating_asc"
-												| "rating_desc"
-												| "reviews_desc",
-										)
-									}
+									onValueChange={(value) => {
+										const validSorts = [
+											"price_asc",
+											"price_desc",
+											"rating_asc",
+											"rating_desc",
+											"reviews_desc",
+										] as const;
+										if (
+											validSorts.includes(value as (typeof validSorts)[number])
+										) {
+											setSortBy(value as (typeof validSorts)[number]);
+										}
+									}}
 								>
 									<SelectTrigger
 										className="glass-button h-8 flex items-center rounded-full px-3 md:px-4 text-[10px] md:text-[11px] tracking-[0.1em] uppercase font-medium text-foreground focus:ring-2 focus:ring-sage-deep/40 focus:ring-offset-1 border-0 min-w-0 w-fit gap-1.5 [&_svg]:hidden"
@@ -665,6 +682,29 @@ export function CocoonDiscovery({
 						>
 							Seeking resonance...
 						</motion.div>
+					</div>
+				) : staysError ? (
+					<div className="flex items-center justify-center py-24">
+						<div className="rounded-lg bg-red-50 border border-red-200 p-6 max-w-md">
+							<div className="flex gap-3 items-start">
+								<AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+								<div className="flex-1">
+									<h3 className="font-semibold text-red-900 mb-1">
+										Failed to Load Retreats
+									</h3>
+									<p className="text-sm text-red-700 mb-4">
+										{staysErrorObj?.message || "An unexpected error occurred"}
+									</p>
+									<button
+										type="button"
+										onClick={() => refetchStays()}
+										className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors"
+									>
+										Try Again
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				) : stays.length === 0 ? (
 					<div className="flex items-center justify-center py-24">

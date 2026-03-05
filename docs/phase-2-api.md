@@ -2,6 +2,8 @@
 
 Phase 2 polishes the existing Next.js Route Handler API: validation, correctness, and observability. No new routes were added.
 
+**⚠️ FOLLOW-UP**: See [phase-2-5-frontend-errors.md](phase-2-5-frontend-errors.md) for critical frontend error handling fixes required before proceeding to Phase 3.
+
 ## Summary of Changes
 
 | Task | Description |
