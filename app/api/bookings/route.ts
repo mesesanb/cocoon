@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import bookingsData from "@/data/bookings.json";
 import staysData from "@/data/stays.json";
 import { logRoute } from "@/lib/api-logger";
+import { COOKIE_NAME, verifyCookieValue } from "@/lib/auth-cookie";
 import { validateBookingBody } from "@/lib/validators";
 import type { Booking, Stay } from "@/types";
 import { calculateNights } from "@/utils/dates";
@@ -13,18 +14,28 @@ export async function GET(request: NextRequest) {
 	const start = Date.now();
 	const path = request.nextUrl.pathname;
 
-	const coupleName = request.nextUrl.searchParams.get("coupleName");
-	if (!coupleName || !coupleName.trim()) {
+	const rawCookie = request.cookies.get(COOKIE_NAME)?.value;
+	if (!rawCookie) {
 		const res = NextResponse.json(
-			{ error: "coupleName query parameter is required" },
-			{ status: 400 },
+			{ error: "Authentication required" },
+			{ status: 401 },
 		);
-		logRoute("GET", path, 400, Date.now() - start);
+		logRoute("GET", path, 401, Date.now() - start);
+		return res;
+	}
+	const session = verifyCookieValue(rawCookie);
+	if (!session) {
+		const res = NextResponse.json(
+			{ error: "Invalid or expired session" },
+			{ status: 401 },
+		);
+		logRoute("GET", path, 401, Date.now() - start);
 		return res;
 	}
 
 	const filtered = bookings.filter(
-		(b) => b.coupleName.toLowerCase() === coupleName.trim().toLowerCase(),
+		(b) =>
+			b.coupleName.toLowerCase() === session.coupleName.trim().toLowerCase(),
 	);
 	const res = NextResponse.json(filtered);
 	logRoute("GET", path, 200, Date.now() - start);

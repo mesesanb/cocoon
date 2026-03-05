@@ -44,9 +44,7 @@ export function OurCocoonClient() {
 	const { data: bookings = [] } = useQuery<Booking[]>({
 		queryKey: ["bookings", coupleName],
 		queryFn: async () => {
-			const res = await fetch(
-				`/api/bookings?coupleName=${encodeURIComponent(coupleName)}`,
-			);
+			const res = await fetch("/api/bookings");
 			if (!res.ok) return [];
 			return res.json();
 		},

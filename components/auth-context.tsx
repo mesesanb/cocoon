@@ -25,7 +25,7 @@ interface AuthContextType {
 		password: string,
 		coupleName: string,
 	) => Promise<{ success: boolean; error?: string }>;
-	signOut: () => void;
+	signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -45,6 +45,27 @@ const isValidPassword = (password: string): boolean => {
 	);
 };
 
+/** Sync the server-side session cookie with the current user identity */
+async function syncSession(user: User | null): Promise<void> {
+	try {
+		if (user) {
+			await fetch("/api/auth/session", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: user.email,
+					coupleName: user.coupleName,
+				}),
+			});
+		} else {
+			await fetch("/api/auth/session", { method: "DELETE" });
+		}
+	} catch (err) {
+		// session sync is best-effort; don't block the UI
+		console.error("[auth] session sync failed:", err);
+	}
+}
+
 // mock auth: user in state and localStorage, default user on first visit
 export function AuthProvider({ children }: { children: ReactNode }) {
 	const [user, setUser] = useState<User | null>(null);
@@ -52,26 +73,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 	useEffect(() => {
 		const stored = localStorage.getItem(STORAGE_KEY);
+		let resolved: User;
 		if (stored) {
 			try {
-				setUser(JSON.parse(stored));
+				resolved = JSON.parse(stored);
 			} catch {
-				const defaultUser = {
-					email: "kai.luna@cocoon.us",
-					coupleName: "Kai & Luna",
-				};
-				setUser(defaultUser);
-				localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultUser));
+				resolved = { email: "kai.luna@cocoon.us", coupleName: "Kai & Luna" };
+				localStorage.setItem(STORAGE_KEY, JSON.stringify(resolved));
 			}
 		} else {
-			const defaultUser = {
-				email: "kai.luna@cocoon.us",
-				coupleName: "Kai & Luna",
-			};
-			setUser(defaultUser);
-			localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultUser));
+			resolved = { email: "kai.luna@cocoon.us", coupleName: "Kai & Luna" };
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(resolved));
 		}
-		setIsLoading(false);
+		setUser(resolved);
+		syncSession(resolved).finally(() => setIsLoading(false));
 	}, []);
 
 	const signIn = async (
@@ -98,6 +113,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 		const newUser = { email, coupleName };
 		setUser(newUser);
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(newUser));
+		await syncSession(newUser);
 		return { success: true };
 	};
 
@@ -123,12 +139,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 		const newUser = { email, coupleName: coupleName.trim() };
 		setUser(newUser);
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(newUser));
+		await syncSession(newUser);
 		return { success: true };
 	};
 
-	const signOut = () => {
+	const signOut = async () => {
 		setUser(null);
 		localStorage.removeItem(STORAGE_KEY);
+		await syncSession(null);
 	};
 
 	return (

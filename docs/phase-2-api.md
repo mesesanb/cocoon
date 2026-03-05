@@ -8,7 +8,7 @@ Phase 2 polishes the existing Next.js Route Handler API: validation, correctness
 |------|-------------|
 | 2.1 | Input validation on `POST /api/bookings` — `stayId`, `coupleName`, `checkIn`, `checkOut` required; 400 on invalid |
 | 2.2 | Input validation on `POST /api/stays/:id/reviews` — `coupleName`, `rating` (1–5), `text` (min 10 chars) |
-| 2.3 | `GET /api/bookings` requires `coupleName` query param; returns only that couple's bookings |
+| 2.3 | `GET /api/bookings` requires an authenticated session cookie; returns only the authenticated couple's bookings |
 | 2.4 | `GET /api/stays` with `checkIn`/`checkOut` now excludes stays with booking conflicts |
 | 2.5 | Removed `sort=resonance` (duplicate of `sort=rating_desc`) |
 | 2.6 | `checkOut <= checkIn` returns 400 in availability and stays routes |
@@ -34,13 +34,30 @@ Phase 2 polishes the existing Next.js Route Handler API: validation, correctness
 
 ### GET /api/bookings
 
-**Query params**:
+Returns the authenticated couple's bookings.
 
-- `coupleName` (required) — filters bookings by couple name (case-insensitive)
+**Authentication**: requires a valid `cocoon_auth` session cookie (set automatically on sign-in via `POST /api/auth/session`).
 
-**Validation errors** (400):
+**Response errors**:
 
-- Missing `coupleName`
+- `401 Unauthenticated` — missing or invalid session cookie
+
+### POST /api/auth/session
+
+Sets a signed `cocoon_auth` session cookie.
+
+**Request body** (JSON):
+
+- `email` (string, required)
+- `coupleName` (string, required, non-empty)
+
+**Response errors** (400):
+
+- Missing or invalid fields
+
+### DELETE /api/auth/session
+
+Clears the `cocoon_auth` session cookie.
 
 ### POST /api/stays/:id/reviews
 
@@ -97,15 +114,18 @@ All route handlers log JSON lines to stdout:
 
 - `lib/api-logger.ts` — structured logging helper
 - `lib/validators.ts` — request body validation for bookings and reviews
+- `lib/auth-cookie.ts` — HMAC sign/verify helpers for the session cookie
+- `app/api/auth/session/route.ts` — POST creates session cookie, DELETE clears it
 
 ## Updated Files
 
 - `utils/dates.ts` — added `datesOverlap` helper
-- `app/api/bookings/route.ts` — validation, coupleName filter, logging
+- `app/api/bookings/route.ts` — session-cookie auth, validation, logging
 - `app/api/stays/route.ts` — booking-conflict check, date guard, removed resonance sort, logging
 - `app/api/stays/[id]/route.ts` — logging
 - `app/api/stays/[id]/availability/route.ts` — date guard, logging
 - `app/api/stays/[id]/reviews/route.ts` — validation, logging
 - `app/api/bookings/[confirmationId]/route.ts` — logging
 - `app/api/reviews/route.ts` — logging
-- `components/our-cocoon-client.tsx` — pass `coupleName` when fetching bookings
+- `components/auth-context.tsx` — sync session cookie on sign-in / sign-up / sign-out
+- `components/our-cocoon-client.tsx` — fetch bookings without coupleName query param (auth via cookie)
