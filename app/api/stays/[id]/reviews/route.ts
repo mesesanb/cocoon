@@ -25,7 +25,10 @@ export async function GET(
 	const page = parseInt(searchParams.get("page") || "1", 10);
 	const limit = parseInt(searchParams.get("limit") || "10", 10);
 
-	const stayReviews = reviews.filter((r) => r.stayId === id);
+	const stayReviews = reviews
+		.filter((r) => r.stayId === id)
+		// Newest reviews first so freshly added reviews appear at the top
+		.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 	const total = stayReviews.length;
 	const startIdx = (page - 1) * limit;
 	const paginated = stayReviews.slice(startIdx, startIdx + limit);

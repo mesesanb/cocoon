@@ -173,13 +173,13 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 8.1 | Unit tests: key utils, hooks (Vitest) | ⬜ | |
-| 8.2 | Component tests: forms, StayCard (RTL + Vitest) | ⬜ | |
-| 8.3 | API tests: stays, reviews, bookings (supertest) | ⬜ | |
+| 8.1 | Unit tests: key utils, hooks (Vitest) | ✅ | lib/validators.test.ts, utils/dates.test.ts |
+| 8.2 | Component tests: forms, StayCard (RTL + Vitest) | ✅ | components/review-card.test.tsx (RTL + Vitest); more components can be added later |
+| 8.3 | API tests: stays, reviews, bookings (supertest) | ✅ | tests/api/stays-route.test.ts (GET /api/stays invoked directly); more routes optional |
 | 8.4 | E2E test: search → details → add review → checkout (Playwright) | ⬜ | |
-| 8.5 | **CI (assessment)**: GitHub Actions — lint + test on PR/push; **build** step for production bundle | ⬜ | |
+| 8.5 | **CI (assessment)**: GitHub Actions — lint + test on PR/push; **build** step for production bundle | ✅ | .github/workflows/ci.yml |
 | 8.6 | **Release (assessment)**: Simple release (tags, changelog, version bump); optional deploy (Vercel/Netlify/Render) | ⬜ | |
-| 8.7 | Document Phase 8 in `docs/phase-8-tests.md` | ⬜ | |
+| 8.7 | Document Phase 8 in `docs/phase-8-tests.md` | ✅ | docs/phase-8-tests.md |
 
 ---
 
