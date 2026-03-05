@@ -79,17 +79,32 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 ---
 
-## Phase 3: Search + List (Frontend)
+## Phase 2.5: Frontend Error Handling & Type Safety (CRITICAL FIX)
 
-*Assessment must-have: Search or browse stays (filters and sorting); frontend calls backend API.*
+*Code review identified 5 critical blockers on Phase 3+. Must fix before proceeding to search/details features. Identified in CODE_REVIEW.md.*
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
-| 3.1 | Configure TanStack Query provider and typed API client (fetch wrappers for Next.js Route Handlers) | ⬜ | |
-| 3.2 | Create stays API hooks (useStays, useStay) | ⬜ | |
-| 3.3 | Build Search page: search bar, type filters (CITY/FOREST/MOUNTAINS/SEA), sort | ⬜ | |
-| 3.4 | Build StayCard component (image, name, type, rating, price) | ⬜ | |
-| 3.5 | Results grid with loading + empty states | ⬜ | |
+| 2.5.1 | **Error handling on all useQuery calls** — Add `isError, error` destructuring; render error UI with retry button; add `retry: 2, retryDelay: (i) => Math.min(1000 * 2^i, 30000)` | ✅ | 7 queries: discovery (amenities, stays), detail (stay, reviews), our-cocoon (bookings, stays, reviews) |
+| 2.5.2 | **Error handling on all useMutation calls** — Check `res.ok` before `res.json()`; throw error on 400+; add `onError: (err) => logger.error()`  | ✅ | Review mutation (detail), booking mutation (form) |
+| 2.5.3 | **Fix unsafe type casts** — Replace `as` casts with validation; add missing `avgRating` field to Stay type | ✅ | types/index.ts (avgRating added), discovery (sort validation) |
+| 2.5.4 | **Add frontend logging** — Create `lib/logger.ts` with structured logging; log query errors and mutations | ✅ | lib/logger.ts created; used in mutations + detail view |
+| 2.5.5 | **Document Phase 2.5 findings** — Add frontend error handling best practices doc | ✅ | docs/phase-2-5-frontend-errors.md (completed) |
+| 2.5.6 | **Error UI rendering** — Add error banners with retry buttons to components | ✅ | cocoon-discovery (stays error), booking-form (booking error) |
+
+---
+
+## Phase 3: Search + List (Frontend)
+
+*Assessment must-have: Search or browse stays (filters and sorting); frontend calls backend API. Blocked by Phase 2.5.*
+
+| # | Todo | Status | Notes |
+|---|------|--------|-------|
+| 3.1 | Configure TanStack Query provider and typed API client (fetch wrappers for Next.js Route Handlers) | ⬜ | **Depends on 2.5.1** |
+| 3.2 | Create stays API hooks (useStays, useStay) | ⬜ | **Depends on 2.5.1** — must include error handling |
+| 3.3 | Build Search page: search bar, type filters (CITY/FOREST/MOUNTAINS/SEA), sort | ⬜ | **Depends on 2.5.3** — safe type casting |
+| 3.4 | Build StayCard component (image, name, type, rating, price) | ⬜ | **Depends on 2.5.3** — avgRating field |
+| 3.5 | Results grid with loading + empty + error states | ⬜ | **Depends on 2.5.1** — error UI |
 | 3.6 | Document Phase 3 in `docs/phase-3-search.md` | ⬜ | |
 
 ---
@@ -138,14 +153,14 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) for every commi
 
 ## Phase 7: Polish
 
-*Assessment NFRs: Responsive (desktop + mobile); loading + empty + error states; basic accessibility.*
+*Assessment NFRs: Responsive (desktop + mobile); loading + empty + error states; basic accessibility. **NOTE**: Error states are CRITICAL and moved to Phase 2.5.*
 
 | # | Todo | Status | Notes |
 |---|------|--------|-------|
 | 7.1 | Dark/Light theme toggle | ⬜ | |
 | 7.2 | Loading states (Skeleton, spinner) for async screens | ⬜ | |
 | 7.3 | Empty states (no results, etc.) | ⬜ | |
-| 7.4 | Error states (retry, toast) | ⬜ | |
+| 7.4 | Error states (retry, toast) | ⏸ | **Moved to Phase 2.5** — CRITICAL blocker |
 | 7.5 | **Responsive (assessment NFR)**: Desktop + mobile; mobile drawer for filters | ⬜ | |
 | 7.6 | **Basic a11y (assessment NFR)**: Labels, keyboard nav, sensible focus | ⬜ | |
 | 7.7 | Document Phase 7 in `docs/phase-7-polish.md` | ⬜ | |

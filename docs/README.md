@@ -14,6 +14,8 @@
 |------|---------|
 | [phase-0-ui.md](phase-0-ui.md) | Phase 0 (current state): Next.js app at root, API routes, data, gateway, discovery toolbar (filters, dates, sticky glass bar), search bar behaviour, stay location map (Leaflet + satellite imagery), image/video loading optimisation, run instructions |
 | [phase-1-setup.md](phase-1-setup.md) | Phase 1: Root `dev` script, TS/lint/deps hygiene, commitlint + husky |
+| [phase-2-api.md](phase-2-api.md) | Phase 2: API Polish — validation, observability, booking conflicts |
+| [phase-2-5-frontend-errors.md](phase-2-5-frontend-errors.md) | **Phase 2.5 (CRITICAL)**: Frontend error handling, type safety, observability — MUST COMPLETE BEFORE PHASE 3 |
 
 ## Planning (not in this folder)
 

@@ -15,6 +15,7 @@ export interface Stay {
 	maxGuests: 2;
 	amenities: string[];
 	resonanceScore: number;
+	avgRating?: number;
 	reviewCount?: number;
 	availability: DateRange[];
 }

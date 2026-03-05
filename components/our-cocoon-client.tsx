@@ -41,31 +41,39 @@ export function OurCocoonClient() {
 
 	const coupleName = user?.coupleName || "Guest";
 
-	const { data: bookings = [] } = useQuery<Booking[]>({
+	const { data: bookings = [] } = useQuery<Booking[], Error>({
 		queryKey: ["bookings", coupleName],
 		queryFn: async () => {
 			const res = await fetch(
 				`/api/bookings?coupleName=${encodeURIComponent(coupleName)}`,
 			);
-			if (!res.ok) return [];
+			if (!res.ok) throw new Error(`Failed to fetch bookings: ${res.status}`);
 			return res.json();
 		},
+		retry: 2,
+		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
 
-	const { data: stays = [] } = useQuery<Stay[]>({
+	const { data: stays = [] } = useQuery<Stay[], Error>({
 		queryKey: ["stays"],
 		queryFn: async () => {
 			const res = await fetch("/api/stays");
+			if (!res.ok) throw new Error(`Failed to fetch stays: ${res.status}`);
 			return res.json();
 		},
+		retry: 2,
+		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
 
-	const { data: allReviews = [] } = useQuery<Review[]>({
+	const { data: allReviews = [] } = useQuery<Review[], Error>({
 		queryKey: ["all-reviews"],
 		queryFn: async () => {
 			const res = await fetch("/api/reviews");
+			if (!res.ok) throw new Error(`Failed to fetch reviews: ${res.status}`);
 			return res.json();
 		},
+		retry: 2,
+		retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 	});
 
 	const now = new Date().toISOString().split("T")[0];
